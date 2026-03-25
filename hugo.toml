@@ -20,7 +20,7 @@ theme = 'PaperMod'
         url = "tel:18872778990"   # 点击后手机可直接拨号
     [[params.socialIcons]]
         name = "email"
-        url = "mailto:caoyide@example.com" # 建议换成您的真实邮箱
+        url = "mailto:271333828@qq.com" # 建议换成您的真实邮箱
 
 # 4. 导航栏设置（建议增加“关于我”和“法律咨询”）
 [[menu.main]]
