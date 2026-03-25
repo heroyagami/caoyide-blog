@@ -1,7 +1,46 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = 'https://caoyide.com/'
+languageCode = 'zh-cn'
+title = '曹义德律师专栏'
 theme = 'PaperMod'
 
 [params]
-  homeInfoParams = { Title = "Hi there 👋", Content = "Welcome to my blog!" }
+    # 1. 首页核心欢迎语（品牌第一印象）
+    homeInfoParams = { Title = "曹义德 律师", Content = "⚖️ **11年法律深耕 | 律师 · 专利代理人 · 证券从业**<br>毕业于中南大、华科大。前市检察院履历，武汉市科技创新服务引进人才。<br>专注于为企业及个人提供全流程、定制化的复合型法律服务。" }
+    
+    # 2. 网站整体设置
+    env = "production"
+    defaultTheme = "auto"         # 自动切换深色/浅色模式
+    ShowReadingTime = true        # 显示阅读时间
+    ShowShareButtons = true       # 显示分享按钮
+    ShowToc = true                # 文章显示目录
+    
+    # 3. 社交图标配置（方便客户一键联系你）
+    [[params.socialIcons]]
+        name = "phone"
+        url = "tel:18872778990"   # 点击后手机可直接拨号
+    [[params.socialIcons]]
+        name = "email"
+        url = "mailto:caoyide@example.com" # 建议换成您的真实邮箱
+
+# 4. 导航栏设置（建议增加“关于我”和“法律咨询”）
+[[menu.main]]
+    identifier = "posts"
+    name = "法律文库"
+    url = "/posts/"
+    weight = 10
+[[menu.main]]
+    identifier = "about"
+    name = "关于律师"
+    url = "/about/"
+    weight = 20
+[[menu.main]]
+    identifier = "contact"
+    name = "法律咨询"
+    url = "tel:18872778990"
+    weight = 30
+
+# 5. 页脚设置（展示执业信息，增强权威性）
+[params.footer]
+    hideCopyright = false
+    # 这里放置您的执业证号和律所信息，非常关键
+    text = "湖北江通律师事务所 | 执业证号：14201202110310748"
