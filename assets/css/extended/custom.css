@@ -149,7 +149,7 @@
 @media screen and (max-width: 768px) {
     /* 调整文章底部导航的内边距，避免与返回顶部按钮重叠 */
     .paginav {
-        margin-bottom: 80px;
+        margin-bottom: 100px !important;
         padding: 0 10px;
     }
 
@@ -163,13 +163,23 @@
         text-align: right;
     }
 
-    /* 调整返回顶部按钮位置 */
+    /* 调整返回顶部按钮位置 - 移到左边避免重叠 */
     .top-link {
-        bottom: 20px;
-        right: 20px;
+        bottom: 80px !important;
+        right: auto !important;
+        left: 20px !important;
         width: 36px;
         height: 36px;
         padding: 10px;
+    }
+
+    /* 分页导航也增加底部间距 */
+    .pagination {
+        margin-bottom: 80px;
+    }
+
+    .page-footer {
+        margin-bottom: 60px;
     }
 }
 

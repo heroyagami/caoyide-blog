@@ -25,13 +25,6 @@ buildFuture = true
         name = "email"
         url = "mailto:271333828@qq.com" # 建议换成您的真实邮箱
 
-# 4. 导航栏设置（只保留热点专题）
-[[menu.main]]
-    identifier = "posts"
-    name = "热点专题"
-    url = "/posts/"
-    weight = 10
-
 # 搜索索引输出配置
 [outputs]
     home = ["HTML", "RSS", "JSON"]
