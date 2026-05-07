@@ -1,0 +1,146 @@
+/* 紧凑排版样式 */
+
+/* 减小文章头部间距 */
+.page-header,
+.post-header {
+    margin: 12px auto var(--content-gap) auto;
+}
+
+/* 减小标题字号和间距 */
+.post-title {
+    margin-bottom: 2px;
+    font-size: 32px;
+}
+
+.post-description {
+    margin-top: 6px;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+/* 减小正文内容间距 */
+.post-content {
+    margin: 16px 0;
+    line-height: 1.6;
+}
+
+/* 减小段落间距 */
+.post-content p {
+    margin-bottom: 12px;
+}
+
+/* 减小标题间距 */
+.post-content h1 {
+    margin: 24px auto 16px;
+    font-size: 28px;
+}
+
+.post-content h2 {
+    margin: 20px auto 12px;
+    font-size: 24px;
+}
+
+.post-content h3 {
+    margin: 16px 0 10px;
+    font-size: 20px;
+}
+
+.post-content h4 {
+    font-size: 16px;
+    margin: 12px 0 8px;
+}
+
+/* 减小列表间距 */
+.post-content ol,
+.post-content ul {
+    margin-bottom: 12px;
+    padding-inline-start: 18px;
+}
+
+.post-content li {
+    margin-top: 3px;
+}
+
+/* 减小引用块间距 */
+.post-content blockquote {
+    margin: 12px 0;
+    padding: 0 12px;
+}
+
+/* 减小分隔线间距 */
+.post-content hr {
+    margin: 20px 0;
+}
+
+/* 减小图片间距 */
+.post-content img {
+    margin: 0.5rem 0;
+}
+
+/* 减小页脚间距 */
+.post-footer {
+    margin-top: 20px;
+}
+
+/* 减小标签间距 */
+.post-tags {
+    gap: 6px;
+}
+
+.post-tags a {
+    padding: 0 10px;
+    line-height: 28px;
+    font-size: 12px;
+}
+
+/* 减小分享按钮间距 */
+.share-buttons {
+    padding: 6px;
+    gap: 6px;
+}
+
+/* 首页文章列表紧凑 */
+.post-entry {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+}
+
+.post-entry .entry-header {
+    margin-bottom: 6px;
+}
+
+.post-entry h2 {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.post-entry .entry-content {
+    margin: 8px 0;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.post-entry .entry-content p {
+    margin-bottom: 0;
+}
+
+.post-entry .entry-footer {
+    margin-top: 8px;
+}
+
+/* 减小目录间距 */
+.toc {
+    margin-bottom: 16px;
+    padding: 0.3em;
+}
+
+.toc .inner {
+    margin: 3px 16px;
+    padding: 0 8px;
+}
+
+/* 减小表格间距 */
+.post-content table th,
+.post-content table:not(.highlighttable, .highlight table, .gist .highlight) td {
+    padding: 6px 4px;
+}
