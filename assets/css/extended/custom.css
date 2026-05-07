@@ -144,3 +144,87 @@
 .post-content table:not(.highlighttable, .highlight table, .gist .highlight) td {
     padding: 6px 4px;
 }
+
+/* 移动端优化：调整 paginav 和 top-link 位置避免重叠 */
+@media screen and (max-width: 768px) {
+    /* 调整文章底部导航的内边距，避免与返回顶部按钮重叠 */
+    .paginav {
+        margin-bottom: 80px;
+        padding: 0 10px;
+    }
+
+    .paginav .prev,
+    .paginav .next {
+        width: 48%;
+    }
+
+    .paginav .next {
+        margin-inline-start: 4%;
+        text-align: right;
+    }
+
+    /* 调整返回顶部按钮位置 */
+    .top-link {
+        bottom: 20px;
+        right: 20px;
+        width: 36px;
+        height: 36px;
+        padding: 10px;
+    }
+}
+
+/* 搜索页面样式 */
+.search-container {
+    margin: 20px 0;
+}
+
+#search-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--entry);
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+#search-results {
+    min-height: 200px;
+}
+
+.search-result {
+    padding: 16px;
+    margin-bottom: 12px;
+    background: var(--entry);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.search-result:hover {
+    border-color: var(--primary);
+}
+
+.search-result h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+}
+
+.search-result p {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.search-result .search-highlight {
+    background: var(--primary);
+    color: var(--theme);
+    padding: 0 4px;
+    border-radius: 3px;
+}
