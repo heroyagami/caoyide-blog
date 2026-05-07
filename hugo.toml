@@ -47,15 +47,10 @@ buildFuture = true
     url = "/posts/"
     weight = 10
 [[menu.main]]
-    identifier = "categories"
-    name = "按分类浏览"
-    url = "/categories/"
-    weight = 20
-[[menu.main]]
     identifier = "cases"
     name = "过往案件"
     url = "/cases/"
-    weight = 30
+    weight = 20
 
 # 5. 页脚设置（展示执业信息，增强权威性）
 [params.footer]
