@@ -163,9 +163,9 @@
         text-align: right;
     }
 
-    /* 调整返回顶部按钮位置 - 放右边但更高避免重叠 */
+    /* 调整返回顶部按钮位置 - 放右边但更高避免重叠（向上3个自身尺寸约108px） */
     .top-link {
-        bottom: 120px !important;
+        bottom: 228px !important;
         right: 20px !important;
         left: auto !important;
         width: 36px;
