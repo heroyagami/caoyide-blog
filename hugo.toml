@@ -8,7 +8,7 @@ buildFuture = true
 
 [params]
     # 1. 首页核心欢迎语（品牌第一印象）
-    homeInfoParams = { Title = "", Content = "<a href='/posts/clippings/%E5%85%B3%E4%BA%8E%E6%9B%B9%E4%B9%89%E5%BE%B7%E5%BE%8B%E5%B8%88/' style='text-decoration:none;color:inherit;'><h1 style='margin-bottom:12px;'>关于曹义德律师</h1>华中科技大学法学硕士，前反贪检察官，现执业律师。<br>涉猎合规、职务犯罪辩护、民事商事刑事讼诉等各类案件。<br><br>视频号、抖音关注曹义德律师哦~</a>" }
+    homeInfoParams = { Title = "", Content = "<a href='/posts/clippings/%E5%85%B3%E4%BA%8E%E6%9B%B9%E4%B9%89%E5%BE%B7%E5%BE%8B%E5%B8%88/' style=text-decoration:none;color:inherit><h1 style=margin-bottom:12px>关于曹义德律师</h1>华中科技大学法学硕士，前反贪检察官，现执业律师。<br>涉猎合规、职务犯罪辩护、民事商事刑事讼诉等各类案件。<br><br>视频号、抖音关注曹义德律师哦~</a>" }
 
     # 2. 网站整体设置
     env = "production"
