@@ -1,0 +1,81 @@
+<!-- 首页底部搜索和分类 -->
+<div class="home-bottom-section" style="margin: 40px 0; padding: 20px; background: var(--entry); border-radius: var(--radius); border: 1px solid var(--border);">
+    <!-- 搜索框 -->
+    <div class="home-search" style="margin-bottom: 30px;">
+        <h2 style="margin-bottom: 15px; font-size: 20px; color: var(--primary);">搜索文章</h2>
+        <input id="searchInputBottom" type="search" placeholder="输入关键词搜索..." aria-label="search" autocomplete="off" maxlength="64" style="width: 100%; padding: 12px 16px; font-size: 16px; border: 2px solid var(--border); border-radius: var(--radius); background: var(--theme); color: var(--primary);">
+        <ul id="searchResultsBottom" aria-label="search results" style="list-style: none; padding: 0; margin: 10px 0 0 0; max-height: 300px; overflow-y: auto;"></ul>
+    </div>
+
+    <!-- 分类导航 -->
+    <div class="home-categories">
+        <h2 style="margin-bottom: 15px; font-size: 20px; color: var(--primary); text-align: center;">分类浏览</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+            <a href="/categories/交通事故/" style="padding: 8px 16px; background: var(--theme); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--primary); font-size: 14px;">交通事故</a>
+            <a href="/categories/保险理赔/" style="padding: 8px 16px; background: var(--theme); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--primary); font-size: 14px;">保险理赔</a>
+            <a href="/categories/债权债务/" style="padding: 8px 16px; background: var(--theme); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--primary); font-size: 14px;">债权债务</a>
+            <a href="/categories/公司法律/" style="padding: 8px 16px; background: var(--theme); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--primary); font-size: 14px;">公司法律</a>
+            <a href="/categories/刑事诉讼/" style="padding: 8px 16px; background: var(--theme); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--primary); font-size: 14px;">刑事诉讼</a>
+            <a href="/categories/劳动纠纷/" style="padding: 8px 16px; background: var(--theme); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--primary); font-size: 14px;">劳动纠纷</a>
+            <a href="/categories/医疗事故/" style="padding: 8px 16px; background: var(--theme); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--primary); font-size: 14px;">医疗事故</a>
+            <a href="/categories/合同纠纷/" style="padding: 8px 16px; background: var(--theme); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--primary); font-size: 14px;">合同纠纷</a>
+            <a href="/categories/婚姻家庭/" style="padding: 8px 16px; background: var(--theme); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--primary); font-size: 14px;">婚姻家庭</a>
+            <a href="/categories/工程纠纷/" style="padding: 8px 16px; background: var(--theme); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--primary); font-size: 14px;">工程纠纷</a>
+            <a href="/categories/征地拆迁/" style="padding: 8px 16px; background: var(--theme); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--primary); font-size: 14px;">征地拆迁</a>
+            <a href="/categories/房产纠纷/" style="padding: 8px 16px; background: var(--theme); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--primary); font-size: 14px;">房产纠纷</a>
+            <a href="/categories/损害赔偿/" style="padding: 8px 16px; background: var(--theme); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--primary); font-size: 14px;">损害赔偿</a>
+            <a href="/categories/知识产权/" style="padding: 8px 16px; background: var(--theme); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--primary); font-size: 14px;">知识产权</a>
+        </div>
+    </div>
+</div>
+
+<!-- 搜索脚本 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var searchInput = document.getElementById('searchInputBottom');
+    var searchResults = document.getElementById('searchResultsBottom');
+    var fuseIndex = null;
+
+    // 加载搜索索引
+    fetch('/index.json')
+        .then(response => response.json())
+        .then(data => {
+            fuseIndex = new Fuse(data, {
+                keys: ['title', 'content', 'summary'],
+                threshold: 0.4,
+                minMatchCharLength: 2
+            });
+        })
+        .catch(err => console.error('Failed to load search index:', err));
+
+    // 搜索功能
+    searchInput.addEventListener('input', function() {
+        var query = this.value.trim();
+        if (!query || !fuseIndex) {
+            searchResults.innerHTML = '';
+            return;
+        }
+
+        var results = fuseIndex.search(query).slice(0, 5);
+        if (results.length === 0) {
+            searchResults.innerHTML = '<li style="padding: 10px; color: var(--secondary);">未找到相关文章</li>';
+            return;
+        }
+
+        searchResults.innerHTML = results.map(function(result) {
+            return '<li style="margin-bottom: 8px;"><a href="' + result.item.permalink + '" style="display: block; padding: 12px; background: var(--theme); border-radius: var(--radius); text-decoration: none; color: var(--primary); border: 1px solid var(--border);">' +
+                   '<strong>' + result.item.title + '</strong>' +
+                   '<p style="margin: 4px 0 0 0; font-size: 14px; color: var(--secondary); line-height: 1.4;">' + (result.item.summary || '').substring(0, 80) + '...</p>' +
+                   '</a></li>';
+        }).join('');
+    });
+
+    // 点击外部关闭搜索结果
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.home-search')) {
+            searchResults.innerHTML = '';
+        }
+    });
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
