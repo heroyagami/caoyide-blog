@@ -28,6 +28,11 @@ theme = 'PaperMod'
     name = "法律文库"
     url = "/posts/"
     weight = 10
+[[menu.main]]
+    identifier = "categories"
+    name = "按分类浏览"
+    url = "/categories/"
+    weight = 20
 
 # 5. 页脚设置（展示执业信息，增强权威性）
 [params.footer]
