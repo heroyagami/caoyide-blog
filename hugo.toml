@@ -7,6 +7,10 @@ theme = 'PaperMod'
 buildFuture = true
 
 [params]
+    # SEO 全局默认值
+    description = "曹义德律师专栏 — 华中科技大学法学硕士，前反贪检察官，现执业律师。专注职务犯罪辩护、民事商事刑事讼诉。法律咨询：18872778990（微信同号）"
+    keywords = ["曹义德律师", "律师", "法律咨询", "刑事辩护", "民事诉讼", "合同纠纷", "债务追偿", "黄石律师", "湖北律师"]
+
     # 1. 首页核心欢迎语（品牌第一印象）
     homeInfoParams = { Title = "", Content = "<a href='/posts/clippings/%E5%85%B3%E4%BA%8E%E6%9B%B9%E4%B9%89%E5%BE%B7%E5%BE%8B%E5%B8%88/' style=text-decoration:none;color:inherit><h1 style=margin-bottom:12px>关于曹义德律师</h1>华中科技大学法学硕士，前反贪检察官，现执业律师。<br>涉猎合规、职务犯罪辩护、民事商事刑事讼诉等各类案件。<br><br>视频号、抖音关注曹义德律师哦~</a>" }
 
@@ -43,11 +47,15 @@ buildFuture = true
 # 导航栏
 [[menu.main]]
     identifier = "cases"
-    name = "过往案件"
+    name = "以往所代理的案件"
     url = "/cases/"
     weight = 10
 
-# 5. 页脚设置（展示执业信息，增强权威性）
+# 5. 百度站长验证（去 https://ziyuan.baidu.com 注册 → 添加网站 → 拿到验证码 code-xxxxx 填在引号里）
+[params.baidu]
+    siteVerificationTag = "codeva-HaQroU2o0L"
+
+# 6. 页脚设置（展示执业信息，增强权威性）
 [params.footer]
     hideCopyright = false
     # 这里放置您的执业证号和律所信息，非常关键
