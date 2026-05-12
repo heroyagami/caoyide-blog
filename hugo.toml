@@ -47,7 +47,7 @@ buildFuture = true
 # 导航栏
 [[menu.main]]
     identifier = "cases"
-    name = "以往所代理的案件"
+    name = "曹义德案例库"
     url = "/cases/"
     weight = 10
 
