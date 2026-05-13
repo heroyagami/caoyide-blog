@@ -1,42 +1,141 @@
 baseURL = 'https://caoyide.com/'
 languageCode = 'zh-cn'
 title = '曹义德律师专栏'
-theme = 'PaperMod'
+theme = 'hugo-theme-stack'
+hasCJKLanguage = true
 
 # 允许发布未来日期的文章
 buildFuture = true
 
+[pagination]
+    pagerSize = 10
+
+[permalinks]
+    posts = "/posts/:slugorcontentbasename/"
+
+# ============================================================
+# Stack 主题参数
+# ============================================================
 [params]
     mainSections = ["posts"]
+    rssFullContent = true
 
-    # SEO 全局默认值
-    description = "曹义德律师专栏 — 华中科技大学法学硕士，前反贪检察官，现执业律师。专注职务犯罪辩护、民事商事刑事讼诉。法律咨询：18872778990（微信同号）"
-    keywords = ["曹义德律师", "律师", "法律咨询", "刑事辩护", "民事诉讼", "合同纠纷", "债务追偿", "黄石律师", "湖北律师"]
+    [params.dateFormat]
+        published = "2006-01-02"
+        lastUpdated = "2006-01-02"
 
-    # 1. 首页核心欢迎语（品牌第一印象）
-    homeInfoParams = { Title = "", Content = "<a href='/posts/clippings/%E5%85%B3%E4%BA%8E%E6%9B%B9%E4%B9%89%E5%BE%B7%E5%BE%8B%E5%B8%88/' style=text-decoration:none;color:inherit><h1 style=margin-bottom:12px>关于曹义德律师</h1>华中科技大学法学硕士，前反贪检察官，现执业律师。<br>涉猎合规、职务犯罪辩护、民事商事刑事讼诉等各类案件。<br><br>视频号、抖音关注曹义德律师哦~</a>" }
+    [params.colorScheme]
+        toggle = true
+        default = "auto"
 
-    # 2. 网站整体设置
-    env = "production"
-    defaultTheme = "auto"         # 自动切换深色/浅色模式
-    ShowReadingTime = true        # 显示阅读时间
-    ShowShareButtons = true       # 显示分享按钮
-    ShowToc = true                # 文章显示目录
+    # ---- 左侧边栏 ----
+    [params.sidebar]
+        subtitle = "华中科技大学法学硕士 · 前反贪检察官 · 执业律师"
+        # avatar = "img/avatar.png"  # 有头像照片后取消注释
 
-    # 3. 社交图标配置（方便客户一键联系你）
-    [[params.socialIcons]]
-        name = "phone"
-        url = "tel:18872778990"   # 点击后手机可直接拨号
-    [[params.socialIcons]]
-        name = "email"
-        url = "mailto:271333828@qq.com" # 建议换成您的真实邮箱
+    # ---- 文章设置 ----
+    [params.article]
+        readingTime = true
 
-# 搜索索引输出配置
+    # ---- 页脚 ----
+    [params.footer]
+        since = 2025
+
+    # ---- 右侧边栏小部件 ----
+    [params.widgets]
+        homepage = [
+            { type = "search" },
+            { type = "archives", params = { limit = 5 } },
+            { type = "categories", params = { limit = 10 } },
+            { type = "tag-cloud", params = { limit = 10 } },
+        ]
+        page = [{ type = "toc" }]
+
+# ============================================================
+# 百度站长验证
+# ============================================================
+[params.baidu]
+    siteVerificationTag = "codeva-HaQroU2o0L"
+
+# ============================================================
+# 导航菜单
+# ============================================================
+[[menu.main]]
+    identifier = "cases"
+    name = "案例库"
+    url = "/cases/"
+    weight = 10
+    [menu.main.params]
+        icon = "briefcase"
+
+[[menu.main]]
+    identifier = "archives"
+    name = "归档"
+    url = "/archives/"
+    weight = 20
+    [menu.main.params]
+        icon = "archives"
+
+[[menu.main]]
+    identifier = "search"
+    name = "搜索"
+    url = "/search/"
+    weight = 30
+    [menu.main.params]
+        icon = "search"
+
+# ---- 社交链接（显示在侧边栏） ----
+[[menu.social]]
+    identifier = "phone"
+    name = "电话"
+    url = "tel:18872778990"
+    [menu.social.params]
+        icon = "phone"
+
+[[menu.social]]
+    identifier = "email"
+    name = "邮箱"
+    url = "mailto:271333828@qq.com"
+    [menu.social.params]
+        icon = "mail"
+
+# ============================================================
+# Markdown 渲染
+# ============================================================
+[markup]
+    [markup.goldmark]
+        [markup.goldmark.extensions]
+            [markup.goldmark.extensions.passthrough]
+                enable = true
+                [markup.goldmark.extensions.passthrough.delimiters]
+                    block  = [["\\[", "\\]"], ["$$", "$$"]]
+                    inline = [["\\(", "\\)"]]
+        [markup.goldmark.renderer]
+            unsafe = true
+
+    [markup.tableOfContents]
+        endLevel   = 4
+        ordered    = true
+        startLevel = 2
+
+    [markup.highlight]
+        noClasses          = false
+        codeFences         = true
+        guessSyntax        = true
+        lineNoStart        = 1
+        lineNos            = true
+        lineNumbersInTable = true
+        tabWidth           = 4
+
+# ============================================================
+# 输出格式
+# ============================================================
 [outputs]
-    home = ["HTML", "RSS", "JSON"]
-    page = ["HTML", "RSS"]
+    home = ["HTML", "RSS"]
 
-# 搜索参数配置
+# ============================================================
+# Fuse.js 搜索参数（Stack 搜索页使用）
+# ============================================================
 [params.fuseOpts]
     isCaseSensitive = false
     shouldSort = true
@@ -45,20 +144,3 @@ buildFuture = true
     threshold = 0.4
     minMatchCharLength = 2
     keys = ["title", "permalink", "summary", "content"]
-
-# 导航栏
-[[menu.main]]
-    identifier = "cases"
-    name = "曹义德案例库"
-    url = "/cases/"
-    weight = 10
-
-# 5. 百度站长验证（去 https://ziyuan.baidu.com 注册 → 添加网站 → 拿到验证码 code-xxxxx 填在引号里）
-[params.baidu]
-    siteVerificationTag = "codeva-HaQroU2o0L"
-
-# 6. 页脚设置（展示执业信息，增强权威性）
-[params.footer]
-    hideCopyright = false
-    # 这里放置您的执业证号和律所信息，非常关键
-    text = "湖北江通律师事务所 | 执业证号：14201202110310748"

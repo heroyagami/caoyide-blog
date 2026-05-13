@@ -1,0 +1,13 @@
+{{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) }}
+{{- $isClipping := findRE `Clippings` .File.Dir }}
+<article class="{{ if $image }}has-image{{ end }}">
+    {{ partial "article/components/header" (dict "Page" . "IsList" true) }}
+    {{- if and $isClipping .TableOfContents }}
+    <details class="entry-toc" open>
+        <summary>今日热点速览</summary>
+        <div class="toc-inner">
+            {{ .TableOfContents }}
+        </div>
+    </details>
+    {{- end }}
+</article>

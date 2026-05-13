@@ -1,0 +1,36 @@
+/* Chinese-friendly font stack - no Google Fonts dependency */
+:root {
+    --base-font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", var(--sys-font-family), sans-serif;
+}
+
+/* Clippings ToC in article list */
+.entry-toc {
+    margin: 12px var(--card-padding) 0;
+    padding: 12px 16px;
+    background: var(--card-background);
+    border: 1px solid var(--card-border);
+    border-radius: var(--card-border-radius);
+    font-size: 1.4rem;
+
+    summary {
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 8px;
+        color: var(--accent-color);
+    }
+
+    .toc-inner {
+        font-size: 1.3rem;
+        line-height: 1.8;
+
+        nav > ul {
+            padding-left: 1.5em;
+            margin: 0;
+        }
+
+        a {
+            color: var(--body-text-color);
+            text-decoration: none;
+        }
+    }
+}
