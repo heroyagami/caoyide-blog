@@ -334,7 +334,6 @@ body {
 }
 
 /* ---- 9. 移动端适配 ---- */
-@media (max-width: 768px) {
     .categories-grid {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: var(--spacing-sm);
@@ -356,7 +355,6 @@ body {
     .featured-about .about-card .about-card-body {
         gap: var(--spacing-sm);
     }
-}
 
 /* ---- 10. 面包屑导航 ---- */
 .breadcrumb {
@@ -445,35 +443,6 @@ body {
     display: flex;
 }
 
-/* ---- 13. 浮动目录按钮 ---- */
-.floating-toc {
-    position: fixed;
-    bottom: 82px;
-    right: 20px;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: var(--card-background);
-    border: 1px solid var(--card-border);
-    box-shadow: var(--shadow-l2);
-    cursor: pointer;
-    z-index: 100;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.75;
-    transition: opacity 0.2s, transform 0.2s;
-    color: var(--accent-color);
-    font-size: 1.6rem;
-}
-.floating-toc:hover {
-    opacity: 1;
-    transform: translateY(-3px);
-}
-.floating-toc.visible {
-    display: flex;
-}
-
 /* ---- 14. 阅读进度条 ---- */
 .reading-progress {
     position: fixed;
@@ -508,20 +477,16 @@ body {
 }
 
 /* ---- 15. 移动端按钮缩小 ---- */
-@media (max-width: 768px) {
-    .back-to-top, .floating-toc {
+    .back-to-top {
         width: 36px;
         height: 36px;
         right: 12px;
         font-size: 1.4rem;
-    }
-    .floating-toc {
-        bottom: 70px;
+        bottom: 20px;
     }
     .back-to-top {
         bottom: 20px;
     }
-}
 
 /* ---- 16. 分页按钮缩小 ---- */
 .pagination .page-link {
@@ -618,7 +583,6 @@ body {
     cursor: default;
     pointer-events: none;
 }
-@media (max-width: 768px) {
     .article-nav-inner {
         grid-template-columns: 1fr;
     }
@@ -630,7 +594,6 @@ body {
     .article-nav-title {
         font-size: 1.2rem;
     }
-}
 
 /* ---- 18. 搜索高亮与结果样式 ---- */
 .search-result-item {
@@ -762,59 +725,6 @@ body {
     opacity: 0.5;
 }
 
-/* ---- 18. ToC 弹窗 ---- */
-.toc-popover {
-    position: fixed;
-    bottom: 130px;
-    right: 20px;
-    z-index: 150;
-    background: var(--card-background);
-    border: 1px solid var(--card-separator-color);
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--shadow-l2);
-    padding: var(--spacing-md);
-    max-width: 280px;
-    max-height: 50vh;
-    overflow-y: auto;
-    font-size: 1.3rem;
-
-    &.hidden {
-        display: none;
-    }
-
-    nav > ul,
-    nav > ol {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    li {
-        margin: var(--spacing-xs) 0;
-
-        a {
-            display: block;
-            padding: var(--spacing-xs) var(--spacing-sm);
-            color: var(--card-text-color-main);
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background 0.15s, color 0.15s;
-
-            &:hover {
-                background: var(--card-background-selected);
-                color: var(--accent-color);
-            }
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .toc-popover {
-        right: 12px;
-        bottom: 112px;
-        max-width: calc(100vw - 40px);
-    }
-}
 
 /* ---- 19. 卡片分层阴影强化 ---- */
 .article-list--compact article,

@@ -174,64 +174,6 @@ document.addEventListener('DOMContentLoaded', function() {
     update();
   }
 
-  /* ---- 4. 浮动目录按钮（移动端弹窗 / 桌面端滚动到侧边栏） ---- */
-  function initFloatingToc() {
-    var tocWidget = doc.querySelector('.right-sidebar .toc-nav') || doc.querySelector('#TableOfContents');
-    var articleToc = doc.querySelector('.article-toc');
-    if (!tocWidget && !articleToc) return;
-
-    var btn = doc.createElement('div');
-    btn.className = 'floating-toc';
-    btn.innerHTML = '☰';
-    btn.title = '目录';
-    doc.body.appendChild(btn);
-
-    var popover = doc.createElement('div');
-    popover.className = 'toc-popover hidden';
-    doc.body.appendChild(popover);
-
-    function populatePopover() {
-      if (popover.children.length > 0) return;
-      var src = doc.querySelector('.article-toc .toc-nav') || doc.querySelector('#TableOfContents') || doc.querySelector('.right-sidebar .toc-nav');
-      if (src) popover.appendChild(src.cloneNode(true));
-    }
-
-    function isSidebarVisible() {
-      var sidebar = doc.querySelector('.right-sidebar');
-      if (!sidebar) return false;
-      return win.getComputedStyle(sidebar).display !== 'none' && !!sidebar.querySelector('.toc-nav');
-    }
-
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (isSidebarVisible()) {
-        var sidebar = doc.querySelector('.right-sidebar');
-        if (sidebar) sidebar.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        populatePopover();
-        popover.classList.toggle('hidden');
-      }
-    });
-
-    doc.addEventListener('click', function(e) {
-      if (!popover.classList.contains('hidden') && !popover.contains(e.target) && e.target !== btn) {
-        popover.classList.add('hidden');
-      }
-    });
-
-    doc.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && !popover.classList.contains('hidden')) {
-        popover.classList.add('hidden');
-      }
-    });
-
-    function toggle() {
-      btn.classList.toggle('visible', win.scrollY > 300);
-    }
-    win.addEventListener('scroll', toggle, { passive: true });
-    toggle();
-  }
-
   /* ---- 5. 搜索框自动聚焦 ---- */
   function initSearchFocus() {
     var input = doc.querySelector('.search-form input[name="keyword"]');
@@ -463,7 +405,6 @@ document.addEventListener('DOMContentLoaded', function() {
       initExternalLinks();
       initBackToTop();
       initProgressBar();
-      initFloatingToc();
       initSearchFocus();
       initSidebarSearch();
       initSearchShortcut();
@@ -473,8 +414,6 @@ document.addEventListener('DOMContentLoaded', function() {
   } else {
     initExternalLinks();
     initBackToTop();
-    initProgressBar();
-    initFloatingToc();
     initSearchFocus();
     initSidebarSearch();
     initSearchShortcut();
