@@ -49,7 +49,6 @@ buildFuture = true
             { type = "search" },
             { type = "archives", params = { limit = 5 } },
             { type = "categories", params = { limit = 10 } },
-            { type = "tag-cloud", params = { limit = 10 } },
         ]
         page = [{ type = "toc" }]
 
@@ -71,12 +70,14 @@ buildFuture = true
         icon = "briefcase"
 
 [[menu.main]]
-    identifier = "archives"
-    name = "归档"
-    url = "/archives/"
-    weight = 20
+    identifier = "complaint"
+    name = "智能起诉状"
+    url = "https://wxfxpg.susong51.com/znszj-touch/docTemplate/index.html#/pcznfzsc/qsz"
+    weight = 15
     [menu.main.params]
-        icon = "archives"
+        icon = "file-description"
+        target = "_blank"
+
 
 # ---- 社交链接（显示在侧边栏） ----
 [[menu.social]]

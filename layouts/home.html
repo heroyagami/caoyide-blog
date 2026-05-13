@@ -1,0 +1,48 @@
+{{ define "main" }}
+    {{- $aboutPage := .Site.GetPage "/posts/clippings/关于曹义德律师" -}}
+    {{- if $aboutPage }}
+    <section class="featured-about">
+        <div class="about-card">
+            <div class="about-card-header">
+                <h2>关于曹义德律师</h2>
+                <span class="about-card-label">精选</span>
+            </div>
+            <div class="about-card-body">
+                <div class="about-card-fields">
+                    <h3>执业领域</h3>
+                    <ul>
+                        <li>民事纠纷：合同、劳动、婚姻家庭、交通事故、民间借贷、人身损害</li>
+                        <li>商事经济：房产纠纷、工程建筑、知识产权、公司股权、合伙纠纷</li>
+                        <li>刑事行政：经济犯罪、职务犯罪辩护、刑事辩护、取保候审、企业合规</li>
+                        <li>企业服务：常年法律顾问、合同审查、公司治理、股权架构、劳动人事</li>
+                        <li>知识产权：专利代理、商标维权、著作权保护、商业秘密</li>
+                    </ul>
+                </div>
+                <div class="about-card-contact">
+                    <h3>联系方式</h3>
+                    <p>执业机构：湖北江通律师事务所</p>
+                    <p>执业证号：14201202110310748</p>
+                    <p>手机：<a href="tel:18872778990">18872778990</a>（微信同号）</p>
+                    <p>邮箱：<a href="mailto:271333828@qq.com">271333828@qq.com</a></p>
+                    <p style="margin-top: var(--spacing-md); color: var(--body-text-color); opacity: 0.7; font-size: 1.3rem;">如果你的问题是「这事能不能办」，直接打电话。<br>如果你的问题是「这事怎么办」，带上材料来找我。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{- end }}
+
+    {{- $paginator := partial "helper/paginator.html" . -}}
+
+    <section class="article-list">
+        {{ range $index, $element := $paginator.Pages }}
+            {{ partial "article-list/default" . }}
+        {{ end }}
+    </section>
+
+    {{- partial "pagination.html" . -}}
+    {{- partial "footer/footer" . -}}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}

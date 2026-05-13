@@ -92,4 +92,23 @@
             </ol>
         </li>
     </ol>
+
+    {{- $about := .Site.GetPage "/posts/clippings/关于曹义德律师" -}}
+    {{- if $about }}
+    <div class="sidebar-bio">
+        <div class="sidebar-bio-inner">
+            <h3>关于曹义德律师</h3>
+            <ul>
+                <li>湖北江通律师事务所 · 执业律师</li>
+                <li>华中科技大学法学硕士</li>
+                <li>前反贪检察官 · 18年法律深耕</li>
+                <li>民事 · 商事 · 刑事 · 企业合规</li>
+            </ul>
+            <div class="sidebar-bio-contact">
+                <a href="tel:18872778990" class="bio-phone">18872778990</a>
+                <a href="/posts/clippings/关于曹义德律师/" class="bio-more">了解更多 →</a>
+            </div>
+        </div>
+    </div>
+    {{- end }}
 </aside>

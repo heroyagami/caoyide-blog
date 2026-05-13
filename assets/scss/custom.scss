@@ -113,7 +113,185 @@ body {
     margin: 0 4px;
 }
 
-/* ---- 6. 移动端适配 ---- */
+/* ---- 6. 背景纹理（Blowfish 风格 SVG 几何纹理） ---- */
+body {
+    &::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -10;
+        background-image: url("/img/background.svg");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.12;
+    }
+
+    /* 暗色模式下更淡 */
+    [data-scheme="dark"] &::before {
+        opacity: 0.06;
+    }
+}
+
+/* 主内容区加半透底保证可读性 */
+.main-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---- 7. 侧边栏简介卡片 ---- */
+.sidebar-bio {
+    margin: var(--spacing-md) 0;
+    padding: var(--spacing-md);
+    border-radius: var(--card-border-radius);
+    background: var(--card-background);
+    border: 1px solid var(--card-border);
+    font-size: 1.25rem;
+    line-height: 1.7;
+
+    .sidebar-bio-inner {
+        h3 {
+            font-size: 1.35rem;
+            margin: 0 0 var(--spacing-sm) 0;
+            color: var(--accent-color);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 var(--spacing-sm) 0;
+
+            li {
+                padding: 2px 0;
+
+                &::before {
+                    content: "· ";
+                    color: var(--accent-color);
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .sidebar-bio-contact {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+
+        .bio-phone {
+            font-weight: 600;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 1.3rem;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .bio-more {
+            font-size: 1.2rem;
+            color: var(--body-text-color);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+/* ---- 8. 首页精选简介卡片 ---- */
+.featured-about {
+    margin-bottom: var(--spacing-xl);
+
+    .about-card {
+        border-radius: var(--card-border-radius);
+        background: var(--card-background);
+        border: 1px solid var(--card-border);
+        padding: var(--spacing-xl);
+        box-shadow: var(--shadow-l1);
+
+        .about-card-header {
+            display: flex;
+            align-items: baseline;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--accent-color);
+
+            h2 {
+                font-size: 2rem;
+                margin: 0;
+                color: var(--card-text-color-main);
+            }
+
+            .about-card-label {
+                font-size: 1.2rem;
+                color: var(--accent-color);
+                white-space: nowrap;
+                background: var(--accent-color);
+                color: #fff;
+                padding: 2px 10px;
+                border-radius: 4px;
+                font-weight: 600;
+            }
+        }
+
+        .about-card-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr;
+            }
+
+            h3 {
+                font-size: 1.4rem;
+                margin: 0 0 var(--spacing-sm) 0;
+                color: var(--accent-color);
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                font-size: 1.35rem;
+                line-height: 2;
+
+                li::before {
+                    content: "◆ ";
+                    color: var(--accent-color);
+                    font-size: 0.8rem;
+                }
+            }
+
+            .about-card-contact {
+                p {
+                    margin: 0 0 var(--spacing-xs) 0;
+                    font-size: 1.35rem;
+                    line-height: 2;
+                }
+
+                a {
+                    color: var(--accent-color);
+                    text-decoration: none;
+                    font-weight: 600;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* ---- 9. 移动端适配 ---- */
 @media (max-width: 768px) {
     .categories-grid {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -123,5 +301,9 @@ body {
     .entry-toc {
         margin: 8px 0 0;
         padding: 8px 12px;
+    }
+
+    .sidebar-bio {
+        display: none;
     }
 }
