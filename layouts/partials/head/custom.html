@@ -392,6 +392,71 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  /* ---- 9. 文章页搜索词高亮 ---- */
+  function initArticleHighlight() {
+    var params = new URLSearchParams(win.location.search);
+    var q = params.get('highlight');
+    if (!q) return;
+    var article = doc.querySelector('.article-content');
+    if (!article) return;
+
+    var keywords = q.split(/\s+/).filter(Boolean);
+    if (!keywords.length) return;
+
+    keywords.forEach(function(kw) {
+      var regex = new RegExp('(' + kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      highlightTextNodes(article, regex);
+    });
+
+    // Scroll to first mark
+    var first = article.querySelector('mark');
+    if (first) {
+      first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  function highlightTextNodes(root, regex) {
+    var walker = doc.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node) {
+        // Skip <mark>, <script>, <style>, <code>, <pre>
+        var parent = node.parentElement;
+        if (!parent) return NodeFilter.FILTER_REJECT;
+        var tag = parent.tagName;
+        if (tag === 'MARK' || tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) {
+      nodes.push(walker.currentNode);
+    }
+
+    nodes.forEach(function(node) {
+      var text = node.textContent;
+      if (!text || !regex.test(text)) return;
+      regex.lastIndex = 0;
+      var parent = node.parentNode;
+      var frag = doc.createDocumentFragment();
+      var lastIndex = 0;
+      var match;
+      while ((match = regex.exec(text)) !== null) {
+        if (match.index > lastIndex) {
+          frag.appendChild(doc.createTextNode(text.slice(lastIndex, match.index)));
+        }
+        var mark = doc.createElement('mark');
+        mark.textContent = match[0];
+        frag.appendChild(mark);
+        lastIndex = regex.lastIndex;
+        if (!match[0]) regex.lastIndex++;
+      }
+      if (lastIndex < text.length) {
+        frag.appendChild(doc.createTextNode(text.slice(lastIndex)));
+      }
+      parent.replaceChild(frag, node);
+    });
+  }
+
   /* ---- 启动 ---- */
   if (doc.readyState === 'loading') {
     doc.addEventListener('DOMContentLoaded', function() {
@@ -403,6 +468,7 @@ document.addEventListener('DOMContentLoaded', function() {
       initSidebarSearch();
       initSearchShortcut();
       initWechatQR();
+      initArticleHighlight();
     });
   } else {
     initExternalLinks();
@@ -413,6 +479,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSidebarSearch();
     initSearchShortcut();
     initWechatQR();
+    initArticleHighlight();
   }
 })();
 </script>

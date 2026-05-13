@@ -51,6 +51,7 @@ class Search {
     private container: HTMLDivElement;
     private debounceTimer: number | null = null;
     private emptyState: HTMLDivElement | null = null;
+    private searchQuery: string = '';
 
     constructor({ form, input, list, resultTitle, resultTitleTemplate }: {
         form: HTMLFormElement,
@@ -185,6 +186,7 @@ class Search {
 
         const results = await this.searchKeywords(keywords);
         this.clear();
+        this.searchQuery = keywords.filter(k => k.trim()).join(' ');
 
         if (results.length === 0) {
             this.showEmptyState(keywords.join(' '));
@@ -192,7 +194,7 @@ class Search {
         }
 
         for (const item of results) {
-            this.list.append(Search.render(item));
+            this.list.append(Search.render(item, this.searchQuery));
         }
 
         const endTime = performance.now();
@@ -318,15 +320,18 @@ class Search {
         }
     }
 
-    public static render(item: pageData) {
+    public static render(item: pageData, highlight?: string) {
         const dateStr = formatDate(item.date);
         const catBadge = item.categories && item.categories.length > 0
             ? `<span class="search-category">${item.categories[0]}</span>`
             : '';
+        const articleUrl = highlight
+            ? `${item.permalink}?highlight=${encodeURIComponent(highlight)}`
+            : item.permalink;
 
         return (
             <article class="search-result-item">
-                <a href={item.permalink}>
+                <a href={articleUrl}>
                     <div class="article-details">
                         <div class="search-meta">
                             {dateStr && <time class="search-date">{dateStr}</time>}
