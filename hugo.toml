@@ -94,6 +94,14 @@ buildFuture = true
     [menu.social.params]
         icon = "mail"
 
+[[menu.social]]
+    identifier = "wechat"
+    name = "微信"
+    url = "javascript:void(0)"
+    [menu.social.params]
+        icon = "messages"
+        newTab = false
+
 # ============================================================
 # Markdown 渲染
 # ============================================================

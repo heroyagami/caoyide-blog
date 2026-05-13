@@ -8,7 +8,42 @@
     --base-font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", var(--sys-font-family), sans-serif;
 }
 
-/* ---- 2. 归档页分类网格（竖直排列，禁止横向滚动） ---- */
+/* ---- 2. 配色体系（Linear 风格蓝色系，专业法律博客） ---- */
+:root {
+    /* Light mode */
+    --accent-color: #1e40af;
+    --accent-color-darker: #1e3a8a;
+    --body-background: #f8f9fb;
+    --body-text-color: #475569;
+
+    /* Card refinements */
+    --card-background-selected: #eef2ff;
+    --card-separator-color: rgba(148, 163, 184, 0.3);
+
+    /* Card shadows — 更分层，蓝色微调 */
+    --shadow-l1: 0px 2px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(30, 64, 175, 0.06);
+    --shadow-l2: 0px 6px 16px rgba(0, 0, 0, 0.06), 0px 0px 1px rgba(30, 64, 175, 0.08);
+
+    &[data-scheme="dark"] {
+        --accent-color: #60a5fa;
+        --accent-color-darker: #93c5fd;
+        --accent-color-text: #0f172a;
+        --body-background: #0f172a;
+        --body-text-color: rgba(255, 255, 255, 0.78);
+
+        --card-background: #1e293b;
+        --card-background-selected: rgba(96, 165, 250, 0.12);
+        --card-text-color-main: rgba(255, 255, 255, 0.92);
+        --card-text-color-secondary: rgba(255, 255, 255, 0.65);
+        --card-text-color-tertiary: rgba(255, 255, 255, 0.45);
+        --card-separator-color: rgba(148, 163, 184, 0.12);
+
+        --shadow-l1: 0px 2px 8px rgba(0, 0, 0, 0.2);
+        --shadow-l2: 0px 6px 16px rgba(0, 0, 0, 0.25);
+    }
+}
+
+/* ---- 3. 归档页分类网格（竖直排列，禁止横向滚动） ---- */
 .categories-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -95,17 +130,25 @@ body {
     font-size: 1.6rem;
 
     h2 {
-        margin-top: 2em;
+        margin-top: 2.2em;
         margin-bottom: 0.8em;
+        padding-left: 16px;
+        border-left: 4px solid var(--accent-color);
+        font-size: 1.9rem;
+        font-weight: 700;
     }
 
     h3 {
-        margin-top: 1.5em;
+        margin-top: 1.6em;
         margin-bottom: 0.6em;
+        padding-left: 12px;
+        border-left: 3px solid var(--card-separator-color);
+        font-size: 1.55rem;
+        font-weight: 650;
     }
 
     p {
-        margin-bottom: 1.2em;
+        margin-bottom: 1.3em;
     }
 }
 
@@ -771,4 +814,112 @@ body {
         bottom: 112px;
         max-width: calc(100vw - 40px);
     }
+}
+
+/* ---- 19. 卡片分层阴影强化 ---- */
+.article-list--compact article,
+.article-list--tile article {
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+    border: 1px solid transparent;
+}
+.article-list--compact article:hover,
+.article-list--tile article:hover {
+    box-shadow: var(--shadow-l2);
+    transform: translateY(-2px);
+    border-color: var(--accent-color);
+}
+
+/* ---- 20. 侧边栏菜单 active 状态 ---- */
+#main-menu li.current > a {
+    background: var(--card-background-selected);
+    border-radius: var(--card-border-radius);
+    color: var(--accent-color);
+    font-weight: 600;
+}
+#main-menu li > a {
+    transition: background 0.15s, color 0.15s;
+    border-radius: var(--card-border-radius);
+    padding: 6px 12px;
+    margin: 2px 0;
+}
+#main-menu li > a:hover {
+    background: var(--card-background-selected);
+}
+
+/* ---- 21. 微信二维码弹窗 ---- */
+.wechat-qr-btn {
+    cursor: pointer;
+    position: relative;
+}
+.qr-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+.qr-modal-overlay.active {
+    display: flex;
+}
+.qr-modal {
+    background: var(--card-background);
+    border-radius: 16px;
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-l2);
+    text-align: center;
+    max-width: 320px;
+    width: 90%;
+}
+.qr-modal img {
+    width: 220px;
+    height: 220px;
+    border-radius: 8px;
+    margin-bottom: var(--spacing-md);
+}
+.qr-modal .qr-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--card-text-color-main);
+    margin-bottom: 4px;
+}
+.qr-modal .qr-subtitle {
+    font-size: 1.2rem;
+    color: var(--card-text-color-secondary);
+}
+.qr-modal .qr-close {
+    margin-top: var(--spacing-md);
+    padding: 8px 24px;
+    border-radius: 8px;
+    background: var(--card-background-selected);
+    border: 1px solid var(--card-separator-color);
+    color: var(--card-text-color-main);
+    cursor: pointer;
+    font-size: 1.3rem;
+    transition: background 0.15s;
+}
+.qr-modal .qr-close:hover {
+    background: var(--accent-color);
+    color: #fff;
+    border-color: var(--accent-color);
+}
+
+/* ---- 22. 暗色模式背景 SVG 更淡 ---- */
+[data-scheme="dark"] body::before {
+    opacity: 0.03;
+}
+
+/* ---- 23. 链接 hover 优化 ---- */
+a {
+    transition: color 0.15s, text-decoration-color 0.15s;
+}
+.article-content a {
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+}
+.article-content a:hover {
+    text-decoration-thickness: 2px;
 }

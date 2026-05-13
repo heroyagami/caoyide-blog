@@ -358,6 +358,40 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  /* ---- 8. 微信二维码弹窗 ---- */
+  function initWechatQR() {
+    var wechatLink = doc.querySelector('.menu-social a[title="微信"]');
+    if (!wechatLink) return;
+
+    // Create modal
+    var overlay = doc.createElement('div');
+    overlay.className = 'qr-modal-overlay';
+    overlay.innerHTML = '<div class="qr-modal">' +
+      '<img src="/img/wechat-qr.png" alt="微信二维码" loading="lazy">' +
+      '<div class="qr-title">扫码添加微信</div>' +
+      '<div class="qr-subtitle">法律咨询 18872778990</div>' +
+      '<button class="qr-close">关闭</button>' +
+      '</div>';
+    doc.body.appendChild(overlay);
+
+    wechatLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      overlay.classList.add('active');
+    });
+
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay || e.target.classList.contains('qr-close')) {
+        overlay.classList.remove('active');
+      }
+    });
+
+    doc.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        overlay.classList.remove('active');
+      }
+    });
+  }
+
   /* ---- 启动 ---- */
   if (doc.readyState === 'loading') {
     doc.addEventListener('DOMContentLoaded', function() {
@@ -368,6 +402,7 @@ document.addEventListener('DOMContentLoaded', function() {
       initSearchFocus();
       initSidebarSearch();
       initSearchShortcut();
+      initWechatQR();
     });
   } else {
     initExternalLinks();
@@ -377,6 +412,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSearchFocus();
     initSidebarSearch();
     initSearchShortcut();
+    initWechatQR();
   }
 })();
 </script>
