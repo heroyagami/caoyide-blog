@@ -2,7 +2,7 @@
 {{- $result := slice -}}
 
 {{- range $pages -}}
-    {{- $data := dict "title" .Title "date" .Date "permalink" .RelPermalink "content" (.Plain) -}}
+    {{- $data := dict "title" .Title "date" .Date "permalink" .RelPermalink "content" (.Plain) "categories" .Params.categories "tags" .Params.tags -}}
 
     {{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) -}}
     {{- if $image -}}

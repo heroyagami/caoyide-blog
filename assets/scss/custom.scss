@@ -589,76 +589,134 @@ body {
     }
 }
 
-/* ---- 17. 侧边栏搜索实时下拉 ---- */
+/* ---- 18. 搜索高亮与结果样式 ---- */
+.search-result-item {
+    margin-bottom: var(--spacing-sm);
+}
+.search-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: 4px;
+    font-size: 1.15rem;
+}
+.search-date {
+    color: var(--body-text-color);
+    opacity: 0.5;
+}
+.search-category {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 4px;
+    background: var(--accent-color);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.article-preview mark,
+.article-title mark {
+    background: var(--accent-color);
+    color: #fff;
+    padding: 1px 2px;
+    border-radius: 2px;
+}
+
+/* 空结果状态 */
+.search-empty {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    color: var(--body-text-color);
+    opacity: 0.6;
+}
+.search-empty p {
+    font-size: 1.4rem;
+    margin-bottom: var(--spacing-md);
+}
+.search-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+.search-suggestion-tag {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: var(--card-background);
+    border: 1px solid var(--card-border);
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: background 0.2s, border-color 0.2s;
+}
+.search-suggestion-tag:hover {
+    background: var(--accent-color);
+    color: #fff;
+    border-color: var(--accent-color);
+}
+
+/* ---- 19. 侧边栏搜索实时下拉 ---- */
 .search-form.widget {
     position: relative;
 }
-
 .search-dropdown {
+    display: none;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
     z-index: 200;
     background: var(--card-background);
-    border: 1px solid var(--card-separator-color);
+    border: 1px solid var(--card-border);
     border-radius: var(--card-border-radius);
     box-shadow: var(--shadow-l2);
-    max-height: 60vh;
+    max-height: 320px;
     overflow-y: auto;
-    margin-top: var(--spacing-xs);
+    margin-top: 4px;
 
-    &.hidden {
-        display: none;
+    &:not(.hidden) {
+        display: block;
     }
 }
-
 .search-dropdown-item {
     display: block;
     padding: var(--spacing-sm) var(--spacing-md);
     text-decoration: none;
     border-bottom: 1px solid var(--card-separator-color);
-    transition: background 0.15s ease;
-
-    &:last-child {
-        border-bottom: none;
-    }
-
-    &:hover {
-        background: var(--card-background-selected);
-    }
+    transition: background 0.15s;
 }
-
-.search-dropdown-title {
+.search-dropdown-item:last-child {
+    border-bottom: none;
+}
+.search-dropdown-item:hover {
+    background: var(--card-background-selected);
+}
+.search-dropdown-item .search-dropdown-title {
+    font-size: 1.3rem;
     font-weight: 600;
-    font-size: 1.35rem;
-    color: var(--card-text-color-main);
-    margin-bottom: 2px;
+    color: var(--body-text-color);
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
-
-    mark {
-        color: var(--accent-color);
-        background: transparent;
-        font-weight: 700;
-    }
 }
-
-.search-dropdown-preview {
-    font-size: 1.15rem;
-    color: var(--card-text-color-tertiary);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.search-dropdown-item .search-dropdown-preview {
+    font-size: 1.1rem;
+    color: var(--body-text-color);
+    opacity: 0.5;
+    margin-top: 2px;
 }
-
+.search-dropdown-item mark {
+    background: var(--accent-color);
+    color: #fff;
+    padding: 1px 2px;
+    border-radius: 2px;
+}
 .search-dropdown-empty {
     padding: var(--spacing-md);
     text-align: center;
-    font-size: 1.3rem;
-    color: var(--card-text-color-tertiary);
-    opacity: 0.7;
+    font-size: 1.2rem;
+    color: var(--body-text-color);
+    opacity: 0.5;
 }
 
 /* ---- 18. ToC 弹窗 ---- */
