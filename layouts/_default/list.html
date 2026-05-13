@@ -84,18 +84,22 @@
     <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
   </div>
   {{- end }}
+  {{- $isClipping := findRE `Clippings` .File.Dir }}
+  {{- if and $isClipping .TableOfContents }}
+  <details class="entry-toc" open>
+    <summary>今日热点速览</summary>
+    <div class="toc-inner">
+      {{ .TableOfContents }}
+    </div>
+  </details>
+  {{- end }}
   {{- if not (.Param "hideMeta") }}
   <footer class="entry-footer">
     {{- partial "post_meta.html" . -}}
   </footer>
   {{- end }}
-  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"{{ if $isClipping }} target="_blank"{{ end }}></a>
 </article>
-{{- end }}
-
-{{/* 首页底部搜索和分类 */}}
-{{- if and .IsHome (eq $paginator.PageNumber 1) }}
-{{- partial "home_bottom.html" . }}
 {{- end }}
 
 {{- if gt $paginator.TotalPages 1 }}
