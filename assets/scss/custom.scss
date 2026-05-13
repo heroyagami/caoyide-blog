@@ -82,7 +82,84 @@
     }
 }
 
-/* ---- 3. Clippings 日报 ToC 样式 ---- */
+/* ---- 3.0 分类 Grid 横向平铺 ---- */
+.categories-grid--inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+
+    article {
+        flex: 0 0 auto;
+
+        a {
+            padding: var(--spacing-sm) var(--spacing-md);
+        }
+
+        .article-title {
+            font-size: 1.3rem;
+            white-space: nowrap;
+        }
+    }
+}
+
+/* ---- 3.1 归档月份标题 ---- */
+.archives-month {
+    margin-bottom: var(--spacing-md);
+
+    .archives-month-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--accent-color);
+        margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+        padding-left: 12px;
+        border-left: 3px solid var(--accent-color);
+    }
+
+    .archives-month-count {
+        font-size: 1.15rem;
+        font-weight: 400;
+        color: var(--body-text-color);
+        opacity: 0.5;
+        margin-left: var(--spacing-xs);
+    }
+}
+
+/* ---- 3.2 侧边栏归档/分类 widget 横向平铺 ---- */
+.widget.archives .widget-archive--list,
+.widget.tagCloud .tagCloud-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.widget.archives .archives-year a,
+.widget.tagCloud .tagCloud-tags a {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: var(--card-background);
+    border: 1px solid var(--card-separator-color);
+    font-size: 1.15rem;
+    color: var(--body-text-color);
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.widget.archives .archives-year a:hover,
+.widget.tagCloud .tagCloud-tags a:hover {
+    background: var(--card-background-selected);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.widget.archives .archives-year .count,
+.widget.tagCloud .tagCloud-tags .count {
+    font-size: 1rem;
+    opacity: 0.5;
+    margin-left: 2px;
+}
+
+/* ---- 3.3 Clippings 日报 ToC 样式 ---- */
 .entry-toc {
     margin: 12px var(--card-padding) 0;
     padding: 12px 16px;
@@ -175,6 +252,12 @@ body {
         width: 100%;
         height: auto !important;
         border-radius: 10px !important;
+        transition: transform 0.2s, box-shadow 0.2s;
+
+        &:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-l2);
+        }
     }
 }
 
@@ -184,7 +267,7 @@ body {
     }
 }
 
-/* ---- 5.2 站点名称文字标志 ---- */
+/* ---- 5.3 站点名称文字标志（点击回首页） ---- */
 .site-name {
     font-family: var(--heading-font-family);
     font-size: 2.6rem;
@@ -194,6 +277,11 @@ body {
     a {
         color: var(--card-text-color-main);
         text-decoration: none;
+        transition: color 0.2s;
+
+        &:hover {
+            color: var(--accent-color);
+        }
     }
 }
 
@@ -659,6 +747,63 @@ body {
     background: var(--accent-color);
     color: #fff;
     border-color: var(--accent-color);
+}
+
+/* ---- 18.1 搜索筛选栏 ---- */
+.search-filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    border-radius: var(--card-border-radius);
+    background: var(--card-background-selected);
+    border: 1px solid var(--accent-color);
+    font-size: 1.2rem;
+}
+
+.search-filter-info {
+    color: var(--body-text-color);
+}
+
+.search-filter-info strong {
+    color: var(--accent-color);
+}
+
+.search-filter-toggle {
+    padding: 4px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--accent-color);
+    background: transparent;
+    color: var(--accent-color);
+    cursor: pointer;
+    font-size: 1.15rem;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+}
+
+.search-filter-toggle:hover {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+/* ---- 18.2 搜索隐藏不匹配块 ---- */
+.search-hidden {
+    display: none !important;
+}
+
+.search-show-all .search-hidden {
+    display: block !important;
+}
+
+.search-show-all li.search-hidden {
+    display: list-item !important;
+}
+
+.search-show-all ul.search-hidden,
+.search-show-all ol.search-hidden {
+    display: block !important;
 }
 
 /* ---- 19. 侧边栏搜索实时下拉 ---- */

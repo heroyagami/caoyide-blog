@@ -1,4 +1,4 @@
-{{- /* 覆盖主题归档页：分类区域改为竖直排列，禁止横向滑动 */}}
+{{- /* 归档页：按年→月分组，分类区域横向平铺 */}}
 {{ define "body-class" }}template-archives{{ end }}
 {{ define "main" }}
     <header>
@@ -6,7 +6,7 @@
         {{- $terms := $taxonomy.Pages -}}
         {{ if $terms }}
         <h2 class="section-title">{{ T "widget.categoriesCloud.title" }}</h2>
-        <div class="categories-grid">
+        <div class="categories-grid categories-grid--inline">
             {{ range $terms }}
                 {{ partial "article-list/tile" . }}
             {{ end }}
@@ -15,16 +15,24 @@
     </header>
 
     {{ $pages := partial "helper/pages.html" .Site.Home }}
+    {{ $groupedByYear := $pages.GroupByDate "2006" }}
 
-    {{ range $pages.GroupByDate "2006" }}
-    {{ $id := lower (replace .Key " " "-") }}
-    <div class="archives-group" id="{{ $id }}">
-        <h2 class="archives-date section-title"><a href="{{ $.RelPermalink }}#{{ $id }}">{{ .Key }}</a></h2>
-        <div class="article-list--compact">
-            {{ range .Pages }}
-                {{ partial "article-list/compact" . }}
-            {{ end }}
+    {{ range $groupedByYear }}
+    {{ $yearId := lower (replace .Key " " "-") }}
+    <div class="archives-group" id="{{ $yearId }}">
+        <h2 class="archives-date section-title"><a href="{{ $.RelPermalink }}#{{ $yearId }}">{{ .Key }} 年</a></h2>
+
+        {{ range .Pages.GroupByDate "01" }}
+        {{ $monthNum := int .Key }}
+        <div class="archives-month">
+            <h3 class="archives-month-title">{{ $monthNum }} 月 <span class="archives-month-count">{{ len .Pages }} 篇</span></h3>
+            <div class="article-list--compact">
+                {{ range .Pages }}
+                    {{ partial "article-list/compact" . }}
+                {{ end }}
+            </div>
         </div>
+        {{ end }}
     </div>
     {{ end }}
 

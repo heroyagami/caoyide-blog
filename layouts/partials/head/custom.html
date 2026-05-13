@@ -333,8 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-
-  /* ---- 9. 文章页搜索词高亮 ---- */
+  /* ---- 9. 文章页搜索词高亮 + 仅显示匹配段落 ---- */
   function initArticleHighlight() {
     var params = new URLSearchParams(win.location.search);
     var q = params.get('highlight');
@@ -345,15 +344,57 @@ document.addEventListener('DOMContentLoaded', function() {
     var keywords = q.split(/\s+/).filter(Boolean);
     if (!keywords.length) return;
 
+    // Step 1: highlight matching text
     keywords.forEach(function(kw) {
-      var regex = new RegExp('(' + kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      var escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, function(m) { return '\\' + m; });
+      var regex = new RegExp('(' + escaped + ')', 'gi');
       highlightTextNodes(article, regex);
     });
 
-    // Scroll to first mark
-    var first = article.querySelector('mark');
-    if (first) {
-      first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Step 2: hide blocks without matches
+    var blocks = article.querySelectorAll('p, h2, h3, h4, h5, h6, li, blockquote, figcaption');
+    var hiddenCount = 0;
+    blocks.forEach(function(el) {
+      if (!el.querySelector('mark')) {
+        el.classList.add('search-hidden');
+        hiddenCount++;
+      }
+    });
+
+    // Step 3: hide empty parent lists
+    article.querySelectorAll('ul, ol').forEach(function(list) {
+      var visibleItems = list.querySelectorAll('li:not(.search-hidden)');
+      if (visibleItems.length === 0) {
+        list.classList.add('search-hidden');
+      }
+    });
+
+    // Step 4: show toggle button
+    if (hiddenCount > 0) {
+      var bar = doc.createElement('div');
+      bar.className = 'search-filter-bar';
+      bar.innerHTML = '<span class="search-filter-info">已筛选匹配「<strong>' + keywords.join(' ') + '</strong>」的内容</span>' +
+        '<button class="search-filter-toggle">显示全部</button>';
+      article.parentNode.insertBefore(bar, article);
+
+      bar.querySelector('.search-filter-toggle').addEventListener('click', function() {
+        var isHidden = article.classList.toggle('search-show-all');
+        this.textContent = isHidden ? '收起筛选' : '显示全部';
+        bar.querySelector('.search-filter-info').style.opacity = isHidden ? '0' : '1';
+      });
+    }
+
+    // Step 5: scroll to first visible mark
+    var allMarks = article.querySelectorAll('mark');
+    var firstVisible = null;
+    for (var i = 0; i < allMarks.length; i++) {
+      if (!allMarks[i].closest('.search-hidden')) {
+        firstVisible = allMarks[i];
+        break;
+      }
+    }
+    if (firstVisible) {
+      firstVisible.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
 
