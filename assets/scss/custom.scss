@@ -166,10 +166,22 @@ body {
     margin: 0 4px;
 }
 
-/* ---- 5.1 头像：保留长方形比例，不用圆形裁剪 ---- */
-.site-avatar .site-logo {
-    border-radius: 12px !important;
-    object-fit: cover;
+/* ---- 5.1 头像：保留长方形原始比例 ---- */
+.site-avatar {
+    width: 100px;
+    height: auto !important;
+
+    .site-logo {
+        width: 100%;
+        height: auto !important;
+        border-radius: 10px !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .site-avatar {
+        width: 110px;
+    }
 }
 
 /* ---- 5.2 站点名称文字标志 ---- */
@@ -210,75 +222,28 @@ body {
     z-index: 1;
 }
 
-/* ---- 7. 侧边栏简介卡片 ---- */
-.sidebar-bio {
+/* ---- 7. 侧边栏二维码 ---- */
+.sidebar-qr {
     margin: var(--spacing-md) 0;
     padding: var(--spacing-md);
     border-radius: var(--card-border-radius);
     background: var(--card-background);
     border: 1px solid var(--card-border);
-    font-size: 1.25rem;
-    line-height: 1.7;
+    text-align: center;
 
-    .sidebar-bio-inner {
-        h3 {
-            font-size: 1.35rem;
-            margin: 0 0 var(--spacing-sm) 0;
-            color: var(--accent-color);
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 var(--spacing-sm) 0;
-
-            li {
-                padding: 2px 0;
-
-                &::before {
-                    content: "· ";
-                    color: var(--accent-color);
-                    font-weight: bold;
-                }
-            }
-        }
+    img {
+        width: 140px;
+        height: auto;
+        border-radius: 8px;
+        display: block;
+        margin: 0 auto var(--spacing-sm);
     }
 
-    .sidebar-bio-contact {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: var(--spacing-xs);
-
-        .bio-phone {
-            font-weight: 600;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-size: 1.3rem;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-
-        .bio-more {
-            font-size: 1.2rem;
-            color: var(--body-text-color);
-            text-decoration: none;
-            opacity: 0.7;
-            transition: opacity 0.2s;
-
-            &:hover {
-                opacity: 1;
-            }
-        }
-
-        .bio-note {
-            font-size: 1.15rem;
-            color: var(--body-text-color);
-            opacity: 0.5;
-        }
+    .sidebar-qr-text {
+        font-size: 1.2rem;
+        line-height: 1.7;
+        color: var(--body-text-color);
+        opacity: 0.7;
     }
 }
 
@@ -309,7 +274,6 @@ body {
 
             .about-card-label {
                 font-size: 1.2rem;
-                color: var(--accent-color);
                 white-space: nowrap;
                 background: var(--accent-color);
                 color: #fff;
@@ -329,7 +293,7 @@ body {
             }
 
             h3 {
-                font-size: 1.4rem;
+                font-size: 1.25rem;
                 margin: 0 0 var(--spacing-sm) 0;
                 color: var(--accent-color);
             }
@@ -338,8 +302,8 @@ body {
                 list-style: none;
                 padding: 0;
                 margin: 0;
-                font-size: 1.35rem;
-                line-height: 2;
+                font-size: 1.15rem;
+                line-height: 2.3;
 
                 li::before {
                     content: "◆ ";
@@ -351,8 +315,8 @@ body {
             .about-card-contact {
                 p {
                     margin: 0 0 var(--spacing-xs) 0;
-                    font-size: 1.35rem;
-                    line-height: 2;
+                    font-size: 1.15rem;
+                    line-height: 2.3;
                 }
 
                 a {
@@ -381,8 +345,16 @@ body {
         padding: 8px 12px;
     }
 
-    .sidebar-bio {
+    .sidebar-qr {
         display: none;
+    }
+
+    .featured-about .about-card {
+        padding: var(--spacing-lg);
+    }
+
+    .featured-about .about-card .about-card-body {
+        gap: var(--spacing-sm);
     }
 }
 
@@ -872,6 +844,40 @@ body {
 }
 #main-menu li > a:hover {
     background: var(--card-background-selected);
+}
+
+/* ---- 20.1 曹义德案例库 特写 ---- */
+#main-menu a[href*="/cases/"] {
+    position: relative;
+    font-weight: 650;
+    color: var(--accent-color);
+}
+#main-menu a[href*="/cases/"]:hover {
+    background: var(--accent-color);
+    color: #fff;
+}
+#main-menu a[href*="/cases/"]::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 4px;
+    height: 2px;
+    background: var(--accent-color);
+    border-radius: 1px;
+    opacity: 0.5;
+}
+
+/* ---- 20.2 侧边栏所有链接 hover 高亮 ---- */
+#main-menu a:hover,
+.menu-social a:hover {
+    color: var(--accent-color);
+}
+.menu-social a {
+    transition: color 0.15s, transform 0.15s;
+}
+.menu-social a:hover {
+    transform: translateY(-1px);
 }
 
 /* ---- 21. 微信二维码弹窗 ---- */
