@@ -3,9 +3,10 @@
    基于 Hugo Stack 主题，针对中文法律博客优化
    ============================================================ */
 
-/* ---- 1. 中文字体栈（无 Google Fonts 依赖） ---- */
+/* ---- 1. 字体栈（无 Google Fonts 依赖） ---- */
 :root {
     --base-font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", var(--sys-font-family), sans-serif;
+    --heading-font-family: "Songti SC", "STSong", "SimSun", "Noto Serif SC", "Source Han Serif SC", serif;
 }
 
 /* ---- 2. 配色体系（Linear 风格蓝色系，专业法律博客） ---- */
@@ -134,7 +135,8 @@ body {
         margin-bottom: 0.8em;
         padding-left: 16px;
         border-left: 4px solid var(--accent-color);
-        font-size: 1.9rem;
+        font-family: var(--heading-font-family);
+        font-size: 2rem;
         font-weight: 700;
     }
 
@@ -143,7 +145,8 @@ body {
         margin-bottom: 0.6em;
         padding-left: 12px;
         border-left: 3px solid var(--card-separator-color);
-        font-size: 1.55rem;
+        font-family: var(--heading-font-family);
+        font-size: 1.65rem;
         font-weight: 650;
     }
 
@@ -161,6 +164,25 @@ body {
 /* 社交图标间距 */
 .menu-social li {
     margin: 0 4px;
+}
+
+/* ---- 5.1 头像：保留长方形比例，不用圆形裁剪 ---- */
+.site-avatar .site-logo {
+    border-radius: 12px !important;
+    object-fit: cover;
+}
+
+/* ---- 5.2 站点名称文字标志 ---- */
+.site-name {
+    font-family: var(--heading-font-family);
+    font-size: 2.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+
+    a {
+        color: var(--card-text-color-main);
+        text-decoration: none;
+    }
 }
 
 /* ---- 6. 背景纹理（Blowfish 风格 SVG 几何纹理） ---- */
@@ -250,6 +272,12 @@ body {
             &:hover {
                 opacity: 1;
             }
+        }
+
+        .bio-note {
+            font-size: 1.15rem;
+            color: var(--body-text-color);
+            opacity: 0.5;
         }
     }
 }
