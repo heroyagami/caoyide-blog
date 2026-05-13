@@ -1,0 +1,132 @@
+{{- $pag := $.Paginator -}}
+{{- if gt $pag.TotalPages 1 -}}
+    {{- $page2Url := "" -}}
+    {{- range $pag.Pagers -}}
+        {{- if eq .PageNumber 2 -}}
+            {{- $page2Url = .URL -}}
+        {{- end -}}
+    {{- end -}}
+
+    <nav
+        class="pagination"
+        role="navigation"
+        aria-label="分页导航"
+        data-total="{{ $pag.TotalPages }}"
+        data-first-url="{{ $pag.First.URL }}"
+        data-format-url="{{ $page2Url }}">
+
+        <a
+            class="page-link {{ if not $pag.Prev }}disabled{{ end }}"
+            {{- if $pag.Prev -}}
+                href="{{ $pag.Prev.URL }}"
+                aria-label="上一页"
+            {{- end -}}
+            {{- if not $pag.Prev -}}aria-disabled="true"{{- end -}}>
+            {{ partial "helper/icon" "chevron-left" }}
+        </a>
+
+        {{- $curr := $pag.PageNumber -}}
+        {{- $total := $pag.TotalPages -}}
+        {{- $middleMinPage := 2 -}}
+        {{- $middleMaxPage := sub $total 1 -}}
+        {{- $start := $middleMinPage -}}
+        {{- $end := $middleMaxPage -}}
+
+        {{- if gt $total 5 -}}
+            {{- $start = sub $curr 1 -}}
+            {{- if lt $start $middleMinPage -}}
+                {{- $start = $middleMinPage -}}
+            {{- end -}}
+            {{- $end = add $start 2 -}}
+            {{- if gt $end $middleMaxPage -}}
+                {{- $end = $middleMaxPage -}}
+                {{- $start = sub $end 2 -}}
+            {{- end -}}
+        {{- end -}}
+
+        <a
+            class="page-link {{ if eq $curr 1 }}current{{ end }}"
+            aria-label="第 1 页"
+            {{- if eq $curr 1 -}}aria-current="page"{{- end -}}
+            {{- if ne $curr 1 -}}href="{{ $pag.First.URL }}"{{- end -}}>
+            1
+        </a>
+
+        {{- if gt $start $middleMinPage -}}
+            <button
+                type="button"
+                class="page-link pagination-link pagination-jump-trigger"
+                aria-label="跳转到页码">
+                {{ partial "helper/icon" "dots" }}
+            </button>
+        {{- end -}}
+
+        {{- range $pag.Pagers -}}
+            {{- if and (ge .PageNumber $start) (le .PageNumber $end) -}}
+                {{- $hideOnMobile := and (ne .PageNumber $curr) (ne .PageNumber (sub $curr 1)) (ne .PageNumber (add $curr 1)) -}}
+                <a
+                    class="page-link {{ if eq .PageNumber $curr }}current{{ end }} {{ if $hideOnMobile }}hide-on-mobile{{ end }}"
+                    {{- if eq .PageNumber $curr -}}aria-current="page"{{- end -}}
+                    href="{{ .URL }}"
+                    aria-label="第 {{ .PageNumber }} 页">
+                    {{ .PageNumber }}
+                </a>
+            {{- end -}}
+        {{- end -}}
+
+        {{- if lt $end $middleMaxPage -}}
+            <button
+                type="button"
+                class="page-link pagination-link pagination-jump-trigger"
+                aria-label="跳转到页码">
+                {{ partial "helper/icon" "dots" }}
+            </button>
+        {{- end -}}
+
+        <a
+            class="page-link {{ if eq $curr $total }}current{{ end }}"
+            {{- if ne $curr $total -}}href="{{ $pag.Last.URL }}"{{- end -}}
+            aria-label="第 {{ $total }} 页"
+            {{- if eq $curr $total -}}aria-current="page"{{- end -}}>
+            {{ $total }}
+        </a>
+
+        <a
+            class="page-link {{ if not $pag.Next }}disabled{{ end }}"
+            {{- if $pag.Next -}}
+                href="{{ $pag.Next.URL }}"
+                aria-label="下一页"
+            {{- end -}}
+            {{- if not $pag.Next -}}aria-disabled="true"{{- end -}}>
+            {{ partial "helper/icon" "chevron-right" }}
+        </a>
+    </nav>
+
+    <dialog id="pagination-jump-dialog" aria-labelledby="pagination-jump-title">
+        <form method="dialog" class="pagination-jump-form">
+            <header>
+                <label id="pagination-jump-title" class="title" for="pagination-jump-input">
+                    跳转到页码
+                </label>
+                <span class="subtitle">(1 - {{ $pag.TotalPages }})</span>
+            </header>
+            <div class="pagination-jump-input-group">
+                <input
+                    type="number"
+                    id="pagination-jump-input"
+                    min="1"
+                    max="{{ $pag.TotalPages }}"
+                    autofocus
+                    autocomplete="off"
+                    required>
+                <button type="submit" class="btn btn-primary">
+                    跳转
+                </button>
+            </div>
+            <div class="pagination-jump-hint">
+                <kbd>Enter</kbd>
+                <span>按 Enter 键跳转</span>
+            </div>
+        </form>
+    </dialog>
+{{- end -}}

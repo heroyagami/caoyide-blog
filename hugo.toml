@@ -1,5 +1,6 @@
 baseURL = 'https://caoyide.com/'
 languageCode = 'zh-cn'
+defaultContentLanguage = 'zh-cn'
 title = '曹义德律师专栏'
 theme = 'hugo-theme-stack'
 hasCJKLanguage = true
@@ -40,6 +41,7 @@ buildFuture = true
     # ---- 页脚 ----
     [params.footer]
         since = 2025
+        customText = "湖北江通律师事务所 · 执业证号：14201202110310748 · 法律咨询：18872778990（微信同号）"
 
     # ---- 右侧边栏小部件 ----
     [params.widgets]
@@ -75,14 +77,6 @@ buildFuture = true
     weight = 20
     [menu.main.params]
         icon = "archives"
-
-[[menu.main]]
-    identifier = "search"
-    name = "搜索"
-    url = "/search/"
-    weight = 30
-    [menu.main.params]
-        icon = "search"
 
 # ---- 社交链接（显示在侧边栏） ----
 [[menu.social]]

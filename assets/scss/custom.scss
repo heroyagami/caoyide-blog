@@ -1,9 +1,52 @@
-/* Chinese-friendly font stack - no Google Fonts dependency */
+/* ============================================================
+   曹义德律师专栏 - 自定义样式
+   基于 Hugo Stack 主题，针对中文法律博客优化
+   ============================================================ */
+
+/* ---- 1. 中文字体栈（无 Google Fonts 依赖） ---- */
 :root {
     --base-font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", var(--sys-font-family), sans-serif;
 }
 
-/* Clippings ToC in article list */
+/* ---- 2. 归档页分类网格（竖直排列，禁止横向滚动） ---- */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+
+    article {
+        position: relative;
+        border-radius: var(--card-border-radius);
+        background: var(--card-background);
+        box-shadow: var(--shadow-l1);
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+            box-shadow: var(--shadow-l2);
+            transform: translateY(-2px);
+        }
+
+        a {
+            display: block;
+            padding: var(--spacing-lg);
+            text-decoration: none;
+        }
+
+        .article-details {
+            padding: 0;
+        }
+
+        .article-title {
+            margin: 0;
+            font-size: 1.5rem;
+            text-align: center;
+            color: var(--card-text-color-main);
+        }
+    }
+}
+
+/* ---- 3. Clippings 日报 ToC 样式 ---- */
 .entry-toc {
     margin: 12px var(--card-padding) 0;
     padding: 12px 16px;
@@ -32,5 +75,53 @@
             color: var(--body-text-color);
             text-decoration: none;
         }
+    }
+}
+
+/* ---- 4. 中文排版优化 ---- */
+body {
+    letter-spacing: 0.02em;
+}
+
+.article-content {
+    line-height: 1.9;
+    font-size: 1.6rem;
+
+    h2 {
+        margin-top: 2em;
+        margin-bottom: 0.8em;
+    }
+
+    h3 {
+        margin-top: 1.5em;
+        margin-bottom: 0.6em;
+    }
+
+    p {
+        margin-bottom: 1.2em;
+    }
+}
+
+/* ---- 5. 侧边栏优化 ---- */
+.site-description {
+    font-size: 1.3rem;
+    line-height: 1.6;
+}
+
+/* 社交图标间距 */
+.menu-social li {
+    margin: 0 4px;
+}
+
+/* ---- 6. 移动端适配 ---- */
+@media (max-width: 768px) {
+    .categories-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: var(--spacing-sm);
+    }
+
+    .entry-toc {
+        margin: 8px 0 0;
+        padding: 8px 12px;
     }
 }
