@@ -35,7 +35,9 @@
 
     <section class="article-list">
         {{ range $index, $element := $paginator.Pages }}
-            {{ partial "article-list/default" . }}
+            {{- if ne .RelPermalink $aboutPage.RelPermalink }}
+                {{ partial "article-list/default" . }}
+            {{- end }}
         {{ end }}
     </section>
 

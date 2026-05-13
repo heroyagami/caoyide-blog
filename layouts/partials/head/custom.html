@@ -111,3 +111,15 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
+{{- /* 热点日报 ToC 链接修复：列表页锚点改为指向文章页 */}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.entry-toc[data-article-url]').forEach(function(details) {
+    var baseUrl = details.dataset.articleUrl;
+    details.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.href = baseUrl + a.getAttribute('href');
+    });
+  });
+});
+</script>

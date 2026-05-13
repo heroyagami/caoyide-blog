@@ -3,7 +3,7 @@
 <article class="{{ if $image }}has-image{{ end }}">
     {{ partial "article/components/header" (dict "Page" . "IsList" true) }}
     {{- if and $isClipping .TableOfContents }}
-    <details class="entry-toc" open>
+    <details class="entry-toc" open data-article-url="{{ .RelPermalink }}">
         <summary>今日热点速览</summary>
         <div class="toc-inner">
             {{ .TableOfContents }}
