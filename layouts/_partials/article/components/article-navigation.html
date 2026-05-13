@@ -1,0 +1,40 @@
+{{- /* 上/下篇文章导航，hover 标题提示 */ -}}
+{{- if or .PrevInSection .NextInSection -}}
+<nav class="article-navigation">
+  <div class="article-nav-inner">
+    {{- with .PrevInSection -}}
+    <a class="article-nav-item" href="{{ .Permalink }}" title="上一篇：{{ .Title }}">
+      <span class="article-nav-arrow">&larr;</span>
+      <div class="article-nav-text">
+        <span class="article-nav-label">上一篇</span>
+        <span class="article-nav-title">{{ .Title }}</span>
+      </div>
+    </a>
+    {{- else -}}
+    <div class="article-nav-item disabled">
+      <span class="article-nav-arrow">&larr;</span>
+      <div class="article-nav-text">
+        <span class="article-nav-label">第一篇</span>
+      </div>
+    </div>
+    {{- end -}}
+
+    {{- with .NextInSection -}}
+    <a class="article-nav-item next" href="{{ .Permalink }}" title="下一篇：{{ .Title }}">
+      <div class="article-nav-text">
+        <span class="article-nav-label">下一篇</span>
+        <span class="article-nav-title">{{ .Title }}</span>
+      </div>
+      <span class="article-nav-arrow">&rarr;</span>
+    </a>
+    {{- else -}}
+    <div class="article-nav-item next disabled">
+      <div class="article-nav-text">
+        <span class="article-nav-label">最新一篇</span>
+      </div>
+      <span class="article-nav-arrow">&rarr;</span>
+    </div>
+    {{- end -}}
+  </div>
+</nav>
+{{- end -}}

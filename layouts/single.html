@@ -30,6 +30,8 @@
 
     {{ partial "article/components/daily-nav" . }}
 
+    {{ partial "article/components/article-navigation" . }}
+
     {{ if .Params.links }}
         {{ partial "article/components/links" . }}
     {{ end }}
