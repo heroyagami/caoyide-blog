@@ -1,0 +1,12 @@
+{{- /* 面包屑导航：首页 > 分类 > 文章标题 */ -}}
+<nav class="breadcrumb" aria-label="breadcrumb">
+  <a href="{{ .Site.BaseURL }}">首页</a>
+  <span class="breadcrumb-sep">&rsaquo;</span>
+  {{- with .Params.categories -}}
+    {{- range first 1 . -}}
+      <a href="{{ "categories" | relLangURL }}/{{ . | urlize }}/">{{ . }}</a>
+      <span class="breadcrumb-sep">&rsaquo;</span>
+    {{- end -}}
+  {{- end -}}
+  <span class="breadcrumb-current">{{ .Title }}</span>
+</nav>

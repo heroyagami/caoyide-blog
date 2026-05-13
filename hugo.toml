@@ -31,7 +31,7 @@ buildFuture = true
 
     # ---- 左侧边栏 ----
     [params.sidebar]
-        subtitle = "华中科技大学法学硕士<br>前反贪检察官<br>执业律师"
+        subtitle = "* 华中科技大学法学硕士<br>* 前反贪检察官<br>* 执业律师"
         # avatar = "img/avatar.png"  # 有头像照片后取消注释
 
     # ---- 文章设置 ----

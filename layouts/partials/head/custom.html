@@ -123,3 +123,102 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
+{{- /* 自定义功能 JS：阅读原文新窗口 / 返回顶部 / 进度条 / 浮动目录 / 搜索聚焦 */}}
+<script>
+(function() {
+  var win = window, doc = document;
+
+  /* ---- 1. 文章内容链接新窗口打开 ---- */
+  function initExternalLinks() {
+    var article = doc.querySelector('.article-content');
+    if (!article) return;
+    article.querySelectorAll('a[href]').forEach(function(a) {
+      var href = a.getAttribute('href');
+      if (href && href !== '#' && !href.startsWith('#')) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+  }
+
+  /* ---- 2. 返回顶部按钮 ---- */
+  function initBackToTop() {
+    var btn = doc.createElement('div');
+    btn.className = 'back-to-top';
+    btn.innerHTML = '\u2191';
+    btn.title = '返回顶部';
+    btn.addEventListener('click', function() { win.scrollTo({ top: 0, behavior: 'smooth' }); });
+    doc.body.appendChild(btn);
+
+    function toggle() {
+      var vh = win.innerHeight;
+      btn.classList.toggle('visible', win.scrollY > vh);
+    }
+    win.addEventListener('scroll', toggle, { passive: true });
+    toggle();
+  }
+
+  /* ---- 3. 阅读进度条 ---- */
+  function initProgressBar() {
+    var bar = doc.createElement('div');
+    bar.className = 'reading-progress';
+    doc.body.appendChild(bar);
+
+    function update() {
+      var h = doc.documentElement.scrollHeight - win.innerHeight;
+      if (h <= 0) { bar.style.width = '0'; return; }
+      bar.style.width = Math.min(100, (win.scrollY / h) * 100) + '%';
+    }
+    win.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
+  /* ---- 4. 浮动目录按钮 ---- */
+  function initFloatingToc() {
+    var toc = doc.querySelector('.article-toc') || doc.querySelector('#TableOfContents') || doc.querySelector('.entry-toc');
+    if (!toc) return;
+
+    var btn = doc.createElement('div');
+    btn.className = 'floating-toc';
+    btn.innerHTML = '\u2630';
+    btn.title = '目录';
+    btn.addEventListener('click', function() {
+      var el = doc.querySelector('.article-toc') || doc.querySelector('#TableOfContents') || doc.querySelector('.entry-toc');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    });
+    doc.body.appendChild(btn);
+
+    function toggle() {
+      btn.classList.toggle('visible', win.scrollY > 300);
+    }
+    win.addEventListener('scroll', toggle, { passive: true });
+    toggle();
+  }
+
+  /* ---- 5. 搜索框自动聚焦 ---- */
+  function initSearchFocus() {
+    var input = doc.querySelector('.search-form input[name="keyword"]');
+    if (input) {
+      input.addEventListener('focus', function() { input.select(); });
+    }
+  }
+
+  /* ---- 启动 ---- */
+  if (doc.readyState === 'loading') {
+    doc.addEventListener('DOMContentLoaded', function() {
+      initExternalLinks();
+      initBackToTop();
+      initProgressBar();
+      initFloatingToc();
+      initSearchFocus();
+    });
+  } else {
+    initExternalLinks();
+    initBackToTop();
+    initProgressBar();
+    initFloatingToc();
+    initSearchFocus();
+  }
+})();
+</script>
