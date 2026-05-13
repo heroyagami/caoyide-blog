@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-{{- /* 自定义功能 JS：阅读原文新窗口 / 返回顶部 / 进度条 / 浮动目录 / 搜索聚焦 */}}
+{{- /* 自定义功能 JS：阅读原文新窗口 / 返回顶部 / 进度条 / 浮动目录 / 搜索聚焦 / 搜索下拉 / 快捷键 */}}
 <script>
 (function() {
   var win = window, doc = document;
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function initBackToTop() {
     var btn = doc.createElement('div');
     btn.className = 'back-to-top';
-    btn.innerHTML = '\u2191';
+    btn.innerHTML = '↑';
     btn.title = '返回顶部';
     btn.addEventListener('click', function() { win.scrollTo({ top: 0, behavior: 'smooth' }); });
     doc.body.appendChild(btn);
@@ -174,20 +174,56 @@ document.addEventListener('DOMContentLoaded', function() {
     update();
   }
 
-  /* ---- 4. 浮动目录按钮 ---- */
+  /* ---- 4. 浮动目录按钮（移动端弹窗 / 桌面端滚动到侧边栏） ---- */
   function initFloatingToc() {
-    var toc = doc.querySelector('.article-toc') || doc.querySelector('#TableOfContents') || doc.querySelector('.entry-toc');
-    if (!toc) return;
+    var tocWidget = doc.querySelector('.right-sidebar .toc-nav') || doc.querySelector('#TableOfContents');
+    var articleToc = doc.querySelector('.article-toc');
+    if (!tocWidget && !articleToc) return;
 
     var btn = doc.createElement('div');
     btn.className = 'floating-toc';
-    btn.innerHTML = '\u2630';
+    btn.innerHTML = '☰';
     btn.title = '目录';
-    btn.addEventListener('click', function() {
-      var el = doc.querySelector('.article-toc') || doc.querySelector('#TableOfContents') || doc.querySelector('.entry-toc');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    });
     doc.body.appendChild(btn);
+
+    var popover = doc.createElement('div');
+    popover.className = 'toc-popover hidden';
+    doc.body.appendChild(popover);
+
+    function populatePopover() {
+      if (popover.children.length > 0) return;
+      var src = doc.querySelector('.article-toc .toc-nav') || doc.querySelector('#TableOfContents') || doc.querySelector('.right-sidebar .toc-nav');
+      if (src) popover.appendChild(src.cloneNode(true));
+    }
+
+    function isSidebarVisible() {
+      var sidebar = doc.querySelector('.right-sidebar');
+      if (!sidebar) return false;
+      return win.getComputedStyle(sidebar).display !== 'none' && !!sidebar.querySelector('.toc-nav');
+    }
+
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (isSidebarVisible()) {
+        var sidebar = doc.querySelector('.right-sidebar');
+        if (sidebar) sidebar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        populatePopover();
+        popover.classList.toggle('hidden');
+      }
+    });
+
+    doc.addEventListener('click', function(e) {
+      if (!popover.classList.contains('hidden') && !popover.contains(e.target) && e.target !== btn) {
+        popover.classList.add('hidden');
+      }
+    });
+
+    doc.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !popover.classList.contains('hidden')) {
+        popover.classList.add('hidden');
+      }
+    });
 
     function toggle() {
       btn.classList.toggle('visible', win.scrollY > 300);
@@ -204,6 +240,124 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  /* ---- 6. 侧边栏搜索实时下拉 ---- */
+  function initSidebarSearch() {
+    var form = doc.querySelector('.search-form.widget');
+    if (!form) return;
+    var jsonUrl = form.getAttribute('data-json');
+    if (!jsonUrl) return;
+    var input = form.querySelector('input[name="keyword"]');
+    if (!input) return;
+
+    var indexData = null;
+    var dropdown = doc.createElement('div');
+    dropdown.className = 'search-dropdown hidden';
+    form.style.position = 'relative';
+    form.appendChild(dropdown);
+    var debounceTimer = null;
+
+    fetch(jsonUrl)
+      .then(function(r) { return r.json(); })
+      .then(function(data) { indexData = data; })
+      .catch(function() {});
+
+    function highlight(title, keyword) {
+      var idx = title.toLowerCase().indexOf(keyword.toLowerCase());
+      if (idx === -1) return title;
+      return title.substring(0, idx) + '<mark>' + title.substring(idx, idx + keyword.length) + '</mark>' + title.substring(idx + keyword.length);
+    }
+
+    function doSearch(keyword) {
+      if (!indexData || !keyword || keyword.length < 1) {
+        dropdown.innerHTML = '';
+        dropdown.classList.add('hidden');
+        return;
+      }
+
+      var kw = keyword.toLowerCase();
+      var results = [];
+      indexData.forEach(function(item) {
+        var tIdx = item.title.toLowerCase().indexOf(kw);
+        var cIdx = item.content.toLowerCase().indexOf(kw);
+        if (tIdx !== -1 || cIdx !== -1) {
+          results.push({ title: item.title, permalink: item.permalink, content: item.content, titleMatch: tIdx !== -1, contentIdx: cIdx });
+        }
+      });
+
+      results.sort(function(a, b) {
+        if (a.titleMatch && !b.titleMatch) return -1;
+        if (!a.titleMatch && b.titleMatch) return 1;
+        return a.contentIdx - b.contentIdx;
+      });
+
+      var top5 = results.slice(0, 5);
+
+      if (top5.length === 0) {
+        dropdown.innerHTML = '<div class="search-dropdown-empty">无匹配结果，按 Enter 搜索全文</div>';
+        dropdown.classList.remove('hidden');
+        return;
+      }
+
+      var html = '';
+      top5.forEach(function(item) {
+        var contextStart = Math.max(0, item.contentIdx - 15);
+        var preview = item.content.substring(contextStart, contextStart + 100);
+        if (contextStart > 0) preview = '...' + preview;
+        html += '<a class="search-dropdown-item" href="' + item.permalink + '">' +
+          '<div class="search-dropdown-title">' + highlight(item.title, keyword) + '</div>' +
+          '<div class="search-dropdown-preview">' + preview + '</div>' +
+          '</a>';
+      });
+
+      dropdown.innerHTML = html;
+      dropdown.classList.remove('hidden');
+    }
+
+    input.addEventListener('input', function() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(function() { doSearch(input.value.trim()); }, 150);
+    });
+
+    var composing = false;
+    input.addEventListener('compositionstart', function() { composing = true; });
+    input.addEventListener('compositionend', function() {
+      composing = false;
+      doSearch(input.value.trim());
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !dropdown.classList.contains('hidden')) {
+        dropdown.classList.add('hidden');
+      }
+      if (e.key === 'Escape') {
+        dropdown.classList.add('hidden');
+      }
+    });
+
+    doc.addEventListener('click', function(e) {
+      if (!dropdown.classList.contains('hidden') && !form.contains(e.target)) {
+        dropdown.classList.add('hidden');
+      }
+    });
+
+    input.addEventListener('blur', function() {
+      setTimeout(function() { dropdown.classList.add('hidden'); }, 200);
+    });
+  }
+
+  /* ---- 7. 键盘 / 聚焦搜索 ---- */
+  function initSearchShortcut() {
+    doc.addEventListener('keydown', function(e) {
+      var tag = doc.activeElement ? doc.activeElement.tagName : '';
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || (doc.activeElement && doc.activeElement.isContentEditable)) return;
+      if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        e.preventDefault();
+        var input = doc.querySelector('.search-form input[name="keyword"]');
+        if (input) { input.focus(); input.select(); }
+      }
+    });
+  }
+
   /* ---- 启动 ---- */
   if (doc.readyState === 'loading') {
     doc.addEventListener('DOMContentLoaded', function() {
@@ -212,6 +366,8 @@ document.addEventListener('DOMContentLoaded', function() {
       initProgressBar();
       initFloatingToc();
       initSearchFocus();
+      initSidebarSearch();
+      initSearchShortcut();
     });
   } else {
     initExternalLinks();
@@ -219,6 +375,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initProgressBar();
     initFloatingToc();
     initSearchFocus();
+    initSidebarSearch();
+    initSearchShortcut();
   }
 })();
 </script>
