@@ -31,7 +31,7 @@ buildFuture = true
 
     # ---- 左侧边栏 ----
     [params.sidebar]
-        subtitle = "华中科技大学法学硕士 · 前反贪检察官 · 执业律师"
+        subtitle = "华中科技大学法学硕士<br>前反贪检察官<br>执业律师"
         # avatar = "img/avatar.png"  # 有头像照片后取消注释
 
     # ---- 文章设置 ----
@@ -48,7 +48,7 @@ buildFuture = true
         homepage = [
             { type = "search" },
             { type = "archives", params = { limit = 5 } },
-            { type = "categories", params = { limit = 10 } },
+            { type = "categories", params = { limit = 15 } },
         ]
         page = [{ type = "toc" }]
 
@@ -72,7 +72,7 @@ buildFuture = true
 [[menu.main]]
     identifier = "complaint"
     name = "智能起诉状"
-    url = "https://wxfxpg.susong51.com/znszj-touch/docTemplate/index.html#/pcznfzsc/qsz"
+    url = "https://www.gdzqfy.gov.cn/"
     weight = 15
     [menu.main.params]
         icon = "file-description"
