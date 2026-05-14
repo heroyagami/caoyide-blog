@@ -3,10 +3,32 @@
    基于 Hugo Stack 主题，针对中文法律博客优化
    ============================================================ */
 
-/* ---- 1. 字体栈（无 Google Fonts 依赖） ---- */
+/* ---- 1. 字体栈 + 设计令牌 ---- */
 :root {
     --base-font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", var(--sys-font-family), sans-serif;
     --heading-font-family: "Songti SC", "STSong", "SimSun", "Noto Serif SC", "Source Han Serif SC", serif;
+
+    /* 字号阶梯 */
+    --text-xs: 1rem;
+    --text-sm: 1.2rem;
+    --text-md: 1.4rem;
+    --text-base: 1.6rem;
+    --text-lg: 1.8rem;
+    --text-xl: 2rem;
+    --text-2xl: 2.4rem;
+
+    /* 圆角尺度 */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+
+    /* 语义色 */
+    --color-success: #16a34a;
+    --color-warning: #d97706;
+    --color-error: #dc2626;
+    --color-info: #2563eb;
 }
 
 /* ---- 2. 配色体系（Linear 风格蓝色系，专业法律博客） ---- */
@@ -24,9 +46,10 @@
     --card-background-selected: #eef2ff;
     --card-separator-color: rgba(148, 163, 184, 0.3);
 
-    /* Card shadows — 更分层，蓝色微调 */
+    /* Card shadows — 三层深度 */
     --shadow-l1: 0px 2px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(30, 64, 175, 0.06);
     --shadow-l2: 0px 6px 16px rgba(0, 0, 0, 0.06), 0px 0px 1px rgba(30, 64, 175, 0.08);
+    --shadow-l3: 0px 12px 32px rgba(0, 0, 0, 0.10), 0px 0px 1px rgba(30, 64, 175, 0.10);
 
     &[data-scheme="dark"] {
         --accent-color: #60a5fa;
@@ -40,8 +63,9 @@
         --card-text-color-secondary: rgba(255, 255, 255, 0.72);
         --card-text-color-tertiary: rgba(255, 255, 255, 0.62);
         --card-separator-color: rgba(148, 163, 184, 0.16);
-        --shadow-l1: 0px 2px 8px rgba(0, 0, 0, 0.2);
-        --shadow-l2: 0px 6px 16px rgba(0, 0, 0, 0.25);
+        --shadow-l1: 0px 1px 4px rgba(0, 0, 0, 0.3), 0px 0px 0px 1px rgba(255, 255, 255, 0.04);
+        --shadow-l2: 0px 4px 14px rgba(0, 0, 0, 0.4), 0px 0px 0px 1px rgba(255, 255, 255, 0.07);
+        --shadow-l3: 0px 10px 28px rgba(0, 0, 0, 0.5), 0px 0px 0px 1px rgba(255, 255, 255, 0.10);
     }
 }
 
@@ -58,7 +82,7 @@
     align-items: center;
     gap: 6px;
     padding: 8px 14px;
-    border-radius: 10px;
+    border-radius: var(--radius-lg);
     background: var(--card-background);
     border: 1px solid var(--card-separator-color);
     box-shadow: var(--shadow-l1);
@@ -81,7 +105,7 @@
     font-weight: 600;
     color: var(--card-text-color-tertiary);
     background: var(--card-background-selected);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     padding: 1px 6px;
     min-width: 22px;
     text-align: center;
@@ -112,12 +136,12 @@
 /* ---- 4. 中文排版优化 ---- */
 body {
     letter-spacing: 0.02em;
-    font-size: 1.6rem;
+    font-size: var(--text-base);
 }
 
 .article-content {
     line-height: 1.9;
-    font-size: 1.6rem;
+    font-size: var(--text-base);
 
     h2 {
         margin-top: 2.2em;
@@ -125,7 +149,7 @@ body {
         padding-left: 16px;
         border-left: 4px solid var(--accent-color);
         font-family: var(--heading-font-family);
-        font-size: 2rem;
+        font-size: var(--text-xl);
         font-weight: 700;
     }
 
@@ -147,14 +171,14 @@ body {
 /* ---- 4.1 全局字体协调 ---- */
 /* 侧边栏文字统一 */
 .sidebar {
-    font-size: 1.35rem;
+    font-size: var(--text-sm);
 }
 
 /* ---- 4.0 全局聚焦态（键盘导航可访问性） ---- */
 :focus-visible {
     outline: 2px solid var(--accent-color) !important;
     outline-offset: 2px !important;
-    border-radius: 2px;
+    border-radius: var(--radius-sm);
 }
 
 /* 搜索框聚焦时保持原有样式 + 外发光 */
@@ -169,17 +193,17 @@ body {
 .quicklink-item:focus-visible,
 .taxonomy-capsule:focus-visible {
     outline-offset: 1px !important;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
 }
 
 /* Widget 标题 — 字稍大 */
 .widget-title {
-    font-size: 1.5rem !important;
+    font-size: var(--text-md) !important;
 }
 
 /* 侧边栏描述 */
 .site-description {
-    font-size: 1.3rem;
+    font-size: var(--text-sm);
     line-height: 1.6;
 }
 
@@ -216,7 +240,7 @@ body {
 /* ---- 5.3 站点名称文字标志（点击回首页） ---- */
 .site-name {
     font-family: var(--heading-font-family);
-    font-size: 2.6rem;
+    font-size: var(--text-2xl);
     font-weight: 700;
     letter-spacing: 0.08em;
 
@@ -1034,7 +1058,7 @@ a {
     font-weight: 500;
     color: var(--card-text-color-tertiary);
     background: var(--card-background);
-    border-radius: 10px;
+    border-radius: var(--radius-lg);
     padding: 1px 7px;
     min-width: 24px;
     text-align: center;
@@ -1059,12 +1083,12 @@ a {
     align-items: center;
     gap: 4px;
     padding: 3px 9px;
-    border-radius: 6px;
+    border-radius: var(--radius-md);
     background: var(--card-background);
     border: 1px solid var(--card-separator-color);
     text-decoration: none;
     color: var(--body-text-color);
-    font-size: 1.2rem;
+    font-size: var(--text-sm);
     transition: all 0.15s;
     white-space: nowrap;
 }
@@ -1086,7 +1110,7 @@ a {
     font-weight: 600;
     color: var(--accent-color);
     background: var(--card-background-selected);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     padding: 0 5px;
     min-width: 18px;
     text-align: center;
@@ -1110,7 +1134,7 @@ a {
 .template-archives .archives-month {
     margin-bottom: var(--spacing-lg);
     padding: var(--spacing-md);
-    border-radius: var(--card-border-radius);
+    border-radius: var(--radius-lg);
     background: var(--card-background);
     border: 1px solid var(--card-separator-color);
     box-shadow: var(--shadow-l1);
@@ -1143,7 +1167,7 @@ a {
 }
 
 .template-archives .article-list--compact article {
-    border-radius: 6px;
+    border-radius: var(--radius-md);
     transition: background 0.15s;
 }
 
@@ -1165,7 +1189,7 @@ a {
 
 /* 分类页头部卡片 */
 .section-card {
-    border-radius: var(--card-border-radius);
+    border-radius: var(--radius-lg);
     background: var(--card-background);
     border: 1px solid var(--card-separator-color);
     box-shadow: var(--shadow-l1);
@@ -1199,7 +1223,7 @@ a {
 }
 
 .subsection-list .article-list--tile article {
-    border-radius: 10px;
+    border-radius: var(--radius-lg);
     background: var(--card-background);
     border: 1px solid var(--card-separator-color);
     box-shadow: var(--shadow-l1);
@@ -1262,10 +1286,10 @@ a {
     align-items: center;
     justify-content: space-between;
     padding: 6px 8px;
-    border-radius: 6px;
+    border-radius: var(--radius-md);
     text-decoration: none;
     color: var(--body-text-color);
-    font-size: 1.2rem;
+    font-size: var(--text-sm);
     transition: all 0.15s;
 }
 
