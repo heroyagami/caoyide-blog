@@ -30,15 +30,13 @@
         --accent-color-darker: #93c5fd;
         --accent-color-text: #0f172a;
         --body-background: #0f172a;
-        --body-text-color: rgba(255, 255, 255, 0.78);
-
+        --body-text-color: rgba(255, 255, 255, 0.82);
         --card-background: #1e293b;
         --card-background-selected: rgba(96, 165, 250, 0.12);
-        --card-text-color-main: rgba(255, 255, 255, 0.92);
-        --card-text-color-secondary: rgba(255, 255, 255, 0.65);
-        --card-text-color-tertiary: rgba(255, 255, 255, 0.45);
-        --card-separator-color: rgba(148, 163, 184, 0.12);
-
+        --card-text-color-main: rgba(255, 255, 255, 0.93);
+        --card-text-color-secondary: rgba(255, 255, 255, 0.72);
+        --card-text-color-tertiary: rgba(255, 255, 255, 0.55);
+        --card-separator-color: rgba(148, 163, 184, 0.16);
         --shadow-l1: 0px 2px 8px rgba(0, 0, 0, 0.2);
         --shadow-l2: 0px 6px 16px rgba(0, 0, 0, 0.25);
     }
@@ -78,8 +76,7 @@
 .category-capsule .capsule-count {
     font-size: 1.1rem;
     font-weight: 600;
-    color: var(--body-text-color);
-    opacity: 0.45;
+    color: var(--card-text-color-tertiary);
     background: var(--card-background-selected);
     border-radius: 8px;
     padding: 1px 6px;
@@ -112,6 +109,7 @@
 /* ---- 4. 中文排版优化 ---- */
 body {
     letter-spacing: 0.02em;
+    font-size: 1.6rem;
 }
 
 .article-content {
@@ -143,12 +141,34 @@ body {
     }
 }
 
-/* ---- 5. 侧边栏优化 ---- */
+/* ---- 4.1 全局字体协调 ---- */
+/* 侧边栏文字统一 */
+.sidebar {
+    font-size: 1.35rem;
+}
+
+/* Widget 标题统一 */
+.widget-title {
+    font-size: 1.4rem !important;
+}
+
+/* Widget 图标美化 — 小一点、低对比度，不抢眼 */
+.widget-icon {
+    opacity: 0.45;
+    transform: scale(0.85);
+    transition: opacity 0.2s;
+}
+.widget:hover .widget-icon {
+    opacity: 0.6;
+}
+
+/* 侧边栏描述 */
 .site-description {
     font-size: 1.3rem;
     line-height: 1.6;
 }
 
+/* ---- 5. 侧边栏优化 ---- */
 /* 社交图标间距 */
 .menu-social li {
     margin: 0 4px;
@@ -997,8 +1017,7 @@ a {
 .timeline-count {
     font-size: 1.05rem;
     font-weight: 500;
-    color: var(--body-text-color);
-    opacity: 0.45;
+    color: var(--card-text-color-tertiary);
     background: var(--card-background);
     border-radius: 10px;
     padding: 1px 7px;
@@ -1051,7 +1070,6 @@ a {
     font-size: 1rem;
     font-weight: 600;
     color: var(--accent-color);
-    opacity: 0.7;
     background: var(--card-background-selected);
     border-radius: 8px;
     padding: 0 5px;
@@ -1202,10 +1220,22 @@ a {
     }
 
     .timeline-count {
-        background: rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.08);
     }
 
     .taxonomy-capsule:hover {
         background: rgba(96, 165, 250, 0.1);
+    }
+
+    .widget-icon {
+        opacity: 0.35;
+    }
+    .widget:hover .widget-icon {
+        opacity: 0.5;
+    }
+
+    /* 确保文章卡片文字在暗色下足够清晰 */
+    .article-list--compact .article-title {
+        color: var(--card-text-color-main);
     }
 }
