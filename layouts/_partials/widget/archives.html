@@ -4,13 +4,8 @@
 {{- if $query -}}
     {{- $archivesPage := index $query 0 -}}
     <section class="widget archives">
-        <div class="widget-icon">
-            {{ partial "helper/icon" "archives" }}
-        </div>
         <h2 class="widget-title section-title">
-            <a href="{{ $archivesPage.RelPermalink }}">
-                {{ T "widget.archives.title" }}
-            </a>
+            <a href="{{ $archivesPage.RelPermalink }}">文章归档</a>
         </h2>
 
         {{ $pages := partial "helper/pages.html" $context.Site.Home }}
@@ -22,7 +17,7 @@
                 {{ if eq $index $limit }}
                     <a href="{{ $archivesPage.RelPermalink }}" class="timeline-item timeline-more">
                         <span class="timeline-dot more-dot"></span>
-                        <span class="timeline-year">{{ T "widget.archives.more" }}</span>
+                        <span class="timeline-year">查看更多</span>
                     </a>
                 {{ else }}
                     <a href="{{ $archivesPage.RelPermalink }}#{{ $id }}" class="timeline-item">

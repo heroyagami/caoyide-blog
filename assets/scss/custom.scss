@@ -147,24 +147,9 @@ body {
     font-size: 1.35rem;
 }
 
-/* Widget 图标美化 — 与文字同行，小且低对比度 */
-.widget-icon {
-    display: inline-flex;
-    align-items: center;
-    margin-right: 6px;
-    opacity: 0.45;
-    transform: scale(0.8);
-    transition: opacity 0.2s;
-    vertical-align: middle;
-}
-.widget:hover .widget-icon {
-    opacity: 0.6;
-}
-
-/* Widget 标题 — 与图标同行 */
+/* Widget 标题 — 字稍大 */
 .widget-title {
-    display: inline;
-    font-size: 1.4rem !important;
+    font-size: 1.5rem !important;
 }
 
 /* 侧边栏描述 */
@@ -1232,15 +1217,57 @@ a {
         background: rgba(96, 165, 250, 0.1);
     }
 
-    .widget-icon {
-        opacity: 0.35;
-    }
-    .widget:hover .widget-icon {
-        opacity: 0.5;
-    }
-
     /* 确保文章卡片文字在暗色下足够清晰 */
     .article-list--compact .article-title {
         color: var(--card-text-color-main);
     }
+}
+
+/* ============================================================
+   28. 右侧常用工具链接
+   ============================================================ */
+.quicklinks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.quicklink-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--body-text-color);
+    font-size: 1.2rem;
+    transition: all 0.15s;
+}
+
+.quicklink-item:hover {
+    background: var(--card-background-selected);
+    color: var(--accent-color);
+}
+
+.quicklink-item svg {
+    opacity: 0.35;
+    flex-shrink: 0;
+}
+
+.quicklink-item:hover svg {
+    opacity: 0.7;
+}
+
+/* ============================================================
+   29. 面包屑「首页」可读性
+   ============================================================ */
+.breadcrumb-current {
+    color: var(--card-text-color-secondary) !important;
+    opacity: 1 !important;
+    font-weight: 500;
+}
+
+.breadcrumb a {
+    color: var(--accent-color);
+    font-weight: 500;
 }

@@ -43,14 +43,18 @@ buildFuture = true
         since = 2025
         customText = "湖北江通律师事务所 · 执业证号：14201202110310748 · 法律咨询：18872778990（微信同号）"
 
-    # ---- 右侧边栏小部件 ----
+    # ---- 侧边栏小部件 ----
     [params.widgets]
         homepage = [
             { type = "search" },
+            { type = "quicklinks" },
             { type = "archives", params = { limit = 5 } },
             { type = "categories", params = { limit = 15 } },
         ]
-        page = [{ type = "toc" }]
+        page = [
+            { type = "quicklinks" },
+            { type = "toc" },
+        ]
 
 # ============================================================
 # 百度站长验证
@@ -68,62 +72,6 @@ buildFuture = true
     weight = 10
     [menu.main.params]
         icon = "briefcase"
-
-[[menu.main]]
-    identifier = "complaint"
-    name = "智能起诉状"
-    url = "https://www.gdzqfy.gov.cn/"
-    weight = 15
-    [menu.main.params]
-        icon = "file-description"
-        target = "_blank"
-
-# ---- 常用法律工具（Obsidian @网站链接） ----
-[[menu.main]]
-    identifier = "legal-ai"
-    name = "中国法律服务网"
-    url = "https://ai.12348.gov.cn/pc/"
-    weight = 18
-    [menu.main.params]
-        icon = "link"
-        newTab = true
-
-[[menu.main]]
-    identifier = "laws-db"
-    name = "国家法律法规数据库"
-    url = "https://flk.npc.gov.cn/index"
-    weight = 19
-    [menu.main.params]
-        icon = "link"
-        newTab = true
-
-[[menu.main]]
-    identifier = "treaty-db"
-    name = "条约数据库"
-    url = "https://treaty.mfa.gov.cn/web/index.jsp"
-    weight = 20
-    [menu.main.params]
-        icon = "link"
-        newTab = true
-
-[[menu.main]]
-    identifier = "court-live"
-    name = "中国庭审公开网"
-    url = "https://tingshen.court.gov.cn/live"
-    weight = 21
-    [menu.main.params]
-        icon = "link"
-        newTab = true
-
-[[menu.main]]
-    identifier = "court-forms"
-    name = "诉讼文书样式"
-    url = "https://www.court.gov.cn/susong.html"
-    weight = 22
-    [menu.main.params]
-        icon = "link"
-        newTab = true
-
 
 # ---- 社交链接（显示在侧边栏） ----
 [[menu.social]]

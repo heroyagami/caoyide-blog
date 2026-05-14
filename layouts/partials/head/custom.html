@@ -145,6 +145,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  /* ---- 1.1 外链跳转确认（右侧常用工具） ---- */
+  function initQuicklinkConfirm() {
+    doc.querySelectorAll('.quicklink-item').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var name = link.getAttribute('data-name') || link.textContent.trim();
+        var url = link.getAttribute('href');
+        if (confirm('即将跳转到外部网站：' + name + '\n\n点击确定继续')) {
+          window.open(url, '_blank', 'noopener,noreferrer');
+        }
+      });
+    });
+  }
+
   /* ---- 2. 返回顶部按钮 ---- */
   function initBackToTop() {
     var btn = doc.createElement('div');
@@ -447,6 +461,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (doc.readyState === 'loading') {
     doc.addEventListener('DOMContentLoaded', function() {
       initExternalLinks();
+      initQuicklinkConfirm();
       initBackToTop();
       initProgressBar();
       initSearchFocus();
@@ -457,6 +472,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   } else {
     initExternalLinks();
+    initQuicklinkConfirm();
     initBackToTop();
     initSearchFocus();
     initSidebarSearch();
