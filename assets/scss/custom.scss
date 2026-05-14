@@ -35,8 +35,8 @@
 
 /* ---- 2. 配色体系 — 天蓝调 + Apple 级质感 ---- */
 :root {
-    --accent-color: #3B82F6;
-    --accent-color-darker: #2563eb;
+    --accent-color: #2563eb;
+    --accent-color-darker: #1d4ed8;
     --accent-color-lighter: #93c5fd;
     --body-background: #f3f4f6;
     --body-text-color: #1e293b;
@@ -88,7 +88,10 @@ body {
     letter-spacing: 0.01em;
     font-size: var(--text-base);
     font-family: var(--base-font-family);
-    background: linear-gradient(135deg, #f5f7fa 0%, #eef2ff 50%, #f5f7fa 100%);
+    background:
+        radial-gradient(circle at 8% 25%, rgba(37, 99, 235, 0.10), transparent 28rem),
+        radial-gradient(circle at 75% 10%, rgba(96, 165, 250, 0.12), transparent 36rem),
+        linear-gradient(135deg, #f4f8ff 0%, #fbfdff 47%, #eef6ff 100%);
     background-attachment: fixed;
 }
 
@@ -101,13 +104,11 @@ body {
 body::after {
     content: "";
     position: fixed;
-    top: -100px;
-    right: -100px;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%);
-    border-radius: 50%;
+    left: 0; bottom: 0;
+    width: 34vw; height: 34vw;
     z-index: -5;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.04), rgba(96, 165, 250, 0.12));
+    clip-path: polygon(0 40%, 56% 0, 100% 28%, 28% 100%, 0 88%);
     pointer-events: none;
 }
 
@@ -256,61 +257,8 @@ a {
 }
 
 /* ============================================================
-   中间主内容 — 文章卡片升级
+   中间主内容 — 文章卡片（由 legal-entry 系列接管）
    ============================================================ */
-
-/* 卡片通用增强 */
-.article-list--compact article,
-.article-list--tile article,
-.article-list article {
-    border-radius: var(--radius-lg) !important;
-    background: var(--card-background);
-    border: 1px solid var(--card-border-color);
-    box-shadow: var(--shadow-l1);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-/* 卡片左侧装饰条 */
-.article-list article::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(180deg, var(--accent-color), var(--accent-color-lighter));
-    opacity: 0;
-    transition: opacity 0.3s;
-    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
-}
-
-.article-list article:hover::before {
-    opacity: 1;
-}
-
-/* Hover — 浮起 + 发光 */
-.article-list--compact article:hover,
-.article-list--tile article:hover,
-.article-list article:hover {
-    box-shadow: var(--shadow-card-hover) !important;
-    transform: translateY(-4px);
-    border-color: var(--accent-color);
-}
-
-/* 文章标题 */
-.article-list .article-title {
-    font-weight: 650 !important;
-    color: var(--card-text-color-main);
-    font-size: 1.5rem;
-}
-
-/* 元信息 */
-.article-list .article-meta {
-    font-size: var(--text-xs);
-    color: var(--card-text-color-tertiary);
-}
 
 /* 分页 */
 .pagination .page-link {
@@ -380,33 +328,36 @@ a {
 .quicklinks-list {
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 4px;
 }
 .quicklink-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 8px 10px;
-    border-radius: var(--radius-md);
+    padding: 8px 4px 8px 0;
     text-decoration: none;
-    color: var(--card-text-color-secondary);
+    color: var(--card-text-color-main);
     font-size: var(--text-sm);
     transition: all 0.2s;
-    border: 1px solid transparent;
+    border: none;
+    border-radius: var(--radius-sm);
 }
 .quicklink-item:hover {
-    background: var(--card-background-selected);
     color: var(--accent-color);
-    border-color: var(--accent-color);
 }
-.quicklink-item svg {
-    opacity: 0.3;
-    flex-shrink: 0;
-    transition: opacity 0.2s;
+.quicklink-item::before {
+    content: "♙";
+    margin-right: 8px;
+    color: var(--accent-color);
+    font-size: var(--text-sm);
 }
-.quicklink-item:hover svg {
-    opacity: 0.6;
+.quicklink-item b {
+    margin-left: auto;
+    color: var(--card-text-color-tertiary);
+    font-size: 1.8rem;
+    line-height: 1;
+    font-weight: 400;
 }
+.quicklink-item svg { display: none; }
 
 /* ---- 分类胶囊 ---- */
 .taxonomy-capsules {
@@ -616,6 +567,13 @@ a {
     font-size: var(--text-md); margin: 0 0 var(--spacing-sm) 0;
     color: var(--accent-color);
 }
+.about-card-note {
+    margin-top: 12px !important;
+    color: var(--card-text-color-tertiary) !important;
+    font-size: var(--text-sm) !important;
+    line-height: 1.8 !important;
+    font-style: italic;
+}
 .featured-about .about-card-body ul {
     list-style: none; padding: 0; margin: 0;
     font-size: var(--text-sm); line-height: 2.3;
@@ -753,3 +711,198 @@ a {
 .search-dropdown-item:last-child { border-bottom: none; }
 .search-dropdown-item:hover { background: var(--card-background-selected); }
 .search-dropdown-empty { padding: var(--spacing-md); text-align: center; font-size: var(--text-sm); color: var(--card-text-color-tertiary); }
+
+/* ============================================================
+   律师个人资料卡（Codex 设计嫁接）
+   ============================================================ */
+.lawyer-profile-card {
+    position: relative;
+    padding: 28px 20px 20px;
+    text-align: center;
+    background: var(--card-background);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-l2);
+    overflow: hidden;
+}
+.lawyer-profile-card::before {
+    content: "";
+    position: absolute;
+    left: -30px; top: 160px;
+    width: 70px; height: 100px;
+    opacity: 0.35;
+    background-image: radial-gradient(var(--accent-color-lighter) 2px, transparent 2px);
+    background-size: 18px 18px;
+    pointer-events: none;
+}
+.lawyer-profile-card .site-avatar { width: 120px; margin: 0 auto 16px; }
+.lawyer-profile-card .site-name { margin: 0; font-size: 2.6rem; letter-spacing: 0.08em; }
+.site-role {
+    margin-top: 2px;
+    color: var(--accent-color);
+    font-size: var(--text-md);
+    font-weight: 600;
+}
+.profile-credentials {
+    display: grid; gap: 10px;
+    margin: 20px 0 18px; padding: 0;
+    list-style: none; text-align: left;
+    color: var(--card-text-color-main);
+    font-size: var(--text-sm);
+}
+.profile-credentials li {
+    position: relative; padding-left: 22px;
+}
+.profile-credentials li::before {
+    content: "♙";
+    position: absolute; left: 0;
+    color: var(--accent-color);
+    font-size: var(--text-sm);
+}
+.profile-actions {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 0 0 18px !important;
+    padding: 0 !important;
+}
+.profile-actions li { margin: 0 !important; }
+.profile-actions a {
+    display: grid !important; place-items: center; gap: 3px;
+    min-height: 52px; border-radius: var(--radius-md);
+    background: linear-gradient(180deg, #f7fbff, #edf4ff);
+    color: var(--accent-color) !important;
+    font-size: var(--text-xs); text-decoration: none;
+    transition: all 0.2s;
+}
+.profile-actions a:hover {
+    background: var(--card-background-selected);
+    transform: translateY(-1px);
+}
+.profile-primary-button {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 42px; border-radius: var(--radius-md);
+    color: #fff !important;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-color-darker));
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+    font-weight: 700; font-size: var(--text-sm);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.profile-primary-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.35);
+}
+
+/* 隐藏旧 sidebar 下不需要的元素 */
+.lawyer-profile-sidebar {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+.lawyer-profile-card + #main-menu,
+.lawyer-profile-sidebar > .sidebar-qr {
+    /* kept visible via profile card, not hidden */
+}
+
+/* ============================================================
+   文章卡片 — 蓝纸装饰（Codex 设计嫁接）
+   ============================================================ */
+.legal-article-list {
+    display: grid; gap: 16px;
+}
+.legal-entry-card {
+    position: relative;
+    padding: 0; overflow: hidden;
+    border-radius: var(--radius-lg) !important;
+    background: var(--card-background);
+    border: 1px solid var(--card-border-color);
+    box-shadow: var(--shadow-l1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.legal-entry-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: var(--accent-color);
+}
+.legal-entry-link {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 130px;
+    gap: 20px;
+    padding: 22px 28px;
+    color: inherit !important;
+    text-decoration: none !important;
+}
+.legal-entry-kicker {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: 8px;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    color: var(--accent-color);
+    background: var(--card-background-selected);
+    font-size: var(--text-xs);
+    font-weight: 700;
+}
+.legal-entry-title {
+    margin: 0 0 6px;
+    color: var(--card-text-color-main);
+    font-size: var(--text-lg);
+    line-height: 1.4;
+    font-weight: 750;
+}
+.legal-entry-meta {
+    display: flex; flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-bottom: 8px;
+    color: var(--card-text-color-tertiary);
+    font-size: var(--text-xs);
+}
+.legal-entry-meta span::before {
+    content: "▣";
+    margin-right: 5px;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+}
+.legal-entry-summary {
+    margin: 0;
+    color: var(--card-text-color-secondary);
+    font-size: var(--text-sm);
+    line-height: 1.7;
+}
+/* 蓝纸装饰 */
+.legal-entry-art {
+    position: relative;
+    align-self: center; justify-self: center;
+    width: 110px; height: 100px;
+    opacity: 0.5;
+}
+.art-paper {
+    position: absolute;
+    inset: 10px 20px 16px 10px;
+    border-radius: 8px 8px 24px 8px;
+    background: linear-gradient(135deg, #dbeafe, #ffffff 58%, #93c5fd);
+    box-shadow: 0 14px 20px rgba(37, 99, 235, 0.14);
+    transform: rotate(-8deg);
+}
+.art-line {
+    position: absolute; right: 18px;
+    height: 6px; border-radius: 99px;
+    background: var(--accent-color-lighter);
+    transform: rotate(20deg);
+}
+.art-line-1 { top: 34px; width: 50px; }
+.art-line-2 { top: 50px; width: 36px; opacity: 0.7; }
+.art-dot {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent-color);
+}
+.art-dot-1 { left: 4px; top: 38px; }
+.art-dot-2 { right: 10px; bottom: 16px; opacity: 0.4; }
+
+@media (max-width: 1024px) {
+    .legal-entry-link { grid-template-columns: 1fr; }
+    .legal-entry-art { display: none; }
+}

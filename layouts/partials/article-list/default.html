@@ -1,13 +1,29 @@
-{{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) }}
-{{- $isClipping := findRE `Clippings` .File.Dir }}
-<article class="{{ if $image }}has-image{{ end }}">
-    {{ partial "article/components/header" (dict "Page" . "IsList" true) }}
+{{- $isClipping := findRE `Clippings` .File.Dir -}}
+{{- $primaryTag := cond (gt (len .Params.tags) 0) (index .Params.tags 0) "热点日报" -}}
+{{- $summary := .Summary | plainify | truncate 96 -}}
+<article class="legal-entry-card {{ if $isClipping }}daily-entry{{ end }}">
+    <a class="legal-entry-link" href="{{ .RelPermalink }}" aria-label="阅读：{{ .Title }}">
+        <div class="legal-entry-content">
+            <div class="legal-entry-kicker">{{ $primaryTag }}</div>
+            <h2 class="legal-entry-title">{{ .Title }}</h2>
+            <div class="legal-entry-meta">
+                <span>{{ .Date.Format "2006-01-02" }}</span>
+                {{ if .ReadingTime }}<span>{{ .ReadingTime }} 分钟</span>{{ end }}
+            </div>
+            {{ with $summary }}<p class="legal-entry-summary">{{ . }}</p>{{ end }}
+        </div>
+        <div class="legal-entry-art" aria-hidden="true">
+            <span class="art-paper"></span>
+            <span class="art-line art-line-1"></span>
+            <span class="art-line art-line-2"></span>
+            <span class="art-dot art-dot-1"></span>
+            <span class="art-dot art-dot-2"></span>
+        </div>
+    </a>
     {{- if and $isClipping .TableOfContents }}
     <details class="entry-toc" open data-article-url="{{ .RelPermalink }}">
         <summary>今日热点速览</summary>
-        <div class="toc-inner">
-            {{ .TableOfContents }}
-        </div>
+        <div class="toc-inner">{{ .TableOfContents }}</div>
     </details>
     {{- end }}
 </article>
