@@ -44,62 +44,47 @@
     }
 }
 
-/* ---- 3. 归档页分类网格（竖直排列，禁止横向滚动） ---- */
-.categories-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-xl);
-
-    article {
-        position: relative;
-        border-radius: var(--card-border-radius);
-        background: var(--card-background);
-        box-shadow: var(--shadow-l1);
-        transition: box-shadow 0.3s ease, transform 0.3s ease;
-
-        &:hover {
-            box-shadow: var(--shadow-l2);
-            transform: translateY(-2px);
-        }
-
-        a {
-            display: block;
-            padding: var(--spacing-lg);
-            text-decoration: none;
-        }
-
-        .article-details {
-            padding: 0;
-        }
-
-        .article-title {
-            margin: 0;
-            font-size: 1.5rem;
-            text-align: center;
-            color: var(--card-text-color-main);
-        }
-    }
-}
-
-/* ---- 3.0 分类 Grid 横向平铺 ---- */
-.categories-grid--inline {
+/* ---- 3. 归档页分类胶囊 ---- */
+.categories-capsules {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-sm);
+    gap: 8px;
+    margin-bottom: var(--spacing-xl);
+}
 
-    article {
-        flex: 0 0 auto;
+.category-capsule {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: var(--card-background);
+    border: 1px solid var(--card-separator-color);
+    box-shadow: var(--shadow-l1);
+    text-decoration: none;
+    color: var(--card-text-color-main);
+    font-size: 1.3rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
 
-        a {
-            padding: var(--spacing-sm) var(--spacing-md);
-        }
+.category-capsule:hover {
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-l2);
+    transform: translateY(-2px);
+    color: var(--accent-color);
+}
 
-        .article-title {
-            font-size: 1.3rem;
-            white-space: nowrap;
-        }
-    }
+.category-capsule .capsule-count {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--body-text-color);
+    opacity: 0.45;
+    background: var(--card-background-selected);
+    border-radius: 8px;
+    padding: 1px 6px;
+    min-width: 22px;
+    text-align: center;
 }
 
 /* ---- 3.1 归档月份标题 ---- */
@@ -122,80 +107,6 @@
         opacity: 0.5;
         margin-left: var(--spacing-xs);
     }
-}
-
-/* ---- 3.2 侧边栏归档/分类 widget 横向平铺 ---- */
-.widget.archives .widget-archive--list,
-.widget.tagCloud .tagCloud-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-.widget.archives .archives-year a,
-.widget.tagCloud .tagCloud-tags a {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 4px;
-    background: var(--card-background);
-    border: 1px solid var(--card-separator-color);
-    font-size: 1.15rem;
-    color: var(--body-text-color);
-    text-decoration: none;
-    transition: background 0.15s, border-color 0.15s, color 0.15s;
-}
-
-.widget.archives .archives-year a:hover,
-.widget.tagCloud .tagCloud-tags a:hover {
-    background: var(--card-background-selected);
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-}
-
-.widget.archives .archives-year .count,
-.widget.tagCloud .tagCloud-tags .count {
-    font-size: 1rem;
-    opacity: 0.5;
-    margin-left: 2px;
-}
-
-/* ---- 3.3 Clippings 日报 ToC 样式 ---- */
-.entry-toc {
-    margin: 12px var(--card-padding) 0;
-    padding: 12px 16px;
-    background: var(--card-background);
-    border: 1px solid var(--card-border);
-    border-radius: var(--card-border-radius);
-    font-size: 1.4rem;
-
-    summary {
-        font-weight: 600;
-        cursor: pointer;
-        margin-bottom: 8px;
-        color: var(--accent-color);
-    }
-
-    .toc-inner {
-        font-size: 1.3rem;
-        line-height: 1.8;
-
-        nav > ul {
-            padding-left: 1.5em;
-            margin: 0;
-        }
-
-        a {
-            color: var(--body-text-color);
-            text-decoration: none;
-        }
-    }
-}
-
-/* ---- 3.1 目录当前标题高亮 ---- */
-.toc-nav li.active-class > a {
-    color: var(--accent-color);
-    font-weight: 600;
-    transition: color 0.2s ease;
 }
 
 /* ---- 4. 中文排版优化 ---- */
@@ -422,9 +333,14 @@ body {
 }
 
 /* ---- 9. 移动端适配 ---- */
-    .categories-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: var(--spacing-sm);
+    .categories-capsules .category-capsule {
+        font-size: 1.2rem;
+        padding: 6px 10px;
+    }
+
+    .taxonomy-capsule {
+        font-size: 1.1rem;
+        padding: 2px 7px;
     }
 
     .entry-toc {
@@ -1011,4 +927,285 @@ a {
 }
 .article-content a:hover {
     text-decoration-thickness: 2px;
+}
+
+/* ============================================================
+   24. 侧边栏归档时间线 widget
+   ============================================================ */
+.archives-timeline {
+    position: relative;
+    padding-left: 18px;
+}
+
+/* 垂直连线 */
+.archives-timeline::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 4px;
+    bottom: 4px;
+    width: 1.5px;
+    background: var(--card-separator-color);
+    border-radius: 1px;
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    text-decoration: none;
+    color: var(--body-text-color);
+    font-size: 1.25rem;
+    transition: color 0.15s, transform 0.15s;
+}
+
+.timeline-item:hover {
+    color: var(--accent-color);
+    transform: translateX(3px);
+}
+
+.timeline-item:hover .timeline-dot {
+    background: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.15);
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -15px;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--card-separator-color);
+    border: 2px solid var(--body-background);
+    transition: background 0.15s, box-shadow 0.15s;
+    z-index: 1;
+}
+
+.more-dot {
+    background: transparent;
+    border: 2px dashed var(--card-separator-color);
+}
+
+.timeline-year {
+    font-weight: 500;
+    flex: 1;
+}
+
+.timeline-count {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--body-text-color);
+    opacity: 0.45;
+    background: var(--card-background);
+    border-radius: 10px;
+    padding: 1px 7px;
+    min-width: 24px;
+    text-align: center;
+}
+
+.timeline-more {
+    opacity: 0.5;
+    font-style: italic;
+}
+
+/* ============================================================
+   25. 侧边栏分类胶囊 grid
+   ============================================================ */
+.taxonomy-capsules {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.taxonomy-capsule {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 9px;
+    border-radius: 6px;
+    background: var(--card-background);
+    border: 1px solid var(--card-separator-color);
+    text-decoration: none;
+    color: var(--body-text-color);
+    font-size: 1.2rem;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+.taxonomy-capsule:hover {
+    background: var(--card-background-selected);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-l1);
+}
+
+.capsule-name {
+    font-weight: 450;
+}
+
+.capsule-count {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    opacity: 0.7;
+    background: var(--card-background-selected);
+    border-radius: 8px;
+    padding: 0 5px;
+    min-width: 18px;
+    text-align: center;
+}
+
+/* ============================================================
+   26. 归档全页改造
+   ============================================================ */
+
+/* 年份标题 */
+.template-archives .archives-date {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin: var(--spacing-lg) 0 var(--spacing-md) 0;
+    padding-left: 16px;
+    border-left: 4px solid var(--accent-color);
+}
+
+/* 月份区块 — 卡片容器 */
+.template-archives .archives-month {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    border-radius: var(--card-border-radius);
+    background: var(--card-background);
+    border: 1px solid var(--card-separator-color);
+    box-shadow: var(--shadow-l1);
+}
+
+.template-archives .archives-month-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--card-text-color-main);
+    margin: 0 0 var(--spacing-sm) 0;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--card-separator-color);
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.template-archives .archives-month-count {
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--body-text-color);
+    opacity: 0.45;
+}
+
+/* 文章条目 — 卡片式紧凑 */
+.template-archives .article-list--compact {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.template-archives .article-list--compact article {
+    border-radius: 6px;
+    transition: background 0.15s;
+}
+
+.template-archives .article-list--compact article:hover {
+    background: var(--card-background-selected);
+}
+
+.template-archives .article-list--compact .article-details {
+    padding: 6px 10px;
+}
+
+.template-archives .article-list--compact .article-title {
+    font-size: 1.3rem;
+}
+
+/* ============================================================
+   27. 分类列表页改造
+   ============================================================ */
+
+/* 分类页头部卡片 */
+.section-card {
+    border-radius: var(--card-border-radius);
+    background: var(--card-background);
+    border: 1px solid var(--card-separator-color);
+    box-shadow: var(--shadow-l1);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.section-count {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    line-height: 1;
+    margin: 0;
+}
+
+.section-term {
+    font-size: 1.8rem;
+    margin: 2px 0;
+    color: var(--card-text-color-main);
+}
+
+/* 分类列表 — tile 网格 */
+.subsection-list .article-list--tile {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+}
+
+.subsection-list .article-list--tile article {
+    border-radius: 10px;
+    background: var(--card-background);
+    border: 1px solid var(--card-separator-color);
+    box-shadow: var(--shadow-l1);
+    transition: all 0.2s;
+}
+
+.subsection-list .article-list--tile article:hover {
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-l2);
+    transform: translateY(-1px);
+}
+
+.subsection-list .article-list--tile article a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px var(--spacing-md);
+    text-decoration: none;
+    min-height: 48px;
+}
+
+.subsection-list .article-list--tile .article-title {
+    font-size: 1.35rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--card-text-color-main);
+}
+
+/* 暗色模式微调 */
+[data-scheme="dark"] {
+    .timeline-dot {
+        border-color: var(--body-background);
+    }
+
+    .timeline-count {
+        background: rgba(255, 255, 255, 0.06);
+    }
+
+    .taxonomy-capsule:hover {
+        background: rgba(96, 165, 250, 0.1);
+    }
 }

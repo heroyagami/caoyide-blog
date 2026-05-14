@@ -1,0 +1,39 @@
+{{- $query := first 1 (where .Context.Site.Pages "Layout" "==" "archives") -}}
+{{- $context := .Context -}}
+{{- $limit := default 5 .Params.limit -}}
+{{- if $query -}}
+    {{- $archivesPage := index $query 0 -}}
+    <section class="widget archives">
+        <div class="widget-icon">
+            {{ partial "helper/icon" "infinity" }}
+        </div>
+        <h2 class="widget-title section-title">
+            <a href="{{ $archivesPage.RelPermalink }}">
+                {{ T "widget.archives.title" }}
+            </a>
+        </h2>
+
+        {{ $pages := partial "helper/pages.html" $context.Site.Home }}
+        {{ $archives := $pages.GroupByDate "2006" }}
+        
+        <div class="archives-timeline">
+            {{ range $index, $item := first (add $limit 1) ($archives) }}
+                {{- $id := lower (replace $item.Key " " "-") -}}
+                {{ if eq $index $limit }}
+                    <a href="{{ $archivesPage.RelPermalink }}" class="timeline-item timeline-more">
+                        <span class="timeline-dot more-dot"></span>
+                        <span class="timeline-year">{{ T "widget.archives.more" }}</span>
+                    </a>
+                {{ else }}
+                    <a href="{{ $archivesPage.RelPermalink }}#{{ $id }}" class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-year">{{ .Key }}</span>
+                        <span class="timeline-count">{{ len $item.Pages }}</span>
+                    </a>
+                {{ end }}
+            {{ end }}
+        </div>
+    </section>
+{{- else -}}
+    {{- warnf "Archives page not found. Create a page with layout: archives." -}}
+{{- end -}}

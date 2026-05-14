@@ -1,4 +1,4 @@
-{{- /* 归档页：按年→月分组，分类区域横向平铺 */}}
+{{- /* 归档页：按年→月分组，分类胶囊横向平铺 */}}
 {{ define "body-class" }}template-archives{{ end }}
 {{ define "main" }}
     <header>
@@ -6,9 +6,12 @@
         {{- $terms := $taxonomy.Pages -}}
         {{ if $terms }}
         <h2 class="section-title">{{ T "widget.categoriesCloud.title" }}</h2>
-        <div class="categories-grid categories-grid--inline">
-            {{ range $terms }}
-                {{ partial "article-list/tile" . }}
+        <div class="categories-capsules">
+            {{ range $terms.ByCount }}
+                <a href="{{ .RelPermalink }}" class="category-capsule">
+                    <span class="capsule-name">{{ .Title }}</span>
+                    <span class="capsule-count">{{ len .Pages }}</span>
+                </a>
             {{ end }}
         </div>
         {{ end }}
