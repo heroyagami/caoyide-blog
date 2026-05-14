@@ -463,3 +463,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 })();
 </script>
+
+{{- /* 暗色模式文字对比度修复（内联保证最高优先级） */}}
+<style>
+html[data-scheme="dark"] {
+    --body-text-color: rgba(255, 255, 255, 0.82) !important;
+    --card-text-color-main: rgba(255, 255, 255, 0.93) !important;
+    --card-text-color-secondary: rgba(255, 255, 255, 0.72) !important;
+    --card-text-color-tertiary: rgba(255, 255, 255, 0.55) !important;
+    --card-separator-color: rgba(148, 163, 184, 0.18) !important;
+}
+</style>
