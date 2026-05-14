@@ -1,4 +1,6 @@
 {{ define "main" }}
+    {{ partial "article/components/breadcrumb" . }}
+
     {{- $aboutPage := .Site.GetPage "/posts/clippings/关于曹义德律师" -}}
     {{- if $aboutPage }}
     <section class="featured-about">

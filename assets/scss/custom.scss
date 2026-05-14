@@ -147,19 +147,24 @@ body {
     font-size: 1.35rem;
 }
 
-/* Widget 标题统一 */
-.widget-title {
-    font-size: 1.4rem !important;
-}
-
-/* Widget 图标美化 — 小一点、低对比度，不抢眼 */
+/* Widget 图标美化 — 与文字同行，小且低对比度 */
 .widget-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 6px;
     opacity: 0.45;
-    transform: scale(0.85);
+    transform: scale(0.8);
     transition: opacity 0.2s;
+    vertical-align: middle;
 }
 .widget:hover .widget-icon {
     opacity: 0.6;
+}
+
+/* Widget 标题 — 与图标同行 */
+.widget-title {
+    display: inline;
+    font-size: 1.4rem !important;
 }
 
 /* 侧边栏描述 */
