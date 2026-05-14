@@ -15,7 +15,10 @@
     --accent-color: #1e40af;
     --accent-color-darker: #1e3a8a;
     --body-background: #f8f9fb;
-    --body-text-color: #475569;
+    --body-text-color: #1e293b;
+    --card-text-color-main: #0f172a;
+    --card-text-color-secondary: #475569;
+    --card-text-color-tertiary: #64748b;
 
     /* Card refinements */
     --card-background-selected: #eef2ff;
@@ -35,7 +38,7 @@
         --card-background-selected: rgba(96, 165, 250, 0.12);
         --card-text-color-main: rgba(255, 255, 255, 0.93);
         --card-text-color-secondary: rgba(255, 255, 255, 0.72);
-        --card-text-color-tertiary: rgba(255, 255, 255, 0.55);
+        --card-text-color-tertiary: rgba(255, 255, 255, 0.62);
         --card-separator-color: rgba(148, 163, 184, 0.16);
         --shadow-l1: 0px 2px 8px rgba(0, 0, 0, 0.2);
         --shadow-l2: 0px 6px 16px rgba(0, 0, 0, 0.25);
@@ -145,6 +148,28 @@ body {
 /* 侧边栏文字统一 */
 .sidebar {
     font-size: 1.35rem;
+}
+
+/* ---- 4.0 全局聚焦态（键盘导航可访问性） ---- */
+:focus-visible {
+    outline: 2px solid var(--accent-color) !important;
+    outline-offset: 2px !important;
+    border-radius: 2px;
+}
+
+/* 搜索框聚焦时保持原有样式 + 外发光 */
+.search-form input:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 2px var(--accent-color);
+}
+
+/* 卡片内链接聚焦 */
+.article-list a:focus-visible,
+.archives-timeline a:focus-visible,
+.quicklink-item:focus-visible,
+.taxonomy-capsule:focus-visible {
+    outline-offset: 1px !important;
+    border-radius: 4px;
 }
 
 /* Widget 标题 — 字稍大 */
