@@ -2,15 +2,14 @@
 {{ define "body-class" }}template-archives{{ end }}
 {{ define "main" }}
     <header>
-        {{- $taxonomy := $.Site.GetPage "taxonomyTerm" "categories" -}}
-        {{- $terms := $taxonomy.Pages -}}
-        {{ if $terms }}
-        <h2 class="section-title">{{ T "widget.categoriesCloud.title" }}</h2>
+        {{- $categories := .Site.Taxonomies.categories -}}
+        {{ if $categories }}
+        <h2 class="section-title">分类浏览</h2>
         <div class="categories-capsules">
-            {{ range $terms.ByCount }}
-                <a href="{{ .RelPermalink }}" class="category-capsule">
-                    <span class="capsule-name">{{ .Title }}</span>
-                    <span class="capsule-count">{{ len .Pages }}</span>
+            {{ range $categories.ByCount }}
+                <a href="{{ .Page.RelPermalink }}" class="category-capsule">
+                    <span class="capsule-name">{{ .Page.Title }}</span>
+                    <span class="capsule-count">{{ .Count }}</span>
                 </a>
             {{ end }}
         </div>
