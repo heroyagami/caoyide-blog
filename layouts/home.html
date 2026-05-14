@@ -1,8 +1,6 @@
 {{ define "main" }}
     {{ partial "article/components/breadcrumb" . }}
 
-    {{- $aboutPage := .Site.GetPage "/posts/clippings/关于曹义德律师" -}}
-    {{- if $aboutPage }}
     <section class="featured-about">
         <div class="about-card">
             <div class="about-card-header">
@@ -31,15 +29,12 @@
             </div>
         </div>
     </section>
-    {{- end }}
 
     {{- $paginator := partial "helper/paginator.html" . -}}
 
     <section class="article-list">
         {{ range $index, $element := $paginator.Pages }}
-            {{- if ne .RelPermalink $aboutPage.RelPermalink }}
-                {{ partial "article-list/default" . }}
-            {{- end }}
+            {{ partial "article-list/default" . }}
         {{ end }}
     </section>
 
