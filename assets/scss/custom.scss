@@ -753,3 +753,361 @@ a {
 .search-dropdown-item:last-child { border-bottom: none; }
 .search-dropdown-item:hover { background: var(--card-background-selected); }
 .search-dropdown-empty { padding: var(--spacing-md); text-align: center; font-size: var(--text-sm); color: var(--card-text-color-tertiary); }
+
+/* ============================================================
+   30. Codex 首页律师门户视觉升级
+   ============================================================ */
+:root {
+    --legal-blue: #2563eb;
+    --legal-blue-deep: #143b8f;
+    --legal-blue-soft: #eff6ff;
+    --legal-ink: #0f2247;
+    --legal-muted: #66789b;
+    --legal-card: rgba(255, 255, 255, 0.88);
+    --legal-border: rgba(188, 206, 238, 0.72);
+}
+
+body {
+    background:
+        radial-gradient(circle at 8% 25%, rgba(37, 99, 235, 0.12), transparent 28rem),
+        radial-gradient(circle at 75% 10%, rgba(96, 165, 250, 0.14), transparent 36rem),
+        linear-gradient(135deg, #f4f8ff 0%, #fbfdff 47%, #eef6ff 100%) !important;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 34vw;
+    height: 34vw;
+    z-index: -9;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(96, 165, 250, 0.16));
+    clip-path: polygon(0 40%, 56% 0, 100% 28%, 28% 100%, 0 88%);
+    pointer-events: none;
+}
+
+/* 左侧个人资料卡 */
+.lawyer-profile-sidebar {
+    overflow: visible;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.lawyer-profile-card {
+    position: relative;
+    padding: 34px 24px 24px;
+    text-align: center;
+    background: var(--legal-card);
+    border: 1px solid var(--legal-border);
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(26, 65, 126, 0.09), 0 2px 8px rgba(24, 76, 151, 0.05);
+    overflow: hidden;
+}
+
+.lawyer-profile-card::before {
+    content: "";
+    position: absolute;
+    left: -42px;
+    top: 190px;
+    width: 82px;
+    height: 112px;
+    opacity: 0.45;
+    background-image: radial-gradient(#8bb7ff 2px, transparent 2px);
+    background-size: 18px 18px;
+}
+
+.lawyer-profile-card .site-avatar {
+    width: 136px;
+    margin: 0 auto 18px;
+}
+
+.lawyer-profile-card .site-logo {
+    border-radius: 10px !important;
+    box-shadow: 0 14px 28px rgba(16, 44, 89, 0.16);
+}
+
+.lawyer-profile-card .site-name {
+    margin: 0;
+    font-size: 2.8rem;
+    letter-spacing: 0.12em;
+    font-family: var(--heading-font-family);
+}
+
+.lawyer-profile-card .site-role {
+    margin-top: 4px;
+    color: var(--legal-blue);
+    font-size: 1.45rem;
+    font-weight: 600;
+}
+
+.profile-credentials {
+    display: grid;
+    gap: 12px;
+    margin: 26px 0 22px;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    color: var(--legal-ink);
+    font-size: 1.35rem;
+}
+
+.profile-credentials li {
+    position: relative;
+    padding-left: 26px;
+}
+
+.profile-credentials li::before {
+    content: "♙";
+    position: absolute;
+    left: 0;
+    color: var(--legal-blue);
+    font-size: 1.35rem;
+}
+
+.profile-actions {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 0 0 20px !important;
+    padding: 0 !important;
+}
+
+.profile-actions li { margin: 0 !important; }
+
+.profile-actions a {
+    display: grid !important;
+    place-items: center;
+    gap: 5px;
+    min-height: 58px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #f7fbff, #edf4ff);
+    color: var(--legal-blue) !important;
+    font-size: 1.15rem;
+    text-decoration: none;
+}
+
+.profile-actions svg,
+.profile-actions .star-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 1.8rem;
+}
+
+.profile-primary-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    border-radius: 10px;
+    color: #fff !important;
+    background: linear-gradient(135deg, #2f6df6, #1d4ed8);
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.26);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.lawyer-profile-sidebar > #main-menu,
+.lawyer-profile-sidebar > .sidebar-qr {
+    display: none !important;
+}
+
+/* 首页文章卡片 */
+.legal-article-list {
+    display: grid;
+    gap: 16px;
+}
+
+.legal-entry-card {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    background: var(--legal-card) !important;
+    border: 1px solid var(--legal-border) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 18px 50px rgba(26, 65, 126, 0.09), 0 2px 8px rgba(24, 76, 151, 0.05) !important;
+    backdrop-filter: blur(14px);
+}
+
+.legal-entry-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(37, 99, 235, 0.45) !important;
+    box-shadow: 0 22px 56px rgba(26, 65, 126, 0.13), 0 2px 8px rgba(24, 76, 151, 0.05) !important;
+}
+
+.legal-entry-link {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 150px;
+    gap: 20px;
+    min-height: 176px;
+    padding: 26px 32px;
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+.legal-entry-kicker {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: 10px;
+    padding: 4px 9px;
+    border-radius: 7px;
+    color: var(--legal-blue);
+    background: #e7f0ff;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.legal-entry-title {
+    margin: 0 0 8px;
+    color: var(--legal-ink);
+    font-size: 2.15rem;
+    line-height: 1.35;
+    font-weight: 800;
+}
+
+.legal-entry-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin-bottom: 10px;
+    color: var(--legal-muted);
+    font-size: 1.28rem;
+}
+
+.legal-entry-meta span::before {
+    content: "▣";
+    margin-right: 6px;
+    color: var(--legal-blue);
+    font-size: 1rem;
+}
+
+.legal-entry-summary {
+    margin: 0;
+    color: var(--legal-muted);
+    font-size: 1.38rem;
+    line-height: 1.75;
+}
+
+.legal-entry-art {
+    position: relative;
+    align-self: center;
+    justify-self: center;
+    width: 128px;
+    height: 112px;
+    opacity: 0.62;
+}
+
+.art-paper {
+    position: absolute;
+    inset: 12px 24px 18px 12px;
+    border-radius: 10px 10px 28px 10px;
+    background: linear-gradient(135deg, #dbeafe, #ffffff 58%, #93c5fd);
+    box-shadow: 0 18px 24px rgba(37, 99, 235, 0.16);
+    transform: rotate(-8deg);
+}
+
+.art-line {
+    position: absolute;
+    right: 20px;
+    height: 8px;
+    border-radius: 99px;
+    background: #8bb7ff;
+    transform: rotate(20deg);
+}
+
+.art-line-1 { top: 36px; width: 58px; }
+.art-line-2 { top: 55px; width: 42px; opacity: 0.75; }
+.art-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #3b82f6;
+}
+.art-dot-1 { left: 4px; top: 42px; }
+.art-dot-2 { right: 12px; bottom: 18px; opacity: 0.45; }
+
+/* 右侧组件 */
+.right-sidebar .widget,
+.search-form.widget {
+    padding: 20px 22px !important;
+}
+
+.right-sidebar .widget-title,
+.search-form.widget label {
+    color: var(--legal-blue) !important;
+    font-size: 1.55rem !important;
+    font-weight: 800 !important;
+}
+
+.search-form.widget input {
+    border: 1px solid var(--legal-border) !important;
+    border-radius: 8px !important;
+    min-height: 44px;
+    background: rgba(255, 255, 255, 0.72) !important;
+}
+
+.quicklinks-list { gap: 6px !important; }
+
+.quicklink-item {
+    padding: 9px 2px !important;
+    color: var(--legal-ink) !important;
+    font-size: 1.3rem !important;
+}
+
+.quicklink-item::before {
+    content: "♙";
+    margin-right: 8px;
+    color: var(--legal-blue);
+}
+
+.quicklink-item b {
+    margin-left: auto;
+    color: #8094b8;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.taxonomy-capsule {
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    border-color: var(--legal-border) !important;
+}
+
+.capsule-count,
+.timeline-count {
+    color: var(--legal-blue) !important;
+    background: #e7f0ff !important;
+}
+
+.site-footer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px 0 22px !important;
+    color: var(--legal-muted) !important;
+    font-size: 1.25rem;
+}
+
+[data-scheme="dark"] {
+    --legal-card: rgba(15, 23, 42, 0.86);
+    --legal-border: rgba(96, 165, 250, 0.18);
+    --legal-ink: rgba(255, 255, 255, 0.92);
+    --legal-muted: rgba(226, 232, 240, 0.68);
+}
+
+@media (max-width: 1024px) {
+    .legal-entry-link {
+        grid-template-columns: 1fr !important;
+    }
+    .legal-entry-art { display: none; }
+}
+
+@media (max-width: 768px) {
+    .profile-actions { grid-template-columns: repeat(2, 1fr); }
+    .legal-entry-link { padding: 22px; min-height: auto; }
+    .legal-entry-title { font-size: 1.8rem; }
+}

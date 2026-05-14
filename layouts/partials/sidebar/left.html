@@ -1,53 +1,45 @@
-<aside class="sidebar left-sidebar sticky {{ if .Site.Params.sidebar.compact }}compact{{ end }}">
+<aside class="sidebar left-sidebar sticky lawyer-profile-sidebar {{ if .Site.Params.sidebar.compact }}compact{{ end }}">
     <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="{{ T `toggleMenu` }}">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
+        <span class="hamburger-box"><span class="hamburger-inner"></span></span>
     </button>
 
-    <header>
+    <header class="lawyer-profile-card">
         {{ with .Site.Params.sidebar.avatar }}
             {{- $avatar := partial "helper/image" (dict "Image" . "Resources" resources "Context" $) -}}
             <figure class="site-avatar">
                 <a href="{{ $.Site.Home.RelPermalink }}">
-                    <img src="{{ $avatar.Permalink }}"
-                        width="{{ $avatar.Width }}"
-                        height="{{ $avatar.Height }}"
-                        class="site-logo"
-                        loading="lazy"
-                        alt="Avatar">
+                    <img src="{{ $avatar.Permalink }}" width="{{ $avatar.Width }}" height="{{ $avatar.Height }}" class="site-logo" loading="lazy" alt="曹义德律师头像">
                 </a>
-                {{ with $.Site.Params.sidebar.emoji }}
-                    <span class="emoji">{{ . }}</span>
-                {{ end }}
             </figure>
         {{ end }}
 
         <div class="site-meta">
-            <h1 class="site-name"><a href="{{ .Site.Home.RelPermalink }}">{{ .Site.Title }}</a></h1>
-            <h2 class="site-description">{{ .Site.Params.sidebar.subtitle | safeHTML }}</h2>
+            <h1 class="site-name"><a href="{{ .Site.Home.RelPermalink }}">曹义德</a></h1>
+            <div class="site-role">律师 / 法学专家</div>
+            <ul class="profile-credentials">
+                <li>华中科技大学法学硕士</li>
+                <li>湖北江通律师事务所</li>
+                <li>前反贪检察官</li>
+                <li>执业律师</li>
+            </ul>
         </div>
-    </header>
 
-    {{- with .Site.Menus.social -}}
-        <ol class="menu-social">
-            {{ range . }}
-                <li>
-                    <a
-                        href='{{ .URL | safeURL }}'
-                        {{ if .Params.newTab }}target="_blank"{{ end }}
-                        {{ with .Name }}title="{{ . }}"{{ end }}
-                        rel="me"
-                    >
-                        {{ $icon := default "link" .Params.Icon }}
-                        {{ with $icon }}
-                            {{ partial "helper/icon" . }}
-                        {{ end }}
-                    </a>
-                </li>
-            {{ end }}
-        </ol>
-    {{- end -}}
+        {{- with .Site.Menus.social -}}
+            <ol class="menu-social profile-actions">
+                {{ range . }}
+                    <li>
+                        <a href='{{ .URL | safeURL }}' {{ if .Params.newTab }}target="_blank"{{ end }} {{ with .Name }}title="{{ . }}"{{ end }} rel="me">
+                            {{ $icon := default "link" .Params.Icon }}{{ with $icon }}{{ partial "helper/icon" . }}{{ end }}
+                            <span>{{ .Name }}</span>
+                        </a>
+                    </li>
+                {{ end }}
+                <li><a href="/about/" title="关注"><span class="star-icon">★</span><span>关注</span></a></li>
+            </ol>
+        {{- end -}}
+
+        <a class="profile-primary-button" href="/about/">查看个人资料</a>
+    </header>
 
     <ol class="menu" id="main-menu">
         {{ $currentPage := . }}
@@ -55,47 +47,20 @@
         {{ $active := or (eq $currentPage.RelPermalink .URL) (or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .)) }}
         <li {{ if $active }} class='current'{{ end }}>
             <a href='{{ .URL }}' {{ if .Params.newTab }}target="_blank"{{ end }}>
-                {{ with .Params.Icon }}
-                    {{ partial "helper/icon" . }}
-                {{ end }}
+                {{ with .Params.Icon }}{{ partial "helper/icon" . }}{{ end }}
                 <span>{{- .Name -}}</span>
             </a>
         </li>
         {{ end }}
         <li class="menu-bottom-section">
             <ol class="menu">
-                {{- $currentLanguageCode := .Language.Name -}}
-                {{ if hugo.IsMultilingual }}
-                    <li id="i18n-switch">
-                        {{ partial "helper/icon" "language" }}
-                        <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
-                            {{ range .Site.Home.AllTranslations }}
-                                {{ $target := . }}
-                                {{ range $.AllTranslations }}
-                                    {{ if eq .Language.Name $target.Language.Name }}
-                                        {{ $target = . }}
-                                    {{ end }}
-                                {{ end }}
-                                <option value="{{ $target.RelPermalink }}" {{ if eq $target.Language.Name $currentLanguageCode }}selected{{ end }}>{{ .Language.Label }}</option>
-                            {{ end }}
-                        </select>
-                    </li>
-                {{ end }}
-
                 {{ if .Site.Params.colorScheme.toggle }}
                     <li id="dark-mode-toggle">
-                        {{ partial "helper/icon" "toggle-left" }}
-                        {{ partial "helper/icon" "toggle-right" }}
+                        {{ partial "helper/icon" "toggle-left" }}{{ partial "helper/icon" "toggle-right" }}
                         <span>{{ T "darkMode" }}</span>
                     </li>
                 {{ end }}
             </ol>
         </li>
     </ol>
-
-    {{- /* 侧边栏二维码 */ -}}
-    <div class="sidebar-qr">
-        <img src="/img/wechat-qr.png" alt="微信二维码" loading="lazy">
-        <div class="sidebar-qr-text">扫码添加微信<br>法律咨询 18872778990</div>
-    </div>
 </aside>
