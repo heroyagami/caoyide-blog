@@ -11,13 +11,13 @@
     --serif-font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "SimSun", serif;
 
     /* 字号阶梯 */
-    --text-xs: 1rem;
-    --text-sm: 1.2rem;
-    --text-md: 1.4rem;
-    --text-base: 1.6rem;
-    --text-lg: 1.8rem;
-    --text-xl: 2rem;
-    --text-2xl: 2.6rem;
+    --text-xs: 1.1rem;
+    --text-sm: 1.3rem;
+    --text-md: 1.5rem;
+    --text-base: 1.7rem;
+    --text-lg: 1.85rem;
+    --text-xl: 2.1rem;
+    --text-2xl: 2.7rem;
 
     /* 圆角尺度 */
     --radius-sm: 6px;
@@ -310,13 +310,16 @@ a {
     margin-bottom: var(--spacing-sm);
 }
 
-/* 搜索框 — 全宽圆角 */
+/* 搜索框 — 全宽圆角 + 垂直居中 */
 .search-form.widget input {
     border-radius: var(--radius-lg) !important;
     border: 1px solid var(--card-border-color) !important;
     background: var(--card-background);
     transition: all 0.2s;
     font-size: var(--text-sm);
+    line-height: 1;
+    display: flex;
+    align-items: center;
 }
 .search-form.widget input:focus-visible {
     outline: none !important;
@@ -369,7 +372,7 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 4px 10px;
+    padding: 5px 10px;
     border-radius: var(--radius-md);
     background: var(--card-background);
     border: 1px solid var(--card-border-color);
@@ -377,6 +380,7 @@ a {
     color: var(--card-text-color-secondary);
     font-size: var(--text-sm);
     transition: all 0.2s;
+    line-height: 1;
 }
 .taxonomy-capsule:hover {
     background: var(--card-background-selected);
@@ -537,7 +541,7 @@ a {
     box-shadow: var(--shadow-l2);
 }
 .featured-about .about-card-header {
-    display: flex; align-items: baseline; gap: var(--spacing-md);
+    display: flex; align-items: center; gap: 12px;
     margin-bottom: var(--spacing-lg);
     padding-bottom: var(--spacing-md);
     border-bottom: 2px solid var(--accent-color);
@@ -847,7 +851,7 @@ a {
 .legal-entry-title {
     margin: 0 0 6px;
     color: var(--card-text-color-main);
-    font-size: var(--text-lg);
+    font-size: var(--text-md);
     line-height: 1.4;
     font-weight: 750;
 }
