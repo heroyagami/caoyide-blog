@@ -179,7 +179,32 @@ a {
 
 @media (min-width: 769px) { .site-avatar { width: 110px; } }
 
-/* 站点名 */
+/* 站点角色标签 */
+.site-role {
+    margin-top: 2px;
+    color: var(--accent-color);
+    font-size: var(--text-md);
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* "执业律师" 色块 */
+.about-card-label {
+    font-size: var(--text-xs);
+    white-space: nowrap;
+    background: linear-gradient(135deg, var(--accent-color), #6366f1);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+}
 .site-name {
     font-family: var(--heading-font-family);
     font-size: var(--text-2xl);
@@ -254,8 +279,11 @@ a {
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 6px;
+    gap: 2px;
     padding-left: 4px;
+}
+#main-menu a[href*="/cases/"] svg {
+    margin-right: 0;
 }
 #main-menu a[href*="/cases/"]:hover {
     background: var(--accent-color);
@@ -584,9 +612,12 @@ a {
     white-space: nowrap;
     background: linear-gradient(135deg, var(--accent-color), #6366f1);
     color: #fff;
-    padding: 3px 12px;
+    padding: 4px 12px;
     border-radius: var(--radius-full);
     font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.2;
 }
 .featured-about .about-card-body {
     display: grid;
@@ -751,6 +782,11 @@ a {
     text-decoration: underline;
 }
 
+/* 归档页 header 间距 */
+.archives-header-top {
+    margin-bottom: 20px;
+}
+
 .back-to-top {
     position: fixed; bottom: 30px; right: 20px;
     width: 44px; height: 44px;
@@ -908,27 +944,28 @@ a {
 }
 .lawyer-profile-card .site-avatar { width: 120px; margin: 0 auto 16px; display: flex; justify-content: center; }
 .lawyer-profile-card .site-name { margin: 0; font-size: 2.6rem; letter-spacing: 0.08em; }
-.site-role {
-    margin-top: 2px;
-    color: var(--accent-color);
-    font-size: var(--text-md);
-    font-weight: 600;
-    text-align: center;
-}
 .profile-credentials {
-    display: grid; gap: 8px;
-    margin: 20px 0 18px; padding: 0;
-    list-style: none; text-align: center;
+    display: block;
+    margin: 20px auto 18px;
+    padding: 0;
+    list-style: none;
+    text-align: left;
     color: var(--card-text-color-main);
     font-size: var(--text-sm);
-    width: 100%;
+    width: fit-content;
 }
 .profile-credentials li {
-    padding: 0;
-    text-align: center;
+    padding: 3px 0 3px 18px;
+    position: relative;
 }
 .profile-credentials li::before {
-    content: none;
+    content: '●';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-color);
+    font-size: 1.1rem;
 }
 .profile-actions {
     display: flex !important;
