@@ -19,7 +19,7 @@
         {{ end }}
     </header>
 
-    {{ $pages := partial "helper/pages.html" .Site.Home }}
+    {{ $pages := where .Site.RegularPages "Type" "in" (slice "posts" "cases") }}
     {{ $groupedByYear := $pages.GroupByDate "2006" }}
 
     {{ range $groupedByYear }}

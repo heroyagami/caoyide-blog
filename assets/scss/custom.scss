@@ -250,6 +250,12 @@ a {
 #main-menu a[href*="/cases/"] {
     font-weight: 650;
     color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 6px;
+    padding-left: 4px;
 }
 #main-menu a[href*="/cases/"]:hover {
     background: var(--accent-color);
@@ -806,6 +812,27 @@ a {
 .qr-modal .qr-close:hover {
     background: var(--accent-color); color: #fff;
     border-color: var(--accent-color);
+}
+
+/* 隐藏文章标题锚点 # 图标 */
+.article-content h2 a[href^="#"],
+.article-content h3 a[href^="#"],
+.article-content h4 a[href^="#"] {
+    display: none !important;
+}
+
+/* 暗色模式 about-card 文字修复 */
+[data-scheme="dark"] .featured-about .about-card-body ul {
+    color: rgba(255, 255, 255, 0.88);
+}
+[data-scheme="dark"] .featured-about .about-card-body h3 {
+    color: var(--accent-color);
+}
+[data-scheme="dark"] .featured-about .about-card-contact p {
+    color: rgba(255, 255, 255, 0.85);
+}
+[data-scheme="dark"] .about-card-note {
+    color: rgba(255, 255, 255, 0.7) !important;
 }
 
 /* ============================================================
