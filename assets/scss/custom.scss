@@ -262,21 +262,27 @@ a {
     margin: 1px 0;
     font-size: var(--text-sm);
 }
-/* 首页菜单醒目 */
+/* 首页菜单醒目 — 胶囊风格，区别于案例库 */
 #main-menu a[href*='"/"']:not([href*="/cases/"]):not([href*="/posts/"]),
 #main-menu a[href^="/"]:first-of-type {
     font-weight: 700;
-    font-size: var(--text-md);
-    padding: 10px 12px;
-    background: linear-gradient(135deg, var(--accent-color), var(--accent-color-darker));
-    color: #fff !important;
-    border-radius: var(--radius-lg);
-    margin-bottom: 4px;
+    font-size: var(--text-sm);
+    padding: 8px 16px;
+    background: transparent;
+    color: var(--accent-color) !important;
+    border: 2px solid var(--accent-color);
+    border-radius: var(--radius-full);
+    margin-bottom: 8px;
+    margin-top: 4px;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.25s ease;
 }
 #main-menu a[href^="/"]:first-of-type:hover {
-    opacity: 0.9;
+    background: var(--accent-color);
+    color: #fff !important;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
 #main-menu li > a:hover {
     background: var(--card-background-selected);

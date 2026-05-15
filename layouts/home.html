@@ -1,5 +1,7 @@
 {{ define "main" }}
+    {{- if not .IsHome }}
     {{ partial "article/components/breadcrumb" . }}
+    {{- end }}
 
     <section class="featured-about lawyer-hero-card" aria-label="关于曹义德律师">
         <div class="about-card">
