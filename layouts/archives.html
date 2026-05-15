@@ -25,7 +25,7 @@
         <h2 class="archives-date section-title"><a href="{{ $.RelPermalink }}#{{ $yearId }}">{{ .Key }} 年</a></h2>
 
         {{ range .Pages.GroupByDate "01" }}
-        {{ $monthNum := int .Key }}
+        {{ $monthNum := .Key | strings.TrimLeft "0" }}
         <div class="archives-month">
             <h3 class="archives-month-title">{{ $monthNum }} 月 <span class="archives-month-count">{{ len .Pages }} 篇</span></h3>
             <div class="article-list--compact">
