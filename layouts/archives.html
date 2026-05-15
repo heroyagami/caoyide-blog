@@ -2,6 +2,9 @@
 {{ define "body-class" }}template-archives{{ end }}
 {{ define "main" }}
     <header>
+        <div class="archives-header-top">
+            <a href="{{ .Site.Home.RelPermalink }}" class="archives-back-link">&larr; 返回首页</a>
+        </div>
         {{- $categories := .Site.Taxonomies.categories -}}
         {{ if $categories }}
         <h2 class="section-title">分类浏览</h2>

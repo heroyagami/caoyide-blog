@@ -41,7 +41,7 @@ buildFuture = true
     # ---- 页脚 ----
     [params.footer]
         since = 2025
-        customText = "湖北江通律师事务所 · 执业证号：14201202110310748 · 法律咨询：18872778990（微信同号） · 专业 · 专注 · 值得信赖"
+        customText = "湖北江通律师事务所 · 执业证号：14201202110310748 · 法律咨询：18872778990（微信同号）"
 
     # ---- 侧边栏小部件 ----
     [params.widgets]
@@ -80,13 +80,6 @@ buildFuture = true
     url = "tel:18872778990"
     [menu.social.params]
         icon = "phone"
-
-[[menu.social]]
-    identifier = "email"
-    name = "邮箱（证据收集）"
-    url = "mailto:271333828@qq.com"
-    [menu.social.params]
-        icon = "mail"
 
 [[menu.social]]
     identifier = "wechat"

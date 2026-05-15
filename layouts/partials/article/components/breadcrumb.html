@@ -1,7 +1,7 @@
 {{- /* 面包屑导航：首页 > 分类 > 文章标题。首页只显示「首页」 */ -}}
 <nav class="breadcrumb" aria-label="breadcrumb">
   {{- if .IsHome -}}
-    <span class="breadcrumb-current">首页</span>
+    <a href="{{ .Site.BaseURL }}" class="breadcrumb-current">首页</a>
   {{- else -}}
     <a href="{{ .Site.BaseURL }}">首页</a>
     <span class="breadcrumb-sep">&rsaquo;</span>

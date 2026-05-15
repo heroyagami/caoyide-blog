@@ -631,6 +631,120 @@ a {
 .breadcrumb-sep { margin: 0 6px; color: var(--card-text-color-tertiary); opacity: 0.4; }
 .breadcrumb-current { color: var(--card-text-color-secondary) !important; opacity: 1 !important; font-weight: 500; }
 
+/* 隐藏文章标题锚点 # 图标 */
+.article-content h2 a.header-anchor,
+.article-content h3 a.header-anchor,
+.article-content h4 a.header-anchor,
+.article-content h5 a.header-anchor,
+.article-content h6 a.header-anchor {
+    display: none !important;
+}
+
+/* ---- 外链跳转确认模态框（居中 + 遮罩 + 动画） ---- */
+.quicklink-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    justify-content: center;
+    align-items: center;
+    animation: quicklinkFadeIn 0.2s ease-out;
+}
+.quicklink-modal-overlay.active {
+    display: flex;
+}
+@keyframes quicklinkFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes quicklinkModalPop {
+    from { opacity: 0; transform: scale(0.85) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.quicklink-modal {
+    background: var(--card-background);
+    border-radius: var(--radius-xl);
+    padding: 32px 36px;
+    box-shadow: var(--shadow-l3), 0 0 0 1px var(--card-border-color);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: quicklinkModalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.quicklink-modal-icon {
+    font-size: 3.2rem;
+    margin-bottom: 8px;
+    color: var(--color-warning);
+}
+.quicklink-modal-title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--card-text-color-main);
+    margin-bottom: 12px;
+}
+.quicklink-modal-body {
+    font-size: var(--text-sm);
+    color: var(--card-text-color-secondary);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+.quicklink-modal-body strong {
+    color: var(--card-text-color-main);
+}
+.quicklink-modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+.quicklink-modal-btn {
+    padding: 10px 28px;
+    border-radius: var(--radius-md);
+    border: none;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.quicklink-modal-btn.cancel {
+    background: var(--card-background-selected);
+    color: var(--card-text-color-secondary);
+    border: 1px solid var(--card-border-color);
+}
+.quicklink-modal-btn.cancel:hover {
+    background: var(--card-separator-color);
+}
+.quicklink-modal-btn.confirm {
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-color-darker));
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+.quicklink-modal-btn.confirm:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+}
+
+/* ---- 归档页返回首页链接 ---- */
+.archives-header-top {
+    margin-bottom: var(--spacing-sm);
+}
+.archives-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--text-sm);
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+.archives-back-link:hover {
+    transform: translateX(-3px);
+    text-decoration: underline;
+}
+
 .back-to-top {
     position: fixed; bottom: 30px; right: 20px;
     width: 44px; height: 44px;
@@ -809,6 +923,13 @@ a {
 .profile-actions a:hover {
     background: var(--card-background-selected);
     transform: translateY(-1px);
+}
+[data-scheme="dark"] .profile-actions a {
+    background: linear-gradient(180deg, #1a2332, #111827);
+    color: var(--accent-color) !important;
+}
+[data-scheme="dark"] .profile-actions a:hover {
+    background: var(--card-background-selected);
 }
 .profile-primary-button {
     display: flex; align-items: center; justify-content: center;

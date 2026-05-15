@@ -54,8 +54,7 @@
   "description": "曹义德律师专栏 — 华中科技大学法学硕士，前反贪检察官，现执业律师。专注职务犯罪辩护、民事商事刑事讼诉。法律咨询：18872778990（微信同号）",
   "url": "{{ site.BaseURL }}",
   "sameAs": [
-    "tel:18872778990",
-    "mailto:271333828@qq.com"
+    "tel:18872778990"
   ],
   "affiliation": {
     "@type": "Organization",
@@ -145,16 +144,65 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  /* ---- 1.1 外链跳转确认（右侧常用工具） ---- */
+  /* ---- 1.1 外链跳转确认（自定义模态框） ---- */
   function initQuicklinkConfirm() {
+    // Create modal elements once
+    var overlay = doc.createElement('div');
+    overlay.className = 'quicklink-modal-overlay';
+    overlay.innerHTML = '<div class="quicklink-modal">' +
+      '<div class="quicklink-modal-icon">&#9888;</div>' +
+      '<div class="quicklink-modal-title">即将跳转</div>' +
+      '<div class="quicklink-modal-body">即将跳转到外部网站：<strong id="quicklink-modal-name"></strong></div>' +
+      '<div class="quicklink-modal-actions">' +
+      '<button class="quicklink-modal-btn cancel">取消</button>' +
+      '<button class="quicklink-modal-btn confirm">确定</button>' +
+      '</div></div>';
+    doc.body.appendChild(overlay);
+
+    var nameEl = overlay.querySelector('#quicklink-modal-name');
+    var confirmBtn = overlay.querySelector('.quicklink-modal-btn.confirm');
+    var cancelBtn = overlay.querySelector('.quicklink-modal-btn.cancel');
+    var pendingUrl = '';
+
+    function showModal(name, url) {
+      nameEl.textContent = name;
+      pendingUrl = url;
+      overlay.classList.add('active');
+    }
+
+    confirmBtn.addEventListener('click', function() {
+      if (pendingUrl) {
+        window.open(pendingUrl, '_blank', 'noopener,noreferrer');
+      }
+      overlay.classList.remove('active');
+      pendingUrl = '';
+    });
+
+    cancelBtn.addEventListener('click', function() {
+      overlay.classList.remove('active');
+      pendingUrl = '';
+    });
+
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+        pendingUrl = '';
+      }
+    });
+
+    doc.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        overlay.classList.remove('active');
+        pendingUrl = '';
+      }
+    });
+
     doc.querySelectorAll('.quicklink-item').forEach(function(link) {
       link.addEventListener('click', function(e) {
         e.preventDefault();
         var name = link.getAttribute('data-name') || link.textContent.trim();
         var url = link.getAttribute('href');
-        if (confirm('即将跳转到外部网站：' + name + '\n\n点击确定继续')) {
-          window.open(url, '_blank', 'noopener,noreferrer');
-        }
+        showModal(name, url);
       });
     });
   }
