@@ -65,6 +65,14 @@ buildFuture = true
 # 导航菜单
 # ============================================================
 [[menu.main]]
+    identifier = "home"
+    name = "首页"
+    url = "/"
+    weight = 5
+    [menu.main.params]
+        icon = "home"
+
+[[menu.main]]
     identifier = "cases"
     name = "曹义德个人案例库"
     url = "/cases/"
