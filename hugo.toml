@@ -51,8 +51,7 @@ buildFuture = true
             { type = "archives", params = { limit = 5 } },
             { type = "categories", params = { limit = 15 } },
         ]
-        page = [
-            { type = "quicklinks" },
+       page = [
             { type = "toc" },
         ]
 

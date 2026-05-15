@@ -782,9 +782,14 @@ a {
     text-decoration: underline;
 }
 
+/* ---- 隐藏 TOC widget 的 # 图标 ---- */
+.widget-icon {
+    display: none !important;
+}
+
 /* 归档页 header 间距 */
 .archives-header-top {
-    margin-bottom: 20px;
+    margin-bottom: 32px;
 }
 
 .back-to-top {
@@ -871,6 +876,93 @@ a {
     color: rgba(255, 255, 255, 0.7) !important;
 }
 
+/* 文章上/下篇导航 — 卡片风格 */
+.article-navigation {
+    margin: 40px 0;
+}
+.article-nav-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.article-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-radius: var(--radius-lg);
+    background: var(--card-background);
+    border: 1px solid var(--card-border-color);
+    box-shadow: var(--shadow-l1);
+    text-decoration: none;
+    transition: all 0.25s ease;
+    color: var(--card-text-color-main);
+}
+.article-nav-item:hover {
+    box-shadow: var(--shadow-card-hover);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+.article-nav-item.next {
+    text-align: right;
+    flex-direction: row-reverse;
+}
+.article-nav-item.disabled {
+    opacity: 0.4;
+    cursor: default;
+    pointer-events: none;
+}
+.article-nav-arrow {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    flex-shrink: 0;
+    line-height: 1;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: var(--card-background-selected);
+    transition: all 0.2s;
+}
+.article-nav-item:hover .article-nav-arrow {
+    background: var(--accent-color);
+    color: #fff;
+}
+.article-nav-text {
+    flex: 1;
+    min-width: 0;
+}
+.article-nav-label {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--card-text-color-tertiary);
+    font-weight: 500;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.article-nav-title {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--card-text-color-main);
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.article-nav-item:hover .article-nav-title {
+    color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    .article-nav-inner {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ============================================================
    移动端适配
    ============================================================ */
@@ -881,7 +973,6 @@ a {
     .featured-about .about-card { padding: var(--spacing-lg); }
     .featured-about .about-card-body { gap: var(--spacing-sm); }
     .back-to-top { width: 36px; height: 36px; right: 12px; font-size: 1.4rem; bottom: 20px; }
-    .article-nav-inner { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
