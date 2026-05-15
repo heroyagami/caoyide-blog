@@ -879,6 +879,8 @@ a {
 /* 文章上/下篇导航 — 卡片风格 */
 .article-navigation {
     margin: 40px 0;
+    clear: both;
+    width: 100%;
 }
 .article-nav-inner {
     display: grid;
@@ -960,6 +962,101 @@ a {
 @media (max-width: 768px) {
     .article-nav-inner {
         grid-template-columns: 1fr;
+    }
+}
+
+/* 相关文章 — 垂直列表 */
+.related-content aside {
+    margin: 32px 0;
+}
+.subsection-list {
+    width: 100%;
+}
+.article-list--tile {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+.article-list--tile article {
+    border-radius: var(--radius-lg);
+    background: var(--card-background);
+    border: 1px solid var(--card-border-color);
+    box-shadow: var(--shadow-l1);
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+.article-list--tile article:hover {
+    box-shadow: var(--shadow-card-hover);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+.article-list--tile article a {
+    display: block;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: var(--card-text-color-main);
+}
+.article-list--tile .article-details {
+    padding: 0;
+}
+.article-list--tile .article-title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.5;
+    color: var(--card-text-color-main);
+}
+.article-list--tile article:hover .article-title {
+    color: var(--accent-color);
+}
+.article-list--tile .article-image {
+    display: none;
+}
+
+/* 日报日期导航 — 卡片风格 */
+.daily-nav {
+    margin: 24px 0;
+}
+.daily-nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--card-background), var(--card-background-selected));
+    border: 1px solid var(--card-border-color);
+    box-shadow: var(--shadow-l1);
+}
+.daily-nav a {
+    text-decoration: none;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--accent-color);
+    padding: 6px 14px;
+    border-radius: var(--radius-md);
+    transition: all 0.2s;
+}
+.daily-nav a:hover {
+    background: var(--accent-color);
+    color: #fff;
+}
+.daily-nav .disabled {
+    font-size: var(--text-sm);
+    color: var(--card-text-color-tertiary);
+    opacity: 0.4;
+    padding: 6px 14px;
+}
+.daily-nav-today {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--card-text-color-main);
+}
+
+@media (max-width: 768px) {
+    .daily-nav-inner {
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
     }
 }
 
