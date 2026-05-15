@@ -262,7 +262,27 @@ a {
     margin: 1px 0;
     font-size: var(--text-sm);
 }
+/* 首页菜单醒目 */
+#main-menu a[href*='"/"']:not([href*="/cases/"]):not([href*="/posts/"]),
+#main-menu a[href^="/"]:first-of-type {
+    font-weight: 700;
+    font-size: var(--text-md);
+    padding: 10px 12px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-color-darker));
+    color: #fff !important;
+    border-radius: var(--radius-lg);
+    margin-bottom: 4px;
+}
+#main-menu a[href^="/"]:first-of-type:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
 #main-menu li > a:hover {
+    background: var(--card-background-selected);
+    color: var(--accent-color);
+}
+#main-menu a[href*="/cases/"] {
     background: var(--card-background-selected);
     color: var(--accent-color);
 }
