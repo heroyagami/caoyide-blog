@@ -40,7 +40,7 @@ darkMode   = "暗色模式"
         title = "标签云"
 
     [widget.categoriesCloud]
-        title = "分类浏览"
+        title = "热门标签"
 
 [search]
     title       = "搜索"
