@@ -7,7 +7,7 @@
         </div>
         {{- $categories := .Site.Taxonomies.categories -}}
         {{ if $categories }}
-        <h2 class="section-title">分类浏览</h2>
+        <h2 class="section-title">热门标签</h2>
         <div class="categories-capsules">
             {{ range $categories.ByCount }}
                 <a href="{{ .Page.RelPermalink }}" class="category-capsule">
