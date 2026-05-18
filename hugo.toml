@@ -93,7 +93,7 @@ buildFuture = true
     name = "微信"
     url = "javascript:void(0)"
     [menu.social.params]
-        icon = "messages"
+        icon = "wechat"
         newTab = false
 
 # ============================================================
