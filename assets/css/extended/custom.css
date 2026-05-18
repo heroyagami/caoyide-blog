@@ -183,6 +183,17 @@
     }
 }
 
+/* 面包屑导航吸顶 - 滚动时始终可见，方便点回去 */
+.breadcrumb {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--theme-bg);
+    padding: 10px 0;
+    /* 可选：加底部分隔线，让吸顶时视觉更清晰 */
+    border-bottom: 1px solid var(--border);
+}
+
 /* 搜索页面样式 */
 .search-container {
     margin: 20px 0;
