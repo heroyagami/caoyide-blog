@@ -1,6 +1,6 @@
 public/
 resources/
 .hugo_build.lock
-.cache/
 hugo_cache/
 *.bak
+content/posts/Clippings/
