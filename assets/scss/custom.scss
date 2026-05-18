@@ -253,6 +253,9 @@ a {
     border-color: var(--accent-color);
     transform: translateY(-1px);
 }
+.menu-social svg {
+    fill: var(--body-text-color);
+}
 
 /* ---- 菜单链接 ---- */
 #main-menu li > a {
