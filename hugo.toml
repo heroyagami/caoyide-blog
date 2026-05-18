@@ -18,7 +18,7 @@ buildFuture = true
 # Stack 主题参数
 # ============================================================
 [params]
-    mainSections = ["posts", "posts/clippings"]
+    mainSections = ["posts"]
     rssFullContent = true
 
     [params.dateFormat]
