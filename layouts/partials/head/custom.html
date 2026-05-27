@@ -1,0 +1,572 @@
+{{- /* 百度站长平台验证 */}}
+{{- if site.Params.baidu.siteVerificationTag }}
+<meta name="baidu-site-verification" content="{{ site.Params.baidu.siteVerificationTag }}">
+{{- end }}
+
+{{- /* 网站 Favicon */}}
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+
+{{- /* 百度自动推送 */}}
+{{- if hugo.IsProduction }}
+<script>
+(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  } else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();
+</script>
+{{- end }}
+
+{{- /* 360 站长验证 */}}
+{{- if site.Params.qihoo.siteVerificationTag }}
+<meta name="360-site-verification" content="{{ site.Params.qihoo.siteVerificationTag }}">
+{{- end }}
+
+{{- /* 搜狗站长验证 */}}
+{{- if site.Params.sogou.siteVerificationTag }}
+<meta name="sogou_site_verification" content="{{ site.Params.sogou.siteVerificationTag }}">
+{{- end }}
+
+{{- /* 微信分享优化 */}}
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+
+{{- /* 结构化数据 */}}
+{{- $pageDesc := "" }}
+{{- if .Description }}{{ $pageDesc = .Description }}
+{{- else if .IsPage }}{{ $pageDesc = .Summary | plainify }}
+{{- else }}{{ $pageDesc = site.Params.description }}
+{{- end }}
+
+{{- if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "曹义德",
+  "jobTitle": "执业律师",
+  "description": "曹义德律师专栏 — 华中科技大学法学硕士，前反贪检察官，现执业律师。专注职务犯罪辩护、民事商事刑事讼诉。法律咨询：18872778990（微信同号）",
+  "url": "{{ site.BaseURL }}",
+  "sameAs": [
+    "tel:18872778990"
+  ],
+  "affiliation": {
+    "@type": "Organization",
+    "name": "湖北江通律师事务所"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "黄石",
+    "addressRegion": "湖北",
+    "addressCountry": "CN"
+  },
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "华中科技大学"
+  }
+}
+</script>
+{{- else if .IsPage }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Lawyer",
+  "name": "曹义德",
+  "description": "{{ $pageDesc }}",
+  "url": "{{ .Permalink }}",
+  "telephone": "18872778990",
+  "image": "{{ site.BaseURL }}img/wechat-qr.png",
+  "affiliation": {
+    "@type": "LegalService",
+    "name": "湖北江通律师事务所",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "黄石",
+      "addressRegion": "湖北",
+      "addressCountry": "CN"
+    }
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "黄石"
+  },
+  "priceRange": "$$",
+  "knowsAbout": ["刑事辩护", "民事诉讼", "商事纠纷", "劳动争议"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "黄石",
+    "addressRegion": "湖北",
+    "addressCountry": "CN"
+  }
+}
+</script>
+{{- else if or (eq .Kind "taxonomy") (eq .Kind "term") }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "{{ .Title }}",
+  "description": "{{ $pageDesc }}",
+  "url": "{{ .Permalink }}",
+  "publisher": {
+    "@type": "Person",
+    "name": "曹义德律师",
+    "url": "{{ site.BaseURL }}"
+  }
+}
+</script>
+{{- else }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ site.Title }}",
+  "description": "曹义德律师专栏 — 专注职务犯罪辩护、民事商事刑事讼诉",
+  "url": "{{ site.BaseURL }}"
+}
+</script>
+{{- end }}
+
+{{- /* Clippings 日报新窗口打开 */}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.article-list a[href*="/posts/clippings/"], .article-list--compact a[href*="/posts/clippings/"]').forEach(function(a) {
+    a.setAttribute('target', '_blank');
+  });
+});
+</script>
+
+{{- /* 热点日报 ToC 链接修复：列表页锚点改为指向文章页 */}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.entry-toc[data-article-url]').forEach(function(details) {
+    var baseUrl = details.dataset.articleUrl;
+    details.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.href = baseUrl + a.getAttribute('href');
+    });
+  });
+});
+</script>
+
+{{- /* 自定义功能 JS：阅读原文新窗口 / 返回顶部 / 进度条 / 浮动目录 / 搜索聚焦 / 搜索下拉 / 快捷键 */}}
+<script>
+(function() {
+  var win = window, doc = document;
+
+  /* ---- 1. 文章内容链接新窗口打开 ---- */
+  function initExternalLinks() {
+    var article = doc.querySelector('.article-content');
+    if (!article) return;
+    article.querySelectorAll('a[href]').forEach(function(a) {
+      var href = a.getAttribute('href');
+      if (href && href !== '#' && !href.startsWith('#')) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+  }
+
+  /* ---- 1.1 外链跳转确认（自定义模态框） ---- */
+  function initQuicklinkConfirm() {
+    // Create modal elements once
+    var overlay = doc.createElement('div');
+    overlay.className = 'quicklink-modal-overlay';
+    overlay.innerHTML = '<div class="quicklink-modal">' +
+      '<div class="quicklink-modal-icon">&#9888;</div>' +
+      '<div class="quicklink-modal-title">即将跳转</div>' +
+      '<div class="quicklink-modal-body">即将跳转到外部网站：<strong id="quicklink-modal-name"></strong></div>' +
+      '<div class="quicklink-modal-actions">' +
+      '<button class="quicklink-modal-btn cancel">取消</button>' +
+      '<button class="quicklink-modal-btn confirm">确定</button>' +
+      '</div></div>';
+    doc.body.appendChild(overlay);
+
+    var nameEl = overlay.querySelector('#quicklink-modal-name');
+    var confirmBtn = overlay.querySelector('.quicklink-modal-btn.confirm');
+    var cancelBtn = overlay.querySelector('.quicklink-modal-btn.cancel');
+    var pendingUrl = '';
+
+    function showModal(name, url) {
+      nameEl.textContent = name;
+      pendingUrl = url;
+      overlay.classList.add('active');
+    }
+
+    confirmBtn.addEventListener('click', function() {
+      if (pendingUrl) {
+        window.open(pendingUrl, '_blank', 'noopener,noreferrer');
+      }
+      overlay.classList.remove('active');
+      pendingUrl = '';
+    });
+
+    cancelBtn.addEventListener('click', function() {
+      overlay.classList.remove('active');
+      pendingUrl = '';
+    });
+
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+        pendingUrl = '';
+      }
+    });
+
+    doc.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        overlay.classList.remove('active');
+        pendingUrl = '';
+      }
+    });
+
+    doc.querySelectorAll('.quicklink-item').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var name = link.getAttribute('data-name') || link.textContent.trim();
+        var url = link.getAttribute('href');
+        showModal(name, url);
+      });
+    });
+  }
+
+  /* ---- 2. 返回顶部按钮 ---- */
+  function initBackToTop() {
+    var btn = doc.createElement('div');
+    btn.className = 'back-to-top';
+    btn.innerHTML = '↑';
+    btn.title = '返回顶部';
+    btn.addEventListener('click', function() { win.scrollTo({ top: 0, behavior: 'smooth' }); });
+    doc.body.appendChild(btn);
+
+    function toggle() {
+      var vh = win.innerHeight;
+      btn.classList.toggle('visible', win.scrollY > vh);
+    }
+    win.addEventListener('scroll', toggle, { passive: true });
+    toggle();
+  }
+
+  /* ---- 3. 阅读进度条 ---- */
+  function initProgressBar() {
+    var bar = doc.createElement('div');
+    bar.className = 'reading-progress';
+    doc.body.appendChild(bar);
+
+    function update() {
+      var h = doc.documentElement.scrollHeight - win.innerHeight;
+      if (h <= 0) { bar.style.width = '0'; return; }
+      bar.style.width = Math.min(100, (win.scrollY / h) * 100) + '%';
+    }
+    win.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
+  /* ---- 5. 搜索框自动聚焦 ---- */
+  function initSearchFocus() {
+    var input = doc.querySelector('.search-form input[name="keyword"]');
+    if (input) {
+      input.addEventListener('focus', function() { input.select(); });
+    }
+  }
+
+  /* ---- 6. 侧边栏搜索实时下拉 ---- */
+  function initSidebarSearch() {
+    var form = doc.querySelector('.search-form.widget');
+    if (!form) return;
+    var jsonUrl = form.getAttribute('data-json');
+    if (!jsonUrl) return;
+    var input = form.querySelector('input[name="keyword"]');
+    if (!input) return;
+
+    var indexData = null;
+    var dropdown = doc.createElement('div');
+    dropdown.className = 'search-dropdown hidden';
+    form.style.position = 'relative';
+    form.appendChild(dropdown);
+    var debounceTimer = null;
+
+    fetch(jsonUrl)
+      .then(function(r) { return r.json(); })
+      .then(function(data) { indexData = data; })
+      .catch(function() {});
+
+    function highlight(title, keyword) {
+      var idx = title.toLowerCase().indexOf(keyword.toLowerCase());
+      if (idx === -1) return title;
+      return title.substring(0, idx) + '<mark>' + title.substring(idx, idx + keyword.length) + '</mark>' + title.substring(idx + keyword.length);
+    }
+
+    function doSearch(keyword) {
+      if (!indexData || !keyword || keyword.length < 1) {
+        dropdown.innerHTML = '';
+        dropdown.classList.add('hidden');
+        return;
+      }
+
+      var kw = keyword.toLowerCase();
+      var results = [];
+      indexData.forEach(function(item) {
+        var tIdx = item.title.toLowerCase().indexOf(kw);
+        var cIdx = item.content.toLowerCase().indexOf(kw);
+        if (tIdx !== -1 || cIdx !== -1) {
+          results.push({ title: item.title, permalink: item.permalink, content: item.content, titleMatch: tIdx !== -1, contentIdx: cIdx });
+        }
+      });
+
+      results.sort(function(a, b) {
+        if (a.titleMatch && !b.titleMatch) return -1;
+        if (!a.titleMatch && b.titleMatch) return 1;
+        return a.contentIdx - b.contentIdx;
+      });
+
+      var top5 = results.slice(0, 5);
+
+      if (top5.length === 0) {
+        dropdown.innerHTML = '<div class="search-dropdown-empty">无匹配结果，按 Enter 搜索全文</div>';
+        dropdown.classList.remove('hidden');
+        return;
+      }
+
+      var html = '';
+      top5.forEach(function(item) {
+        var contextStart = Math.max(0, item.contentIdx - 15);
+        var preview = item.content.substring(contextStart, contextStart + 100);
+        if (contextStart > 0) preview = '...' + preview;
+        html += '<a class="search-dropdown-item" href="' + item.permalink + '">' +
+          '<div class="search-dropdown-title">' + highlight(item.title, keyword) + '</div>' +
+          '<div class="search-dropdown-preview">' + preview + '</div>' +
+          '</a>';
+      });
+
+      dropdown.innerHTML = html;
+      dropdown.classList.remove('hidden');
+    }
+
+    input.addEventListener('input', function() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(function() { doSearch(input.value.trim()); }, 150);
+    });
+
+    var composing = false;
+    input.addEventListener('compositionstart', function() { composing = true; });
+    input.addEventListener('compositionend', function() {
+      composing = false;
+      doSearch(input.value.trim());
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !dropdown.classList.contains('hidden')) {
+        dropdown.classList.add('hidden');
+      }
+      if (e.key === 'Escape') {
+        dropdown.classList.add('hidden');
+      }
+    });
+
+    doc.addEventListener('click', function(e) {
+      if (!dropdown.classList.contains('hidden') && !form.contains(e.target)) {
+        dropdown.classList.add('hidden');
+      }
+    });
+
+    input.addEventListener('blur', function() {
+      setTimeout(function() { dropdown.classList.add('hidden'); }, 200);
+    });
+  }
+
+  /* ---- 7. 键盘 / 聚焦搜索 ---- */
+  function initSearchShortcut() {
+    doc.addEventListener('keydown', function(e) {
+      var tag = doc.activeElement ? doc.activeElement.tagName : '';
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || (doc.activeElement && doc.activeElement.isContentEditable)) return;
+      if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        e.preventDefault();
+        var input = doc.querySelector('.search-form input[name="keyword"]');
+        if (input) { input.focus(); input.select(); }
+      }
+    });
+  }
+
+  /* ---- 8. 微信二维码弹窗 ---- */
+  function initWechatQR() {
+    var wechatLink = doc.querySelector('.menu-social a[title="微信"]');
+    if (!wechatLink) return;
+
+    // Create modal
+    var overlay = doc.createElement('div');
+    overlay.className = 'qr-modal-overlay';
+    overlay.innerHTML = '<div class="qr-modal">' +
+      '<img src="/img/wechat-qr.png" alt="微信二维码" loading="lazy">' +
+      '<div class="qr-title">扫码添加微信</div>' +
+      '<div class="qr-subtitle">法律咨询 18872778990</div>' +
+      '<button class="qr-close">关闭</button>' +
+      '</div>';
+    doc.body.appendChild(overlay);
+
+    wechatLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      overlay.classList.add('active');
+    });
+
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay || e.target.classList.contains('qr-close')) {
+        overlay.classList.remove('active');
+      }
+    });
+
+    doc.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        overlay.classList.remove('active');
+      }
+    });
+  }
+  /* ---- 9. 文章页搜索词高亮 + 仅显示匹配段落 ---- */
+  function initArticleHighlight() {
+    var params = new URLSearchParams(win.location.search);
+    var q = params.get('highlight');
+    if (!q) return;
+    var article = doc.querySelector('.article-content');
+    if (!article) return;
+
+    var keywords = q.split(/\s+/).filter(Boolean);
+    if (!keywords.length) return;
+
+    // Step 1: highlight matching text
+    keywords.forEach(function(kw) {
+      var escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, function(m) { return '\\' + m; });
+      var regex = new RegExp('(' + escaped + ')', 'gi');
+      highlightTextNodes(article, regex);
+    });
+
+    // Step 2: hide blocks without matches
+    var blocks = article.querySelectorAll('p, h2, h3, h4, h5, h6, li, blockquote, figcaption');
+    var hiddenCount = 0;
+    blocks.forEach(function(el) {
+      if (!el.querySelector('mark')) {
+        el.classList.add('search-hidden');
+        hiddenCount++;
+      }
+    });
+
+    // Step 3: hide empty parent lists
+    article.querySelectorAll('ul, ol').forEach(function(list) {
+      var visibleItems = list.querySelectorAll('li:not(.search-hidden)');
+      if (visibleItems.length === 0) {
+        list.classList.add('search-hidden');
+      }
+    });
+
+    // Step 4: show toggle button
+    if (hiddenCount > 0) {
+      var bar = doc.createElement('div');
+      bar.className = 'search-filter-bar';
+      bar.innerHTML = '<span class="search-filter-info">已筛选匹配「<strong>' + keywords.join(' ') + '</strong>」的内容</span>' +
+        '<button class="search-filter-toggle">显示全部</button>';
+      article.parentNode.insertBefore(bar, article);
+
+      bar.querySelector('.search-filter-toggle').addEventListener('click', function() {
+        var isHidden = article.classList.toggle('search-show-all');
+        this.textContent = isHidden ? '收起筛选' : '显示全部';
+        bar.querySelector('.search-filter-info').style.opacity = isHidden ? '0' : '1';
+      });
+    }
+
+    // Step 5: scroll to first visible mark
+    var allMarks = article.querySelectorAll('mark');
+    var firstVisible = null;
+    for (var i = 0; i < allMarks.length; i++) {
+      if (!allMarks[i].closest('.search-hidden')) {
+        firstVisible = allMarks[i];
+        break;
+      }
+    }
+    if (firstVisible) {
+      firstVisible.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  function highlightTextNodes(root, regex) {
+    var walker = doc.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node) {
+        // Skip <mark>, <script>, <style>, <code>, <pre>
+        var parent = node.parentElement;
+        if (!parent) return NodeFilter.FILTER_REJECT;
+        var tag = parent.tagName;
+        if (tag === 'MARK' || tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) {
+      nodes.push(walker.currentNode);
+    }
+
+    nodes.forEach(function(node) {
+      var text = node.textContent;
+      if (!text || !regex.test(text)) return;
+      regex.lastIndex = 0;
+      var parent = node.parentNode;
+      var frag = doc.createDocumentFragment();
+      var lastIndex = 0;
+      var match;
+      while ((match = regex.exec(text)) !== null) {
+        if (match.index > lastIndex) {
+          frag.appendChild(doc.createTextNode(text.slice(lastIndex, match.index)));
+        }
+        var mark = doc.createElement('mark');
+        mark.textContent = match[0];
+        frag.appendChild(mark);
+        lastIndex = regex.lastIndex;
+        if (!match[0]) regex.lastIndex++;
+      }
+      if (lastIndex < text.length) {
+        frag.appendChild(doc.createTextNode(text.slice(lastIndex)));
+      }
+      parent.replaceChild(frag, node);
+    });
+  }
+
+  /* ---- 启动 ---- */
+  if (doc.readyState === 'loading') {
+    doc.addEventListener('DOMContentLoaded', function() {
+      initExternalLinks();
+      initQuicklinkConfirm();
+      initBackToTop();
+      initProgressBar();
+      initSearchFocus();
+      initSidebarSearch();
+      initSearchShortcut();
+      initWechatQR();
+      initArticleHighlight();
+    });
+  } else {
+    initExternalLinks();
+    initQuicklinkConfirm();
+    initBackToTop();
+    initSearchFocus();
+    initSidebarSearch();
+    initSearchShortcut();
+    initWechatQR();
+    initArticleHighlight();
+  }
+})();
+</script>
+
+{{- /* 暗色模式文字对比度修复（内联保证最高优先级） */}}
+<style>
+html[data-scheme="dark"] {
+    --body-text-color: rgba(255, 255, 255, 0.82) !important;
+    --card-text-color-main: rgba(255, 255, 255, 0.93) !important;
+    --card-text-color-secondary: rgba(255, 255, 255, 0.72) !important;
+    --card-text-color-tertiary: rgba(255, 255, 255, 0.62) !important;
+    --card-separator-color: rgba(255, 255, 255, 0.06) !important;
+    --card-border-color: rgba(255, 255, 255, 0.05) !important;
+}
+</style>

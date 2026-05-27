@@ -1,0 +1,22 @@
+{{ define "main" }}
+{{- $term := $.Site.GetPage "/categories/曹义德个人案例库" -}}
+{{- $pages := $term.Pages -}}
+
+{{ with $pages }}
+<h2 class="cases-count-header">全部文章（共 {{ len $pages }} 篇）</h2>
+<section class="article-list--compact">
+  {{ range . }}
+  <article>
+    <a href="{{ .RelPermalink }}">
+      <div class="article-details">
+        <h2 class="article-title">{{ .Title }}</h2>
+        <footer class="article-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time></footer>
+      </div>
+    </a>
+  </article>
+  {{ end }}
+</section>
+{{ end }}
+
+{{ partialCached "footer/footer" . }}
+{{ end }}

@@ -1,0 +1,279 @@
+/* 紧凑排版样式 */
+
+/* 减小文章头部间距 */
+.page-header,
+.post-header {
+    margin: 12px auto var(--content-gap) auto;
+}
+
+/* 减小标题字号和间距 */
+.post-title {
+    margin-bottom: 2px;
+    font-size: 32px;
+}
+
+.post-description {
+    margin-top: 6px;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+/* 减小正文内容间距 */
+.post-content {
+    margin: 16px 0;
+    line-height: 1.6;
+}
+
+/* 减小段落间距 */
+.post-content p {
+    margin-bottom: 12px;
+}
+
+/* 减小标题间距 */
+.post-content h1 {
+    margin: 24px auto 16px;
+    font-size: 28px;
+}
+
+.post-content h2 {
+    margin: 20px auto 12px;
+    font-size: 24px;
+}
+
+.post-content h3 {
+    margin: 16px 0 10px;
+    font-size: 20px;
+}
+
+.post-content h4 {
+    font-size: 16px;
+    margin: 12px 0 8px;
+}
+
+/* 减小列表间距 */
+.post-content ol,
+.post-content ul {
+    margin-bottom: 12px;
+    padding-inline-start: 18px;
+}
+
+.post-content li {
+    margin-top: 3px;
+}
+
+/* 减小引用块间距 */
+.post-content blockquote {
+    margin: 12px 0;
+    padding: 0 12px;
+}
+
+/* 减小分隔线间距 */
+.post-content hr {
+    margin: 20px 0;
+}
+
+/* 减小图片间距 */
+.post-content img {
+    margin: 0.5rem 0;
+}
+
+/* 减小页脚间距 */
+.post-footer {
+    margin-top: 20px;
+}
+
+/* 减小标签间距 */
+.post-tags {
+    gap: 6px;
+}
+
+.post-tags a {
+    padding: 0 10px;
+    line-height: 28px;
+    font-size: 12px;
+}
+
+/* 减小分享按钮间距 */
+.share-buttons {
+    padding: 6px;
+    gap: 6px;
+}
+
+/* 首页文章列表紧凑 */
+.post-entry {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+}
+
+.post-entry .entry-header {
+    margin-bottom: 6px;
+}
+
+.post-entry h2 {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.post-entry .entry-content {
+    margin: 8px 0;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.post-entry .entry-content p {
+    margin-bottom: 0;
+}
+
+.post-entry .entry-footer {
+    margin-top: 8px;
+}
+
+/* 减小目录间距 */
+.toc {
+    margin-bottom: 16px;
+    padding: 0.3em;
+}
+
+.toc .inner {
+    margin: 3px 16px;
+    padding: 0 8px;
+}
+
+/* 减小表格间距 */
+.post-content table th,
+.post-content table:not(.highlighttable, .highlight table, .gist .highlight) td {
+    padding: 6px 4px;
+}
+
+/* 移动端优化：调整 paginav 和 top-link 位置避免重叠 */
+@media screen and (max-width: 768px) {
+    /* 调整文章底部导航的内边距，避免与返回顶部按钮重叠 */
+    .paginav {
+        margin-bottom: 100px !important;
+        padding: 0 10px;
+    }
+
+    .paginav .prev,
+    .paginav .next {
+        width: 48%;
+    }
+
+    .paginav .next {
+        margin-inline-start: 4%;
+        text-align: right;
+    }
+
+    /* 调整返回顶部按钮位置 - 放右边但更高避免重叠（向上3个自身尺寸约108px） */
+    .top-link {
+        bottom: 228px !important;
+        right: 20px !important;
+        left: auto !important;
+        width: 36px;
+        height: 36px;
+        padding: 10px;
+    }
+
+    /* 分页导航也增加底部间距 */
+    .pagination {
+        margin-bottom: 80px;
+    }
+
+    .page-footer {
+        margin-bottom: 60px;
+    }
+}
+
+/* 面包屑导航吸顶 - 滚动时始终可见，方便点回去 */
+.breadcrumb {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--theme-bg);
+    padding: 10px 0;
+    /* 可选：加底部分隔线，让吸顶时视觉更清晰 */
+    border-bottom: 1px solid var(--border);
+}
+
+/* 搜索页面样式 */
+.search-container {
+    margin: 20px 0;
+}
+
+#search-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--entry);
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+#search-results {
+    min-height: 200px;
+}
+
+.search-result {
+    padding: 16px;
+    margin-bottom: 12px;
+    background: var(--entry);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.search-result:hover {
+    border-color: var(--primary);
+}
+
+.search-result h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+}
+
+.search-result p {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.search-result .search-highlight {
+    background: var(--primary);
+    color: var(--theme);
+    padding: 0 4px;
+    border-radius: 3px;
+}
+
+/* 置顶文章区 - 视觉上与正文分隔 */
+.featured-articles {
+    margin-bottom: 48px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+}
+
+.featured-articles .section-title {
+    font-size: 14px;
+    color: var(--secondary);
+    margin-bottom: 10px;
+    margin-top: 24px;
+    font-weight: normal;
+}
+
+/* 置顶标记徽章 */
+.featured-articles .post-entry .entry-header::before {
+    content: "置顶";
+    display: inline-block;
+    background: var(--primary);
+    color: var(--theme);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: var(--radius);
+    margin-right: 8px;
+    vertical-align: middle;
+}

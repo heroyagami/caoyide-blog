@@ -1,0 +1,31 @@
+{{- $context := .Context -}}
+{{- if not .Params.taxonomy -}}
+    {{- warnf "Taxonomy field is required" -}}
+{{- end -}}
+{{- $taxonomy := index $context.Site.Taxonomies .Params.taxonomy -}}
+{{- if not $taxonomy -}}
+    {{- warnf "Taxonomy %s not found" .Params.taxonomy -}}
+{{- end -}}
+{{- $taxonomyPage := $taxonomy.Page -}}
+{{- $widgetTitle := .Params.title -}}
+{{- $limit := default 15 .Params.limit -}}
+{{- $showLink := default true .Params.showLink -}}
+
+<section class="widget tagCloud">
+    <h2 class="widget-title section-title">
+        {{ if and $showLink $taxonomyPage }}
+            <a href="{{ $taxonomyPage.RelPermalink }}">{{ $widgetTitle }}</a>
+        {{ else }}
+            {{ $widgetTitle }}
+        {{ end }}
+    </h2>
+
+    <div class="taxonomy-capsules">
+        {{ range first $limit $taxonomy.ByCount }}
+            <a href="{{ .Page.RelPermalink }}" class="taxonomy-capsule">
+                <span class="capsule-name">{{ .Page.Title }}</span>
+                <span class="capsule-count">{{ .Count }}</span>
+            </a>
+        {{ end }}
+    </div>
+</section>

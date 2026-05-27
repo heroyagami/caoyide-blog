@@ -1,0 +1,225 @@
+{
+  "main": {
+    "id": "9e760abbc3e38503",
+    "type": "split",
+    "children": [
+      {
+        "id": "cf9f8ab98324eaae",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a428c58bbdf2592c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2021-01-29-买了房，定金付了，房东反悔不卖了——他能说不卖就不卖？.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2021-01-29-买了房，定金付了，房东反悔不卖了——他能说不卖就不卖？"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c2ec239ace14e464",
+    "type": "split",
+    "children": [
+      {
+        "id": "c27215a36b35d274",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ca03801f8a5969ca",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "d12ef21b7a72c97a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "5ee52264fd8a8423",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 526.5
+  },
+  "right": {
+    "id": "d5375aad033c6a08",
+    "type": "split",
+    "children": [
+      {
+        "id": "9a01dc29b5b252eb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "39077d1dcab896e8",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "hello-world.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "hello-world 的反向链接列表"
+            }
+          },
+          {
+            "id": "fe5a07ca07ea9dbc",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "hello-world.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "hello-world 的出链列表"
+            }
+          },
+          {
+            "id": "9bed13c1fdf309ac",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "3c1fc58413797769",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "9e6d5e4400b0a634",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "hello-world.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "hello-world 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "ca03801f8a5969ca",
+  "lastOpenFiles": [
+    "2021-03-18-每天加班3小时，公司说加班费算在绩效里了：这话合法吗.md",
+    "2021-01-25-婚姻法2000问题的前世今生，洞穿立法原意曹德俊解读民法典婚姻编司法解释.md",
+    "2026-05-25-USDT借贷纠纷虚拟货币法律属性的司法认定.md",
+    "2026-05-25-���������������������������������������.md",
+    "2026-05-25-������������������������������������-���������������������-������������������������.md",
+    "2026-05-25-交通安全统筹单法律效力.md",
+    "2026-05-25-AI换脸技术侵害个人信息公益诉讼案.md",
+    "2026-05-25-������������������������������-���������������������������-���������������.md",
+    "2026-05-25-������������������������������������-������������������-���������������.md",
+    "2026-05-25-���������������������������������.md",
+    "2026-05-25-������������������������������������������������������������������������������������������������������������������.md",
+    "2026-05-25-���������������������������������������������������������������������������������������������������������������������������������.md",
+    "2026-05-30-������������������������������������������.md",
+    "2026-05-31-������������������������������������.md",
+    "2026-05-25-AI���������������������������������������������.md",
+    "2026-05-25-网络司法拍卖捡漏：法拍房到底能不能买？有什么坑？.md",
+    "2026-05-24-朋友借钱后去世担保人怎么办——周世雷等诉刘素微等追偿权纠纷案.md",
+    "2024-10-22-请病假被开除刘某某与吉林市公路事业发展中心劳动争议案.md",
+    "2026-05-25-灵活用工劳动关系确认案.md",
+    "2026-05-25-挪用公款罪认定案.md",
+    "2026-05-25-竞业限制关联公司案.md",
+    "2026-05-25-短视频账号交易纠纷案.md",
+    "2026-05-25-抵押权登记与租赁权冲突案.md",
+    "2026-05-25-环境损害修复费用追偿案.md",
+    "2026-05-25-疫情物资贪污案.md",
+    "2026-05-25-政府信息公开答复纠纷.md",
+    "2026-05-31-������������������������������������",
+    "2026-05-30-������������������������������������������",
+    "2026-05-25-���������������������������18���������������������������������������������",
+    "2026-05-25-���������������2026������������������������������������������������������������������",
+    "2026-05-25-���������������������������-���������������������������������������",
+    "2026-05-25-������������������������-���������������������������������������",
+    "2026-05-25-���������������������������������-���������������������",
+    "2026-05-25-���������������������������������������������������-������������������",
+    "2026-05-25-���������������������������",
+    "2026-05-25-���������������������19���-������������������������������"
+  ]
+}

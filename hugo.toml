@@ -1,0 +1,143 @@
+baseURL = 'https://caoyide.com/'
+languageCode = 'zh-cn'
+defaultContentLanguage = 'zh-cn'
+title = '曹义德律师专栏'
+theme = 'hugo-theme-stack'
+hasCJKLanguage = true
+
+# 允许发布未来日期的文章
+buildFuture = true
+
+[pagination]
+    pagerSize = 10
+
+[permalinks]
+    posts = "/posts/:slug/"
+
+# ============================================================
+# Stack 主题参数
+# ============================================================
+[params]
+    mainSections = ["posts"]
+    rssFullContent = true
+
+    [params.dateFormat]
+        published = "2006-01-02"
+        lastUpdated = "2006-01-02"
+
+    [params.colorScheme]
+        toggle = true
+        default = "auto"
+
+    # ---- 左侧边栏 ----
+    [params.sidebar]
+        subtitle = "● 华中科技大学法学硕士<br>● 前反贪检察官<br>● 执业律师"
+        avatar = "/img/avatar.jpg"
+
+    # ---- 文章设置 ----
+    [params.article]
+        readingTime = true
+
+    # ---- 页脚 ----
+    [params.footer]
+        since = 2025
+        customText = "湖北江通律师事务所 · 执业证号：14201202110310748 · 主要服务武汉市及\"8+1\"城市圈 · 法律咨询：18872778990（微信同号）"
+
+    # ---- 侧边栏小部件 ----
+    [params.widgets]
+        homepage = [
+            { type = "search" },
+            { type = "quicklinks" },
+            { type = "archives", params = { limit = 5 } },
+            { type = "categories", params = { limit = 15 } },
+        ]
+       page = [
+            { type = "toc" },
+        ]
+
+# ============================================================
+# 百度站长验证
+# ============================================================
+[params.baidu]
+    siteVerificationTag = "codeva-HaQroU2o0L"
+
+# ============================================================
+# 导航菜单
+# ============================================================
+[[menu.main]]
+    identifier = "home"
+    name = "首页"
+    url = "/"
+    weight = 5
+    [menu.main.params]
+        icon = "home"
+
+[[menu.main]]
+    identifier = "cases"
+    name = "曹义德个人案例库"
+    url = "/cases/"
+    weight = 10
+    [menu.main.params]
+        icon = "briefcase"
+
+# ---- 社交链接（显示在侧边栏） ----
+[[menu.social]]
+    identifier = "phone"
+    name = "电话"
+    url = "tel:18872778990"
+    [menu.social.params]
+        icon = "phone"
+
+[[menu.social]]
+    identifier = "wechat"
+    name = "微信"
+    url = "javascript:void(0)"
+    [menu.social.params]
+        icon = "wechat"
+        newTab = false
+
+# ============================================================
+# Markdown 渲染
+# ============================================================
+[markup]
+    [markup.goldmark]
+        [markup.goldmark.extensions]
+            [markup.goldmark.extensions.passthrough]
+                enable = true
+                [markup.goldmark.extensions.passthrough.delimiters]
+                    block  = [["\\[", "\\]"], ["$$", "$$"]]
+                    inline = [["\\(", "\\)"]]
+        [markup.goldmark.renderer]
+            unsafe = true
+
+    [markup.tableOfContents]
+        endLevel   = 4
+        ordered    = true
+        startLevel = 2
+
+    [markup.highlight]
+        noClasses          = false
+        codeFences         = true
+        guessSyntax        = true
+        lineNoStart        = 1
+        lineNos            = true
+        lineNumbersInTable = true
+        tabWidth           = 4
+
+# ============================================================
+# 输出格式
+# ============================================================
+[outputs]
+    home = ["HTML", "RSS"]
+
+# ============================================================
+# Fuse.js 搜索参数（Stack 搜索页使用）
+# ============================================================
+[params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 2
+    keys = ["title", "permalink", "summary", "content"]

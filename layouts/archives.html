@@ -1,0 +1,46 @@
+{{- /* 归档页：按年→月分组，分类胶囊横向平铺 */}}
+{{ define "body-class" }}template-archives{{ end }}
+{{ define "main" }}
+    <header>
+        <div class="archives-header-top">
+            <a href="{{ .Site.Home.RelPermalink }}" class="archives-back-link">&larr; 返回首页</a>
+        </div>
+        {{ $totalCount := len (where .Site.RegularPages "Type" "in" (slice "posts" "cases" "法律知识库")) }}
+
+        <div class="archives-total-count">
+            <span class="archives-total-label">文章总数</span>
+            <span class="archives-total-number">{{ $totalCount }}</span>
+            <span class="archives-total-unit">篇</span>
+        </div>
+    </header>
+
+    {{ $pages := where .Site.RegularPages "Type" "in" (slice "posts" "cases" "法律知识库") }}
+    {{ $groupedByYear := $pages.GroupByDate "2006" }}
+
+    {{ range $groupedByYear }}
+    {{- if gt (int .Key) 1900 }}
+    {{ $yearId := lower (replace .Key " " "-") }}
+    <div class="archives-group" id="{{ $yearId }}">
+        <h2 class="archives-date section-title"><a href="{{ $.RelPermalink }}#{{ $yearId }}">{{ .Key }} 年</a> <span class="archives-year-count">{{ len .Pages }} 篇</span></h2>
+
+        {{ range .Pages.GroupByDate "01" }}
+        {{ $monthNum := .Key | strings.TrimLeft "0" }}
+        <div class="archives-month">
+            <h3 class="archives-month-title">{{ $monthNum }} 月 <span class="archives-month-count">{{ len .Pages }} 篇</span></h3>
+            <div class="article-list--compact">
+                {{ range .Pages }}
+                    {{ partial "article-list/compact" . }}
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+    {{- end }}
+    {{ end }}
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}

@@ -1,0 +1,36 @@
+{{- /* 日报日期导航：仅在「热点日报」分类文章显示前一天/后一天 */ -}}
+{{- $dailyCat := "热点日报" -}}
+{{- if in .Params.categories $dailyCat -}}
+  {{- $dailyPages := index .Site.Taxonomies.categories (lower $dailyCat) -}}
+  {{- if $dailyPages -}}
+    {{- $sorted := sort $dailyPages.Pages ".Date" "asc" -}}
+    {{- $total := len $sorted -}}
+    {{- $hasPrev := false -}}
+    {{- $hasNext := false -}}
+    {{- $prevPage := dict -}}
+    {{- $nextPage := dict -}}
+    {{- range $i, $p := $sorted -}}
+      {{- if eq $p.Permalink $.Permalink -}}
+        {{- if gt $i 0 -}}{{- $hasPrev = true -}}{{- $prevPage = index $sorted (sub $i 1) -}}{{- end -}}
+        {{- if lt $i (sub $total 1) -}}{{- $hasNext = true -}}{{- $nextPage = index $sorted (add $i 1) -}}{{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if or $hasPrev $hasNext -}}
+<nav class="daily-nav">
+  <div class="daily-nav-inner">
+    {{- if $hasPrev -}}
+      <a class="daily-nav-prev" href="{{ $prevPage.Permalink }}" title="{{ $prevPage.Title }}">&larr; 前一天</a>
+    {{- else -}}
+      <span class="daily-nav-prev disabled">&larr; 前一天</span>
+    {{- end -}}
+    <span class="daily-nav-today">{{ .Date.Format "2006-01-02" }} 热点日报</span>
+    {{- if $hasNext -}}
+      <a class="daily-nav-next" href="{{ $nextPage.Permalink }}" title="{{ $nextPage.Title }}">后一天 &rarr;</a>
+    {{- else -}}
+      <span class="daily-nav-next disabled">后一天 &rarr;</span>
+    {{- end -}}
+  </div>
+</nav>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

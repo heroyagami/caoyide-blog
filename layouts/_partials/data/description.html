@@ -1,0 +1,27 @@
+{{- /* Improved description for taxonomy/term pages */ -}}
+{{- $description := "" -}}
+
+{{- if .Description -}}
+    {{- $description = .Description -}}
+{{- else if .IsPage -}}
+    {{- $description = .Summary -}}
+{{- else if eq .Kind "taxonomy" -}}
+    {{- /* /categories/ or /tags/ taxonomy list page */ -}}
+    {{- $termCount := len .Data.Terms -}}
+    {{- $topTerms := slice -}}
+    {{- range first 10 .Data.Terms.Alphabetical -}}
+        {{- $topTerms = $topTerms | append .Name -}}
+    {{- end -}}
+    {{- $topTermsStr := delimit $topTerms "、" "和" -}}
+    {{- $description = printf "%s涵盖%d个法律分类，包括%s等，由前反贪检察官、执业律师曹义德分享专业法律知识和真实案例。" $.Site.Title $termCount $topTermsStr -}}
+{{- else if eq .Kind "term" -}}
+    {{- /* /categories/婚姻家庭/ individual term page — use .Pages for count */ -}}
+    {{- $count := len .Pages -}}
+    {{- $description = printf "曹义德律师%s分类文章%d篇，涵盖%s相关法律知识、典型案例和法律科普内容，帮助您了解相关法律问题。" .Title $count .Title -}}
+{{- else if .IsHome -}}
+    {{- $description = "曹义德律师专栏 — 华中科技大学法学硕士，前反贪检察官，现执业律师。专注职务犯罪辩护、民事商事诉讼、劳动争议、婚姻家庭等法律服务。法律咨询：18872778990" -}}
+{{- else -}}
+    {{- $description = .Site.Params.sidebar.subtitle -}}
+{{- end -}}
+
+{{- return (replaceRE "\n" " " $description | plainify) -}}
