@@ -1,0 +1,63 @@
+name: Daily AI News (Horizon)
+
+on:
+  schedule:
+    # 每天早上 8:30 北京时间 = UTC 0:30
+    - cron: '30 0 * * *'
+    timezone: 'Asia/Shanghai'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  horizon-daily:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Clone Horizon repo
+        run: |
+          git clone https://github.com/Thysrael/Horizon.git Horizon-ai-news
+
+      - name: Checkout custom branch
+        run: |
+          cd Horizon-ai-news
+          git checkout -b custom
+          # Apply the custom output path
+          sed -i 's|docs/_posts|content/posts/ai-daily|g' src/orchestrator.py
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Install Horizon
+        run: |
+          cd Horizon-ai-news
+          uv sync
+
+      - name: Prepare config
+        run: |
+          cp Horizon-ai-news/data/config.example.json Horizon-ai-news/data/config.json || true
+
+      - name: Run Horizon
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          cd Horizon-ai-news
+          uv run horizon --hours 48
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Horizon AI"
+          git add content/posts/ai-daily/
+          git diff --staged --quiet || git commit -m "📡 Horizon 日报 $(date +'%Y-%m-%d')"
+          git push
