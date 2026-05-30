@@ -2,9 +2,8 @@ name: Daily AI News (Horizon)
 
 on:
   schedule:
-    # 每天早上 8:30 北京时间 = UTC 0:30
     - cron: '30 0 * * *'
-    timezone: 'Asia/Shanghai'
+      timezone: Asia/Shanghai
   workflow_dispatch:
 
 permissions:
