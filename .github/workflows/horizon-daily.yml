@@ -35,54 +35,18 @@ jobs:
           cd Horizon-ai-news
           uv sync
 
-      - name: Prepare config
+      - name: Write config file
         run: |
-          python3 << 'PYEOF'
-import json
-cfg = {
-  "version": "1.0",
-  "ai": {
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "api_key_env": "DEEPSEEK_API_KEY",
-    "temperature": 0.3,
-    "max_tokens": 4096,
-    "throttle_sec": 0,
-    "analysis_concurrency": 1,
-    "enrichment_concurrency": 1,
-    "languages": ["zh", "en"]
-  },
-  "email": {"enabled": False},
-  "sources": {
-    "hackernews": {"enabled": True, "fetch_top_stories": 30, "min_score": 50},
-    "rss": [{"name": "Simon Willison", "url": "https://simonwillison.net/atom/everything/", "enabled": True, "category": "ai-tools"}],
-    "github": [
-      {"type": "user_events", "username": "anthropics", "enabled": True},
-      {"type": "repo_releases", "owner": "anthropics", "repo": "anthropic-sdk-python", "enabled": True}
-    ],
-    "reddit": {
-      "enabled": True,
-      "subreddits": [
-        {"subreddit": "law", "enabled": True, "sort": "hot", "time_filter": "day", "fetch_limit": 10, "min_score": 20},
-        {"subreddit": "MachineLearning", "enabled": True, "sort": "hot", "time_filter": "day", "fetch_limit": 10, "min_score": 50}
-      ],
-      "users": [],
-      "fetch_comments": 3
-    }
-  },
-  "filtering": {"ai_score_threshold": 5.5, "time_window_hours": 48},
-  "webhook": {"enabled": False}
-}
-with open("Horizon-ai-news/data/config.json", "w") as f:
-    json.dump(cfg, f, indent=2)
-print("Config written successfully")
-PYEOF
+          echo '{"version":"1.0","ai":{"provider":"deepseek","model":"deepseek-chat","api_key_env":"DEEPSEEK_API_KEY","temperature":0.3,"max_tokens":4096,"throttle_sec":0,"analysis_concurrency":1,"enrichment_concurrency":1,"languages":["zh","en"]},"email":{"enabled":false},"sources":{"hackernews":{"enabled":true,"fetch_top_stories":30,"min_score":50},"rss":[{"name":"Simon Willison","url":"https://simonwillison.net/atom/everything/","enabled":true,"category":"ai-tools"}],"github":[{"type":"user_events","username":"anthropics","enabled":true},{"type":"repo_releases","owner":"anthropics","repo":"anthropic-sdk-python","enabled":true}],"reddit":{"enabled":true,"subreddits":[{"subreddit":"law","enabled":true,"sort":"hot","time_filter":"day","fetch_limit":10,"min_score":20},{"subreddit":"MachineLearning","enabled":true,"sort":"hot","time_filter":"day","fetch_limit":10,"min_score":50}],"users":[],"fetch_comments":3}},"filtering":{"ai_score_threshold":5.5,"time_window_hours":48},"webhook":{"enabled":false}}' > Horizon-ai-news/data/config.json
+
+      - name: Patch orchestrator
+        run: |
           sed -i 's|docs/_posts|content/posts/ai-daily|g' Horizon-ai-news/src/orchestrator.py
 
-      - name: Verify config
+      - name: Debug config
         run: |
-          echo "=== Config content ==="
-          cat Horizon-ai-news/data/config.json | head -10
+          echo "=== Config ==="
+          cat Horizon-ai-news/data/config.json
 
       - name: Run Horizon
         env:
