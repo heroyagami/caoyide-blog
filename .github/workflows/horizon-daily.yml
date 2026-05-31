@@ -38,7 +38,7 @@ jobs:
       - name: Prepare config
         run: |
           python3 << 'PYEOF'
-import json, os
+import json
 cfg = {
   "version": "1.0",
   "ai": {
@@ -75,8 +75,14 @@ cfg = {
 }
 with open("Horizon-ai-news/data/config.json", "w") as f:
     json.dump(cfg, f, indent=2)
+print("Config written successfully")
 PYEOF
           sed -i 's|docs/_posts|content/posts/ai-daily|g' Horizon-ai-news/src/orchestrator.py
+
+      - name: Verify config
+        run: |
+          echo "=== Config content ==="
+          cat Horizon-ai-news/data/config.json | head -10
 
       - name: Run Horizon
         env:
