@@ -22,13 +22,6 @@ jobs:
         run: |
           git clone https://github.com/Thysrael/Horizon.git Horizon-ai-news
 
-      - name: Checkout custom branch
-        run: |
-          cd Horizon-ai-news
-          git checkout -b custom
-          # Apply the custom output path
-          sed -i 's|docs/_posts|content/posts/ai-daily|g' src/orchestrator.py
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -44,7 +37,8 @@ jobs:
 
       - name: Prepare config
         run: |
-          cp Horizon-ai-news/data/config.example.json Horizon-ai-news/data/config.json || true
+          cp config.json Horizon-ai-news/data/config.json
+          sed -i 's|docs/_posts|content/posts/ai-daily|g' Horizon-ai-news/src/orchestrator.py
 
       - name: Run Horizon
         env:

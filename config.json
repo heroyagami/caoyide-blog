@@ -1,0 +1,75 @@
+{
+  "version": "1.0",
+  "ai": {
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "api_key_env": "DEEPSEEK_API_KEY",
+    "temperature": 0.3,
+    "max_tokens": 4096,
+    "throttle_sec": 0,
+    "analysis_concurrency": 1,
+    "enrichment_concurrency": 1,
+    "languages": ["zh", "en"]
+  },
+  "email": {
+    "enabled": false
+  },
+  "sources": {
+    "hackernews": {
+      "enabled": true,
+      "fetch_top_stories": 30,
+      "min_score": 50
+    },
+    "rss": [
+      {
+        "name": "Simon Willison",
+        "url": "https://simonwillison.net/atom/everything/",
+        "enabled": true,
+        "category": "ai-tools"
+      }
+    ],
+    "github": [
+      {
+        "type": "user_events",
+        "username": "anthropics",
+        "enabled": true
+      },
+      {
+        "type": "repo_releases",
+        "owner": "anthropics",
+        "repo": "anthropic-sdk-python",
+        "enabled": true
+      }
+    ],
+    "reddit": {
+      "enabled": true,
+      "subreddits": [
+        {
+          "subreddit": "law",
+          "enabled": true,
+          "sort": "hot",
+          "time_filter": "day",
+          "fetch_limit": 10,
+          "min_score": 20
+        },
+        {
+          "subreddit": "MachineLearning",
+          "enabled": true,
+          "sort": "hot",
+          "time_filter": "day",
+          "fetch_limit": 10,
+          "min_score": 50
+        }
+      ],
+      "users": [],
+      "fetch_comments": 3
+    }
+  },
+  "filtering": {
+    "ai_score_threshold": 5.5,
+    "time_window_hours": 48
+  },
+  "webhook": {
+    "enabled": false
+  }
+}
