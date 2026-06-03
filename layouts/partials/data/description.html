@@ -1,0 +1,27 @@
+{{- /*
+  自定义 data/description.html
+  覆盖主题的同路径 partial。
+  优先级：首页 site.Params.description > 页面 .Description > 页面 .Summary > sidebar.subtitle
+  修复：主题 partialCached 在 hugo 0.159 下未正确刷新 .Site.Params.description 时的兜底。
+*/ -}}
+{{- $description := "" -}}
+
+{{- if .IsHome -}}
+  {{- if .Site.Params.description -}}
+    {{- $description = .Site.Params.description -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if not $description -}}
+  {{- if .Description -}}
+    {{- $description = .Description -}}
+  {{- else if .IsPage -}}
+    {{- $description = .Summary -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if not $description -}}
+  {{- $description = .Site.Params.sidebar.subtitle -}}
+{{- end -}}
+
+{{- return (replaceRE "\n" " " $description | plainify) -}}

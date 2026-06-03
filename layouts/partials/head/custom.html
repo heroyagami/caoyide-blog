@@ -33,9 +33,20 @@
 <meta name="sogou_site_verification" content="{{ site.Params.sogou.siteVerificationTag }}">
 {{- end }}
 
-{{- /* 微信分享优化 */}}
-<meta property="og:locale" content="zh_CN">
-<meta name="twitter:card" content="summary_large_image">
+{{- /* 全站统一 OG 封面图（head.html 覆盖了 og:title/og:description/twitter:card，这里只补 image 系列） */}}
+<meta property="og:image" content="{{ site.BaseURL }}img/og-cover.jpg">
+<meta property="og:image:secure_url" content="{{ site.BaseURL }}img/og-cover.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="曹义德律师 湖北刑事辩护 民商事诉讼">
+<meta name="twitter:image" content="{{ site.BaseURL }}img/og-cover.jpg">
+<meta name="twitter:image:alt" content="曹义德律师 湖北刑事辩护 民商事诉讼">
+
+{{- /* 搜索引擎抓取 / 作者 / 关键词 */}}
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="曹义德">
+<meta name="keywords" content="曹义德律师,湖北律师,刑事辩护律师,民商事诉讼律师,婚姻家庭律师,合同纠纷律师,湖北江通律师事务所,黄石律师,武汉律师,反贪检察官,法学硕士">
 
 {{- /* 结构化数据 */}}
 {{- $pageDesc := "" }}
@@ -46,24 +57,186 @@
 
 {{- if .IsHome }}
 <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Attorney",
+    "@id": "{{ site.BaseURL }}#attorney",
+    "name": "曹义德",
+    "alternateName": "曹义德律师",
+    "jobTitle": "执业律师",
+    "description": "曹义德律师，华中科技大学法学硕士，前反贪检察官，现任湖北江通律师事务所执业律师。专注刑事辩护、民商事诉讼、婚姻家庭、合同纠纷、劳动争议。",
+    "url": "{{ site.BaseURL }}",
+    "image": "{{ site.BaseURL }}img/avatar.jpg",
+    "telephone": "+86-18872778990",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "湖北江通律师事务所",
+      "addressLocality": "黄石",
+      "addressRegion": "湖北省",
+      "addressCountry": "CN"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "华中科技大学"
+    },
+    "worksFor": {
+      "@type": "LegalService",
+      "name": "湖北江通律师事务所",
+      "url": "{{ site.BaseURL }}"
+    },
+    "knowsAbout": [
+      "刑事辩护",
+      "职务犯罪辩护",
+      "民商事诉讼",
+      "婚姻家庭",
+      "合同纠纷",
+      "劳动争议",
+      "行政诉讼",
+      "公司治理",
+      "知识产权"
+    ],
+    "areaServed": [
+      {"@type": "City", "name": "武汉"},
+      {"@type": "City", "name": "黄石"},
+      {"@type": "AdministrativeArea", "name": "湖北省"}
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LegalService",
+    "@id": "{{ site.BaseURL }}#legalService",
+    "name": "湖北江通律师事务所",
+    "url": "{{ site.BaseURL }}",
+    "telephone": "+86-18872778990",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "黄石",
+      "addressRegion": "湖北省",
+      "addressCountry": "CN"
+    },
+    "areaServed": "湖北省",
+    "employee": {
+      "@type": "Attorney",
+      "name": "曹义德"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "{{ site.BaseURL }}#website",
+    "name": "曹义德律师专栏",
+    "url": "{{ site.BaseURL }}",
+    "inLanguage": "zh-CN",
+    "description": "曹义德律师专栏 — 华中科技大学法学硕士，前反贪检察官，专注刑事辩护与民商事诉讼。",
+    "publisher": {
+      "@type": "Attorney",
+      "name": "曹义德"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "{{ site.BaseURL }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "曹义德个人案例库",
+        "item": "{{ site.BaseURL }}cases/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "曹义德律师在哪个律所执业？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "曹义德律师现任湖北江通律师事务所执业律师，办公地位于湖北黄石，主要服务武汉市及湖北「8+1」城市圈。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "曹义德律师的执业证号是多少？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "执业证号 14201202110310748，可通过全国律师执业证书查询系统核验。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "曹义德律师擅长哪些案件类型？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "刑事辩护（职务犯罪、经济犯罪、诈骗类犯罪）、民商事诉讼（合同、婚姻、侵权、债务）、行政诉讼、公司法律服务五大类。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "曹义德律师的学历背景是什么？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "华中科技大学法学硕士，毕业后曾任反贪检察官，现为执业律师。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "如何联系曹义德律师咨询？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "电话/微信：18872778990（同号），或通过 caoyide.com 网站留言。"
+        }
+      }
+    ]
+  }
+]
+</script>
+{{- else if .IsPage }}
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
+  "@type": "Attorney",
+  "@id": "{{ site.BaseURL }}#attorney",
   "name": "曹义德",
+  "alternateName": "曹义德律师",
   "jobTitle": "执业律师",
-  "description": "曹义德律师专栏 — 华中科技大学法学硕士，前反贪检察官，现执业律师。专注职务犯罪辩护、民事商事刑事讼诉。法律咨询：18872778990（微信同号）",
-  "url": "{{ site.BaseURL }}",
-  "sameAs": [
-    "tel:18872778990"
-  ],
-  "affiliation": {
-    "@type": "Organization",
+  "description": "{{ $pageDesc }}",
+  "url": "{{ .Permalink }}",
+  "telephone": "+86-18872778990",
+  "image": "{{ site.BaseURL }}img/avatar.jpg",
+  "priceRange": "$$",
+  "worksFor": {
+    "@type": "LegalService",
     "name": "湖北江通律师事务所"
   },
+  "knowsAbout": [
+    "刑事辩护",
+    "职务犯罪辩护",
+    "民商事诉讼",
+    "婚姻家庭",
+    "合同纠纷",
+    "劳动争议"
+  ],
+  "areaServed": [
+    {"@type": "City", "name": "武汉"},
+    {"@type": "City", "name": "黄石"},
+    {"@type": "AdministrativeArea", "name": "湖北省"}
+  ],
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "黄石",
-    "addressRegion": "湖北",
+    "addressRegion": "湖北省",
     "addressCountry": "CN"
   },
   "alumniOf": {
@@ -72,40 +245,23 @@
   }
 }
 </script>
-{{- else if .IsPage }}
+{{- if .IsPage }}
+{{- $articleLd := dict
+  "@context" "https://schema.org"
+  "@type" "Article"
+  "headline" .Title
+  "url" .Permalink
+  "datePublished" (.Date.Format "2006-01-02T15:04:05+08:00")
+  "dateModified" (.Lastmod.Format "2006-01-02T15:04:05+08:00")
+  "inLanguage" "zh-CN"
+  "author" (dict "@type" "Attorney" "name" "曹义德" "url" site.BaseURL)
+  "publisher" (dict "@type" "Organization" "name" "曹义德律师专栏" "url" site.BaseURL)
+  "mainEntityOfPage" .Permalink
+}}
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Lawyer",
-  "name": "曹义德",
-  "description": "{{ $pageDesc }}",
-  "url": "{{ .Permalink }}",
-  "telephone": "18872778990",
-  "image": "{{ site.BaseURL }}img/wechat-qr.png",
-  "affiliation": {
-    "@type": "LegalService",
-    "name": "湖北江通律师事务所",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "黄石",
-      "addressRegion": "湖北",
-      "addressCountry": "CN"
-    }
-  },
-  "areaServed": {
-    "@type": "City",
-    "name": "黄石"
-  },
-  "priceRange": "$$",
-  "knowsAbout": ["刑事辩护", "民事诉讼", "商事纠纷", "劳动争议"],
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "黄石",
-    "addressRegion": "湖北",
-    "addressCountry": "CN"
-  }
-}
+{{ $articleLd | jsonify (dict "noHTMLEscape" true) }}
 </script>
+{{- end }}
 {{- else if or (eq .Kind "taxonomy") (eq .Kind "term") }}
 <script type="application/ld+json">
 {
@@ -114,8 +270,14 @@
   "name": "{{ .Title }}",
   "description": "{{ $pageDesc }}",
   "url": "{{ .Permalink }}",
+  "inLanguage": "zh-CN",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "曹义德律师专栏",
+    "url": "{{ site.BaseURL }}"
+  },
   "publisher": {
-    "@type": "Person",
+    "@type": "Attorney",
     "name": "曹义德律师",
     "url": "{{ site.BaseURL }}"
   }
@@ -126,9 +288,11 @@
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": "{{ site.BaseURL }}#website",
   "name": "{{ site.Title }}",
-  "description": "曹义德律师专栏 — 专注职务犯罪辩护、民事商事刑事讼诉",
-  "url": "{{ site.BaseURL }}"
+  "description": "曹义德律师专栏 — 华中科技大学法学硕士，前反贪检察官，专注刑事辩护与民商事诉讼。",
+  "url": "{{ site.BaseURL }}",
+  "inLanguage": "zh-CN"
 }
 </script>
 {{- end }}

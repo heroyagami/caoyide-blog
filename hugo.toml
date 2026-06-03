@@ -1,7 +1,7 @@
 baseURL = 'https://caoyide.com/'
 languageCode = 'zh-cn'
 defaultContentLanguage = 'zh-cn'
-title = '曹义德律师专栏'
+title = '曹义德律师 | 湖北刑事辩护·民商事诉讼律师 | 华中科大法学硕士'
 theme = 'hugo-theme-stack'
 hasCJKLanguage = true
 
@@ -20,6 +20,9 @@ buildFuture = true
 [params]
     mainSections = ["posts"]
     rssFullContent = true
+
+    # SEO 兜底：Stack 主题的 data/description.html 读 Site.Params.description
+    description = '曹义德律师，华中科技大学法学硕士，前反贪检察官，现任湖北江通律师事务所执业律师（执业证号 14201202110310748）。专注刑事辩护、民商事诉讼、婚姻家庭、合同纠纷，主要服务武汉市及湖北「8+1」城市圈。法律咨询：18872778990（微信同号）。'
 
     [params.dateFormat]
         published = "2006-01-02"
