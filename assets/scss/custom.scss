@@ -1068,9 +1068,12 @@ footer.site-footer {
     }
 
     .powerby {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         line-height: 1.7;
         color: var(--card-text-color-secondary);
+    }
+    [data-scheme="dark"] footer.site-footer .powerby {
+        color: rgba(255, 255, 255, 0.72);
     }
 }
 
