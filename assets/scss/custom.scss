@@ -938,6 +938,87 @@ a {
     color: rgba(255, 255, 255, 0.7) !important;
 }
 
+/* about-card 内通用段落/链接暗色兜底（覆盖 fields/contact 等位置） */
+[data-scheme="dark"] .featured-about .about-card-body p,
+[data-scheme="dark"] .featured-about .about-card-body li,
+[data-scheme="dark"] .featured-about .about-card-body a {
+    color: rgba(255, 255, 255, 0.88);
+}
+[data-scheme="dark"] .featured-about .about-card-body a:hover {
+    color: var(--accent-color);
+}
+
+/* ============================================================
+   FAQ details/summary 样式（亮 + 暗都适配）
+   ============================================================ */
+.featured-about .about-card-body details {
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-sm);
+    background: transparent;
+    overflow: hidden;
+}
+.featured-about .about-card-body details summary {
+    padding: 10px 14px;
+    cursor: pointer;
+    color: var(--card-text-color-main);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    transition: background 0.15s;
+    user-select: none;
+}
+.featured-about .about-card-body details summary:hover {
+    background: var(--card-background-hover, rgba(127, 127, 127, 0.06));
+}
+.featured-about .about-card-body details summary::-webkit-details-marker { display: none; }
+.featured-about .about-card-body details summary::marker { content: ""; }
+.featured-about .about-card-body details summary::before {
+    content: "▸";
+    color: var(--accent-color);
+    transition: transform 0.2s ease;
+    font-size: 0.9em;
+    flex-shrink: 0;
+    line-height: 1;
+}
+.featured-about .about-card-body details[open] summary::before {
+    transform: rotate(90deg);
+}
+.featured-about .about-card-body details[open] summary {
+    border-bottom: 1px solid var(--card-border-color);
+}
+.featured-about .about-card-body details summary strong {
+    color: var(--card-text-color-main);
+    font-weight: 600;
+}
+.featured-about .about-card-body details p {
+    padding: 12px 16px 14px 38px;
+    margin: 0;
+    color: var(--card-text-color-secondary);
+    font-size: var(--text-sm);
+    line-height: 1.85;
+}
+
+/* 暗色 FAQ 强化对比度 */
+[data-scheme="dark"] .featured-about .about-card-body details summary {
+    color: rgba(255, 255, 255, 0.95);
+}
+[data-scheme="dark"] .featured-about .about-card-body details summary:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+[data-scheme="dark"] .featured-about .about-card-body details {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+[data-scheme="dark"] .featured-about .about-card-body details p {
+    color: rgba(255, 255, 255, 0.82);
+}
+[data-scheme="dark"] .featured-about .about-card-body details summary strong {
+    color: rgba(255, 255, 255, 0.95);
+}
+
 .template-archives .archives-total-count {
     display: flex;
     align-items: baseline;
