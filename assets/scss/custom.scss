@@ -1675,3 +1675,270 @@ footer.site-footer {
 [data-scheme="dark"] .terms-footer-meta {
     color: rgba(255, 255, 255, 0.72);
 }
+
+/* ============================================================
+   排版优化 v2026-06-03 — 六个方向一次性落地
+   - A. 8px 网格 + 卡片/过渡 token
+   - B. 字号梯度收紧（H 段前后留白）
+   - C. 段落最大宽度 + 行高 + 段间距
+   - D. 卡片系统统一（token 引用）
+   - E. 暗色模式收尾
+   - F. 微交互打磨
+   ============================================================ */
+
+/* ---- A. Design Tokens ---- */
+:root {
+    /* 8px 网格 (4/8/12/16/24/32/48/64) */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4rem;
+
+    /* 卡片 token (统一引用现有 token) */
+    --card-radius: var(--radius-lg, 16px);
+    --card-padding: var(--space-5);
+    --card-shadow-l1: var(--shadow-l1);
+    --card-shadow-l2: var(--shadow-l2);
+    --card-shadow-hover: var(--shadow-card-hover);
+
+    /* 过渡系统 */
+    --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --t-fast: 120ms;
+    --t-base: 200ms;
+    --t-slow: 320ms;
+}
+
+/* ---- B. 字号梯度收紧 — H 段前后留白 ---- */
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.featured-about .about-card-body h2,
+.featured-about .about-card-body h3 {
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+    line-height: 1.4;
+}
+.article-content > h1:first-child,
+.article-content > h2:first-child,
+.article-content > h3:first-child,
+.featured-about .about-card-body > h2:first-child,
+.featured-about .about-card-body > h3:first-child {
+    margin-top: 0;
+}
+
+/* ---- C. 段落最大宽度 + 行高 + 段间距 ---- */
+.article-content p,
+.article-content li,
+.article-content blockquote,
+.featured-about .about-card-body p,
+.featured-about .about-card-body li {
+    max-width: 36rem;       /* ~65 字符，中文 30-40 字 */
+    line-height: 1.75;
+}
+.article-content p + p,
+.article-content ul + p,
+.article-content ol + p,
+.article-content blockquote + p,
+.article-content h2 + p,
+.article-content h3 + p {
+    margin-top: var(--space-4);
+}
+.article-content blockquote {
+    border-left: 3px solid var(--accent-color);
+    padding: var(--space-3) var(--space-5);
+    margin: var(--space-5) 0;
+    color: var(--card-text-color-secondary);
+    background: var(--card-background-selected);
+    border-radius: 0 var(--radius-md, 10px) var(--radius-md, 10px) 0;
+    font-style: italic;
+}
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--card-radius);
+    margin: var(--space-5) 0;
+    box-shadow: var(--card-shadow-l1);
+}
+.article-content pre {
+    max-width: 100%;
+    padding: var(--space-4);
+    border-radius: var(--card-radius);
+    overflow-x: auto;
+    line-height: 1.6;
+    font-size: var(--text-sm);
+    background: var(--card-background-selected);
+    border: 1px solid var(--card-border-color);
+}
+.article-content :not(pre) > code {
+    padding: 2px 6px;
+    border-radius: var(--radius-sm, 6px);
+    background: var(--card-background-selected);
+    color: var(--accent-color);
+    font-size: 0.9em;
+    font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+}
+.article-content table {
+    width: 100%;
+    max-width: 36rem;
+    border-collapse: collapse;
+    margin: var(--space-5) 0;
+    font-size: var(--text-sm);
+}
+.article-content th,
+.article-content td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--card-separator-color);
+    text-align: left;
+}
+.article-content th {
+    font-weight: 600;
+    color: var(--card-text-color-main);
+    background: var(--card-background-selected);
+}
+
+/* ---- D. 卡片系统统一（确保 token 引用一致） ---- */
+.featured-about .about-card,
+.legal-entry-card,
+.legal-widget-card,
+.term-tag-card,
+.article-nav-item {
+    border-radius: var(--card-radius);
+}
+
+/* ---- E. 暗色模式收尾 ---- */
+[data-scheme="dark"] .article-content p,
+[data-scheme="dark"] .article-content li,
+[data-scheme="dark"] .article-content td,
+[data-scheme="dark"] .article-content th {
+    color: rgba(255, 255, 255, 0.85);
+}
+[data-scheme="dark"] .article-content h1,
+[data-scheme="dark"] .article-content h2,
+[data-scheme="dark"] .article-content h3,
+[data-scheme="dark"] .article-content h4,
+[data-scheme="dark"] .article-content h5,
+[data-scheme="dark"] .article-content h6 {
+    color: rgba(255, 255, 255, 0.95);
+}
+[data-scheme="dark"] .article-content blockquote {
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.78);
+}
+[data-scheme="dark"] .article-content :not(pre) > code {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.95);
+}
+[data-scheme="dark"] .article-content pre {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.88);
+}
+[data-scheme="dark"] .legal-entry-card {
+    background: rgba(20, 22, 30, 0.6);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+[data-scheme="dark"] kbd {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.92);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+[data-scheme="dark"] .article-content a:not(.btn),
+[data-scheme="dark"] .featured-about .about-card-body a {
+    color: var(--accent-color);
+}
+[data-scheme="dark"] .about-card-note {
+    color: rgba(255, 255, 255, 0.6);
+}
+[data-scheme="dark"] .article-content table,
+[data-scheme="dark"] .article-content th,
+[data-scheme="dark"] .article-content td {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+[data-scheme="dark"] .article-content th {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* ---- F. 微交互打磨 ---- */
+.featured-about .about-card,
+.legal-entry-card,
+.term-tag-card,
+.legal-widget-card,
+.article-nav-item {
+    transition: transform var(--t-base) var(--ease-out),
+                box-shadow var(--t-base) var(--ease-out),
+                border-color var(--t-base) var(--ease-out);
+}
+.featured-about .about-card:hover,
+.legal-entry-card:hover,
+.term-tag-card:hover,
+.article-nav-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+/* 链接下划线动画（底部填充） */
+.article-content a:not(.btn):not(.no-underline),
+.featured-about .about-card-body a {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size var(--t-base) var(--ease-out),
+                color var(--t-fast) var(--ease-out);
+    text-decoration: none;
+}
+.article-content a:not(.btn):not(.no-underline):hover,
+.featured-about .about-card-body a:hover {
+    background-size: 100% 1px;
+}
+
+/* details 展开/收起过渡（用 ::before 自定义三角形，隐藏原生 marker） */
+.featured-about .about-card-body details summary {
+    list-style: none;
+    transition: color var(--t-fast) var(--ease-out);
+    cursor: pointer;
+}
+.featured-about .about-card-body details summary::-webkit-details-marker {
+    display: none;
+}
+.featured-about .about-card-body details summary::before {
+    content: "▸";
+    display: inline-block;
+    margin-right: 0.5em;
+    color: var(--accent-color);
+    font-weight: 700;
+    transition: transform var(--t-base) var(--ease-out);
+}
+.featured-about .about-card-body details[open] > summary::before {
+    transform: rotate(90deg);
+    content: "▾";
+}
+.featured-about .about-card-body details > *:not(summary) {
+    animation: faqExpand var(--t-slow) var(--ease-out);
+}
+@keyframes faqExpand {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.featured-about .about-card-body details summary:hover {
+    color: var(--accent-color);
+}
+.featured-about .about-card-body details[open] > summary {
+    color: var(--accent-color);
+}
+
+/* 尊重无障碍偏好 */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+    }
+}
