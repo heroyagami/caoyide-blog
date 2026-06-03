@@ -1,11 +1,11 @@
-{{- /* 覆盖主题页脚：简洁中文化，显示律所执业信息 */}}
+{{- /* 覆盖主题页脚：简洁中文化，不显示长 site.Title（避免像 H2 重复），律所执业信息放第二行 */}}
 <footer class="site-footer">
     <section class="copyright">
         &copy;
         {{ if and (.Site.Params.footer.since) (ne .Site.Params.footer.since (int (now.Format "2006"))) }}
             {{ .Site.Params.footer.since }} -
         {{ end }}
-        {{ now.Format "2006" }} {{ default .Site.Title .Site.Copyright }}
+        {{ now.Format "2006" }} 曹义德律师专栏
     </section>
 
     {{ with .Site.Params.footer.customText }}
