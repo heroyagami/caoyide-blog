@@ -942,9 +942,23 @@ a {
     display: none !important;
 }
 
-/* 暗色模式 about-card 文字修复 */
-[data-scheme="dark"] .featured-about .about-card-body ul {
+/* 暗色模式 about-card 文字修复（服务介绍 section 没有 .about-card-body wrapper，
+   改为直接选 fields/contact 两个子区） */
+[data-scheme="dark"] .featured-about .about-card-body ul,
+[data-scheme="dark"] .featured-about .about-card-fields p,
+[data-scheme="dark"] .featured-about .about-card-contact p {
     color: rgba(255, 255, 255, 0.88);
+}
+[data-scheme="dark"] .featured-about .about-card-body h3,
+[data-scheme="dark"] .featured-about .about-card-fields h3,
+[data-scheme="dark"] .featured-about .about-card-contact h3 {
+    color: var(--accent-color);
+}
+[data-scheme="dark"] .featured-about .about-card-contact a {
+    color: var(--accent-color);
+}
+[data-scheme="dark"] .about-card-note {
+    color: rgba(255, 255, 255, 0.7) !important;
 }
 [data-scheme="dark"] .featured-about .about-card-body h3 {
     color: var(--accent-color);
