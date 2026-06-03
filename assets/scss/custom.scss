@@ -663,13 +663,14 @@ a {
     line-height: 1.2;
 }
 .featured-about .about-card-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px 14px;
+    display: block;
     margin-top: var(--spacing-sm);
 }
-@media (max-width: 768px) {
-    .featured-about .about-card-body { grid-template-columns: 1fr; }
+.featured-about .about-card-body.faq-list {
+    display: block;
+}
+.featured-about .about-card-fields {
+    display: block;
 }
 .featured-about .about-card-body h3 {
     font-size: 0.95rem; margin: 0 0 2px 0;
@@ -696,6 +697,11 @@ a {
 .featured-about .about-card-body li::before {
     content: "◆ "; color: var(--accent-color); font-size: 0.6rem;
     margin-right: 2px;
+}
+.featured-about .about-card-contact {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--card-border-color);
 }
 .featured-about .about-card-contact p {
     margin: 0 0 2px 0;
@@ -1029,6 +1035,27 @@ a {
 }
 [data-scheme="dark"] .featured-about .about-card-body details summary strong {
     color: rgba(255, 255, 255, 0.95);
+}
+
+/* ============================================================
+   footer 优化：长 site.title 时不再像 H2
+   ============================================================ */
+footer.site-footer {
+    font-size: 0.85rem;
+    line-height: 1.5;
+
+    .copyright {
+        color: var(--card-text-color-secondary) !important;
+        font-weight: 400 !important;
+        font-size: 0.82rem;
+        margin-bottom: 4px;
+    }
+
+    .powerby {
+        font-size: 0.78rem;
+        line-height: 1.6;
+        color: var(--card-text-color-tertiary);
+    }
 }
 
 .template-archives .archives-total-count {
