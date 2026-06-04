@@ -5,11 +5,10 @@
     {{ partial "article/components/breadcrumb" . }}
     {{- end }}
 
-    {{- $allPages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections -}}
-    {{- $featured := where $allPages "Params.featured" true -}}
-    {{- $paginator := partial "helper/paginator.html" . -}}
-    {{- $featuredUrls := slice -}}
-    {{- range $featured }}{{- $featuredUrls = $featuredUrls | append .RelPermalink }}{{- end -}}
+    {{- /* 分页过滤已在 layouts/_partials/helper/paginator.html 中完成：首页排除 featured 文章，
+           避免 featured 文章扎堆导致中段页面只有 1-2 篇的空页问题；featured 文章仍可通过原文 URL 访问。
+           Hugo 同一页面只能调用一次 .Paginate，且 head.html 已先于此处调用，故此处直接用 .Paginator。 */ -}}
+    {{- $paginator := .Paginator -}}
 
     {{- /* 置顶文章已移至曹义德个人案例库分类页，首页不再单独展示 */ -}}
 
@@ -52,9 +51,7 @@
 
     <section class="article-list legal-article-list">
         {{ range $paginator.Pages }}
-            {{- if not (in $featuredUrls .RelPermalink) }}
             {{ partial "article-list/default" . }}
-            {{- end }}
         {{ end }}
     </section>
 
