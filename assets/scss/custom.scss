@@ -1773,7 +1773,7 @@ footer.site-footer {
 .article-content blockquote,
 .featured-about .about-card-body p,
 .featured-about .about-card-body li {
-    max-width: 36rem;       /* ~65 字符，中文 30-40 字 */
+    max-width: 48rem;       /* 768px，行长 ~80 字符（折中：可读 + 不挤中间） */
     line-height: 1.75;
 }
 .article-content p + p,
