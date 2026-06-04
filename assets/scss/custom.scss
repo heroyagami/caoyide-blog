@@ -89,6 +89,45 @@ html {
     scroll-behavior: smooth;
 }
 
+/* ---- 全站统一字号层级（设计系统 token 化）---- */
+/* 文章列表描述（首页 case 摘要）*/
+.article-list--tile article .article-subtitle,
+.article-list .article-subtitle,
+.article-subtitle {
+    font-size: 1.4rem !important;
+    line-height: 1.6;
+    color: var(--card-text-color-secondary);
+    margin: 6px 0 0;
+}
+
+/* 归档页 H2/H3（年份/月份标题）*/
+.template-archives h2,
+.template-archives h3 {
+    font-size: 1.4rem !important;
+    font-weight: 600 !important;
+    color: var(--card-text-color-main);
+}
+
+/* 链接层级统一：11px 微小 / 13px 标签 / 15px 正文 / 17px 强调 */
+a {
+    transition: color 0.18s ease-out, opacity 0.18s ease-out;
+}
+
+/* 站点 meta/footer 链接统一 14px */
+.site-meta a,
+.site-meta .site-name a,
+footer a {
+    font-size: 1.4rem;
+}
+
+/* 全局链接 hover 视觉反馈 */
+.article-content a,
+.menu a {
+    color: var(--accent-color);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
 body {
     letter-spacing: 0.01em;
     font-size: var(--text-base);
@@ -219,16 +258,21 @@ a {
 }
 .site-name {
     font-family: var(--heading-font-family);
-    font-size: var(--text-2xl);
-    font-weight: 750;
-    letter-spacing: 0.03em;
+    font-size: 2.4rem !important;
+    font-weight: 750 !important;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
 
     a {
-        color: var(--card-text-color-main);
+        color: var(--card-text-color-main) !important;
         text-decoration: none;
         transition: color 0.2s;
         &:hover { color: var(--accent-color); }
     }
+}
+
+@media (min-width: 1280px) {
+    .site-name { font-size: 2.8rem !important; }
 }
 
 /* 副标题渐变蓝色 */
@@ -378,11 +422,13 @@ a {
    右侧边栏
    ============================================================ */
 
-/* Widget 标题 */
+/* Widget 标题 — 侧边栏 H2 分级 */
 .widget-title {
-    font-size: var(--text-md) !important;
-    font-weight: 650;
-    margin-bottom: var(--spacing-sm);
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+    margin-bottom: var(--spacing-md) !important;
+    color: var(--card-text-color-main);
+    letter-spacing: 0.01em;
 }
 
 /* 搜索框 — 全宽圆角 + 垂直居中 */
@@ -1273,10 +1319,11 @@ footer.site-footer {
     padding: 0;
 }
 .article-list--tile .article-title {
-    font-size: var(--text-sm);
-    font-weight: 600;
+    font-size: 1.55rem !important;
+    font-weight: 650 !important;
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
     color: var(--card-text-color-main);
 }
 .article-list--tile article:hover .article-title {
