@@ -1,8 +1,8 @@
 {{ define "main" }}
-<header class="section-hero-card">
-  <h1 class="section-hero-title">曹义德个人案例库</h1>
-  <p class="section-hero-subtitle">前反贪检察官 | 华中科技大学法学硕士 | 执业律师</p>
-  <a class="section-hero-cta" href="/posts/2024-01-10-%E4%BB%8E%E6%A3%80%E5%AF%9F%E5%91%98%E5%88%B0%E5%BE%8B%E5%B8%88/">
+<header class="section-card" style="margin-bottom:2rem; padding:2rem; background:var(--card-background); border-radius:12px;">
+  <h1 style="font-size:1.75rem; margin-bottom:0.5rem;">曹义德个人案例库</h1>
+  <p style="color:var(--card-text-color-secondary); margin-bottom:1rem;">前反贪检察官 | 华中科技大学法学硕士 | 执业律师</p>
+  <a href="/posts/2024-01-10-%E4%BB%8E%E6%A3%80%E5%AF%9F%E5%91%98%E5%88%B0%E5%BE%8B%E5%B8%88/" style="display:inline-block; padding:0.6rem 1.2rem; background:var(--accent); color:#fff; border-radius:8px; text-decoration:none; font-weight:600;">
     点击阅读全文：从检察官到律师 →
   </a>
 </header>
@@ -11,7 +11,7 @@
 {{- $pages := $term.Pages -}}
 
 {{ with $pages }}
-<h2 class="section-listing-title">全部文章（共 {{ len $pages }} 篇）</h2>
+<h2 style="font-size:1.25rem; margin-bottom:1rem;">全部文章（共 {{ len $pages }} 篇）</h2>
 <section class="article-list--compact">
   {{ range . }}
   <article>
