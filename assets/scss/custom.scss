@@ -1874,22 +1874,8 @@ footer.site-footer {
     font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
 }
 .article-content table {
-    width: 100%;
-    max-width: 36rem;
+    /* 表格通用样式见 9.7（含 .table-wrapper 横向滚动 + 斑马纹） */
     border-collapse: collapse;
-    margin: var(--space-5) 0;
-    font-size: var(--text-sm);
-}
-.article-content th,
-.article-content td {
-    padding: var(--space-3) var(--space-4);
-    border-bottom: 1px solid var(--card-separator-color);
-    text-align: left;
-}
-.article-content th {
-    font-weight: 600;
-    color: var(--card-text-color-main);
-    background: var(--card-background-selected);
 }
 
 /* ---- 9.5 间距节奏（8px 网格）---- */
@@ -1920,6 +1906,263 @@ footer.site-footer {
         & > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
             margin-top: var(--space-6);
         }
+    }
+}
+
+/* ---- 9.7 表格修正：取消 36rem 死宽，让宽列对比表能正常铺开 ----
+   Hugo Stack 会用 .table-wrapper 包 table；要溢出滚动而不是挤窄 */
+.article-content .table-wrapper {
+    width: 100%;
+    margin: var(--space-5) 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-md, 10px);
+    border: 1px solid var(--card-separator-color);
+}
+.article-content .table-wrapper > table,
+.article-content > table {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: 1.65;
+    border: 0;
+}
+.article-content th,
+.article-content td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--card-separator-color);
+    vertical-align: top;
+    text-align: left;
+    word-break: break-word;
+}
+.article-content th {
+    font-weight: 600;
+    color: var(--card-text-color-main);
+    background: var(--card-background-selected);
+    white-space: nowrap;
+}
+.article-content tbody tr:last-child > td {
+    border-bottom: 0;
+}
+.article-content tbody tr:nth-child(even) > td {
+    background: rgba(0, 0, 0, 0.015);
+}
+[data-scheme="dark"] .article-content tbody tr:nth-child(even) > td {
+    background: rgba(255, 255, 255, 0.025);
+}
+
+/* ---- 9.8 代码块行号高亮（Hugo chroma）---- */
+.article-content .highlight,
+.article-content .lntable {
+    margin: var(--space-5) 0;
+    font-size: var(--text-sm);
+    line-height: 1.6;
+}
+.article-content .lntable {
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    background: var(--card-background-selected);
+    display: block;
+}
+.article-content .lntable,
+.article-content .lntable tbody,
+.article-content .lntable tr,
+.article-content .lntable td {
+    border: 0;
+    background: transparent;
+    padding: 0;
+}
+.article-content .lntable tbody tr:nth-child(even) > td {
+    background: transparent;
+}
+.article-content .lntable .lntd {
+    vertical-align: top;
+}
+.article-content .lntable .lntd:first-child {
+    width: 1%;
+    padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+    border-right: 1px solid var(--card-separator-color);
+    user-select: none;
+    color: var(--card-text-color-tertiary);
+}
+.article-content .lntable .lntd:last-child {
+    padding: var(--space-3) var(--space-4);
+}
+.article-content .lntable pre,
+.article-content .lntable code {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+.article-content .lnt {
+    margin-right: 0;
+}
+
+/* ---- 9.9 嵌套列表层级 ---- */
+.article-content {
+    ul, ol { list-style-position: outside; }
+    ul { list-style-type: disc; }
+    ul ul { list-style-type: circle; }
+    ul ul ul { list-style-type: square; }
+    ol { list-style-type: decimal; }
+    ol ol { list-style-type: lower-alpha; }
+    ol ol ol { list-style-type: lower-roman; }
+
+    /* 嵌套缩进收紧 + 字号略降 */
+    li > ul, li > ol {
+        margin: var(--space-2) 0;
+        padding-left: var(--space-5);
+    }
+    li > p { margin: var(--space-2) 0; }
+
+    /* 自定义列表（释义型，法律博客术语解释常用）*/
+    dl {
+        margin: var(--space-5) 0;
+        font-size: var(--text-base);
+        line-height: 1.75;
+    }
+    dt {
+        font-weight: 600;
+        color: var(--card-text-color-main);
+        margin-top: var(--space-3);
+    }
+    dd {
+        margin-left: var(--space-5);
+        color: var(--card-text-color-secondary);
+    }
+}
+
+/* ---- 9.10 行内语义：kbd / mark / abbr / sub / sup / cite ---- */
+.article-content {
+    kbd {
+        display: inline-block;
+        padding: 1px 6px;
+        font-size: 0.85em;
+        font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+        font-weight: 500;
+        line-height: 1.4;
+        color: var(--card-text-color-main);
+        background: var(--card-background-selected);
+        border: 1px solid var(--card-separator-color);
+        border-bottom-width: 2px;
+        border-radius: 4px;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+    }
+    mark {
+        background: rgba(250, 204, 21, 0.32);
+        color: inherit;
+        padding: 0 2px;
+        border-radius: 2px;
+    }
+    abbr[title] {
+        text-decoration: underline dotted;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+        cursor: help;
+    }
+    sub, sup {
+        font-size: 0.78em;
+        line-height: 0;
+    }
+    cite {
+        font-style: italic;
+        color: var(--card-text-color-secondary);
+    }
+    /* figcaption 比正文小，灰一些（图注/案号说明） */
+    figcaption {
+        font-size: var(--text-sm) !important;
+        line-height: 1.6 !important;
+        color: var(--card-text-color-tertiary);
+        text-align: center;
+        margin-top: var(--space-2);
+    }
+}
+[data-scheme="dark"] .article-content mark {
+    background: rgba(250, 204, 21, 0.22);
+    color: inherit;
+}
+
+/* ---- 9.11 article-content 内 details/summary（用户折叠区，非 TOC）---- */
+.article-content > details {
+    margin: var(--space-5) 0;
+    padding: var(--space-3) var(--space-5);
+    border: 1px solid var(--card-separator-color);
+    border-radius: var(--radius-md, 10px);
+    background: var(--card-background-selected);
+    transition: background var(--transition-base, 0.18s ease);
+}
+.article-content > details[open] {
+    background: var(--card-background, transparent);
+}
+.article-content > details > summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--card-text-color-main);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    padding: var(--space-2) 0;
+    list-style: none;
+}
+.article-content > details > summary::-webkit-details-marker { display: none; }
+.article-content > details > summary::before {
+    content: "▶";
+    display: inline-block;
+    margin-right: var(--space-2);
+    font-size: 0.8em;
+    color: var(--card-text-color-tertiary);
+    transition: transform var(--transition-base, 0.18s ease);
+}
+.article-content > details[open] > summary::before {
+    transform: rotate(90deg);
+}
+.article-content > details > *:not(summary) {
+    margin-top: var(--space-2);
+}
+
+/* ---- 9.12 article-content 内 a 链接：仅在正文里加下划线，菜单/导航不受影响 ---- */
+.article-content p > a,
+.article-content li > a,
+.article-content blockquote a,
+.article-content td > a,
+.article-content th > a {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-decoration-color: rgba(37, 99, 235, 0.35);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: text-decoration-color var(--transition-base, 0.18s ease),
+                color var(--transition-base, 0.18s ease);
+}
+.article-content p > a:hover,
+.article-content li > a:hover,
+.article-content blockquote a:hover,
+.article-content td > a:hover,
+.article-content th > a:hover {
+    color: var(--accent-color-darker);
+    text-decoration-color: var(--accent-color);
+}
+[data-scheme="dark"] .article-content p > a,
+[data-scheme="dark"] .article-content li > a,
+[data-scheme="dark"] .article-content blockquote a,
+[data-scheme="dark"] .article-content td > a,
+[data-scheme="dark"] .article-content th > a {
+    text-decoration-color: rgba(96, 165, 250, 0.4);
+}
+
+/* ---- 9.13 移动端：表格、代码块字号再缩 ---- */
+@media (max-width: 768px) {
+    .article-content {
+        .table-wrapper > table, & > table { font-size: var(--text-xs); }
+        .lntable, .highlight { font-size: var(--text-xs); }
+        th, td { padding: var(--space-2) var(--space-3); }
+        > details { padding: var(--space-2) var(--space-4); }
+        > details > summary { font-size: var(--text-md); }
     }
 }
 
