@@ -90,10 +90,10 @@ html {
 }
 
 /* ---- 全站统一字号层级（设计系统 token 化）---- */
-/* 文章列表描述（首页 case 摘要）*/
+/* 文章列表描述（首页 case 摘要）—— 仅限列表场景，详情页副标题不应受影响 */
 .article-list--tile article .article-subtitle,
 .article-list .article-subtitle,
-.article-subtitle {
+.article-list--compact .article-subtitle {
     font-size: 1.4rem !important;
     line-height: 1.6;
     color: var(--card-text-color-secondary);
@@ -2164,6 +2164,292 @@ footer.site-footer {
         > details { padding: var(--space-2) var(--space-4); }
         > details > summary { font-size: var(--text-md); }
     }
+}
+
+/* ============================================================
+   10. 文章详情页 chrome（.main-article 内除正文外的元素）
+   规范化 H1/副标题/分类 chip/meta/TOC/标签/上下篇导航等
+   设计依据：ui-ux-pro-max Editorial Classic，长文阅读舒适度优先
+   ============================================================ */
+
+/* ---- 10.1 文章大标题：详情页用 2xl，强调 + 严肃 ---- */
+.main-article > .article-header .article-title {
+    font-size: var(--text-2xl);     /* 2.7rem ≈ 27px */
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--card-text-color-main);
+    margin: var(--space-3) 0 var(--space-4);
+    letter-spacing: -0.01em;
+}
+.main-article > .article-header .article-title a {
+    color: inherit;
+    text-decoration: none;
+}
+.main-article > .article-header .article-title a:hover {
+    color: var(--accent-color);
+}
+
+/* ---- 10.2 副标题：md 灰字 + 思源宋体（与正文 H2/H3 同源，editorial 感）---- */
+.main-article > .article-header .article-subtitle {
+    font-size: var(--text-lg) !important;   /* 1.85rem ≈ 18.5px，覆盖列表场景规则 */
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--card-text-color-secondary);
+    font-family: var(--serif-font-family);
+    font-style: italic;
+    margin: 0 0 var(--space-5);
+    max-width: 56rem;
+}
+
+/* ---- 10.3 分类 chip：小标签 ---- */
+.main-article > .article-header .article-category {
+    margin-bottom: var(--space-3);
+}
+.main-article > .article-header .article-category a {
+    display: inline-block;
+    font-size: var(--text-xs);          /* 1.1rem ≈ 11px */
+    font-weight: 600;
+    line-height: 1;
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: opacity 0.18s ease;
+}
+.main-article > .article-header .article-category a:hover {
+    opacity: 0.85;
+}
+
+/* ---- 10.4 文章 meta（日期 + 阅读时长）---- */
+.main-article > .article-header .article-meta {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    padding: var(--space-3) 0 var(--space-5);
+    border-bottom: 1px solid var(--card-separator-color);
+}
+.main-article > .article-header .article-meta .inline-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+.main-article > .article-header .article-meta .inline-meta svg.icon {
+    width: 16px;
+    height: 16px;
+    color: var(--card-text-color-tertiary);
+    flex-shrink: 0;
+}
+.main-article > .article-header .article-meta .article-time--published,
+.main-article > .article-header .article-meta .article-time--reading {
+    font-size: var(--text-sm);          /* 1.3rem ≈ 13px */
+    line-height: 1.5;
+    color: var(--card-text-color-secondary);
+    font-weight: 500;
+    margin-right: var(--space-4);
+}
+.main-article > .article-header .article-meta .article-time--reading {
+    margin-right: 0;
+}
+
+/* ---- 10.5 文章内 TOC（aside.article-toc）---- */
+.main-article .article-toc {
+    margin: var(--space-5) 0 var(--space-6);
+    padding: var(--space-4) var(--space-5);
+    background: var(--card-background-selected);
+    border: 1px solid var(--card-separator-color);
+    border-radius: var(--radius-md, 10px);
+}
+.main-article .article-toc > details > summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 0;
+}
+.main-article .article-toc > details > summary::-webkit-details-marker { display: none; }
+.main-article .article-toc-title {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-md);          /* 1.5rem ≈ 15px */
+    font-weight: 600;
+    color: var(--card-text-color-main);
+}
+.main-article .article-toc-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--card-text-color-tertiary);
+    transition: transform 0.18s ease;
+}
+.main-article .article-toc > details[open] .article-toc-title svg {
+    transform: rotate(90deg);
+}
+.main-article .article-toc .toc-nav {
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--card-separator-color);
+}
+.main-article .article-toc .toc-nav ol {
+    margin: 0;
+    padding-left: var(--space-5);
+    list-style: decimal;
+}
+.main-article .article-toc .toc-nav ol ol {
+    list-style: lower-alpha;
+    margin: var(--space-1) 0;
+    padding-left: var(--space-4);
+}
+.main-article .article-toc .toc-nav li {
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    color: var(--card-text-color-secondary);
+    margin: 2px 0;
+}
+.main-article .article-toc .toc-nav a {
+    color: var(--card-text-color-secondary);
+    text-decoration: none;
+    transition: color 0.18s ease;
+}
+.main-article .article-toc .toc-nav a:hover {
+    color: var(--accent-color);
+}
+
+/* ---- 10.6 右栏 widget TOC（widget--toc）---- */
+.widget--toc .toc-nav {
+    font-size: var(--text-sm);
+    line-height: 1.6;
+}
+.widget--toc .toc-nav ol {
+    list-style: decimal;
+    margin: 0;
+    padding-left: var(--space-5);
+}
+.widget--toc .toc-nav ol ol {
+    list-style: lower-alpha;
+    padding-left: var(--space-4);
+    margin: var(--space-1) 0;
+}
+.widget--toc .toc-nav li {
+    margin: 4px 0;
+    color: var(--card-text-color-secondary);
+}
+.widget--toc .toc-nav a {
+    color: var(--card-text-color-secondary);
+    text-decoration: none;
+    transition: color 0.18s ease;
+}
+.widget--toc .toc-nav a:hover {
+    color: var(--accent-color);
+}
+
+/* ---- 10.7 文末标签（article-tags chip 组）---- */
+.article-footer .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding: var(--space-4) 0;
+    margin: var(--space-5) 0 0;
+    border-top: 1px solid var(--card-separator-color);
+}
+.article-footer .article-tags a {
+    display: inline-block;
+    font-size: var(--text-sm);
+    line-height: 1.4;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    background: var(--card-background-selected);
+    color: var(--card-text-color-secondary);
+    text-decoration: none;
+    transition: background 0.18s ease, color 0.18s ease;
+}
+.article-footer .article-tags a::before {
+    content: "#";
+    color: var(--card-text-color-tertiary);
+    margin-right: 2px;
+}
+.article-footer .article-tags a:hover {
+    background: var(--accent-color);
+    color: #fff;
+}
+.article-footer .article-tags a:hover::before {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---- 10.8 上/下篇导航字号微调（与全站梯度对齐）---- */
+.article-navigation .article-nav-label {
+    font-size: var(--text-xs);          /* 1.1rem，比之前更标签化 */
+    letter-spacing: 0.06em;
+}
+.article-navigation .article-nav-title {
+    font-size: var(--text-md) !important;   /* 1.5rem，比之前 sm 更醒目 */
+    line-height: 1.45;
+}
+
+/* ---- 10.9 移动端 ≤768px：详情页 chrome 字号缩档 ---- */
+@media (max-width: 768px) {
+    .main-article > .article-header .article-title {
+        font-size: 2.2rem;
+        line-height: 1.3;
+    }
+    .main-article > .article-header .article-subtitle {
+        font-size: var(--text-md) !important;
+    }
+    .main-article > .article-header .article-meta {
+        gap: var(--space-2);
+        padding-bottom: var(--space-4);
+    }
+    .main-article > .article-header .article-meta .article-time--published,
+    .main-article > .article-header .article-meta .article-time--reading {
+        font-size: var(--text-xs);
+        margin-right: var(--space-3);
+    }
+    .main-article .article-toc {
+        padding: var(--space-3) var(--space-4);
+    }
+    .main-article .article-toc-title {
+        font-size: var(--text-sm);
+    }
+    .main-article .article-toc .toc-nav li,
+    .widget--toc .toc-nav li {
+        font-size: var(--text-xs);
+        line-height: 1.6;
+    }
+    .article-footer .article-tags a {
+        font-size: var(--text-xs);
+        padding: 3px 10px;
+    }
+    .article-navigation .article-nav-title {
+        font-size: var(--text-sm) !important;
+    }
+}
+
+/* ---- 10.10 暗色模式：详情页 chrome 文本色调 ---- */
+[data-scheme="dark"] .main-article > .article-header .article-title {
+    color: rgba(255, 255, 255, 0.95);
+}
+[data-scheme="dark"] .main-article > .article-header .article-subtitle {
+    color: rgba(255, 255, 255, 0.65);
+}
+[data-scheme="dark"] .main-article > .article-header .article-meta .article-time--published,
+[data-scheme="dark"] .main-article > .article-header .article-meta .article-time--reading {
+    color: rgba(255, 255, 255, 0.7);
+}
+[data-scheme="dark"] .main-article .article-toc {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+[data-scheme="dark"] .main-article .article-toc-title {
+    color: rgba(255, 255, 255, 0.92);
+}
+[data-scheme="dark"] .main-article .article-toc .toc-nav a,
+[data-scheme="dark"] .widget--toc .toc-nav a {
+    color: rgba(255, 255, 255, 0.7);
+}
+[data-scheme="dark"] .article-footer .article-tags a {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.78);
+}
+[data-scheme="dark"] .article-footer .article-tags {
+    border-top-color: rgba(255, 255, 255, 0.08);
 }
 
 /* ---- D. 卡片系统统一（确保 token 引用一致） ---- */
