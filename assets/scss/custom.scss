@@ -2166,6 +2166,143 @@ footer.site-footer {
     }
 }
 
+/* ---- 9.14 隐藏正文内重复 H1：30 篇文章在 .article-content 开头写了 # 标题，
+       视觉上与 .article-title（h2）重复。直接隐藏首个子 H1 即可。 */
+.article-content > h1:first-child,
+.article-content > h1:first-of-type {
+    display: none;
+}
+
+/* ---- 9.15 中文首行缩进 2em（律师博客严肃排版惯例）
+       规则：首段不缩进；标题后第一段不缩进；之后每段 2em 缩进
+       移动端不缩进（屏幕窄，2em 缩进挤压过紧） */
+.article-content {
+    & > p { text-indent: 2em; }
+    & > p:first-child,
+    & > h1 + p, & > h2 + p, & > h3 + p,
+    & > h4 + p, & > h5 + p, & > h6 + p,
+    & > hr + p, & > blockquote + p,
+    & > ul + p, & > ol + p,
+    & > table + p, & > pre + p,
+    & > .table-wrapper + p,
+    & > figure + p,
+    & > details + p,
+    & > div + p {
+        text-indent: 0;
+    }
+}
+@media (max-width: 768px) {
+    .article-content > p { text-indent: 0; }
+}
+
+/* ---- 9.16 正文限宽：78 中文字符 / 行（UX 65-75 推荐值，律师博客偏严肃取上限）
+       桌面端 max-width: 42rem（≈ 672px @ 16px root），居中显示 */
+.article-content {
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+/* 文章内大图/表格/代码块/引用 允许突破正文字宽到 100% */
+.article-content > .table-wrapper,
+.article-content > table,
+.article-content > pre,
+.article-content > figure,
+.article-content > blockquote,
+.article-content > img {
+    max-width: 100%;
+}
+/* 引用块、表头、提示框：略宽一点，便于阅读 */
+.article-content > blockquote,
+.article-content > details {
+    max-width: 44rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ---- 9.17 名片卡变体：blockquote.signature 或 p.signature
+       律师博客部分文章把"曹义德律师 + 联系方式"放在 blockquote 里，
+       用引用样式（左蓝边）显示不对。统一改成名片卡样式 */
+.article-content blockquote.signature,
+.article-content > p.signature {
+    border-left: 0;
+    background: var(--card-background-selected);
+    border: 1px solid var(--card-separator-color);
+    border-radius: var(--radius-md, 10px);
+    padding: var(--space-4) var(--space-5);
+    margin: var(--space-6) auto;
+    text-align: center;
+    font-style: normal;
+    color: var(--card-text-color-secondary);
+    max-width: 36rem;
+}
+.article-content blockquote.signature p,
+.article-content > p.signature {
+    margin: 0;
+    text-indent: 0;
+    line-height: 1.7;
+}
+.article-content blockquote.signature p + p {
+    margin-top: var(--space-2);
+}
+.article-content blockquote.signature a,
+.article-content > p.signature a {
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+/* ---- 9.18 「曹义德个人案例库」分类页 hero（修 var(--accent) 未定义 bug）---- */
+.section-hero-card {
+    margin-bottom: var(--space-7);
+    padding: var(--space-7) var(--space-6);
+    background: var(--card-background);
+    border: 1px solid var(--card-separator-color);
+    border-radius: var(--card-radius, 12px);
+    text-align: center;
+}
+.section-hero-title {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 var(--space-2);
+    color: var(--card-text-color-main);
+    letter-spacing: -0.01em;
+}
+.section-hero-subtitle {
+    color: var(--card-text-color-secondary);
+    margin: 0 0 var(--space-5);
+    font-size: var(--text-md);
+    line-height: 1.6;
+}
+.section-hero-cta {
+    display: inline-block;
+    padding: var(--space-3) var(--space-5);
+    background: var(--accent-color);
+    color: #fff;
+    border-radius: var(--radius-md, 10px);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--text-base);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.section-hero-cta:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+.section-listing-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin: 0 0 var(--space-4);
+    color: var(--card-text-color-main);
+    padding-left: var(--space-3);
+    border-left: 3px solid var(--accent-color);
+}
+@media (max-width: 768px) {
+    .section-hero-card { padding: var(--space-5) var(--space-4); }
+    .section-hero-title { font-size: var(--text-xl); }
+    .section-hero-cta { font-size: var(--text-sm); padding: var(--space-2) var(--space-4); }
+}
+
 /* ============================================================
    10. 文章详情页 chrome（.main-article 内除正文外的元素）
    规范化 H1/副标题/分类 chip/meta/TOC/标签/上下篇导航等
