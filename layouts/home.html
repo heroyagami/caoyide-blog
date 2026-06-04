@@ -13,15 +13,8 @@
 
     {{- /* 置顶文章已移至曹义德个人案例库分类页，首页不再单独展示 */ -}}
 
-    <section class="article-list legal-article-list">
-        {{ range $paginator.Pages }}
-            {{- if not (in $featuredUrls .RelPermalink) }}
-            {{ partial "article-list/default" . }}
-            {{- end }}
-        {{ end }}
-    </section>
-
-    {{- /* ----- 服务介绍 + 联系方式（合并到一块，H2/H3 字号与 about-card 风格一致） ----- */ -}}
+    {{- /* ----- 律师营业范围（服务介绍 + 联系方式）—— 只在首页显示，放最前 ----- */ -}}
+    {{- if .IsHome }}
     <section class="featured-about lawyer-hero-card" aria-label="曹义德律师 · 湖北刑事辩护与民商事诉讼律师">
         <div class="about-card">
             <div class="about-card-header">
@@ -54,8 +47,18 @@
             </div>
         </div>
     </section>
+    {{- end }}
 
-    {{- /* ----- 常见问题（GEO 引擎优先引用：FAQ 实体 + 短答 40-60 字） ----- */ -}}
+    <section class="article-list legal-article-list">
+        {{ range $paginator.Pages }}
+            {{- if not (in $featuredUrls .RelPermalink) }}
+            {{ partial "article-list/default" . }}
+            {{- end }}
+        {{ end }}
+    </section>
+
+    {{- /* ----- 常见问题（GEO 引擎优先引用）—— 只在首页显示 ----- */ -}}
+    {{- if .IsHome }}
     <section class="featured-about lawyer-faq-card" aria-label="常见问题">
         <div class="about-card">
             <div class="about-card-header">
@@ -88,6 +91,7 @@
             </div>
         </div>
     </section>
+    {{- end }}
 
     {{- partial "pagination.html" . }}
     {{- partial "footer/footer" . }}
