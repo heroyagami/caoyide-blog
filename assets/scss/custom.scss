@@ -116,20 +116,25 @@ body::after {
     background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
 }
 
-/* ---- 5. 背景 SVG 纹理极淡化 ---- */
+/* ---- 5. 背景纹理（CSS gradient 替代 53KB SVG）---- */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -10;
-    background-image: url("/img/background.svg");
-    background-size: cover;
-    background-position: center;
-    opacity: 0.05;
+    background:
+        repeating-linear-gradient(
+            45deg,
+            transparent 0 12px,
+            rgba(147, 219, 233, 0.06) 12px 13px
+        ),
+        radial-gradient(ellipse at 30% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 80%, rgba(31, 42, 44, 0.05) 0%, transparent 60%);
+    background-color: var(--background-color);
 }
 
 [data-scheme="dark"] body::before {
-    opacity: 0.02;
+    opacity: 0.7;
 }
 
 /* ---- 6. 全局聚焦态 ---- */

@@ -734,3 +734,63 @@ html[data-scheme="dark"] {
     --card-border-color: rgba(255, 255, 255, 0.05) !important;
 }
 </style>
+
+{{- /* 拦截 Cloudflare Web Analytics beacon 推到 onload 后（边缘注入 999ms，阻塞 DCL） */}}
+<script>
+(function() {
+  var BEACON_RE = /cloudflareinsights\.com\/beacon/;
+  function deferBeacon(node) {
+    if (node && node.src && BEACON_RE.test(node.src)) {
+      node.defer = true;
+      node.async = true;
+      // 等 onload 再插入
+      if (document.readyState === 'complete') {
+        return true;  // 已经在 load 后, 不动
+      }
+      window.addEventListener('load', function() {
+        if (!node.parentNode) {
+          document.body.appendChild(node);
+        }
+      });
+      return false;  // 先不入 DOM
+    }
+    return true;
+  }
+  // 拦截后续注入
+  var origCreate = document.createElement.bind(document);
+  document.createElement = function(tag) {
+    var el = origCreate(tag);
+    if (tag && tag.toLowerCase() === 'script') {
+      var _src = Object.getOwnPropertyDescriptor(HTMLScriptElement.prototype, 'src');
+      Object.defineProperty(el, 'src', {
+        get: function() { return _src.get.call(this); },
+        set: function(v) {
+          if (BEACON_RE.test(v)) {
+            // CF beacon — 设置到 onload 后
+            window.addEventListener('load', function() { _src.set.call(el, v); });
+          } else {
+            _src.set.call(el, v);
+          }
+        },
+      });
+    }
+    return el;
+  };
+  // DOMContentLoaded 时清理已注入的 beacon 标签
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('script[src*="cloudflareinsights.com/beacon"]').forEach(function(s) {
+      if (s.parentNode) s.parentNode.removeChild(s);
+    });
+  });
+  // onload 后真的加载 beacon
+  window.addEventListener('load', function() {
+    if (window.__cfBeaconLoaded) return;
+    window.__cfBeaconLoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.defer = true;
+    s.src = 'https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447';
+    document.body.appendChild(s);
+  });
+})();
+</script>
