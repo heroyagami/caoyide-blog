@@ -979,9 +979,9 @@ a {
     border-radius: var(--radius-xl);
     padding: var(--spacing-xl);
     box-shadow: var(--shadow-l3);
-    text-align: center; max-width: 320px; width: 90%;
+    text-align: center; max-width: 360px; width: 90%;
 }
-.qr-modal img { width: 220px; height: auto; border-radius: var(--radius-md); margin-bottom: var(--spacing-md); }
+.qr-modal img { width: 280px; height: auto; border-radius: var(--radius-md); margin-bottom: var(--spacing-md); }
 .qr-modal .qr-title { font-size: var(--text-md); font-weight: 600; color: var(--card-text-color-main); margin-bottom: 4px; }
 .qr-modal .qr-subtitle { font-size: var(--text-sm); color: var(--card-text-color-secondary); }
 .qr-modal .qr-close {
