@@ -1819,13 +1819,18 @@ footer.site-footer {
     margin-top: 0;
 }
 
-/* ---- C. 段落最大宽度 + 行高 + 段间距 ---- */
+/* ---- C. 段落最大宽度 + 行高 + 段间距 ----
+   注意：main 容器受 `container.extended{--right-sidebar-max-width:25%;--left-sidebar-max-width:15%}` 限制，
+   1536px 容器里 main 实际只有 ~920px。所以正文段不需要再 max-width，让它填满 main 容器。 */
 .article-content p,
 .article-content li,
-.article-content blockquote,
+.article-content blockquote {
+    max-width: 100%;
+    line-height: 1.75;
+}
 .featured-about .about-card-body p,
 .featured-about .about-card-body li {
-    max-width: 48rem;       /* 768px，行长 ~80 字符（折中：可读 + 不挤中间） */
+    max-width: 48rem;       /* FAQ/服务 card 内仍限宽（card 宽 ~1100px，不限会拉太长） */
     line-height: 1.75;
 }
 .article-content p + p,
