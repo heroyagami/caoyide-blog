@@ -650,7 +650,7 @@ a {
     margin: 0;
 }
 .featured-about .about-card-header h2 {
-    font-size: 1.4rem; margin: 0;
+    font-size: 1.5rem; margin: 0;
     color: var(--card-text-color-main);
     font-weight: 700;
     line-height: 1.3;
@@ -678,10 +678,10 @@ a {
     display: block;
 }
 .featured-about .about-card-body h3 {
-    font-size: 1.4rem; margin: 0 0 2px 0;
+    font-size: 1.15rem; margin: 0 0 4px 0;
     color: var(--accent-color);
     font-weight: 700;
-    line-height: 1.3;
+    line-height: 1.4;
 }
 .featured-about .about-card-body p {
     margin: 0;
@@ -692,7 +692,7 @@ a {
 .about-card-note {
     margin-top: 8px !important;
     color: var(--card-text-color-tertiary) !important;
-    font-size: 0.85rem !important;
+    font-size: 0.875rem !important;
     line-height: 1.6 !important;
     font-style: italic;
 }
@@ -1062,18 +1062,18 @@ a {
    这里用合适字号让信息清晰可读
    ============================================================ */
 footer.site-footer {
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1.7;
 
     .copyright {
         color: var(--accent-color) !important;
         font-weight: 600 !important;
-        font-size: 1rem;
+        font-size: 0.9rem;
         margin-bottom: 6px;
     }
 
     .powerby {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
         line-height: 1.7;
         color: var(--card-text-color-secondary);
     }
