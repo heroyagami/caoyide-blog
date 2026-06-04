@@ -677,7 +677,9 @@ a {
 .featured-about .about-card-fields {
     display: block;
 }
-.featured-about .about-card-body h3 {
+.featured-about .about-card-body h3,
+.featured-about .about-card-fields h3,
+.featured-about .about-card-contact h3 {
     font-size: 1.15rem; margin: 0 0 4px 0;
     color: var(--accent-color);
     font-weight: 700;
