@@ -20,7 +20,7 @@ jobs:
 
       - name: Clone Horizon repo
         run: |
-          git clone https://github.com/Thysrael/Horizon.git Horizon-ai-news
+          git clone https://github.com/heroyagami/Horizon.git Horizon-ai-news
 
       - name: Set up Python
         uses: actions/setup-python@v5
