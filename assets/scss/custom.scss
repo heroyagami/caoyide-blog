@@ -394,38 +394,7 @@ a {
     transition: all 0.2s;
 }
 
-/* ============================================================
-   文章内容排版
-   ============================================================ */
-.article-content {
-    line-height: 1.9;
-    font-size: var(--text-base);
-
-    h2 {
-        margin-top: 2.2em; margin-bottom: 0.8em;
-        padding-left: 16px;
-        border-left: 4px solid var(--accent-color);
-        font-family: var(--serif-font-family);
-        font-size: var(--text-xl);
-        font-weight: 700;
-    }
-    h3 {
-        margin-top: 1.6em; margin-bottom: 0.6em;
-        padding-left: 12px;
-        border-left: 3px solid var(--card-separator-color);
-        font-family: var(--serif-font-family);
-        font-size: 1.65rem;
-        font-weight: 650;
-    }
-    p { margin-bottom: 1.3em; }
-    a {
-        text-decoration: underline;
-        text-decoration-color: var(--accent-color);
-        text-underline-offset: 3px;
-        text-decoration-thickness: 1px;
-    }
-    a:hover { text-decoration-thickness: 2px; }
-}
+/* 文章内容排版 — 合并到下方第 9 节（unified 排版模块）*/
 
 /* ============================================================
    右侧边栏
@@ -1809,55 +1778,74 @@ footer.site-footer {
     --t-slow: 320ms;
 }
 
-/* ---- B. 字号梯度收紧 — H 段前后留白 ---- */
-.article-content h1,
-.article-content h2,
-.article-content h3,
-.article-content h4,
-.featured-about .about-card-body h2,
-.featured-about .about-card-body h3 {
-    margin-top: var(--space-6);
-    margin-bottom: var(--space-3);
-    line-height: 1.4;
-}
-.article-content > h1:first-child,
-.article-content > h2:first-child,
-.article-content > h3:first-child,
-.featured-about .about-card-body > h2:first-child,
-.featured-about .about-card-body > h3:first-child {
-    margin-top: 0;
+/* ============================================================
+   9. 文章正文 — 字号/字重/行高/间距统一
+   设计依据：ui-ux-pro-max · Trust & Authority · 思源黑/宋
+   main 容器 ~920px（被 container.extended 限死），
+   正文不另设 max-width，1.75 行高托住 ~54 字/行
+   ============================================================ */
+
+/* ---- 9.1 H 字号梯度 + 字重 + 行高 ----
+   h2/h3 走思源宋体 + 左侧蓝边（editorial 风格，沿用既有意图） */
+.article-content {
+    h1 { font-size: 2.4rem;  font-weight: 700; line-height: 1.35; }
+    h2 {
+        font-family: var(--serif-font-family);
+        font-size: 2.0rem;
+        font-weight: 700;
+        line-height: 1.4;
+        padding-left: 16px;
+        border-left: 4px solid var(--accent-color);
+    }
+    h3 {
+        font-family: var(--serif-font-family);
+        font-size: 1.75rem;
+        font-weight: 650;
+        line-height: 1.4;
+        padding-left: 12px;
+        border-left: 3px solid var(--card-separator-color);
+    }
+    h4 { font-size: var(--text-base); font-weight: 600; line-height: 1.45; }
+    h5 { font-size: var(--text-md);   font-weight: 600; line-height: 1.45; }
+    h6 { font-size: var(--text-sm);   font-weight: 600; line-height: 1.5;  letter-spacing: 0.05em; }
 }
 
-/* ---- C. 段落最大宽度 + 行高 + 段间距 ----
-   注意：main 容器受 `container.extended{--right-sidebar-max-width:25%;--left-sidebar-max-width:15%}` 限制，
-   1536px 容器里 main 实际只有 ~920px。所以正文段不需要再 max-width，让它填满 main 容器。 */
+/* ---- 9.2 正文：P / LI / FIGCAPTION ---- */
 .article-content p,
 .article-content li,
-.article-content blockquote {
-    max-width: 100%;
+.article-content figcaption {
+    font-size: var(--text-base);
     line-height: 1.75;
+    font-weight: 400;
 }
 .featured-about .about-card-body p,
 .featured-about .about-card-body li {
-    max-width: 48rem;       /* FAQ/服务 card 内仍限宽（card 宽 ~1100px，不限会拉太长） */
+    max-width: 48rem;       /* FAQ/服务 card 内仍限宽（card 宽 ~1100px） */
     line-height: 1.75;
 }
-.article-content p + p,
-.article-content ul + p,
-.article-content ol + p,
-.article-content blockquote + p,
-.article-content h2 + p,
-.article-content h3 + p {
-    margin-top: var(--space-4);
+
+/* ---- 9.3 强语义：STRONG / EM / CODE ---- */
+.article-content {
+    strong, b { font-weight: 600; color: var(--card-text-color-main); }
+    em, i     { font-style: italic; }
 }
+
+/* ---- 9.4 块元素：BLOCKQUOTE / IMG / PRE / TABLE / HR ---- */
 .article-content blockquote {
+    font-size: var(--text-md);
+    line-height: 1.7;
     border-left: 3px solid var(--accent-color);
     padding: var(--space-3) var(--space-5);
     margin: var(--space-5) 0;
     color: var(--card-text-color-secondary);
     background: var(--card-background-selected);
     border-radius: 0 var(--radius-md, 10px) var(--radius-md, 10px) 0;
-    font-style: italic;
+}
+.article-content hr {
+    border: 0;
+    height: 1px;
+    background: var(--card-separator-color);
+    margin: var(--space-6) 0;
 }
 .article-content img {
     max-width: 100%;
@@ -1882,6 +1870,7 @@ footer.site-footer {
     background: var(--card-background-selected);
     color: var(--accent-color);
     font-size: 0.9em;
+    font-weight: 500;
     font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
 }
 .article-content table {
@@ -1901,6 +1890,37 @@ footer.site-footer {
     font-weight: 600;
     color: var(--card-text-color-main);
     background: var(--card-background-selected);
+}
+
+/* ---- 9.5 间距节奏（8px 网格）---- */
+.article-content {
+    & > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
+        margin-top: var(--space-7);
+        margin-bottom: var(--space-3);
+    }
+    & > *:first-child { margin-top: 0; }
+    & > h1 + p, & > h2 + p, & > h3 + p,
+    & > h4 + p, & > h5 + p, & > h6 + p { margin-top: var(--space-3); }
+    p + p, ul + p, ol + p, blockquote + p,
+    h2 + ul, h3 + ol { margin-top: var(--space-4); }
+    ul, ol { margin: var(--space-5) 0; padding-left: var(--space-6); }
+    li { margin: var(--space-2) 0; }
+}
+
+/* ---- 9.6 移动端 ≤768px：H 缩档，段间距收紧 ---- */
+@media (max-width: 768px) {
+    .article-content {
+        h1 { font-size: 2.0rem; }
+        h2 { font-size: 1.8rem; }
+        h3 { font-size: 1.65rem; }
+        h4 { font-size: var(--text-md); }
+        h5 { font-size: var(--text-sm); }
+        h6 { font-size: var(--text-xs); }
+        p, li, blockquote { line-height: 1.7; }
+        & > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
+            margin-top: var(--space-6);
+        }
+    }
 }
 
 /* ---- D. 卡片系统统一（确保 token 引用一致） ---- */
