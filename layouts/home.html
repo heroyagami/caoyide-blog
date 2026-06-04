@@ -13,8 +13,9 @@
 
     {{- /* 置顶文章已移至曹义德个人案例库分类页，首页不再单独展示 */ -}}
 
-    {{- /* ----- 律师营业范围（服务介绍 + 联系方式）—— 只在首页显示，放最前 ----- */ -}}
-    {{- if .IsHome }}
+    {{- /* ----- 律师营业范围（服务介绍 + 联系方式）—— 只在首页（第一页）显示，放最前 ----- */ -}}
+    {{- /* 注意：Hugo 的 .IsHome 在分页页里也是 true，必须用 not .Paginator.HasPrev */ -}}
+    {{- if not .Paginator.HasPrev }}
     <section class="featured-about lawyer-hero-card" aria-label="曹义德律师 · 湖北刑事辩护与民商事诉讼律师">
         <div class="about-card">
             <div class="about-card-header">
@@ -57,8 +58,8 @@
         {{ end }}
     </section>
 
-    {{- /* ----- 常见问题（GEO 引擎优先引用）—— 只在首页显示 ----- */ -}}
-    {{- if .IsHome }}
+    {{- /* ----- 常见问题（GEO 引擎优先引用）—— 只在首页（第一页）显示 ----- */ -}}
+    {{- if not .Paginator.HasPrev }}
     <section class="featured-about lawyer-faq-card" aria-label="常见问题">
         <div class="about-card">
             <div class="about-card-header">
