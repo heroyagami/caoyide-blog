@@ -45,7 +45,7 @@ Write-Host "=== 2. git add + commit + push ===" -ForegroundColor Cyan
 & cmd /c "git add static/flk-rss.xml 2>&1"
 & cmd /c "git status -sb"
 
-$commitMsg = "chore: 刷新 flk-rss.xml ($(Get-Date -Format 'yyyy-MM-dd HH:mm'))"
+$commitMsg = "chore: refresh flk-rss.xml ($(Get-Date -Format 'yyyy-MM-dd HH:mm'))"
 & cmd /c "git commit --no-verify -m `"$commitMsg`" 2>&1"
 if ($LASTEXITCODE -ne 0) { Write-Host "  (没有改动，无需 commit)" -ForegroundColor Yellow }
 
