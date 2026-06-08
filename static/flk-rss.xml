@@ -6,7 +6,7 @@
     <atom:link href="https://caoyide.com/flk-rss.xml" rel="self" type="application/rss+xml" />
     <description>全国人大常委会国家法律法规数据库 · 每日最新通过的法规（由 caoyide.com 自动同步）</description>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 08 Jun 2026 07:10:51 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jun 2026 08:41:20 GMT</lastBuildDate>
     <generator>caoyide-blog flk fetcher v1.0</generator>
     <image>
       <url>https://caoyide.com/img/og-cover.jpg</url>
@@ -280,20 +280,6 @@
       <pubDate>Wed, 22 Apr 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
-      <title>[地方法规] 晋城市电动汽车充电基础设施管理条例</title>
-      <link>https://caoyide.com/posts/</link>
-      <description><![CDATA[📅 公布日期：2026-04-21
-🗓 施行日期：2026-06-01
-🏛 制定机关：晋城市人民代表大会常务委员会
-📂 分类：地方法规
-
-▎ flk.npc.gov.cn 全文链接：https://flk.npc.gov.cn/detail2.html?ff8081819e20afae019e3f2d2fe272bb]]></description>
-      <category>地方法规</category>
-      <author>npc.gov.cn</author>
-      <guid isPermaLink="false">npc-ff8081819e20afae019e3f2d2fe272bb</guid>
-      <pubDate>Tue, 21 Apr 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
       <title>[地方法规] 晋城市全民健身场地设施条例</title>
       <link>https://caoyide.com/posts/</link>
       <description><![CDATA[📅 公布日期：2026-04-21
@@ -305,6 +291,20 @@
       <category>地方法规</category>
       <author>npc.gov.cn</author>
       <guid isPermaLink="false">npc-ff8081819e48b493019e6db260e345a4</guid>
+      <pubDate>Tue, 21 Apr 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>[地方法规] 晋城市电动汽车充电基础设施管理条例</title>
+      <link>https://caoyide.com/posts/</link>
+      <description><![CDATA[📅 公布日期：2026-04-21
+🗓 施行日期：2026-06-01
+🏛 制定机关：晋城市人民代表大会常务委员会
+📂 分类：地方法规
+
+▎ flk.npc.gov.cn 全文链接：https://flk.npc.gov.cn/detail2.html?ff8081819e20afae019e3f2d2fe272bb]]></description>
+      <category>地方法规</category>
+      <author>npc.gov.cn</author>
+      <guid isPermaLink="false">npc-ff8081819e20afae019e3f2d2fe272bb</guid>
       <pubDate>Tue, 21 Apr 2026 00:00:00 GMT</pubDate>
     </item>
     <item>

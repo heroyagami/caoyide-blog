@@ -25,9 +25,9 @@ if ($LASTEXITCODE -ne 0) { throw "fetch-flk 失败" }
 
 Write-Host ""
 Write-Host "=== 2. git add + commit + push ===" -ForegroundColor Cyan
-git add scripts/fetch-flk.mjs static/flk-rss.xml 2>$null
-git add scripts/fetch-flk.mjs 2>$null
-git add static/flk-rss.xml 2>$null
+git add scripts/fetch-flk.mjs static/flk-rss.xml 2>&1 | Out-Null
+git add scripts/fetch-flk.mjs 2>&1 | Out-Null
+git add static/flk-rss.xml 2>&1 | Out-Null
 git status -sb
 
 $commitMsg = "chore: 刷新 flk-rss.xml ($(Get-Date -Format 'yyyy-MM-dd HH:mm'))"
