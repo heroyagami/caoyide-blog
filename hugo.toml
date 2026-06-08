@@ -99,6 +99,14 @@ buildFuture = true
         icon = "wechat"
         newTab = false
 
+[[menu.social]]
+    identifier = "rss"
+    name = "订阅 RSS"
+    url = "/index.xml"
+    [menu.social.params]
+        icon = "rss"
+        newTab = true
+
 # ============================================================
 # Markdown 渲染
 # ============================================================
