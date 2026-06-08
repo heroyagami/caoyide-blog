@@ -19,7 +19,7 @@ import { dirname, join } from "path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = join(__dirname, "..");
-const OUTPUT_PATH = join(PROJECT_ROOT, "public", "flk-rss.xml");
+const OUTPUT_PATH = join(PROJECT_ROOT, "static", "flk-rss.xml");
 
 const SITE_URL = "https://caoyide.com";
 const RSS_TITLE = "国家法律法规数据库 · 最新法规速递";
