@@ -5,3 +5,5 @@ hugo_cache/
 *.bak
 content/posts/Clippings/
 Horizon-ai-news/
+node_modules/
+.obsidian/
