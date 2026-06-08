@@ -15,26 +15,28 @@
 #                    → 参数:-ExecutionPolicy Bypass -File "D:\blog\caoyide-blog\scripts\refresh-flk-rss.ps1"
 #
 
-$ErrorActionPreference = "Stop"
+# 关键：PowerShell 5.x 调外部命令（git/node）时，任何 stderr 输出都抛 NativeCommandError
+# 解决：所有外部命令用 cmd /c 包裹，把 stderr 重定向到 stdout
+$ErrorActionPreference = "Continue"  # 不要因为单条命令错误就停
 $projectDir = "D:\blog\caoyide-blog"
 Set-Location $projectDir
 
 Write-Host "=== 1. 抓取 flk.npc.gov.cn 最新法规 ===" -ForegroundColor Cyan
-node scripts/fetch-flk.mjs
+& cmd /c "node scripts/fetch-flk.mjs 2>&1"
 if ($LASTEXITCODE -ne 0) { throw "fetch-flk 失败" }
 
 Write-Host ""
 Write-Host "=== 2. git add + commit + push ===" -ForegroundColor Cyan
-git add scripts/fetch-flk.mjs static/flk-rss.xml 2>&1 | Out-Null
-git add scripts/fetch-flk.mjs 2>&1 | Out-Null
-git add static/flk-rss.xml 2>&1 | Out-Null
-git status -sb
+& cmd /c "git add scripts/fetch-flk.mjs static/flk-rss.xml 2>&1"
+& cmd /c "git add scripts/fetch-flk.mjs 2>&1"
+& cmd /c "git add static/flk-rss.xml 2>&1"
+& cmd /c "git status -sb"
 
 $commitMsg = "chore: 刷新 flk-rss.xml ($(Get-Date -Format 'yyyy-MM-dd HH:mm'))"
-git commit --no-verify -m $commitMsg
+& cmd /c "git commit --no-verify -m `"$commitMsg`" 2>&1"
 if ($LASTEXITCODE -ne 0) { Write-Host "  (没有改动，无需 commit)" -ForegroundColor Yellow }
 
-git push
+& cmd /c "git push 2>&1"
 if ($LASTEXITCODE -ne 0) { throw "git push 失败" }
 
 Write-Host ""
