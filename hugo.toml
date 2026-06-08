@@ -99,15 +99,6 @@ buildFuture = true
         icon = "wechat"
         newTab = false
 
-[[menu.social]]
-    identifier = "rss"
-    name = "新法速递 RSS"
-    url = "/flk-rss.xml"
-    [menu.social.params]
-        icon = "rss"
-        newTab = true
-        title = "全国人大常委会最新通过的法规（用 folo / Feedly 等 RSS 阅读器订阅）"
-
 # ============================================================
 # Markdown 渲染
 # ============================================================
