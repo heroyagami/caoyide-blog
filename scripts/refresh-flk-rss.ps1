@@ -22,12 +22,12 @@ $projectDir = "D:\blog\caoyide-blog"
 Set-Location $projectDir
 
 # 防 git index.lock 撞（多个进程同时跑时）
-$gitLock = Join-Path $projectDir ".git/index.lock"
-if (Test-Path $gitLock) {
-  $lockAge = (Get-Date) - (Get-Item $gitLock).LastWriteTime
+$gitLock = $projectDir + "\.git\index.lock"
+if (Test-Path -LiteralPath $gitLock) {
+  $lockAge = (Get-Date) - (Get-Item -LiteralPath $gitLock).LastWriteTime
   if ($lockAge.TotalSeconds -gt 60) {
     Write-Host "  清掉陈旧 .git/index.lock（$([int]$lockAge.TotalSeconds)秒前创建）" -ForegroundColor Yellow
-    Remove-Item $gitLock -Force
+    Remove-Item -LiteralPath $gitLock -Force
   } else {
     Write-Host "  ⚠️ .git/index.lock 较新（$([int]$lockAge.TotalSeconds)秒前），可能真有 git 在跑，退出" -ForegroundColor Red
     exit 1
