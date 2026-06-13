@@ -1,0 +1,50 @@
+{{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) -}}
+{{- $title := .Title -}}
+{{- if eq $title "Clippings" }}{{ $title = "热点日报" }}{{ end -}}
+<article class="border-glow-card" style="
+    --card-bg: #1a1620;
+    --fill-opacity: 0.5;
+    --glow-color: hsl(40 80% 80% / 100%);
+    --glow-color-50: hsl(40 80% 80% / 50%);
+    --glow-color-30: hsl(40 80% 80% / 30%);
+    --glow-color-10: hsl(40 80% 80% / 10%);
+    --gradient-one: radial-gradient(at 80% 55%, #1e3a5f 0px, transparent 50%);
+    --gradient-two: radial-gradient(at 69% 34%, #c9a961 0px, transparent 50%);
+    --gradient-three: radial-gradient(at 8% 6%, #a8324a 0px, transparent 50%);
+    --gradient-four: radial-gradient(at 41% 38%, #1e3a5f 0px, transparent 50%);
+    --gradient-five: radial-gradient(at 86% 85%, #c9a961 0px, transparent 50%);
+    --gradient-six: radial-gradient(at 82% 18%, #a8324a 0px, transparent 50%);
+    --gradient-seven: radial-gradient(at 51% 4%, #c9a961 0px, transparent 50%);
+    --gradient-base: linear-gradient(#1e3a5f 0 100%);
+">
+    <span class="edge-light"></span>
+    <div class="border-glow-inner">
+        <a href="{{ .RelPermalink }}" style="text-decoration: none; color: inherit; display: contents;">
+            {{ if $image }}
+            <div class="article-image">
+                {{ partial "helper/thumbnail-image" (dict
+                    "Resource" $image.Resource
+                    "Width" 250
+                    "Height" 150
+                    "Resize" .Site.Params.ImageProcessing.Thumbnail.Enabled
+                    "Attributes" (dict
+                        "src" $image.Permalink
+                        "alt" (printf "Featured image of post %s" $title)
+                        "loading" "lazy"
+                        "width" $image.Width
+                        "height" $image.Height
+                    )
+                ) }}
+            </div>
+            {{ end }}
+
+            <h2 class="article-title">{{ $title }}</h2>
+            {{ if not $image }}
+            <div class="meta">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+                {{ if .ReadingTime }}<span> · {{ .ReadingTime }} 分钟</span>{{ end }}
+            </div>
+            {{ end }}
+        </a>
+    </div>
+</article>
