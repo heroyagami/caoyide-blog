@@ -1,0 +1,43 @@
+{{/*
+  partial: article/components/related-laws
+  用法：layouts/_default/single.html 中 {{ partial "article/components/related-laws" . }}
+  作用：根据 frontmatter 的 related_laws 列表，自动渲染所有法条卡片
+*/}}
+{{ with .Params.related_laws }}
+  <section class="related-laws" style="margin-top: 3em; padding-top: 2em; border-top: 2px solid #DE2910;">
+    <h2 style="font-size: 1.4em; color: #DE2910; margin-bottom: 1em;">📜 本文引用法条</h2>
+    {{ range . }}
+      {{ $id := . }}
+      <div class="law-entry">
+        {{ $parts := split $id "/" }}
+        {{ $lastIdx := sub (len $parts) 1 }}
+        {{ $article := index $parts $lastIdx }}
+        {{ $lawFileRaw := index $parts (sub $lastIdx 1) }}
+        {{ $lawFile := strings.TrimSuffix ".md" $lawFileRaw }}
+        {{ $lawDir := delimit (first (sub $lastIdx 1) $parts) "/" }}
+        {{ $fullPath := printf "themes-data/laws/docs/%s/%s" $lawDir $lawFileRaw }}
+        {{ if fileExists $fullPath }}
+          {{ $content := readFile $fullPath }}
+          {{ $pattern := printf `\*\*第[^条]*%s条\*\*` $article }}
+          {{ $match := findRE $pattern $content 1 }}
+          {{ if $match }}
+            <div class="law-card" style="margin: 1.5em 0; padding: 1em 1.2em; border-left: 4px solid #DE2910; background: #fff8f6; border-radius: 6px;">
+              <h4 style="margin: 0 0 0.5em 0; color: #DE2910;">《{{ $lawFile }}》第 {{ $article }} 条</h4>
+              <p style="margin: 0.4em 0; line-height: 1.7; color: #333;">{{ $match }}</p>
+              <p style="margin: 0.6em 0 0 0; font-size: 0.85em;"><a href="https://www.justlaws.cn/{{ $lawDir }}/{{ $lawFile }}/" target="_blank" rel="noopener">→ 在 just-laws 查看完整法条</a></p>
+            </div>
+          {{ else }}
+            <div class="law-fallback" style="margin: 1.5em 0; padding: 0.8em 1.2em; border-left: 4px solid #999; background: #f5f5f5; border-radius: 6px;">
+              <p style="margin: 0; color: #666;">《{{ $lawFile }}》第 {{ $article }} 条 · 暂未收录到本站，<a href="https://www.justlaws.cn/{{ $lawDir }}/{{ $lawFile }}/" target="_blank" rel="noopener">查看完整法条（just-laws）</a></p>
+            </div>
+          {{ end }}
+        {{ else }}
+          <div class="law-fallback" style="margin: 1.5em 0; padding: 0.8em 1.2em; border-left: 4px solid #999; background: #f5f5f5; border-radius: 6px;">
+            <p style="margin: 0; color: #666;">路径 {{ $fullPath }} 暂未收录，<a href="https://www.justlaws.cn/" target="_blank" rel="noopener">查看 just-laws 法律文库</a></p>
+          </div>
+        {{ end }}
+      </div>
+    {{ end }}
+    <p style="margin-top: 2em; font-size: 0.85em; color: #888;">⚖️ 法条源自 <a href="https://github.com/ImCa0/just-laws" target="_blank" rel="noopener">Just Laws 开源法律文库</a>（MIT 协议）</p>
+  </section>
+{{ end }}

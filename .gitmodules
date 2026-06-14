@@ -1,3 +1,6 @@
 [submodule "themes/hugo-theme-stack"]
 	path = themes/hugo-theme-stack
 	url = https://github.com/CaiJimmy/hugo-theme-stack.git
+[submodule "themes-data/laws"]
+	path = themes-data/laws
+	url = https://github.com/ImCa0/just-laws.git
