@@ -85,6 +85,14 @@ buildFuture = true
     [menu.main.params]
         icon = "briefcase"
 
+[[menu.main]]
+    identifier = "laws"
+    name = "法律文库"
+    url = "/laws/"
+    weight = 15
+    [menu.main.params]
+        icon = "shield-check"
+
 # ---- 社交链接（显示在侧边栏） ----
 [[menu.social]]
     identifier = "phone"
