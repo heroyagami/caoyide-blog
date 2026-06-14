@@ -77,7 +77,7 @@ buildFuture = true
 
 [[menu.main]]
     identifier = "cases"
-    name = "曹义德个人案例库"
+    name = "关于曹义德"
     url = "/cases/"
     weight = 10
     [menu.main.params]

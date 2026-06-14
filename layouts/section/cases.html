@@ -1,6 +1,12 @@
 {{ define "main" }}
-{{- $term := $.Site.GetPage "/categories/曹义德个人案例库" -}}
+{{- $term := $.Site.GetPage "/categories/关于曹义德" -}}
 {{- $pages := $term.Pages -}}
+
+{{ with .Content }}
+<section class="lawyer-profile" style="margin-bottom:2rem;">
+  {{ . }}
+</section>
+{{ end }}
 
 {{ with $pages }}
 <h2 class="cases-count-header">全部文章（共 {{ len $pages }} 篇）</h2>

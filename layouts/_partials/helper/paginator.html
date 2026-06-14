@@ -1,5 +1,5 @@
 {{- /* 本地覆盖：在首页（home）的分页前过滤掉 featured 文章，
-       featured 文章集中在「曹义德个人案例库」分类页展示，首页不再列出。
+       featured 文章集中在「关于曹义德」分类页展示，首页不再列出。
        由于 head.html 早于 home main 调用本 partial，分页器在 head 阶段就被建立缓存；
        Hugo 只接受一次 .Paginate 调用，所以过滤必须在这里完成。 */ -}}
 {{- $result := slice -}}
