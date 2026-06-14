@@ -9,3 +9,4 @@ node_modules/
 .obsidian/
 _desensitized_backup/
 static/img/avatar.jpg.bak.20260608
+package-lock.json
