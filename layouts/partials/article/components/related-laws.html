@@ -2,12 +2,59 @@
   partial: article/components/related-laws
   用法：layouts/_default/single.html 中 {{ partial "article/components/related-laws" . }}
   作用：根据 frontmatter 的 related_laws 列表，渲染为链接列表
-        点击跳转到 /laws/民法典/#article-1062 形式
+        点击跳转到 /laws/cat/lawName--lawFile/#article-XXX
+
+  related_laws 数据格式（来自早期 gen-laws-md.mjs）：
+    4 段："cat/lawName/lawFile.md/article"   → /laws/cat/lawName--lawFile/
+    3 段："cat/lawFile.md/article"           → /laws/cat/lawFile/
+  用最后一段是否带 .md 来动态判断（兼容两种格式）
 */}}
 {{ with .Params.related_laws }}
-  <section class="related-laws" style="margin-top: 1.5em; padding: 1em 1.2em; background: #fff8f6; border-radius: 6px; border-left: 4px solid #DE2910;">
-    <h2 style="font-size: 1.1em; color: #DE2910; margin: 0 0 0.6em 0;">📜 本文引用法条</h2>
-    <ul style="list-style: none; padding: 0; margin: 0;">{{ range . }}{{ $id := . }}{{ $parts := split $id "/" }}{{ $lastIdx := sub (len $parts) 1 }}{{ $article := index $parts $lastIdx }}{{ $lawFileRaw := index $parts (sub $lastIdx 1) }}{{ $lawFile := strings.TrimSuffix ".md" $lawFileRaw }}{{ $lawDir := delimit (first (sub $lastIdx 1) $parts) "/" }}{{ $category := "其他" }}{{ if hasPrefix $lawDir "constitution" }}{{ $category = "宪法" }}{{ else if hasPrefix $lawDir "constitutional-relevance" }}{{ $category = "宪法相关法" }}{{ else if hasPrefix $lawDir "civil-and-commercial" }}{{ $category = "民商法" }}{{ else if hasPrefix $lawDir "criminal-law" }}{{ $category = "刑法" }}{{ else if hasPrefix $lawDir "administrative" }}{{ $category = "行政法" }}{{ else if hasPrefix $lawDir "economic" }}{{ $category = "经济法" }}{{ else if hasPrefix $lawDir "procedural" }}{{ $category = "程序法" }}{{ else if hasPrefix $lawDir "social" }}{{ $category = "社会法" }}{{ end }}{{/* URL 规则：{catDir}/{lawName}/{subFile} → {catDir}/{lawName}--{subFile}/ */}}{{ $lawUrl := printf "/laws/%s--%s/" $lawDir $lawFile }}{{ $anchor := printf "article-%s" $article }}<li style="margin: 0.3em 0; padding: 0.2em 0;"><a href="{{ $lawUrl }}#{{ $anchor }}" style="color: #333; text-decoration: none; display: flex; align-items: center;"><span style="color: #DE2910; margin-right: 0.5em;">▸</span><span>{{ $category }} · {{ $lawFile }} · 第 {{ $article }} 条</span></a></li>{{ end }}</ul>
-    <p style="margin: 0.6em 0 0 0; font-size: 0.8em; color: #888;">⚖️ 法律源自 <a href="https://github.com/ImCa0/just-laws" target="_blank" rel="noopener">Just Laws 开源法律文库</a>（MIT 协议）</p>
+  <section class="related-laws" style="margin-top: 1.5em; padding: 1em 1.2em; background: var(--card-background-selected); border-radius: 6px; border-left: 4px solid var(--accent-color);">
+    <h2 style="font-size: 1.1em; color: var(--accent-color); margin: 0 0 0.6em 0;">📜 本文引用法条</h2>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      {{ range . }}
+        {{ $id := . }}
+        {{ $parts := split $id "/" }}
+        {{ $lastIdx := sub (len $parts) 1 }}
+        {{ $article := index $parts $lastIdx }}
+        {{ $catDir := index $parts 0 }}
+        {{ $prevPart := index $parts (sub $lastIdx 1) }}
+        {{ $category := "其他" }}
+        {{ if hasPrefix $catDir "constitution" }}{{ $category = "宪法" }}
+        {{ else if hasPrefix $catDir "constitutional-relevance" }}{{ $category = "宪法相关法" }}
+        {{ else if hasPrefix $catDir "civil-and-commercial" }}{{ $category = "民商法" }}
+        {{ else if hasPrefix $catDir "criminal-law" }}{{ $category = "刑法" }}
+        {{ else if hasPrefix $catDir "administrative" }}{{ $category = "行政法" }}
+        {{ else if hasPrefix $catDir "economic" }}{{ $category = "经济法" }}
+        {{ else if hasPrefix $catDir "procedural" }}{{ $category = "程序法" }}
+        {{ else if hasPrefix $catDir "social" }}{{ $category = "社会法" }}
+        {{ end }}
+
+        {{/* 根据段数动态构造 URL */}}
+        {{ $lawUrl := "" }}
+        {{ $displayName := "" }}
+        {{ if strings.HasSuffix $prevPart ".md" }}
+          {{/* 4 段：cat/lawName/lawFile.md/article → /laws/cat/lawName--lawFile/ */}}
+          {{ $lawFile := strings.TrimSuffix ".md" $prevPart }}
+          {{ $lawName := index $parts 1 }}
+          {{ $lawUrl = printf "/laws/%s/%s--%s/" $catDir $lawName $lawFile }}
+          {{ $displayName = printf "%s %s" $lawName $lawFile }}
+        {{ else }}
+          {{/* 3 段：cat/lawFile.md/article → /laws/cat/lawFile/ */}}
+          {{ $lawFile := strings.TrimSuffix ".md" $prevPart }}
+          {{ $lawUrl = printf "/laws/%s/%s/" $catDir $lawFile }}
+          {{ $displayName = $lawFile }}
+        {{ end }}
+        {{ $anchor := printf "article-%s" $article }}
+
+        <li style="margin: 0.3em 0; padding: 0.2em 0;">
+          <a href="{{ $lawUrl }}#{{ $anchor }}" style="color: var(--card-text-color-main); text-decoration: none; display: flex; align-items: center;">
+            <span style="color: var(--accent-color); margin-right: 0.5em;">▸</span>
+            <span>{{ $category }} · {{ $displayName }} · 第 {{ $article }} 条</span>
+          </a>
+        </li>
+      {{ end }}
+    </ul>
   </section>
 {{ end }}

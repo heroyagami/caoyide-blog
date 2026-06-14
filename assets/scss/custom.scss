@@ -2605,3 +2605,20 @@ footer.site-footer {
 [data-scheme="dark"] .article-content h4 {
     color: #c8c8c8;
 }
+
+/* 兜底：「关于曹义德」页用 .lawyer-profile 而不是 .article-content，
+   旧修复没覆盖到，所以暗色模式下黑字依然看不清。统一兜底： */
+[data-scheme="dark"] .lawyer-profile,
+[data-scheme="dark"] .lawyer-profile p,
+[data-scheme="dark"] .lawyer-profile li,
+[data-scheme="dark"] .lawyer-profile h1,
+[data-scheme="dark"] .lawyer-profile h2,
+[data-scheme="dark"] .lawyer-profile h3,
+[data-scheme="dark"] .lawyer-profile h4,
+[data-scheme="dark"] .lawyer-profile strong {
+    color: rgba(255, 255, 255, 0.88);
+}
+[data-scheme="dark"] .lawyer-profile h2,
+[data-scheme="dark"] .lawyer-profile h3 {
+    color: rgba(255, 255, 255, 0.95);
+}

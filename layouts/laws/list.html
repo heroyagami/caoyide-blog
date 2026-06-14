@@ -1,8 +1,12 @@
 {{/*
   layout: laws/list.html
-  用法：当 content/laws/_index.md 渲染时
-  作用：列出 7 大类法律（参考 justlaws.cn 分类方式）
+  用法：当 content/laws/ 节点渲染时
+  作用：列出 7 大类法律（参考 just-laws 分类方式）
   设计：保持 Stack 主题默认风格（黑白灰），不偏离 caoyide 现有设计
+
+  踩坑（md-feedback-00022）：Windows 上 Hugo 的 .File.Dir 是 laws\administrative\（反斜杠+带尾斜杠），
+  不能用 where "File.Dir" "laws/administrative" 直接匹配，
+  必须用 strings.Contains 模糊匹配，或先 replaceRE 把反斜杠转正斜杠
 */}}
 {{ define "body-class" }}
   article-page
@@ -12,10 +16,12 @@
   <article class="article">
     <div class="article-header">
       <h1 class="article-title">法律文库</h1>
-      <p class="article-summary">收录 192 部现行有效法律，按 7 大类组织。源自 <a href="https://github.com/ImCa0/just-laws" target="_blank" rel="noopener">Just Laws 开源法律文库</a>（MIT 协议）。</p>
+      <p class="article-summary">收录 192 部现行有效法律，按 7 大类组织。</p>
     </div>
 
     <div class="article-content">
+      {{ $allLaws := where $.Site.RegularPages "Section" "laws" }}
+
       {{ $categories := slice
         (dict "name" "宪法" "dir" "constitution")
         (dict "name" "宪法相关法" "dir" "constitutional-relevance")
@@ -29,25 +35,18 @@
 
       {{ range $categories }}
         {{ $cat := . }}
-        {{ $sectionPath := printf "laws/%s" $cat.dir }}
-        {{ $section := $.Site.GetPage $sectionPath }}
-
-        {{ if $section }}
-          {{ $laws := where $section.Pages "Kind" "page" }}
-          {{ if gt (len $laws) 0 }}
-            <section class="widget">
-              <h2 class="widget-title">{{ $cat.name }}（{{ len $laws }} 部）</h2>
-              <div class="widget-body">
-                <ul class="laws-list">{{range $laws}}<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>{{end}}</ul>
-              </div>
-            </section>
-          {{ end }}
+        {{ $catKey := $cat.dir }}
+        {{/* 用 strings.Contains 模糊匹配（兼容 Windows 反斜杠 + 带尾斜杠两种情况）*/}}
+        {{ $catLaws := where $allLaws "File.Dir" "in" (slice (printf "laws/%s/" $catKey) (printf "laws\\%s\\" $catKey)) }}
+        {{ if gt (len $catLaws) 0 }}
+          <section class="widget">
+            <h2 class="widget-title">{{ $cat.name }}（{{ len $catLaws }} 部）</h2>
+            <div class="widget-body">
+              <ul class="laws-list">{{ range $catLaws }}<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>{{ end }}</ul>
+            </div>
+          </section>
         {{ end }}
       {{ end }}
-    </div>
-
-    <div class="article-footer">
-      <p>⚖️ 法条源自 <a href="https://github.com/ImCa0/just-laws" target="_blank" rel="noopener">Just Laws 开源法律文库</a>（MIT 协议）</p>
     </div>
   </article>
 {{ end }}
