@@ -2592,3 +2592,16 @@ footer.site-footer {
         transition-delay: 0ms !important;
     }
 }
+
+/* ============================================================
+   暗色模式修复：关于曹义德页 / 普通文章页 article-content 黑字看不清
+   曹律师反馈：暗色模式下黑字看不清
+   ============================================================ */
+[data-scheme="dark"] .article-content p,
+[data-scheme="dark"] .article-content li,
+[data-scheme="dark"] .article-content h1,
+[data-scheme="dark"] .article-content h2,
+[data-scheme="dark"] .article-content h3,
+[data-scheme="dark"] .article-content h4 {
+    color: #c8c8c8;
+}

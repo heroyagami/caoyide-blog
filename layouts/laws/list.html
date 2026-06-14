@@ -1,33 +1,30 @@
 {{/*
   layout: laws/list.html
   用法：当 content/laws/_index.md 渲染时
-  作用：列出所有 7 大类法律（仿 justlaws.cn 设计 + 复合 caoyide 中国红风）
+  作用：列出 7 大类法律（参考 justlaws.cn 分类方式）
+  设计：保持 Stack 主题默认风格（黑白灰），不偏离 caoyide 现有设计
 */}}
 {{ define "body-class" }}
   article-page
-  law-list-page
 {{ end }}
 
 {{ define "main" }}
-  <article class="article law-list-article">
+  <article class="article">
     <div class="article-header">
-      <h1 class="article-title">📚 中国法律文库</h1>
-      <p class="article-description" style="color: #666; font-size: 1.05em; margin: 0.4em 0 1em 0;">
-        收录 308 部现行有效法律，按 7 大类组织。源自 <a href="https://github.com/ImCa0/just-laws" target="_blank" rel="noopener">Just Laws 开源法律文库</a>（MIT 协议）。
-      </p>
+      <h1 class="article-title">法律文库</h1>
+      <p class="article-summary">收录 192 部现行有效法律，按 7 大类组织。源自 <a href="https://github.com/ImCa0/just-laws" target="_blank" rel="noopener">Just Laws 开源法律文库</a>（MIT 协议）。</p>
     </div>
 
     <div class="article-content">
-      {{/* 遍历所有子类 */}}
       {{ $categories := slice
-        (dict "name" "宪法" "dir" "constitution" "desc" "宪法及宪法修正案")
-        (dict "name" "宪法相关法" "dir" "constitutional-relevance" "desc" "54 部")
-        (dict "name" "民商法" "dir" "civil-and-commercial" "desc" "民法典 + 公司法 + 证券法 + 保险法等")
-        (dict "name" "刑法" "dir" "criminal-law" "desc" "刑法及修正案")
-        (dict "name" "行政法" "dir" "administrative" "desc" "96 部")
-        (dict "name" "经济法" "dir" "economic" "desc" "88 部")
-        (dict "name" "程序法" "dir" "procedural" "desc" "刑诉、民诉、行诉等")
-        (dict "name" "社会法" "dir" "social" "desc" "30 部")
+        (dict "name" "宪法" "dir" "constitution")
+        (dict "name" "宪法相关法" "dir" "constitutional-relevance")
+        (dict "name" "民商法" "dir" "civil-and-commercial")
+        (dict "name" "刑法" "dir" "criminal-law")
+        (dict "name" "行政法" "dir" "administrative")
+        (dict "name" "经济法" "dir" "economic")
+        (dict "name" "程序法" "dir" "procedural")
+        (dict "name" "社会法" "dir" "social")
       }}
 
       {{ range $categories }}
@@ -35,21 +32,22 @@
         {{ $sectionPath := printf "laws/%s" $cat.dir }}
         {{ $section := $.Site.GetPage $sectionPath }}
 
-        <section class="law-category" style="margin: 2em 0; padding: 1em 1.2em; background: #fff; border-radius: 8px; border-left: 4px solid #DE2910; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
-          <h2 style="color: #DE2910; margin: 0 0 0.4em 0;">{{ $cat.name }}</h2>
-          <p style="color: #888; font-size: 0.9em; margin: 0 0 0.8em 0;">{{ $cat.desc }}</p>
-          {{ if $section }}
-            {{ $laws := where $section.Pages "Kind" "page" }}
-            {{ if gt (len $laws) 0 }}
-              <ul style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.5em;">{{ range $laws }}<li><a href="{{ .Permalink }}" style="color: #333; text-decoration: none; padding: 0.3em 0.5em; display: block; border-radius: 4px; transition: background 0.2s;" onmouseover="this.style.background='#fff8f6'" onmouseout="this.style.background='transparent'">{{ .Title }}</a></li>{{ end }}</ul>
-            {{ else }}
-              <p style="color: #999; font-style: italic;">该分类下暂无法律收录</p>
-            {{ end }}
-          {{ else }}
-            <p style="color: #999; font-style: italic;">该分类尚未生成内容页（请先运行 scripts/gen-laws-md.mjs）</p>
+        {{ if $section }}
+          {{ $laws := where $section.Pages "Kind" "page" }}
+          {{ if gt (len $laws) 0 }}
+            <section class="widget">
+              <h2 class="widget-title">{{ $cat.name }}（{{ len $laws }} 部）</h2>
+              <div class="widget-body">
+                <ul class="laws-list">{{range $laws}}<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>{{end}}</ul>
+              </div>
+            </section>
           {{ end }}
-        </section>
+        {{ end }}
       {{ end }}
+    </div>
+
+    <div class="article-footer">
+      <p>⚖️ 法条源自 <a href="https://github.com/ImCa0/just-laws" target="_blank" rel="noopener">Just Laws 开源法律文库</a>（MIT 协议）</p>
     </div>
   </article>
 {{ end }}

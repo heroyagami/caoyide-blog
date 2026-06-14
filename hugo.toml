@@ -53,11 +53,9 @@ buildFuture = true
             { type = "quicklinks" },
             { type = "archives", params = { limit = 5 } },
             { type = "categories", params = { limit = 15 } },
-            { type = "laws" },
         ]
        page = [
             { type = "toc" },
-            { type = "laws" },
         ]
 
 # ============================================================
@@ -91,7 +89,7 @@ buildFuture = true
     url = "/laws/"
     weight = 15
     [menu.main.params]
-        icon = "shield-check"
+        icon = "law"
 
 # ---- 社交链接（显示在侧边栏） ----
 [[menu.social]]
