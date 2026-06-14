@@ -53,9 +53,11 @@ buildFuture = true
             { type = "quicklinks" },
             { type = "archives", params = { limit = 5 } },
             { type = "categories", params = { limit = 15 } },
+            { type = "laws" },
         ]
        page = [
             { type = "toc" },
+            { type = "laws" },
         ]
 
 # ============================================================

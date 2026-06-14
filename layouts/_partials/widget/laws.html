@@ -1,0 +1,15 @@
+{{/*
+  partial: widget/laws
+  作用：侧边栏的"法律文库"入口块（仿 justlaws.cn 设计 + 复合 caoyide 风格）
+  用法：hugo.toml 的 [params.widgets] 中加 { type = "laws" }
+*/}}
+<section class="widget laws-widget">
+  <h2 class="widget-title">📚 法律文库</h2>
+  <div class="widget-body">
+    <a href="/laws/" class="laws-widget-link" style="display: block; padding: 0.8em 1em; background: #fff8f6; border: 1px solid #DE2910; border-radius: 6px; text-decoration: none; color: #333; margin-bottom: 0.5em; transition: background 0.2s;" onmouseover="this.style.background='#fff0f0'" onmouseout="this.style.background='#fff8f6'">
+      <strong style="color: #DE2910;">浏览全部 308 部法律</strong>
+      <p style="margin: 0.3em 0 0 0; font-size: 0.85em; color: #666;">按宪法/民商法/刑法/经济法/行政法/程序法/社会法 7 大类</p>
+    </a>
+    <ul style="list-style: none; padding: 0; margin: 0.5em 0 0 0; font-size: 0.9em;">{{ $cats := slice (dict "name" "宪法" "url" "/laws/constitution/") (dict "name" "民商法" "url" "/laws/civil-and-commercial/") (dict "name" "刑法" "url" "/laws/criminal-law/") (dict "name" "经济法" "url" "/laws/economic/") (dict "name" "行政法" "url" "/laws/administrative/") (dict "name" "程序法" "url" "/laws/procedural/") (dict "name" "社会法" "url" "/laws/social/") }}{{ range $cats }}<li style="margin: 0.2em 0;"><a href="{{ .url }}" style="color: #333; text-decoration: none;">▸ {{ .name }}</a></li>{{ end }}</ul>
+  </div>
+</section>

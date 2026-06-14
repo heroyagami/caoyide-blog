@@ -24,25 +24,71 @@
 {{ end }}
 
 {{ define "main" }}
-    {{ partial "article/article.html" . }}
+    {{ if .Params.law_file }}
+        {{/* ========== 法条全文页（law.html 内容内联） ========== */}}
+        <article class="article law-article">
+            <div class="article-header">
+                <h1 class="article-title">{{ .Title }}</h1>
+                {{ with .Description }}
+                    <p class="article-description" style="color: #666; font-size: 1.05em; margin: 0.4em 0 1em 0;">{{ . }}</p>
+                {{ end }}
+                <div class="article-meta" style="font-size: 0.9em; color: #888; margin-bottom: 1em;">
+                    <span>📂 来源分类：{{ .Params.category | default "其他" }}</span>
+                    <span style="margin-left: 1em;">📅 收录时间：{{ .Date.Format "2006-01-02" }}</span>
+                </div>
+            </div>
 
-    {{ if .Params.links }}
-        {{ partial "article/components/links" . }}
+            <div class="article-content">
+                {{ $lawFile := .Params.law_file }}
+                {{ $fullPath := printf "themes-data/laws/docs/%s" $lawFile }}
+                {{ if fileExists $fullPath }}
+                    {{ $content := readFile $fullPath }}
+                    {{/* 给每条"第X条"加 id 锚点（用 span 代替 a——Hugo safeHTML 会转义裸 <a id>） */}}
+                    {{ $matches := findRE `\*\*第[^\*]+条\*\*` $content }}
+                    {{ $anchoredContent := $content }}
+                    {{ range $matches }}
+                        {{ $match := . }}
+                        {{ $articleRaw := strings.TrimPrefix "**第" $match }}
+                        {{ $articleRaw = strings.TrimSuffix "条**" $articleRaw }}
+                        {{ $articleRaw = strings.TrimSpace $articleRaw }}
+                        {{ $anchoredContent = replace $anchoredContent $match (printf `<span id='article-%s'></span>%s` $articleRaw $match) }}
+                    {{ end }}
+                    {{ $anchoredContent | safeHTML }}
+                {{ else }}
+                    <div class="law-error" style="padding: 1em; background: #fff3f3; border-left: 4px solid #DE2910; border-radius: 4px;">
+                        <p>❌ 找不到法律文件：<code>{{ $fullPath }}</code></p>
+                        <p>可能该法律暂未收录到 just-laws 仓库，欢迎提交 issue：<a href="https://github.com/ImCa0/just-laws/issues">just-laws/issues</a></p>
+                    </div>
+                {{ end }}
+            </div>
+
+            <div class="article-footer" style="margin-top: 2em; padding-top: 1em; border-top: 1px solid #eee; font-size: 0.9em; color: #888;">
+                <p>⚖️ 法条源自 <a href="https://github.com/ImCa0/just-laws" target="_blank" rel="noopener">Just Laws 开源法律文库</a>（MIT 协议）</p>
+                <p>📚 访问 <a href="/laws/">法条文库</a> 查看所有 308 部法律</p>
+            </div>
+        </article>
+    {{ else }}
+        {{/* ========== 普通文章页（Stack 主题原始布局） ========== */}}
+        {{ partial "article/article.html" . }}
+
+        {{ if .Params.links }}
+            {{ partial "article/components/links" . }}
+        {{ end }}
+
+        {{ partial "article/components/related-content" . }}
+
+        {{/* 相关文章列表下显示相关法条（仅当 frontmatter 有 related_laws） */}}
+        {{ partial "article/components/related-laws.html" . }}
+
+        {{ if not (eq .Params.comments false) }}
+            {{ partial "comments/include" . }}
+        {{ end }}
+
+        {{ partialCached "footer/footer" . }}
+
+        {{ partialCached "article/components/photoswipe" . }}
+        {{ partial "article/components/mermaid" . }}
     {{ end }}
-
-    {{ partial "article/components/related-content" . }}
-
-    {{/* ↓ 新增：自动渲染 related_laws 法条卡片（来自 just-laws submodule） */}}
-    {{ partial "article/components/related-laws.html" . }}
-
-    {{ if not (eq .Params.comments false) }}
-        {{ partial "comments/include" . }}
-    {{ end }}
-
-    {{ partialCached "footer/footer" . }}
-
-    {{ partialCached "article/components/photoswipe" . }}
-    {{ partial "article/components/mermaid" . }}
 {{ end }}
 
 {{ define "right-sidebar" }}
