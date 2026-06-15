@@ -1,7 +1,8 @@
 ---
-title: "criminal law amendment i"
-description: "刑法 - criminal law amendment i"
-date: 2026-06-14
+title: "中华人民共和国刑法修正案"
+description: "刑法 - 中华人民共和国刑法修正案"
+summary: "中华人民共和国刑法修正案 1999年12月25日第九届全国人民代表大会常务委员会第十三次会议通过 为了惩治破坏社会主义市场经济秩序的犯罪，保障社会主义现代化建设的顺利进行，对刑法作如下补充修改： 一、第一百六十二条后增加一条，作为第一百六十二条之一：“隐匿或者故意销毁依法应当保存的会计凭证、会计帐簿、财务会计报告，情节严重的，处五年以下有期徒刑或者拘役，并处或者单处二万元以上二十万元以下罚金。 “单位犯前款罪的，对单位判处"
+date: 2026-06-15
 draft: false
 category: "刑法"
 law_file: "criminal-law/amendment/criminal-law-amendment-i.md"

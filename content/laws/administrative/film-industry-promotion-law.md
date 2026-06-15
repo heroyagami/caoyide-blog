@@ -1,7 +1,8 @@
 ---
-title: "film industry promotion law"
-description: "行政法 - film industry promotion law"
-date: 2026-06-14
+title: "中华人民共和国电影产业促进法"
+description: "行政法 - 中华人民共和国电影产业促进法"
+summary: "中华人民共和国电影产业促进法 2016年11月7日第十二届全国人民代表大会常务委员会第二十四次会议通过 第一章 总 则 第一条 为了促进电影产业健康繁荣发展，弘扬社会主义核心价值观，规范电影市场秩序，丰富人民群众精神文化生活，制定本法。 第二条 在中华人民共和国境内从事电影创作、摄制、发行、放映等活动（以下统称电影活动），适用本法。 本法所称电影，是指运用视听技术和艺术手段摄制、以胶片或者数字载体记录、由表达一定内容的有声或者"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/film-industry-promotion-law/README.md"

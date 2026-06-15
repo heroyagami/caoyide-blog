@@ -1,7 +1,8 @@
 ---
-title: "nuclear safety law"
-description: "行政法 - nuclear safety law"
-date: 2026-06-14
+title: "中华人民共和国核安全法"
+description: "行政法 - 中华人民共和国核安全法"
+summary: "中华人民共和国核安全法 2017年9月1日第十二届全国人民代表大会常务委员会第二十九次会议通过 第一章 总则 第一条 为了保障核安全，预防与应对核事故，安全利用核能，保护公众和从业人员的安全与健康，保护生态环境，促进经济社会可持续发展，制定本法。 第二条 在中华人民共和国领域及管辖的其他海域内，对核设施、核材料及相关放射性废物采取充分的预防、保护、缓解和监管等安全措施，防止由于技术原因、人为原因或者自然灾害造成核事故，最"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/nuclear-safety-law/README.md"

@@ -1,7 +1,8 @@
 ---
-title: "npc organization law"
-description: "宪法相关法 - npc organization law"
-date: 2026-06-14
+title: "中华人民共和国全国人民代表大会组织法"
+description: "宪法相关法 - 中华人民共和国全国人民代表大会组织法"
+summary: "中华人民共和国全国人民代表大会组织法 1982年12月10日第五届全国人民代表大会第五次会议通过 1982年12月10日全国人民代表大会公告公布施行 根据2021年3月11日第十三届全国人民代表大会第四次会议《关于修改〈中华人民共和国全国人民代表大会组织法〉的决定》修正 第一章 总则 第一条 为了健全全国人民代表大会及其常务委员会的组织和工作制度，保障和规范其行使职权，坚持和完善人民代表大会制度，保证人民当家作主，根据宪法，制定本法。"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/npc-organization-law/README.md"

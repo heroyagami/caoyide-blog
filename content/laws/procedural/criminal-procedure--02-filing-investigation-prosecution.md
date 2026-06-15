@@ -1,7 +1,8 @@
 ---
-title: "第二编 filing investigation prosecution"
-description: "程序法 - 第二编 filing investigation prosecution"
-date: 2026-06-14
+title: "第二编　立案、侦查和提起公诉"
+description: "程序法 - 第二编　立案、侦查和提起公诉"
+summary: "第二编　立案、侦查和提起公诉 第一章 立案 第一百零九条 公安机关或者人民检察院发现犯罪事实或者犯罪嫌疑人，应当按照管辖范围，立案侦查。 第一百一十条 任何单位和个人发现有犯罪事实或者犯罪嫌疑人，有权利也有义务向公安机关、人民检察院或者人民法院报案或者举报。 被害人对侵犯其人身、财产权利的犯罪事实或者犯罪嫌疑人，有权向公安机关、人民检察院或者人民法院报案或者控告。 公安机关、人民检察院或者人民法院对于报案、控告、举报，都应当接"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/criminal-procedure/02-filing-investigation-prosecution.md"

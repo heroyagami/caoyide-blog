@@ -1,7 +1,8 @@
 ---
-title: "enterprise state owned assets law"
-description: "经济法 - enterprise state owned assets law"
-date: 2026-06-14
+title: "中华人民共和国企业国有资产法"
+description: "经济法 - 中华人民共和国企业国有资产法"
+summary: "中华人民共和国企业国有资产法 2008年10月28日第十一届全国人民代表大会常务委员会第五次会议通过 第一章 总则 第一条 为了维护国家基本经济制度，巩固和发展国有经济，加强对国有资产的保护，发挥国有经济在国民经济中的主导作用，促进社会主义市场经济发展，制定本法。 第二条 本法所称企业国有资产（以下称国有资产），是指国家对企业各种形式的出资所形成的权益。 第三条 国有资产属于国家所有即全民所有。国务院代表国家行使国有资产所有权"
+date: 2026-06-15
 draft: false
 category: "经济法"
 law_file: "economic/enterprise-state-owned-assets-law/README.md"

@@ -1,7 +1,8 @@
 ---
-title: "procurators law"
-description: "宪法相关法 - procurators law"
-date: 2026-06-14
+title: "中华人民共和国检察官法"
+description: "宪法相关法 - 中华人民共和国检察官法"
+summary: "中华人民共和国检察官法 1995年2月28日第八届全国人民代表大会常务委员会第十二次会议通过 根据2001年6月30日第九届全国人民代表大会常务委员会第二十二次会议《关于修改〈中华人民共和国检察官法〉的决定》第一次修正 根据2017年9月1日第十二届全国人民代表大会常务委员会第二十九次会议《关于修改〈中华人民共和国法官法〉等八部法律的决定》第二次修正 2019年4月23日第十三届全国人民代表大会常务委员会第十次会议修订 "
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/procurators-law/README.md"

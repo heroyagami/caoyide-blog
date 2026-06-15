@@ -1,7 +1,8 @@
 ---
-title: "public cultural services guarantee law"
-description: "行政法 - public cultural services guarantee law"
-date: 2026-06-14
+title: "中华人民共和国公共文化服务保障法"
+description: "行政法 - 中华人民共和国公共文化服务保障法"
+summary: "中华人民共和国公共文化服务保障法 2016年12月25日第十二届全国人民代表大会常务委员会第二十五次会议通过 第一章 总则 第一条 为了加强公共文化服务体系建设，丰富人民群众精神文化生活，传承中华优秀传统文化，弘扬社会主义核心价值观，增强文化自信，促进中国特色社会主义文化繁荣发展，提高全民族文明素质，制定本法。 第二条 本法所称公共文化服务，是指由政府主导、社会力量参与，以满足公民基本文化需求为主要目的而提供的公共文化设施、文化产"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/public-cultural-services-guarantee-law/README.md"

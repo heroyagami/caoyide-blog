@@ -1,7 +1,8 @@
 ---
-title: "第一编 general provisions"
-description: "程序法 - 第一编 general provisions"
-date: 2026-06-14
+title: "第一编　总则"
+description: "程序法 - 第一编　总则"
+summary: "第一编　总则 第一章 任务、适用范围和基本原则 第一条 中华人民共和国民事诉讼法以宪法为根据，结合我国民事审判工作的经验和实际情况制定。 第二条 中华人民共和国民事诉讼法的任务，是保护当事人行使诉讼权利，保证人民法院查明事实，分清是非，正确适用法律，及时审理民事案件，确认民事权利义务关系，制裁民事违法行为，保护当事人的合法权益，教育公民自觉遵守法律，维护社会秩序、经济秩序，保障社会主义建设事业顺利进行。 第三条"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/civil-procedure/01-general-provisions.md"

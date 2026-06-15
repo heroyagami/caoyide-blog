@@ -1,7 +1,8 @@
 ---
-title: "combating telecom and online fraud"
-description: "刑法 - combating telecom and online fraud"
-date: 2026-06-14
+title: "中华人民共和国反电信网络诈骗法"
+description: "刑法 - 中华人民共和国反电信网络诈骗法"
+summary: "中华人民共和国反电信网络诈骗法 2022年9月2日第十三届全国人民代表大会常务委员会第三十六次会议通过 第一章 总则 第一条 为了预防、遏制和惩治电信网络诈骗活动，加强反电信网络诈骗工作，保护公民和组织的合法权益，维护社会稳定和国家安全，根据宪法，制定本法。 第二条 本法所称电信网络诈骗，是指以非法占有为目的，利用电信网络技术手段，通过远程、非接触等方式，诈骗公私财物的行为。 第三条 打击治理在中华人民共和国境内实施的电信网络诈"
+date: 2026-06-15
 draft: false
 category: "刑法"
 law_file: "criminal-law/combating-telecom-and-online-fraud/README.md"

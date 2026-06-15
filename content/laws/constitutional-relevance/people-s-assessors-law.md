@@ -1,7 +1,8 @@
 ---
-title: "people s assessors law"
-description: "宪法相关法 - people s assessors law"
-date: 2026-06-14
+title: "中华人民共和国人民陪审员法"
+description: "宪法相关法 - 中华人民共和国人民陪审员法"
+summary: "中华人民共和国人民陪审员法 2018年4月27日第十三届全国人民代表大会常务委员会第二次会议通过 第一条 为了保障公民依法参加审判活动，促进司法公正，提升司法公信，制定本法。 第二条 公民有依法担任人民陪审员的权利和义务。 人民陪审员依照本法产生，依法参加人民法院的审判活动，除法律另有规定外，同法官有同等权利。 第三条 人民陪审员依法享有参加审判活动、独立发表意见、获得履职保障等权利。 人民陪审员应当忠实履行审判职责，保守审"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/people-s-assessors-law/README.md"

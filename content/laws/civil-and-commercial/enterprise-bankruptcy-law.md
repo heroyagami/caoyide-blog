@@ -1,7 +1,8 @@
 ---
-title: "enterprise bankruptcy law"
-description: "民商法 - enterprise bankruptcy law"
-date: 2026-06-14
+title: "中华人民共和国企业破产法"
+description: "民商法 - 中华人民共和国企业破产法"
+summary: "中华人民共和国企业破产法 2006年8月27日第十届全国人民代表大会常务委员会第二十三次会议通过 第一章 总则 第一条 为规范企业破产程序，公平清理债权债务，保护债权人和债务人的合法权益，维护社会主义市场经济秩序，制定本法。 第二条 企业法人不能清偿到期债务，并且资产不足以清偿全部债务或者明显缺乏清偿能力的，依照本法规定清理债务。 企业法人有前款规定情形，或者有明显丧失清偿能力可能的，可以依照本法规定进行重整。 第三条 破"
+date: 2026-06-15
 draft: false
 category: "民商法"
 law_file: "civil-and-commercial/enterprise-bankruptcy-law/README.md"

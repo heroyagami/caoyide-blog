@@ -1,7 +1,8 @@
 ---
-title: "national flag law"
-description: "宪法相关法 - national flag law"
-date: 2026-06-14
+title: "中华人民共和国国旗法"
+description: "宪法相关法 - 中华人民共和国国旗法"
+summary: "中华人民共和国国旗法 1990年6月28日第七届全国人民代表大会常务委员会第十四次会议通过 根据2009年8月27日第十一届全国人民代表大会常务委员会第十次会议《关于修改部分法律的决定》第一次修正 根据2020年10月17日第十三届全国人民代表大会常务委员会第二十二次会议《关于修改〈中华人民共和国国旗法〉的决定》第二次修正 第一条 为了维护国旗的尊严，规范国旗的使用，增强公民的国家观念，弘扬爱国主义精神，培育和践行社会"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/national-flag-law/README.md"

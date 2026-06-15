@@ -1,7 +1,8 @@
 ---
-title: "law on legal publicity and education"
-description: "宪法相关法 - law on legal publicity and education"
-date: 2026-06-14
+title: "中华人民共和国法治宣传教育法"
+description: "宪法相关法 - 中华人民共和国法治宣传教育法"
+summary: "中华人民共和国法治宣传教育法 2025年9月12日第十四届全国人民代表大会常务委员会第十七次会议通过 第一章 总则 第一条 为了加强法治宣传教育，提升全民法治素养和社会治理法治化水平，形成全社会尊法学法守法用法的良好氛围，夯实全面依法治国的社会基础，推动建设更高水平的社会主义法治国家，根据宪法，制定本法。 第二条 法治宣传教育坚持中国共产党的领导，坚持以马克思列宁主义、毛泽东思想、邓小平理论、“三个代表”重要思想、科学发展观、"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/law-on-legal-publicity-and-education/README.md"

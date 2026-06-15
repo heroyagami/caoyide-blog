@@ -1,7 +1,8 @@
 ---
-title: "farmer specialized cooperatives law"
-description: "民商法 - farmer specialized cooperatives law"
-date: 2026-06-14
+title: "中华人民共和国农民专业合作社法"
+description: "民商法 - 中华人民共和国农民专业合作社法"
+summary: "中华人民共和国农民专业合作社法 2006年10月31日第十届全国人民代表大会常务委员会第二十四次会议通过 2017年12月27日第十二届全国人民代表大会常务委员会第三十一次会议修订 第一章 总则 第一条 为了规范农民专业合作社的组织和行为，鼓励、支持、引导农民专业合作社的发展，保护农民专业合作社及其成员的合法权益，推进农业农村现代化，制定本法。 第二条 本法所称农民专业合作社，是指在农村家庭承包经营基础上，农产品的生产经营者或者"
+date: 2026-06-15
 draft: false
 category: "民商法"
 law_file: "civil-and-commercial/farmer-specialized-cooperatives-law/README.md"

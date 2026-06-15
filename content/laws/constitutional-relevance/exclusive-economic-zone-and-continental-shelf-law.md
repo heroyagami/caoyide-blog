@@ -1,7 +1,8 @@
 ---
-title: "exclusive economic zone and continental shelf law"
-description: "宪法相关法 - exclusive economic zone and continental shelf law"
-date: 2026-06-14
+title: "中华人民共和国专属经济区和大陆架法"
+description: "宪法相关法 - 中华人民共和国专属经济区和大陆架法"
+summary: "中华人民共和国专属经济区和大陆架法 1998年6月26日第九届全国人民代表大会常务委员会第三次会议通过 第一条 为保障中华人民共和国对专属经济区和大陆架行使主权权利和管辖权，维护国家海洋权益，制定本法。 第二条 中华人民共和国的专属经济区，为中华人民共和国领海以外并邻接领海的区域，从测算领海宽度的基线量起延至二百海里。 中华人民共和国的大陆架，为中华人民共和国领海以外依本国陆地领土的全部自然延伸，扩展到大陆边外缘的海底区域的海床和底"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/exclusive-economic-zone-and-continental-shelf-law/README.md"

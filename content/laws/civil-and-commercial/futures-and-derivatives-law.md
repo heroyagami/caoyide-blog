@@ -1,7 +1,8 @@
 ---
-title: "futures and derivatives law"
-description: "民商法 - futures and derivatives law"
-date: 2026-06-14
+title: "中华人民共和国期货和衍生品法"
+description: "民商法 - 中华人民共和国期货和衍生品法"
+summary: "中华人民共和国期货和衍生品法 2022年4月20日第十三届全国人民代表大会常务委员会第三十四次会议通过 第一章 总则 第一条 为了规范期货交易和衍生品交易行为，保障各方合法权益，维护市场秩序和社会公共利益，促进期货市场和衍生品市场服务国民经济，防范化解金融风险，维护国家经济安全，制定本法。 第二条 在中华人民共和国境内，期货交易和衍生品交易及相关活动，适用本法。 在中华人民共和国境外的期货交易和衍生品交易及相关活动，扰乱中华人"
+date: 2026-06-15
 draft: false
 category: "民商法"
 law_file: "civil-and-commercial/futures-and-derivatives-law/README.md"

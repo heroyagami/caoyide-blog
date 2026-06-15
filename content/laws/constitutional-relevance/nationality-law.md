@@ -1,7 +1,8 @@
 ---
-title: "nationality law"
-description: "宪法相关法 - nationality law"
-date: 2026-06-14
+title: "中华人民共和国国籍法"
+description: "宪法相关法 - 中华人民共和国国籍法"
+summary: "中华人民共和国国籍法 1980年9月10日第五届全国人民代表大会第三次会议通过 第一条 中华人民共和国国籍的取得、丧失和恢复，都适用本法。 第二条 中华人民共和国是统一的多民族的国家，各民族的人都具有中国国籍。 第三条 中华人民共和国不承认中国公民具有双重国籍。 第四条 父母双方或一方为中国公民，本人出生在中国，具有中国国籍。 第五条 父母双方或一方为中国公民，本人出生在外国，具有中国国籍；但父母双方或一方为中国公民并"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/nationality-law/README.md"

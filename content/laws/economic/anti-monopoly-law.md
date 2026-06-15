@@ -1,7 +1,8 @@
 ---
-title: "anti monopoly law"
-description: "经济法 - anti monopoly law"
-date: 2026-06-14
+title: "中华人民共和国反垄断法"
+description: "经济法 - 中华人民共和国反垄断法"
+summary: "中华人民共和国反垄断法 2007年8月30日第十届全国人民代表大会常务委员会第二十九次会议通过 根据2022年6月24日第十三届全国人民代表大会常务委员会第三十五次会议《关于修改〈中华人民共和国反垄断法〉的决定》修正 第一章 总则 第一条 为了预防和制止垄断行为，保护市场公平竞争，鼓励创新，提高经济运行效率，维护消费者利益和社会公共利益，促进社会主义市场经济健康发展，制定本法。 第二条 中华人民共和国境内经济活动中的垄断"
+date: 2026-06-15
 draft: false
 category: "经济法"
 law_file: "economic/anti-monopoly-law/README.md"

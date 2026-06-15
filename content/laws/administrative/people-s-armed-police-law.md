@@ -1,7 +1,8 @@
 ---
-title: "people s armed police law"
-description: "行政法 - people s armed police law"
-date: 2026-06-14
+title: "中华人民共和国人民武装警察法"
+description: "行政法 - 中华人民共和国人民武装警察法"
+summary: "中华人民共和国人民武装警察法 2009年8月27日第十一届全国人民代表大会常务委员会第十次会议通过 2020年6月20日第十三届全国人民代表大会常务委员会第十九次会议修订 第一章 总则 第一条 为了规范和保障人民武装警察部队履行职责，建设强大的现代化人民武装警察部队，维护国家安全和社会稳定，保护公民、法人和其他组织的合法权益，制定本法。 第二条 人民武装警察部队是中华人民共和国武装力量的重要组成部分，由党中央、中央军事委员会集"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/people-s-armed-police-law/README.md"

@@ -1,7 +1,8 @@
 ---
-title: "state owned industrial enterprise law"
-description: "民商法 - state owned industrial enterprise law"
-date: 2026-06-14
+title: "中华人民共和国全民所有制工业企业法"
+description: "民商法 - 中华人民共和国全民所有制工业企业法"
+summary: "中华人民共和国全民所有制工业企业法 1988年4月13日第七届全国人民代表大会第一次会议通过 根据2009年8月27日第十一届全国人民代表大会常务委员会第十次会议《关于修改部分法律的决定》修正 第一章 总则 第一条 为保障全民所有制经济的巩固和发展，明确全民所有制工业企业的权利和义务，保障其合法权益，增强其活力，促进社会主义现代化建设，根据《中华人民共和国宪法》，制定本法。 第二条 全民所有制工业企业（以下简称企业）是依法自主经营、"
+date: 2026-06-15
 draft: false
 category: "民商法"
 law_file: "civil-and-commercial/state-owned-industrial-enterprise-law/README.md"

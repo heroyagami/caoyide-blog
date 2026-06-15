@@ -62,10 +62,41 @@ function humanize(s) {
   return s.split("-").map(w => SPECIAL_NAMES[w] || w).join(" ");
 }
 
-function genFrontmatter(category, title, lawFile) {
+function cleanText(s, maxLen = 200) {
+  // 去掉 markdown 标记（# ** * _ ` [ ] ( ) > 等），保留纯文本
+  return s
+    .replace(/^#+\s*/gm, '')           // 标题
+    .replace(/\*\*([^*]+)\*\*/g, '$1')  // 粗体
+    .replace(/\*([^*]+)\*/g, '$1')     // 斜体
+    .replace(/`([^`]+)`/g, '$1')       // 行内 code
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')  // 链接
+    .replace(/\s+/g, ' ')              // 多空白合一
+    .trim()
+    .slice(0, maxLen);
+}
+
+function extractSummary(content, maxLen = 200) {
+  // 取 H1 后的前 maxLen 字符作为摘要
+  const lines = content.split('\n');
+  let h1 = '';
+  let bodyStart = 0;
+  for (let i = 0; i < lines.length; i++) {
+    if (/^#\s+/.test(lines[i])) {
+      h1 = lines[i].replace(/^#\s+/, '').trim();
+      bodyStart = i + 1;
+      break;
+    }
+  }
+  const body = lines.slice(bodyStart).join('\n');
+  const cleaned = cleanText(body, maxLen);
+  return h1 ? `${h1} ${cleaned}`.slice(0, maxLen + 50) : cleaned;
+}
+
+function genFrontmatter(category, title, lawFile, summary) {
   return `---
-title: "${title}"
-description: "${category} - ${title}"
+title: "${title.replace(/"/g, '\\"')}"
+description: "${category} - ${title.replace(/"/g, '\\"')}"
+summary: "${(summary || '').replace(/"/g, '\\"')}"
 date: ${new Date().toISOString().slice(0, 10)}
 draft: false
 category: "${category}"
@@ -97,12 +128,15 @@ for (const [catDir, catName] of Object.entries(CATEGORY_MAP)) {
 
     // 情况 1：单文件法律（只有 README.md 或 1 个 .md）
     if (mdFiles.length === 0 && subDirs.length === 0 && hasReadme) {
-      const title = humanize(lawSetName);
+      const mdContent = readFileSync(join(lawSetPath, "README.md"), "utf-8");
+      const h1Match = mdContent.match(/^#\s+(.+?)$/m);
+      const title = h1Match ? h1Match[1].trim() : humanize(lawSetName);
+      const summary = extractSummary(mdContent, 200);
       const lawFile = `${catDir}/${lawSetName}/README.md`;
       const fileDst = join(LAWS_DST, catDir, lawSetName + ".md");
       if (!seenFiles.has(fileDst)) {
         seenFiles.add(fileDst);
-        const content = genFrontmatter(catName, title, lawFile);
+        const content = genFrontmatter(catName, title, lawFile, summary);
         if (!dryRun) {
           mkdirSync(join(LAWS_DST, catDir), { recursive: true });
           writeFileSync(fileDst, content, "utf-8");
@@ -115,12 +149,15 @@ for (const [catDir, catName] of Object.entries(CATEGORY_MAP)) {
     // 情况 2：多编法律（如 civil-code 有 01-08 子文件 + README）
     for (const mdFile of mdFiles) {
       const baseName = mdFile.replace(/\.md$/, "");  // "05-marriage-and-family"
-      const title = humanize(baseName) === humanize(lawSetName) ? humanize(lawSetName) : humanize(baseName);
+      const mdContent = readFileSync(join(lawSetPath, mdFile), "utf-8");
+      const h1Match = mdContent.match(/^#\s+(.+?)$/m);
+      const title = h1Match ? h1Match[1].trim() : (humanize(baseName) === humanize(lawSetName) ? humanize(lawSetName) : humanize(baseName));
+      const summary = extractSummary(mdContent, 200);
       const lawFile = `${catDir}/${lawSetName}/${mdFile}`;
       const fileDst = join(LAWS_DST, catDir, `${lawSetName}--${baseName}.md`);
       if (!seenFiles.has(fileDst)) {
         seenFiles.add(fileDst);
-        const content = genFrontmatter(catName, title, lawFile);
+        const content = genFrontmatter(catName, title, lawFile, summary);
         if (!dryRun) {
           mkdirSync(join(LAWS_DST, catDir), { recursive: true });
           writeFileSync(fileDst, content, "utf-8");
@@ -137,12 +174,15 @@ for (const [catDir, catName] of Object.entries(CATEGORY_MAP)) {
       const subHasReadme = subItems.includes("README.md");
       const targetFile = subHasReadme ? "README.md" : (subMds[0] || "");
       if (!targetFile) continue;
-      const title = humanize(subDir);
+      const mdContent = readFileSync(join(subPath, targetFile), "utf-8");
+      const h1Match = mdContent.match(/^#\s+(.+?)$/m);
+      const title = h1Match ? h1Match[1].trim() : humanize(subDir);
+      const summary = extractSummary(mdContent, 200);
       const lawFile = `${catDir}/${lawSetName}/${subDir}/${targetFile}`;
       const fileDst = join(LAWS_DST, catDir, `${lawSetName}--${subDir}.md`);
       if (!seenFiles.has(fileDst)) {
         seenFiles.add(fileDst);
-        const content = genFrontmatter(catName, title, lawFile);
+        const content = genFrontmatter(catName, title, lawFile, summary);
         if (!dryRun) {
           mkdirSync(join(LAWS_DST, catDir), { recursive: true });
           writeFileSync(fileDst, content, "utf-8");

@@ -1,7 +1,8 @@
 ---
-title: "resident identity card law"
-description: "行政法 - resident identity card law"
-date: 2026-06-14
+title: "中华人民共和国居民身份证法"
+description: "行政法 - 中华人民共和国居民身份证法"
+summary: "中华人民共和国居民身份证法 2003年6月28日第十届全国人民代表大会常务委员会第三次会议通过 根据2011年10月29日第十一届全国人民代表大会常务委员会第二十三次会议《关于修改〈中华人民共和国居民身份证法〉的决定》修正 第一章 总则 第一条 为了证明居住在中华人民共和国境内的公民的身份，保障公民的合法权益，便利公民进行社会活动，维护社会秩序，制定本法。 第二条 居住在中华人民共和国境内的年满十六周岁的中国公民，应当依照本"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/resident-identity-card-law/README.md"

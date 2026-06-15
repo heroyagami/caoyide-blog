@@ -1,7 +1,8 @@
 ---
-title: "traditional chinese medicine law"
-description: "行政法 - traditional chinese medicine law"
-date: 2026-06-14
+title: "中华人民共和国中医药法"
+description: "行政法 - 中华人民共和国中医药法"
+summary: "中华人民共和国中医药法 2016年12月25日第十二届全国人民代表大会常务委员会第二十五次会议通过 第一章 总则 第一条 为了继承和弘扬中医药，保障和促进中医药事业发展，保护人民健康，制定本法。 第二条 本法所称中医药，是包括汉族和少数民族医药在内的我国各民族医药的统称，是反映中华民族对生命、健康和疾病的认识，具有悠久历史传统和独特理论及技术方法的医药学体系。 第三条 中医药事业是我国医药卫生事业的重要组成部分。国家大力"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/traditional-chinese-medicine-law/README.md"

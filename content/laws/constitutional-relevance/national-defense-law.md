@@ -1,7 +1,8 @@
 ---
-title: "national defense law"
-description: "宪法相关法 - national defense law"
-date: 2026-06-14
+title: "中华人民共和国国防法"
+description: "宪法相关法 - 中华人民共和国国防法"
+summary: "中华人民共和国国防法 1997年3月14日第八届全国人民代表大会第五次会议通过 根据2009年8月27日第十一届全国人民代表大会常务委员会第十次会议《关于修改部分法律的决定》修正 2020年12月26日第十三届全国人民代表大会常务委员会第二十四次会议修订 第一章 总则 第一条 为了建设和巩固国防，保障改革开放和社会主义现代化建设的顺利进行，实现中华民族伟大复兴，根据宪法，制定本法。 第二条 国家为防备和抵抗侵略，制止武"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/national-defense-law/README.md"

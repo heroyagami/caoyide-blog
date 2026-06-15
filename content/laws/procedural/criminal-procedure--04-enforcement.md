@@ -1,7 +1,8 @@
 ---
-title: "第四编 enforcement"
-description: "程序法 - 第四编 enforcement"
-date: 2026-06-14
+title: "第四编　执行"
+description: "程序法 - 第四编　执行"
+summary: "第四编　执行 第二百五十九条 判决和裁定在发生法律效力后执行。 下列判决和裁定是发生法律效力的判决和裁定： （一）已过法定期限没有上诉、抗诉的判决和裁定； （二）终审的判决和裁定； （三）最高人民法院核准的死刑的判决和高级人民法院核准的死刑缓期二年执行的判决。 第二百六十条 第一审人民法院判决被告人无罪、免除刑事处罚的，如果被告人在押，在宣判后应当立即释放。 第二百六十一条 最高人民法院判处和核准的死刑立即执行"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/criminal-procedure/04-enforcement.md"

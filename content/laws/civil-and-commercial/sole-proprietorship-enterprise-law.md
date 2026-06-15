@@ -1,7 +1,8 @@
 ---
-title: "sole proprietorship enterprise law"
-description: "民商法 - sole proprietorship enterprise law"
-date: 2026-06-14
+title: "中华人民共和国个人独资企业法"
+description: "民商法 - 中华人民共和国个人独资企业法"
+summary: "中华人民共和国个人独资企业法 1999年8月30日第九届全国人民代表大会常务委员会第十一次会议通过 第一章 总则 第一条 为了规范个人独资企业的行为，保护个人独资企业投资人和债权人的合法权益，维护社会经济秩序，促进社会主义市场经济的发展，根据宪法，制定本法。 第二条 本法所称个人独资企业，是指依照本法在中国境内设立，由一个自然人投资，财产为投资人个人所有，投资人以其个人财产对企业债务承担无限责任的经营实体。 第三条 个人独资企"
+date: 2026-06-15
 draft: false
 category: "民商法"
 law_file: "civil-and-commercial/sole-proprietorship-enterprise-law/README.md"

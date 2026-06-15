@@ -1,7 +1,8 @@
 ---
-title: "administrative reconsideration law"
-description: "行政法 - administrative reconsideration law"
-date: 2026-06-14
+title: "中华人民共和国行政复议法"
+description: "行政法 - 中华人民共和国行政复议法"
+summary: "中华人民共和国行政复议法 1999年4月29日第九届全国人民代表大会常务委员会第九次会议通过 根据2009年8月27日第十一届全国人民代表大会常务委员会第十次会议《关于修改部分法律的决定》第一次修正 根据2017年9月1日第十二届全国人民代表大会常务委员会第二十九次会议《关于修改〈中华人民共和国法官法〉等八部法律的决定》第二次修正 2023年9月1日第十四届全国人民代表大会常务委员会第五次会议修订 第一章 总 则 第一条 "
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/administrative-reconsideration-law/README.md"

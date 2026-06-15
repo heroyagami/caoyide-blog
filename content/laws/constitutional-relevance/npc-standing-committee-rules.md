@@ -1,7 +1,8 @@
 ---
-title: "npc standing committee rules"
-description: "宪法相关法 - npc standing committee rules"
-date: 2026-06-14
+title: "中华人民共和国全国人民代表大会常务委员会议事规则"
+description: "宪法相关法 - 中华人民共和国全国人民代表大会常务委员会议事规则"
+summary: "中华人民共和国全国人民代表大会常务委员会议事规则 1987年11月24日第六届全国人民代表大会常务委员会第二十三次会议通过 2009年4月24日第十一届全国人民代表大会常务委员会第八次会议《关于修改〈中华人民共和国全国人民代表大会常务委员会议事规则〉的决定》第一次修正 2022年6月24日第十三届全国人民代表大会常务委员会第三十五次会议《关于修改〈中华人民共和国全国人民代表大会常务委员会议事规则〉的决定》第二次修正 第一章 总则 第一条 为了健全"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/npc-standing-committee-rules/README.md"

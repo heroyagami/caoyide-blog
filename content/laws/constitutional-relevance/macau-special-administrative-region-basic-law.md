@@ -1,7 +1,8 @@
 ---
-title: "macau special administrative region basic law"
-description: "宪法相关法 - macau special administrative region basic law"
-date: 2026-06-14
+title: "中华人民共和国澳门特别行政区基本法"
+description: "宪法相关法 - 中华人民共和国澳门特别行政区基本法"
+summary: "中华人民共和国澳门特别行政区基本法 1993年3月31日第八届全国人民代表大会第一次会议通过 序言 澳门，包括澳门半岛、氹仔岛和路环岛，自古以来就是中国的领土，十六世纪中叶以后被葡萄牙逐步占领。一九八七年四月十三日，中葡两国政府签署了关于澳门问题的联合声明，确认中华人民共和国政府于一九九九年十二月二十日恢复对澳门行使主权，从而实现了长期以来中国人民收回澳门的共同愿望。 为了维护国家的统一和领土完整，有利于澳门的社会稳定和经济发展，考"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/macau-special-administrative-region-basic-law/README.md"

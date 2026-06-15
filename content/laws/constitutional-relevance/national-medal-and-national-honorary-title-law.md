@@ -1,7 +1,8 @@
 ---
-title: "national medal and national honorary title law"
-description: "宪法相关法 - national medal and national honorary title law"
-date: 2026-06-14
+title: "中华人民共和国国家勋章和国家荣誉称号法"
+description: "宪法相关法 - 中华人民共和国国家勋章和国家荣誉称号法"
+summary: "中华人民共和国国家勋章和国家荣誉称号法 2015年12月27日第十二届全国人民代表大会常务委员会第十八次会议通过 第一条 为了褒奖在中国特色社会主义建设中作出突出贡献的杰出人士，弘扬民族精神和时代精神，激发全国各族人民建设富强、民主、文明、和谐的社会主义现代化国家的积极性，实现中华民族伟大复兴，根据宪法，制定本法。 第二条 国家勋章和国家荣誉称号为国家最高荣誉。 国家勋章和国家荣誉称号的设立和授予，适用本法。 第三条 国家设立“共和国勋"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/national-medal-and-national-honorary-title-law/README.md"

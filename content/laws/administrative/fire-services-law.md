@@ -1,7 +1,8 @@
 ---
-title: "fire services law"
-description: "行政法 - fire services law"
-date: 2026-06-14
+title: "中华人民共和国消防法"
+description: "行政法 - 中华人民共和国消防法"
+summary: "中华人民共和国消防法 1998年4月29日第九届全国人民代表大会常务委员会第二次会议通过 2008年10月28日第十一届全国人民代表大会常务委员会第五次会议修订 根据2019年4月23日第十三届全国人民代表大会常务委员会第十次会议《关于修改〈中华人民共和国建筑法〉等八部法律的决定》第一次修正 根据2021年4月29日第十三届全国人民代表大会常务委员会第二十八次会议《关于修改〈中华人民共和国道路交通安全法〉等八部法律的决"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/fire-services-law/README.md"

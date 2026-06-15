@@ -1,7 +1,8 @@
 ---
-title: "anti foreign sanctions law"
-description: "宪法相关法 - anti foreign sanctions law"
-date: 2026-06-14
+title: "中华人民共和国反外国制裁法"
+description: "宪法相关法 - 中华人民共和国反外国制裁法"
+summary: "中华人民共和国反外国制裁法 2021年6月10日第十三届全国人民代表大会常务委员会第二十九次会议通过 第一条 为了维护国家主权、安全、发展利益，保护我国公民、组织的合法权益，根据宪法，制定本法。 第二条 中华人民共和国坚持独立自主的和平外交政策，坚持互相尊重主权和领土完整、互不侵犯、互不干涉内政、平等互利、和平共处的五项原则，维护以联合国为核心的国际体系和以国际法为基础的国际秩序，发展同世界各国的友好合作，推动构建人类命运共"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/anti-foreign-sanctions-law/README.md"

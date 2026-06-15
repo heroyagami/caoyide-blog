@@ -1,7 +1,8 @@
 ---
-title: "criminal law amendment v"
-description: "刑法 - criminal law amendment v"
-date: 2026-06-14
+title: "中华人民共和国刑法修正案（五）"
+description: "刑法 - 中华人民共和国刑法修正案（五）"
+summary: "中华人民共和国刑法修正案（五） 2005年2月28日第十届全国人民代表大会常务委员会第十四次会议通过 一、在刑法第一百七十七条后增加一条，作为第一百七十七条之一：“有下列情形之一，妨害信用卡管理的，处三年以下有期徒刑或者拘役,并处或者单处一万元以上十万元以下罚金；数量巨大或者有其他严重情节的，处三年以上十年以下有期徒刑，并处二万元以上二十万元以下罚金： “（一）明知是伪造的信用卡而持有、运输的，或者明知是伪造的空白信用卡而持有、"
+date: 2026-06-15
 draft: false
 category: "刑法"
 law_file: "criminal-law/amendment/criminal-law-amendment-v.md"

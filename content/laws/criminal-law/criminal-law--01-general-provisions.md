@@ -1,7 +1,8 @@
 ---
-title: "第一编 general provisions"
-description: "刑法 - 第一编 general provisions"
-date: 2026-06-14
+title: "第一编　总则"
+description: "刑法 - 第一编　总则"
+summary: "第一编　总则 第一章 刑法的任务、基本原则和适用范围 第一条 为了惩罚犯罪，保护人民，根据宪法，结合我国同犯罪作斗争的具体经验及实际情况，制定本法。 第二条 中华人民共和国刑法的任务，是用刑罚同一切犯罪行为作斗争，以保卫国家安全，保卫人民民主专政的政权和社会主义制度，保护国有财产和劳动群众集体所有的财产，保护公民私人所有的财产，保护公民的人身权利、民主权利和其他权利，维护社会秩序、经济秩序，保障社会主义建设事业"
+date: 2026-06-15
 draft: false
 category: "刑法"
 law_file: "criminal-law/criminal-law/01-general-provisions.md"

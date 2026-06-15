@@ -1,7 +1,8 @@
 ---
-title: "law application to foreign related civil relations"
-description: "民商法 - law application to foreign related civil relations"
-date: 2026-06-14
+title: "中华人民共和国涉外民事关系法律适用法"
+description: "民商法 - 中华人民共和国涉外民事关系法律适用法"
+summary: "中华人民共和国涉外民事关系法律适用法 2010年10月28日第十一届全国人民代表大会常务委员会第十七次会议通过 第一章 一般规定 第一条 为了明确涉外民事关系的法律适用，合理解决涉外民事争议，维护当事人的合法权益，制定本法。 第二条 涉外民事关系适用的法律，依照本法确定。其他法律对涉外民事关系法律适用另有特别规定的，依照其规定。 本法和其他法律对涉外民事关系法律适用没有规定的，适用与该涉外民事关系有最密切联系的法律。 第三条 当事人依"
+date: 2026-06-15
 draft: false
 category: "民商法"
 law_file: "civil-and-commercial/law-application-to-foreign-related-civil-relations/README.md"

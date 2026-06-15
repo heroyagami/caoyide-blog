@@ -1,7 +1,8 @@
 ---
-title: "people s mediation law"
-description: "程序法 - people s mediation law"
-date: 2026-06-14
+title: "中华人民共和国人民调解法"
+description: "程序法 - 中华人民共和国人民调解法"
+summary: "中华人民共和国人民调解法 2010年8月28日第十一届全国人民代表大会常务委员会第十六次会议通过 第一章 总则 第一条 为了完善人民调解制度，规范人民调解活动，及时解决民间纠纷，维护社会和谐稳定，根据宪法，制定本法。 第二条 本法所称人民调解，是指人民调解委员会通过说服、疏导等方法，促使当事人在平等协商基础上自愿达成调解协议，解决民间纠纷的活动。 第三条 人民调解委员会调解民间纠纷，应当遵循下列原则： （一）在当事人自愿、"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/people-s-mediation-law/README.md"

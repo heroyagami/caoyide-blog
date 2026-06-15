@@ -1,7 +1,8 @@
 ---
-title: "preschool education law"
-description: "行政法 - preschool education law"
-date: 2026-06-14
+title: "中华人民共和国学前教育法"
+description: "行政法 - 中华人民共和国学前教育法"
+summary: "中华人民共和国学前教育法 2024年11月8日第十四届全国人民代表大会常务委员会第十二次会议通过 第一章 总则 第一条 为了保障适龄儿童接受学前教育，规范学前教育实施，促进学前教育普及普惠安全优质发展，提高全民族素质，根据宪法，制定本法。 第二条 在中华人民共和国境内实施学前教育，适用本法。 本法所称学前教育，是指由幼儿园等学前教育机构对三周岁到入小学前的儿童（以下称学前儿童）实施的保育和教育。 第三条 国家实行学前教育制"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/preschool-education-law/README.md"

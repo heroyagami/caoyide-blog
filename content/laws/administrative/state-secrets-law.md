@@ -1,7 +1,8 @@
 ---
-title: "state secrets law"
-description: "行政法 - state secrets law"
-date: 2026-06-14
+title: "中华人民共和国保守国家秘密法"
+description: "行政法 - 中华人民共和国保守国家秘密法"
+summary: "中华人民共和国保守国家秘密法 1988年9月5日第七届全国人民代表大会常务委员会第三次会议通过 2010年4月29日第十一届全国人民代表大会常务委员会第十四次会议第一次修订 2024年2月27日第十四届全国人民代表大会常务委员会第八次会议第二次修订 第一章 总则 第一条 为了保守国家秘密，维护国家安全和利益，保障改革开放和社会主义现代化建设事业的顺利进行，根据宪法，制定本法。 第二条 国家秘密是关系国家安全和利益，依照法定程序"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/state-secrets-law/README.md"

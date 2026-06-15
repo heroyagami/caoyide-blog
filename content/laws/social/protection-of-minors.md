@@ -1,7 +1,8 @@
 ---
-title: "protection of minors"
-description: "社会法 - protection of minors"
-date: 2026-06-14
+title: "中华人民共和国未成年人保护法"
+description: "社会法 - 中华人民共和国未成年人保护法"
+summary: "中华人民共和国未成年人保护法 1991年9月4日第七届全国人民代表大会常务委员会第二十一次会议通过 2006年12月29日第十届全国人民代表大会常务委员会第二十五次会议第一次修订 根据2012年10月26日第十一届全国人民代表大会常务委员会第二十九次会议《关于修改〈中华人民共和国未成年人保护法〉的决定》修正 2020年10月17日第十三届全国人民代表大会常务委员会第二十二次会议第二次修订 第一章 总则 第一条 为了保护未成年人"
+date: 2026-06-15
 draft: false
 category: "社会法"
 law_file: "social/protection-of-minors/README.md"

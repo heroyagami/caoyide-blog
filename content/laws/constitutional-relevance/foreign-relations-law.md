@@ -1,7 +1,8 @@
 ---
-title: "foreign relations law"
-description: "宪法相关法 - foreign relations law"
-date: 2026-06-14
+title: "中华人民共和国对外关系法"
+description: "宪法相关法 - 中华人民共和国对外关系法"
+summary: "中华人民共和国对外关系法 2023年6月28日第十四届全国人民代表大会常务委员会第三次会议通过 第一章 总则 第一条 为了发展对外关系，维护国家主权、安全、发展利益，维护和发展人民利益，建设社会主义现代化强国，实现中华民族伟大复兴，促进世界和平与发展，推动构建人类命运共同体，根据宪法，制定本法。 第二条 中华人民共和国发展同各国的外交关系和经济、文化等各领域的交流与合作，发展同联合国等国际组织的关系，适用本法。 第三条 中"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/foreign-relations-law/README.md"

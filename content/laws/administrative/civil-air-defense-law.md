@@ -1,7 +1,8 @@
 ---
-title: "civil air defense law"
-description: "行政法 - civil air defense law"
-date: 2026-06-14
+title: "中华人民共和国人民防空法"
+description: "行政法 - 中华人民共和国人民防空法"
+summary: "中华人民共和国人民防空法 1996年10月29日第八届全国人民代表大会常务委员会第二十二次会议通过 根据2009年8月27日第十一届全国人民代表大会常务委员会第十次会议《关于修改部分法律的决定》修正 第一章 总则 第一条 为了有效地组织人民防空，保护人民的生命和财产安全，保障社会主义现代化建设的顺利进行，制定本法。 第二条 人民防空是国防的组成部分。国家根据国防需要，动员和组织群众采取防护措施，防范和减轻空袭危害。 人民防"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/civil-air-defense-law/README.md"

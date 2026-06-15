@@ -1,7 +1,8 @@
 ---
-title: "criminal law amendment viii"
-description: "刑法 - criminal law amendment viii"
-date: 2026-06-14
+title: "中华人民共和国刑法修正案（八）"
+description: "刑法 - 中华人民共和国刑法修正案（八）"
+summary: "中华人民共和国刑法修正案（八） 2011年2月25日第十一届全国人民代表大会常务委员会第十九次会议通过 一、在刑法第十七条后增加一条，作为第十七条之一:“已满七十五周岁的人故意犯罪的，可以从轻或者减轻处罚；过失犯罪的，应当从轻或者减轻处罚。” 二、在刑法第三十八条中增加一款作为第二款:“判处管制，可以根据犯罪情况，同时禁止犯罪分子在执行期间从事特定活动，进入特定区域、场所，接触特定的人。” 原第二款作为第三款，修改为:“对判处管"
+date: 2026-06-15
 draft: false
 category: "刑法"
 law_file: "criminal-law/amendment/criminal-law-amendment-viii.md"

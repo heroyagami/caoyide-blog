@@ -1,7 +1,8 @@
 ---
-title: "coast guard law"
-description: "行政法 - coast guard law"
-date: 2026-06-14
+title: "中华人民共和国海警法"
+description: "行政法 - 中华人民共和国海警法"
+summary: "中华人民共和国海警法 2021年1月22日第十三届全国人民代表大会常务委员会第二十五次会议通过 第一章 总则 第一条 为了规范和保障海警机构履行职责，维护国家主权、安全和海洋权益，保护公民、法人和其他组织的合法权益，制定本法。 第二条 人民武装警察部队海警部队即海警机构，统一履行海上维权执法职责。 海警机构包括中国海警局及其海区分局和直属局、省级海警局、市级海警局、海警工作站。 第三条 海警机构在中华人民共和国管辖海域"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/coast-guard-law/README.md"

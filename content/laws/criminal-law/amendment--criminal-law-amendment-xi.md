@@ -1,7 +1,8 @@
 ---
-title: "criminal law amendment xi"
-description: "刑法 - criminal law amendment xi"
-date: 2026-06-14
+title: "中华人民共和国刑法修正案（十一）"
+description: "刑法 - 中华人民共和国刑法修正案（十一）"
+summary: "中华人民共和国刑法修正案（十一） 2020年12月26日第十三届全国人民代表大会常务委员会第二十四次会议通过 一、将刑法第十七条修改为：“已满十六周岁的人犯罪，应当负刑事责任。 “已满十四周岁不满十六周岁的人，犯故意杀人、故意伤害致人重伤或者死亡、强奸、抢劫、贩卖毒品、放火、爆炸、投放危险物质罪的，应当负刑事责任。 “已满十二周岁不满十四周岁的人，犯故意杀人、故意伤害罪，致人死亡或者以特别残忍手段致人重伤造成严重残疾，情节恶劣，经"
+date: 2026-06-15
 draft: false
 category: "刑法"
 law_file: "criminal-law/amendment/criminal-law-amendment-xi.md"

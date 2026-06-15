@@ -1,7 +1,8 @@
 ---
-title: "heroes and martyrs protection law"
-description: "宪法相关法 - heroes and martyrs protection law"
-date: 2026-06-14
+title: "中华人民共和国英雄烈士保护法"
+description: "宪法相关法 - 中华人民共和国英雄烈士保护法"
+summary: "中华人民共和国英雄烈士保护法 2018年4月27日第十三届全国人民代表大会常务委员会第二次会议通过 第一条 为了加强对英雄烈士的保护，维护社会公共利益，传承和弘扬英雄烈士精神、爱国主义精神，培育和践行社会主义核心价值观，激发实现中华民族伟大复兴中国梦的强大精神力量，根据宪法，制定本法。 第二条 国家和人民永远尊崇、铭记英雄烈士为国家、人民和民族作出的牺牲和贡献。 近代以来，为了争取民族独立和人民解放，实现国家富强和人民幸福，促"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/heroes-and-martyrs-protection-law/README.md"

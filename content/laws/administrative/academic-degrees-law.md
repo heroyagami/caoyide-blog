@@ -1,7 +1,8 @@
 ---
-title: "academic degrees law"
-description: "行政法 - academic degrees law"
-date: 2026-06-14
+title: "中华人民共和国学位法"
+description: "行政法 - 中华人民共和国学位法"
+summary: "中华人民共和国学位法 2024年4月26日第十四届全国人民代表大会常务委员会第九次会议通过 第一章 总则 第一条 为了规范学位授予工作，保护学位申请人的合法权益，保障学位质量，培养担当民族复兴大任的时代新人，建设教育强国、科技强国、人才强国，服务全面建设社会主义现代化国家，根据宪法，制定本法。 第二条 国家实行学位制度。学位分为学士、硕士、博士，包括学术学位、专业学位等类型，按照学科门类、专业学位类别等授予。 第三条 "
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/academic-degrees-law/README.md"

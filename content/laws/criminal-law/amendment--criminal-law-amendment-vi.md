@@ -1,7 +1,8 @@
 ---
-title: "criminal law amendment vi"
-description: "刑法 - criminal law amendment vi"
-date: 2026-06-14
+title: "中华人民共和国刑法修正案（六）"
+description: "刑法 - 中华人民共和国刑法修正案（六）"
+summary: "中华人民共和国刑法修正案（六） 2006年6月29日第十届全国人民代表大会常务委员会第二十二次会议通过 一、将刑法第一百三十四条修改为：“在生产、作业中违反有关安全管理的规定，因而发生重大伤亡事故或者造成其他严重后果的，处三年以下有期徒刑或者拘役；情节特别恶劣的，处三年以上七年以下有期徒刑。 “强令他人违章冒险作业，因而发生重大伤亡事故或者造成其他严重后果的，处五年以下有期徒刑或者拘役；情节特别恶劣的，处五年以上有期徒刑。” 二"
+date: 2026-06-15
 draft: false
 category: "刑法"
 law_file: "criminal-law/amendment/criminal-law-amendment-vi.md"

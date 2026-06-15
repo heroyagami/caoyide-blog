@@ -1,7 +1,8 @@
 ---
-title: "higher education law"
-description: "行政法 - higher education law"
-date: 2026-06-14
+title: "中华人民共和国高等教育法"
+description: "行政法 - 中华人民共和国高等教育法"
+summary: "中华人民共和国高等教育法 1998年8月29日第九届全国人民代表大会常务委员会第四次会议通过 根据2015年12月27日第十二届全国人民代表大会常务委员会第十八次会议《关于修改〈中华人民共和国高等教育法〉的决定》第一次修正 根据2018年12月29日第十三届全国人民代表大会常务委员会第七次会议《关于修改〈中华人民共和国电力法〉等四部法律的决定》第二次修正 第一章 总 则 第一条 为了发展高等教育事业，实施科教兴国战略，促进"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/higher-education-law/README.md"

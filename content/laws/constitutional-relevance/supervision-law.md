@@ -1,7 +1,8 @@
 ---
-title: "supervision law"
-description: "宪法相关法 - supervision law"
-date: 2026-06-14
+title: "中华人民共和国监察法"
+description: "宪法相关法 - 中华人民共和国监察法"
+summary: "中华人民共和国监察法 2018年3月20日第十三届全国人民代表大会第一次会议通过 根据2024年12月25日第十四届全国人民代表大会常务委员会第十三次会议《关于修改〈中华人民共和国监察法〉的决定》修正 第一章 总 则 第一条 为了深入开展廉政建设和反腐败工作，加强对所有行使公权力的公职人员的监督，实现国家监察全面覆盖，持续深化国家监察体制改革，推进国家治理体系和治理能力现代化，根据宪法，制定本法。 第二条 坚持中国共产"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/supervision-law/README.md"

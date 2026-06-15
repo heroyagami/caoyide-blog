@@ -1,7 +1,8 @@
 ---
-title: "anti organized crime law"
-description: "刑法 - anti organized crime law"
-date: 2026-06-14
+title: "中华人民共和国反有组织犯罪法"
+description: "刑法 - 中华人民共和国反有组织犯罪法"
+summary: "中华人民共和国反有组织犯罪法 2021年12月24日第十三届全国人民代表大会常务委员会第三十二次会议通过 第一章 总则 第一条 为了预防和惩治有组织犯罪，加强和规范反有组织犯罪工作，维护国家安全、社会秩序、经济秩序，保护公民和组织的合法权益，根据宪法，制定本法。 第二条 本法所称有组织犯罪，是指《中华人民共和国刑法》第二百九十四条规定的组织、领导、参加黑社会性质组织犯罪，以及黑社会性质组织、恶势力组织实施的犯罪。 本法所称恶势"
+date: 2026-06-15
 draft: false
 category: "刑法"
 law_file: "criminal-law/anti-organized-crime-law/README.md"

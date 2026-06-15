@@ -1,7 +1,8 @@
 ---
-title: "penalties for administration of public security"
-description: "行政法 - penalties for administration of public security"
-date: 2026-06-14
+title: "中华人民共和国治安管理处罚法"
+description: "行政法 - 中华人民共和国治安管理处罚法"
+summary: "中华人民共和国治安管理处罚法 2005年8月28日第十届全国人民代表大会常务委员会第十七次会议通过 根据2012年10月26日第十一届全国人民代表大会常务委员会第二十九次会议《关于修改<中华人民共和国治安管理处罚法>的决定》修正 第一章 总则 第一条 为维护社会治安秩序，保障公共安全，保护公民、法人和其他组织的合法权益，规范和保障公安机关及其人民警察依法履行治安管理职责，制定本法。 第二条 扰乱公共秩序，妨害公共安全，侵犯人身"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/penalties-for-administration-of-public-security/README.md"

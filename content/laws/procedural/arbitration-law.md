@@ -1,7 +1,8 @@
 ---
-title: "arbitration law"
-description: "程序法 - arbitration law"
-date: 2026-06-14
+title: "中华人民共和国仲裁法"
+description: "程序法 - 中华人民共和国仲裁法"
+summary: "中华人民共和国仲裁法 1994年8月31日第八届全国人民代表大会常务委员会第九次会议通过 根据2009年8月27日第十一届全国人民代表大会常务委员会第十次会议《关于修改部分法律的决定》第一次修正 根据2017年9月1日第十二届全国人民代表大会常务委员会第二十九次会议《关于修改〈中华人民共和国法官法〉等八部法律的决定》第二次修正 第一章 总 则 第一条 为保证公正、及时地仲裁经济纠纷，保护当事人的合法权益，保障社会主义市"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/arbitration-law/README.md"

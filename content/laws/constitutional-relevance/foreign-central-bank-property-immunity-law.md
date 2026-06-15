@@ -1,7 +1,8 @@
 ---
-title: "foreign central bank property immunity law"
-description: "宪法相关法 - foreign central bank property immunity law"
-date: 2026-06-14
+title: "中华人民共和国外国中央银行财产司法强制措施豁免法"
+description: "宪法相关法 - 中华人民共和国外国中央银行财产司法强制措施豁免法"
+summary: "中华人民共和国外国中央银行财产司法强制措施豁免法 2005年10月25日第十届全国人民代表大会常务委员会第十八次会议通过 第一条 中华人民共和国对外国中央银行财产给予财产保全和执行的司法强制措施的豁免；但是，外国中央银行或者其所属国政府书面放弃豁免的或者指定用于财产保全和执行的财产除外。 第二条 本法所称外国中央银行，是指外国的和区域经济一体化组织的中央银行或者履行中央银行职能的金融管理机构。 本法所称外国中央银行财产，是指外国中央银行的现金、票"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/foreign-central-bank-property-immunity-law/README.md"

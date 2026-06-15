@@ -1,7 +1,8 @@
 ---
-title: "securities investment fund law"
-description: "民商法 - securities investment fund law"
-date: 2026-06-14
+title: "中华人民共和国证券投资基金法"
+description: "民商法 - 中华人民共和国证券投资基金法"
+summary: "中华人民共和国证券投资基金法 2003年10月28日第十届全国人民代表大会常务委员会第五次会议通过 2012年12月28日第十一届全国人民代表大会常务委员会第三十次会议修订 根据2015年4月24日第十二届全国人民代表大会常务委员会第十四次会议《关于修改〈中华人民共和国港口法〉等七部法律的决定》修正 第一章 总则 第一条 为了规范证券投资基金活动，保护投资人及相关当事人的合法权益，促进证券投资基金和资本市场的健康发展，制定本法"
+date: 2026-06-15
 draft: false
 category: "民商法"
 law_file: "civil-and-commercial/securities-investment-fund-law/README.md"

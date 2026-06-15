@@ -28,6 +28,43 @@
         {{/* ========== 法条全文页（law.html 内容内联） ========== */}}
         {{ $lawFile := .Params.law_file }}
         {{ $fullPath := printf "themes-data/laws/docs/%s" $lawFile }}
+        {{/* 顶部 8 大类导航（永远显示，方便切换其他法条）*/}}
+        {{ $allLaws := where $.Site.RegularPages "Section" "laws" }}
+        {{ $categories := slice
+          (dict "name" "宪法" "dir" "constitution")
+          (dict "name" "宪法相关法" "dir" "constitutional-relevance")
+          (dict "name" "民商法" "dir" "civil-and-commercial")
+          (dict "name" "刑法" "dir" "criminal-law")
+          (dict "name" "行政法" "dir" "administrative")
+          (dict "name" "经济法" "dir" "economic")
+          (dict "name" "程序法" "dir" "procedural")
+          (dict "name" "社会法" "dir" "social")
+        }}
+        {{/* 当前所在大类的 dir（用于高亮）*/}}
+        {{ $curDir := "" }}
+        {{ $lawDirParts := split ($.File.Dir | replaceRE `\\` "/") "/" }}
+        {{ if gt (len $lawDirParts) 1 }}
+          {{ $curDir = index $lawDirParts 1 }}
+        {{ end }}
+        <nav class="laws-topnav" aria-label="法律分类导航">
+            <a class="laws-topnav-home" href="/laws/">全部类别</a>
+            {{- range $categories }}
+              {{- $cat := . }}
+              {{- $navLaws := where $allLaws "File.Dir" "in" (slice (printf "laws/%s/" $cat.dir) (printf "laws\\%s\\" $cat.dir)) }}
+              <div class="laws-topnav-item{{ if eq $cat.dir $curDir }} is-active{{ end }}">
+                <a class="laws-topnav-link" href="/laws/{{ $cat.dir }}/">{{ $cat.name }}<span class="caret">▾</span></a>
+                {{ if gt (len $navLaws) 0 }}
+                  <div class="laws-topnav-dropdown" role="menu">
+                    {{- range first 6 $navLaws }}
+                      <a class="laws-topnav-dropdown-item" role="menuitem" href="{{ .Permalink }}">{{ .Title }}</a>
+                    {{- end }}
+                    <a class="laws-topnav-dropdown-more" role="menuitem" href="/laws/{{ $cat.dir }}/">查看全部 {{ len $navLaws }} 部 →</a>
+                  </div>
+                {{ end }}
+              </div>
+            {{- end }}
+        </nav>
+
         <article class="article law-article">
             <div class="article-header">
                 <h1 class="article-title">{{ .Title }}</h1>
@@ -92,17 +129,101 @@
                     {{ $finalContent | markdownify }}
                     </div>
                 {{ else }}
-                    <div class="law-error" style="padding: 1em; background: #fff3f3; border-left: 4px solid #DE2910; border-radius: 4px;">
+                    <div class="law-error" style="padding: 1em; background: var(--card-background-selected); border-left: 4px solid var(--accent-color); border-radius: 4px;">
                         <p>❌ 找不到法律文件：<code>{{ $fullPath }}</code></p>
-                        <p>可能该法律暂未收录到 just-laws 仓库，欢迎提交 issue：<a href="https://github.com/ImCa0/just-laws/issues">just-laws/issues</a></p>
+                        <p>可能该法律暂未收录到本站。</p>
                     </div>
                 {{ end }}
             </div>
 
             <div class="article-footer" style="margin-top: 2em; padding-top: 1em; border-top: 1px solid #eee; font-size: 0.9em; color: #888;">
                 <p>📚 访问 <a href="/laws/">法条文库</a> 查看所有 192 部法律</p>
+
+                {{/* 上一法 / 下一法 导航（按当前大类的所有法律排序）*/}}
+                {{ $dirNormalized := .File.Dir | replaceRE `\\` "/" }}
+                {{ $dirParts := split $dirNormalized "/" }}
+                {{ $currentCategoryDir := "" }}
+                {{ if gt (len $dirParts) 1 }}
+                  {{ $currentCategoryDir = index $dirParts 1 }}
+                {{ end }}
+                {{ $catLaws := where $allLaws "File.Dir" "in" (slice (printf "laws/%s/" $currentCategoryDir) (printf "laws\\%s\\" $currentCategoryDir)) }}
+                {{ $idx := -1 }}
+                {{ range $i, $l := $catLaws }}
+                  {{ if eq $l.Permalink $.Permalink }}{{ $idx = $i }}{{ end }}
+                {{ end }}
+                {{ $prevLaw := "" }}
+                {{ $nextLaw := "" }}
+                {{ if and (ge $idx 0) (gt $idx 0) }}
+                  {{ $prevLaw = index $catLaws (sub $idx 1) }}
+                {{ end }}
+                {{ if and (ge $idx 0) (lt $idx (sub (len $catLaws) 1)) }}
+                  {{ $nextLaw = index $catLaws (add $idx 1) }}
+                {{ end }}
+
+                <nav class="law-prev-next" aria-label="法条前后导航">
+                    <div class="law-prev">
+                        {{ with $prevLaw }}
+                        <a href="{{ .Permalink }}" class="law-nav-card" rel="prev">
+                            <span class="law-nav-label">← 上一法</span>
+                            <span class="law-nav-title">{{ .Title }}</span>
+                        </a>
+                        {{ else }}
+                        <span class="law-nav-card disabled">
+                            <span class="law-nav-label">← 上一法</span>
+                            <span class="law-nav-title">已是本类第一部</span>
+                        </span>
+                        {{ end }}
+                    </div>
+                    <div class="law-nav-back">
+                        <a href="/laws/{{ $currentCategoryDir }}/" class="law-nav-card back">返回本类目录</a>
+                    </div>
+                    <div class="law-next">
+                        {{ with $nextLaw }}
+                        <a href="{{ .Permalink }}" class="law-nav-card" rel="next">
+                            <span class="law-nav-label">下一法 →</span>
+                            <span class="law-nav-title">{{ .Title }}</span>
+                        </a>
+                        {{ else }}
+                        <span class="law-nav-card disabled">
+                            <span class="law-nav-label">下一法 →</span>
+                            <span class="law-nav-title">已是本类最后一部</span>
+                        </span>
+                        {{ end }}
+                    </div>
+                </nav>
             </div>
         </article>
+
+        {{/* 滚动联动：当前章节在左侧目录高亮（IntersectionObserver）*/}}
+        <script>
+        (function() {
+            const tocLinks = document.querySelectorAll('.law-toc-nav a[href^="#sec-"]');
+            if (tocLinks.length === 0) return;
+            const sections = Array.from(tocLinks).map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+            if (sections.length === 0) return;
+            const tocLinkMap = new Map();
+            tocLinks.forEach(a => tocLinkMap.set(a.getAttribute('href').slice(1), a));
+            let currentId = null;
+            const observer = new IntersectionObserver((entries) => {
+                // 找出最靠近顶部且可见的章节
+                const visible = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+                if (visible.length > 0) {
+                    const id = visible[0].target.id;
+                    if (id !== currentId) {
+                        currentId = id;
+                        tocLinks.forEach(a => a.classList.remove('is-current'));
+                        const link = tocLinkMap.get(id);
+                        if (link) {
+                            link.classList.add('is-current');
+                            // 让当前章节自动滚到目录可视区
+                            link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                        }
+                    }
+                }
+            }, { rootMargin: '-100px 0px -60% 0px', threshold: 0 });
+            sections.forEach(s => observer.observe(s));
+        })();
+        </script>
     {{ else }}
         {{/* ========== 普通文章页（Stack 主题原始布局） ========== */}}
         {{ partial "article/article.html" . }}

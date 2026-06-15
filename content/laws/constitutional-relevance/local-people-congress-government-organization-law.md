@@ -1,7 +1,8 @@
 ---
-title: "local people congress government organization law"
-description: "宪法相关法 - local people congress government organization law"
-date: 2026-06-14
+title: "中华人民共和国地方各级人民代表大会和地方各级人民政府组织法"
+description: "宪法相关法 - 中华人民共和国地方各级人民代表大会和地方各级人民政府组织法"
+summary: "中华人民共和国地方各级人民代表大会和地方各级人民政府组织法 1979年7月1日第五届全国人民代表大会第二次会议通过 1979年7月4日公布 自1980年1月1日起施行 根据1982年12月10日第五届全国人民代表大会第五次会议《关于修改〈中华人民共和国地方各级人民代表大会和地方各级人民政府组织法〉的若干规定的决议》第一次修正 根据1986年12月2日第六届全国人民代表大会常务委员会第十八次会议《关于修改〈中华人民共和国地方各级人民代表大会和地方各级人民政府"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/local-people-congress-government-organization-law/README.md"

@@ -1,7 +1,8 @@
 ---
-title: "legislation law"
-description: "宪法相关法 - legislation law"
-date: 2026-06-14
+title: "中华人民共和国立法法"
+description: "宪法相关法 - 中华人民共和国立法法"
+summary: "中华人民共和国立法法 2000年3月15日第九届全国人民代表大会第三次会议通过 根据2015年3月15日第十二届全国人民代表大会第三次会议《关于修改<中华人民共和国立法法>的决定》修正 第一章 总则 第一条 为了规范立法活动，健全国家立法制度，提高立法质量，完善中国特色社会主义法律体系，发挥立法的引领和推动作用，保障和发展社会主义民主，全面推进依法治国，建设社会主义法治国家，根据宪法，制定本法。 第二条 法律、行政法规"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/legislation-law/README.md"

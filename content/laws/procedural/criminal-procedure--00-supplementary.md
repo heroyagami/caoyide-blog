@@ -1,7 +1,8 @@
 ---
-title: "第00编 附则"
-description: "程序法 - 第00编 附则"
-date: 2026-06-14
+title: "附则"
+description: "程序法 - 附则"
+summary: "附则 第三百零八条 军队保卫部门对军队内部发生的刑事案件行使侦查权。 中国海警局履行海上维权执法职责，对海上发生的刑事案件行使侦查权。 对罪犯在监狱内犯罪的案件由监狱进行侦查。 军队保卫部门、中国海警局、监狱办理刑事案件，适用本法的有关规定。"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/criminal-procedure/00-supplementary.md"

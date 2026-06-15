@@ -1,7 +1,8 @@
 ---
-title: "public library law"
-description: "行政法 - public library law"
-date: 2026-06-14
+title: "中华人民共和国公共图书馆法"
+description: "行政法 - 中华人民共和国公共图书馆法"
+summary: "中华人民共和国公共图书馆法 2017年11月4日第十二届全国人民代表大会常务委员会第三十次会议通过 根据2018年10月26日第十三届全国人民代表大会常务委员会第六次会议《关于修改〈中华人民共和国野生动物保护法〉等十五部法律的决定》修正 第一章 总则 第一条 为了促进公共图书馆事业发展，发挥公共图书馆功能，保障公民基本文化权益，提高公民科学文化素质和社会文明程度，传承人类文明，坚定文化自信，制定本法。 第二条 本法所称公共图"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/public-library-law/README.md"

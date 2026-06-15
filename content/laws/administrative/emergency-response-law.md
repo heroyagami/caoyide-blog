@@ -1,7 +1,8 @@
 ---
-title: "emergency response law"
-description: "行政法 - emergency response law"
-date: 2026-06-14
+title: "中华人民共和国突发事件应对法"
+description: "行政法 - 中华人民共和国突发事件应对法"
+summary: "中华人民共和国突发事件应对法 2007年8月30日第十届全国人民代表大会常务委员会第二十九次会议通过 2024年6月28日第十四届全国人民代表大会常务委员会第十次会议修订 第一章 总则 第一条 为了预防和减少突发事件的发生，控制、减轻和消除突发事件引起的严重社会危害，提高突发事件预防和应对能力，规范突发事件应对活动，保护人民生命财产安全，维护国家安全、公共安全、生态环境安全和社会秩序，根据宪法，制定本法。 第二条 本法所称突发"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/emergency-response-law/README.md"

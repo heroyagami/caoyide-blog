@@ -1,7 +1,8 @@
 ---
-title: "customs rank regulations"
-description: "行政法 - customs rank regulations"
-date: 2026-06-14
+title: "中华人民共和国海关关衔条例"
+description: "行政法 - 中华人民共和国海关关衔条例"
+summary: "中华人民共和国海关关衔条例 2003年2月28日第九届全国人民代表大会常务委员会第三十二次会议通过 第一章 总则 第一条 为了加强海关队伍建设，增强海关工作人员的责任感、荣誉感和组织纪律性，有利于海关工作人员依法履行职责，根据宪法，制定本条例。 第二条 海关实行关衔制度。海关总署、分署、特派员办公室、各直属海关、隶属海关和办事处的国家公务员可以授予海关关衔。 海关缉私警察实行人民警察警衔制度。 第三条 关衔是区分海关工作人员"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/customs-rank-regulations/README.md"

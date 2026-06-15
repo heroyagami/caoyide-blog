@@ -1,7 +1,8 @@
 ---
-title: "extradition law"
-description: "程序法 - extradition law"
-date: 2026-06-14
+title: "中华人民共和国引渡法"
+description: "程序法 - 中华人民共和国引渡法"
+summary: "中华人民共和国引渡法 2000年12月28日第九届全国人民代表大会常务委员会第十九次会议通过 第一章 总则 第一条 为了保障引渡的正常进行，加强惩罚犯罪方面的国际合作，保护个人和组织的合法权益，维护国家利益和社会秩序，制定本法。 第二条 中华人民共和国和外国之间的引渡，依照本法进行。 第三条 中华人民共和国和外国在平等互惠的基础上进行引渡合作。 引渡合作，不得损害中华人民共和国的主权、安全和社会公共利益。 第四条 中华"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/extradition-law/README.md"

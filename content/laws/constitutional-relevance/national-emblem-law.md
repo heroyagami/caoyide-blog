@@ -1,7 +1,8 @@
 ---
-title: "national emblem law"
-description: "宪法相关法 - national emblem law"
-date: 2026-06-14
+title: "中华人民共和国国徽法"
+description: "宪法相关法 - 中华人民共和国国徽法"
+summary: "中华人民共和国国徽法 1991年3月2日第七届全国人民代表大会常务委员会第十八次会议通过 根据2009年8月27日第十一届全国人民代表大会常务委员会第十次会议《关于修改部分法律的决定》第一次修正 根据2020年10月17日第十三届全国人民代表大会常务委员会第二十二次会议《关于修改〈中华人民共和国国徽法〉的决定》第二次修正 第一条 为了维护国徽的尊严，正确使用国徽，增强公民的国家观念，弘扬爱国主义精神，培育和践行社会主义"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/national-emblem-law/README.md"

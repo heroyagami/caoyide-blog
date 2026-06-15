@@ -1,7 +1,8 @@
 ---
-title: "small and medium sized enterprises promotion law"
-description: "经济法 - small and medium sized enterprises promotion law"
-date: 2026-06-14
+title: "中华人民共和国中小企业促进法"
+description: "经济法 - 中华人民共和国中小企业促进法"
+summary: "中华人民共和国中小企业促进法 2002年6月29日第九届全国人民代表大会常务委员会第二十八次会议通过 2017年9月1日第十二届全国人民代表大会常务委员会第二十九次会议修订 第一章 总则 第一条 为了改善中小企业经营环境，保障中小企业公平参与市场竞争，维护中小企业合法权益，支持中小企业创业创新，促进中小企业健康发展，扩大城乡就业，发挥中小企业在国民经济和社会发展中的重要作用，制定本法。 第二条 本法所称中小企业，是指在中华人民"
+date: 2026-06-15
 draft: false
 category: "经济法"
 law_file: "economic/small-and-medium-sized-enterprises-promotion-law/README.md"

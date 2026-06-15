@@ -1,7 +1,8 @@
 ---
-title: "electoral law of national and local people s congresses"
-description: "宪法相关法 - electoral law of national and local people s congresses"
-date: 2026-06-14
+title: "中华人民共和国全国人民代表大会和地方各级人民代表大会选举法"
+description: "宪法相关法 - 中华人民共和国全国人民代表大会和地方各级人民代表大会选举法"
+summary: "中华人民共和国全国人民代表大会和地方各级人民代表大会选举法 1979年7月1日第五届全国人民代表大会第二次会议通过 根据1982年12月10日第五届全国人民代表大会第五次会议《关于修改〈中华人民共和国全国人民代表大会和地方各级人民代表大会选举法〉的若干规定的决议》第一次修正 根据1986年12月2日第六届全国人民代表大会常务委员会第十八次会议《关于修改〈中华人民共和国全国人民代表大会和地方各级人民代表大会选举法〉的决定》第二次修正 根据1995年2月28日"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/electoral-law-of-national-and-local-people-s-congresses/README.md"

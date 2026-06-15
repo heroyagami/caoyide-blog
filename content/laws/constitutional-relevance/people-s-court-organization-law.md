@@ -1,7 +1,8 @@
 ---
-title: "people s court organization law"
-description: "宪法相关法 - people s court organization law"
-date: 2026-06-14
+title: "中华人民共和国人民法院组织法"
+description: "宪法相关法 - 中华人民共和国人民法院组织法"
+summary: "中华人民共和国人民法院组织法 1979年7月1日第五届全国人民代表大会第二次会议通过 根据1983年9月2日第六届全国人民代表大会常务委员会第二次会议《关于修改〈中华人民共和国人民法院组织法〉的决定》第一次修正 根据1986年12月2日第六届全国人民代表大会常务委员会第十八次会议《关于修改〈中华人民共和国地方各级人民代表大会和地方各级人民政府组织法〉的决定》第二次修正 根据2006年10月31日第十届全国人民代表大会常务委员会"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/people-s-court-organization-law/README.md"

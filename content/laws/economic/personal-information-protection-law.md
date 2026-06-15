@@ -1,7 +1,8 @@
 ---
-title: "personal information protection law"
-description: "经济法 - personal information protection law"
-date: 2026-06-14
+title: "中华人民共和国个人信息保护法"
+description: "经济法 - 中华人民共和国个人信息保护法"
+summary: "中华人民共和国个人信息保护法 2021年8月20日第十三届全国人民代表大会常务委员会第三十次会议通过 第一章 总则 第一条 为了保护个人信息权益，规范个人信息处理活动，促进个人信息合理利用，根据宪法，制定本法。 第二条 自然人的个人信息受法律保护，任何组织、个人不得侵害自然人的个人信息权益。 第三条 在中华人民共和国境内处理自然人个人信息的活动，适用本法。 在中华人民共和国境外处理中华人民共和国境内自然人个人信息的活动，有下列"
+date: 2026-06-15
 draft: false
 category: "经济法"
 law_file: "economic/personal-information-protection-law/README.md"

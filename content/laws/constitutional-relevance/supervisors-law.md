@@ -1,7 +1,8 @@
 ---
-title: "supervisors law"
-description: "宪法相关法 - supervisors law"
-date: 2026-06-14
+title: "中华人民共和国监察官法"
+description: "宪法相关法 - 中华人民共和国监察官法"
+summary: "中华人民共和国监察官法 2021年8月20日第十三届全国人民代表大会常务委员会第三十次会议通过 第一章 总则 第一条 为了加强对监察官的管理和监督，保障监察官依法履行职责，维护监察官合法权益，推进高素质专业化监察官队伍建设，推进监察工作规范化、法治化，根据宪法和《中华人民共和国监察法》，制定本法。 第二条 监察官的管理和监督坚持中国共产党领导，坚持以马克思列宁主义、毛泽东思想、邓小平理论、“三个代表”重要思想、科学发展观"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/supervisors-law/README.md"

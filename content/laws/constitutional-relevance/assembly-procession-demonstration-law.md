@@ -1,7 +1,8 @@
 ---
-title: "assembly procession demonstration law"
-description: "宪法相关法 - assembly procession demonstration law"
-date: 2026-06-14
+title: "中华人民共和国集会游行示威法"
+description: "宪法相关法 - 中华人民共和国集会游行示威法"
+summary: "中华人民共和国集会游行示威法 1989年10月31日第七届全国人民代表大会常务委员会第十次会议通过 根据2009年8月27日第十一届全国人民代表大会常务委员会第十次会议《关于修改部分法律的决定》修正 第一章 总则 第一条 为了保障公民依法行使集会、游行、示威的权利，维护社会安定和公共秩序，根据宪法，制定本法。 第二条 在中华人民共和国境内举行集会、游行、示威，均适用本法。 本法所称集会，是指聚集于露天公共场所，发表意见、表达意"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/assembly-procession-demonstration-law/README.md"

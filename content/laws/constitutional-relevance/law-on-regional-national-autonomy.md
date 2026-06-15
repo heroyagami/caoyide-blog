@@ -1,7 +1,8 @@
 ---
-title: "law on regional national autonomy"
-description: "宪法相关法 - law on regional national autonomy"
-date: 2026-06-14
+title: "中华人民共和国民族区域自治法"
+description: "宪法相关法 - 中华人民共和国民族区域自治法"
+summary: "中华人民共和国民族区域自治法 1984年5月31日第六届全国人民代表大会第二次会议通过 根据2001年2月28日第九届全国人民代表大会常务委员会第二十次会议《关于修改〈中华人民共和国民族区域自治法〉的决定》修正 序言 中华人民共和国是全国各族人民共同缔造的统一的多民族国家。民族区域自治是中国共产党运用马克思列宁主义解决我国民族问题的基本政策，是国家的一项基本政治制度。 民族区域自治是在国家统一领导下，各少数民族聚居的地方实行区"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/law-on-regional-national-autonomy/README.md"

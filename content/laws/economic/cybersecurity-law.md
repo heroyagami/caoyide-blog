@@ -1,7 +1,8 @@
 ---
-title: "cybersecurity law"
-description: "经济法 - cybersecurity law"
-date: 2026-06-14
+title: "中华人民共和国网络安全法"
+description: "经济法 - 中华人民共和国网络安全法"
+summary: "中华人民共和国网络安全法 2016年11月7日第十二届全国人民代表大会常务委员会第二十四次会议通过 第一章 总则 第一条 为了保障网络安全，维护网络空间主权和国家安全、社会公共利益，保护公民、法人和其他组织的合法权益，促进经济社会信息化健康发展，制定本法。 第二条 在中华人民共和国境内建设、运营、维护和使用网络，以及网络安全的监督管理，适用本法。 第三条 国家坚持网络安全与信息化发展并重，遵循积极利用、科学发展、依法管理、"
+date: 2026-06-15
 draft: false
 category: "经济法"
 law_file: "economic/cybersecurity-law/README.md"

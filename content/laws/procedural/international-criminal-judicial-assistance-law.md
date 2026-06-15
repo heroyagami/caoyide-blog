@@ -1,7 +1,8 @@
 ---
-title: "international criminal judicial assistance law"
-description: "程序法 - international criminal judicial assistance law"
-date: 2026-06-14
+title: "中华人民共和国国际刑事司法协助法"
+description: "程序法 - 中华人民共和国国际刑事司法协助法"
+summary: "中华人民共和国国际刑事司法协助法 2018年10月26日第十三届全国人民代表大会常务委员会第六次会议通过 第一章 总则 第一条 为了保障国际刑事司法协助的正常进行，加强刑事司法领域的国际合作，有效惩治犯罪，保护个人和组织的合法权益，维护国家利益和社会秩序，制定本法。 第二条 本法所称国际刑事司法协助，是指中华人民共和国和外国在刑事案件调查、侦查、起诉、审判和执行等活动中相互提供协助，包括送达文书，调查取证，安排证人作证或者协助调查"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/international-criminal-judicial-assistance-law/README.md"

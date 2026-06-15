@@ -1,7 +1,8 @@
 ---
-title: "patriotism education law"
-description: "宪法相关法 - patriotism education law"
-date: 2026-06-14
+title: "中华人民共和国爱国主义教育法"
+description: "宪法相关法 - 中华人民共和国爱国主义教育法"
+summary: "中华人民共和国爱国主义教育法 2023年10月24日第十四届全国人民代表大会常务委员会第六次会议通过 第一章 总则 第一条 为了加强新时代爱国主义教育，传承和弘扬爱国主义精神，凝聚全面建设社会主义现代化国家、全面推进中华民族伟大复兴的磅礴力量，根据宪法，制定本法。 第二条 中国是世界上历史最悠久的国家之一，中国各族人民共同创造了光辉灿烂的文化、共同缔造了统一的多民族国家。国家在全体人民中开展爱国主义教育，培育和增进对中华民族和"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/patriotism-education-law/README.md"

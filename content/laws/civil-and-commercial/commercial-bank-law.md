@@ -1,7 +1,8 @@
 ---
-title: "commercial bank law"
-description: "民商法 - commercial bank law"
-date: 2026-06-14
+title: "中华人民共和国商业银行法"
+description: "民商法 - 中华人民共和国商业银行法"
+summary: "中华人民共和国商业银行法 1995年5月10日第八届全国人民代表大会常务委员会第十三次会议通过 根据2003年12月27日第十届全国人民代表大会常务委员会第六次会议《关于修改〈中华人民共和国商业银行法〉的决定》第一次修正 根据2015年8月29日第十二届全国人民代表大会常务委员会第十六次会议《关于修改〈中华人民共和国商业银行法〉的决定》第二次修正 第一章 总 则 第一条 为了保护商业银行、存款人和其他客户的合法权益，规范商"
+date: 2026-06-15
 draft: false
 category: "民商法"
 law_file: "civil-and-commercial/commercial-bank-law/README.md"

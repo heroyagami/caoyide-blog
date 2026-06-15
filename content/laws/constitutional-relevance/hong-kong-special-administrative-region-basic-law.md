@@ -1,7 +1,8 @@
 ---
-title: "hong kong special administrative region basic law"
-description: "宪法相关法 - hong kong special administrative region basic law"
-date: 2026-06-14
+title: "中华人民共和国香港特别行政区基本法"
+description: "宪法相关法 - 中华人民共和国香港特别行政区基本法"
+summary: "中华人民共和国香港特别行政区基本法 1990年4月4日第七届全国人民代表大会第三次会议通过 序言 香港自古以来就是中国的领土，一八四〇年鸦片战争以后被英国占领。一九八四年十二月十九日，中英两国政府签署了关于香港问题的联合声明，确认中华人民共和国政府于一九九七年七月一日恢复对香港行使主权，从而实现了长期以来中国人民收回香港的共同愿望。 为了维护国家的统一和领土完整，保持香港的繁荣和稳定，并考虑到香港的历史和现实情况，国家决定，在对香港"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/hong-kong-special-administrative-region-basic-law/README.md"

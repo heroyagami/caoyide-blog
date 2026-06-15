@@ -1,7 +1,8 @@
 ---
-title: "national anthem law"
-description: "宪法相关法 - national anthem law"
-date: 2026-06-14
+title: "中华人民共和国国歌法"
+description: "宪法相关法 - 中华人民共和国国歌法"
+summary: "中华人民共和国国歌法 2017年9月1日第十二届全国人民代表大会常务委员会第二十九次会议通过 第一条 为了维护国歌的尊严，规范国歌的奏唱、播放和使用，增强公民的国家观念，弘扬爱国主义精神，培育和践行社会主义核心价值观，根据宪法，制定本法。 第二条 中华人民共和国国歌是《义勇军进行曲》。 第三条 中华人民共和国国歌是中华人民共和国的象征和标志。 一切公民和组织都应当尊重国歌，维护国歌的尊严。 第四条 在下列场合，应当奏唱"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/national-anthem-law/README.md"

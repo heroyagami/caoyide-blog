@@ -1,7 +1,8 @@
 ---
-title: "environment protection"
-description: "行政法 - environment protection"
-date: 2026-06-14
+title: "中华人民共和国环境保护法"
+description: "行政法 - 中华人民共和国环境保护法"
+summary: "中华人民共和国环境保护法 1989年12月26日第七届全国人民代表大会常务委员会第十一次会议通过 2014年4月24日第十二届全国人民代表大会常务委员会第八次会议修订 第一章 总则 第一条 为保护和改善环境，防治污染和其他公害，保障公众健康，推进生态文明建设，促进经济社会可持续发展，制定本法。 第二条 本法所称环境，是指影响人类生存和发展的各种天然的和经过人工改造的自然因素的总体，包括大气、水、海洋、土地、矿藏、森林、草原"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/environment-protection/README.md"

@@ -1,7 +1,8 @@
 ---
-title: "hong kong national security law"
-description: "宪法相关法 - hong kong national security law"
-date: 2026-06-14
+title: "中华人民共和国香港特别行政区维护国家安全法"
+description: "宪法相关法 - 中华人民共和国香港特别行政区维护国家安全法"
+summary: "中华人民共和国香港特别行政区维护国家安全法 2020年6月30日第十三届全国人民代表大会常务委员会第二十次会议通过 第一章 总则 第一条 为坚定不移并全面准确贯彻“一国两制”、“港人治港”、高度自治的方针，维护国家安全，防范、制止和惩治与香港特别行政区有关的分裂国家、颠覆国家政权、组织实施恐怖活动和勾结外国或者境外势力危害国家安全等犯罪，保持香港特别行政区的繁荣和稳定，保障香港特别行政区居民的合法权益，根据中华人民共和国宪法、中华人民共和国"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/hong-kong-national-security-law/README.md"

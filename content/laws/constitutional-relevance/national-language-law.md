@@ -1,7 +1,8 @@
 ---
-title: "national language law"
-description: "宪法相关法 - national language law"
-date: 2026-06-14
+title: "中华人民共和国国家通用语言文字法"
+description: "宪法相关法 - 中华人民共和国国家通用语言文字法"
+summary: "中华人民共和国国家通用语言文字法 2000年10月31日第九届全国人民代表大会常务委员会第十八次会议通过 2025年12月27日第十四届全国人民代表大会常务委员会第十九次会议修订 第一章 总则 第一条 为了推动国家通用语言文字的规范化、标准化及其健康发展，更好发挥国家通用语言文字在社会生活和促进各民族、各地区经济文化交流中的作用，铸牢中华民族共同体意识，坚定文化自信，根据宪法，制定本法。 第二条 本法所称的国家通用语言文字是普通话"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/national-language-law/README.md"

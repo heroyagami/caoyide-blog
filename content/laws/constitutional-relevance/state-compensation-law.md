@@ -1,7 +1,8 @@
 ---
-title: "state compensation law"
-description: "宪法相关法 - state compensation law"
-date: 2026-06-14
+title: "中华人民共和国国家赔偿法"
+description: "宪法相关法 - 中华人民共和国国家赔偿法"
+summary: "中华人民共和国国家赔偿法 1994年5月12日第八届全国人民代表大会常务委员会第七次会议通过 根据2010年4月29日第十一届全国人民代表大会常务委员会第十四次会议《关于修改〈中华人民共和国国家赔偿法〉的决定》第一次修正 根据2012年10月26日第十一届全国人民代表大会常务委员会第二十九次会议《关于修改〈中华人民共和国国家赔偿法〉的决定》第二次修正 第一章 总则 第一条 为保障公民、法人和其他组织享有依法取得国家赔偿的权"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/state-compensation-law/README.md"

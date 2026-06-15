@@ -1,7 +1,8 @@
 ---
-title: "people s police law"
-description: "行政法 - people s police law"
-date: 2026-06-14
+title: "中华人民共和国人民警察法"
+description: "行政法 - 中华人民共和国人民警察法"
+summary: "中华人民共和国人民警察法 1995年2月28日第八届全国人民代表大会常务委员会第十二次会议通过 根据2012年10月26日第十一届全国人民代表大会常务委员会第十九次会议《关于修改〈中华人民共和国人民警察法〉的决定》修正 第一章 总则 第一条 为了维护国家安全和社会治安秩序，保护公民的合法权益，加强人民警察的队伍建设，从严治警，提高人民警察的素质，保障人民警察依法行使职权，保障改革开放和社会主义现代化建设的顺利进行，根据宪法"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/people-s-police-law/README.md"

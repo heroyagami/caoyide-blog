@@ -1,7 +1,8 @@
 ---
-title: "prevention and treatment of infections diseases"
-description: "行政法 - prevention and treatment of infections diseases"
-date: 2026-06-14
+title: "中华人民共和国传染病防治法"
+description: "行政法 - 中华人民共和国传染病防治法"
+summary: "中华人民共和国传染病防治法 1989年2月21日第七届全国人民代表大会常务委员会第六次会议通过 2004年8月28日第十届全国人民代表大会常务委员会第十一次会议修订 根据2013年6月29日第十二届全国人民代表大会常务委员会第三次会议《关于修改<中华人民共和国文物保护法>等十二部法律的决定》修正 第一章 总则 第一条 为了预防、控制和消除传染病的发生与流行，保障人体健康和公共卫生，制定本法。 第二条 国家对传染病防治实行预防"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/prevention-and-treatment-of-infections-diseases/README.md"

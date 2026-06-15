@@ -1,7 +1,8 @@
 ---
-title: "frontier health and quarantine law"
-description: "行政法 - frontier health and quarantine law"
-date: 2026-06-14
+title: "中华人民共和国国境卫生检疫法"
+description: "行政法 - 中华人民共和国国境卫生检疫法"
+summary: "中华人民共和国国境卫生检疫法 1986年12月2日第六届全国人民代表大会常务委员会第十八次会议通过 根据2007年12月29日第十届全国人民代表大会常务委员会第三十一次会议《关于修改〈中华人民共和国国境卫生检疫法〉的决定》第一次修正 根据2009年8月27日第十一届全国人民代表大会常务委员会第十次会议《关于修改部分法律的决定》第二次修正 根据2018年4月27日第十三届全国人民代表大会常务委员会第二次会议《关于修改〈中华人民共"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/frontier-health-and-quarantine-law/README.md"

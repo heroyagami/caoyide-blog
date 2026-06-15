@@ -1,7 +1,8 @@
 ---
-title: "第三编 execution procedure"
-description: "程序法 - 第三编 execution procedure"
-date: 2026-06-14
+title: "第三编　执行程序"
+description: "程序法 - 第三编　执行程序"
+summary: "第三编　执行程序 第十九章 一般规定 第二百三十一条 发生法律效力的民事判决、裁定，以及刑事判决、裁定中的财产部分，由第一审人民法院或者与第一审人民法院同级的被执行的财产所在地人民法院执行。 法律规定由人民法院执行的其他法律文书，由被执行人住所地或者被执行的财产所在地人民法院执行。 第二百三十二条 当事人、利害关系人认为执行行为违反法律规定的，可以向负责执行的人民法院提出书面异议。当事人、利害关系人提出书面异议的，"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/civil-procedure/03-execution-procedure.md"

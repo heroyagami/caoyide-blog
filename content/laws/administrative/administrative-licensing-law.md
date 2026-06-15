@@ -1,7 +1,8 @@
 ---
-title: "administrative licensing law"
-description: "行政法 - administrative licensing law"
-date: 2026-06-14
+title: "中华人民共和国行政许可法"
+description: "行政法 - 中华人民共和国行政许可法"
+summary: "中华人民共和国行政许可法 2003年8月27日第十届全国人民代表大会常务委员会第四次会议通过 根据2019年4月23日第十三届全国人民代表大会常务委员会第十次会议《关于修改〈中华人民共和国建筑法〉等八部法律的决定》修正 第一章 总 则 第一条 为了规范行政许可的设定和实施，保护公民、法人和其他组织的合法权益，维护公共利益和社会秩序，保障和监督行政机关有效实施行政管理，根据宪法，制定本法。 第二条 本法所称行政许可，是指行政"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/administrative-licensing-law/README.md"

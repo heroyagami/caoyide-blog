@@ -1,7 +1,8 @@
 ---
-title: "administrative procedure"
-description: "程序法 - administrative procedure"
-date: 2026-06-14
+title: "中华人民共和国行政诉讼法"
+description: "程序法 - 中华人民共和国行政诉讼法"
+summary: "中华人民共和国行政诉讼法 1989年4月4日第七届全国人民代表大会第二次会议通过 根据2014年11月1日第十二届全国人民代表大会常务委员会第十一次会议《关于修改<中华人民共和国行政诉讼法>的决定》第一次修正 根据2017年6月27日第十二届全国人民代表大会常务委员会第二十八次会议《关于修改<中华人民共和国民事诉讼法>和<中华人民共和国行政诉讼法>的决定》第二次修正 第一章 总则 第一条 为保证人民法院公正、及时审理行政案"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/administrative-procedure/README.md"

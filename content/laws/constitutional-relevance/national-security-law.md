@@ -1,7 +1,8 @@
 ---
-title: "national security law"
-description: "宪法相关法 - national security law"
-date: 2026-06-14
+title: "中华人民共和国国家安全法"
+description: "宪法相关法 - 中华人民共和国国家安全法"
+summary: "中华人民共和国国家安全法 2015年7月1日第十二届全国人民代表大会常务委员会第十五次会议通过 第一章 总则 第一条 为了维护国家安全，保卫人民民主专政的政权和中国特色社会主义制度，保护人民的根本利益，保障改革开放和社会主义现代化建设的顺利进行，实现中华民族伟大复兴，根据宪法，制定本法。 第二条 国家安全是指国家政权、主权、统一和领土完整、人民福祉、经济社会可持续发展和国家其他重大利益相对处于没有危险和不受内外威胁的状态，"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/national-security-law/README.md"

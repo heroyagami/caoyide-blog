@@ -1,7 +1,8 @@
 ---
-title: "road traffic safety law"
-description: "行政法 - road traffic safety law"
-date: 2026-06-14
+title: "中华人民共和国道路交通安全法"
+description: "行政法 - 中华人民共和国道路交通安全法"
+summary: "中华人民共和国道路交通安全法 2003年10月28日第十届全国人民代表大会常务委员会第五次会议通过 根据2007年12月29日第十届全国人民代表大会常务委员会第三十一次会议《关于修改〈中华人民共和国道路交通安全法〉的决定》第一次修正 根据2011年4月22日第十一届全国人民代表大会常务委员会第二十次会议《关于修改〈中华人民共和国道路交通安全法〉的决定》第二次修正 根据2021年4月29日第十三届全国人民代表大会常务委员会第二十"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/road-traffic-safety-law/README.md"

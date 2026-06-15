@@ -1,7 +1,8 @@
 ---
-title: "第一编 general provisions"
-description: "程序法 - 第一编 general provisions"
-date: 2026-06-14
+title: "第一编　总则"
+description: "程序法 - 第一编　总则"
+summary: "第一编　总则 第一章 任务和基本原则 第一条 为了保证刑法的正确实施，惩罚犯罪，保护人民，保障国家安全和社会公共安全，维护社会主义社会秩序，根据宪法，制定本法。 第二条 中华人民共和国刑事诉讼法的任务，是保证准确、及时地查明犯罪事实，正确应用法律，惩罚犯罪分子，保障无罪的人不受刑事追究，教育公民自觉遵守法律，积极同犯罪行为作斗争，维护社会主义法制，尊重和保障人权，保护公民的人身权利、财产权利、民主权利和其他权利"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/criminal-procedure/01-general-provisions.md"

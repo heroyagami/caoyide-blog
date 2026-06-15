@@ -1,7 +1,8 @@
 ---
-title: "hong kong garrison law"
-description: "宪法相关法 - hong kong garrison law"
-date: 2026-06-14
+title: "中华人民共和国香港特别行政区驻军法"
+description: "宪法相关法 - 中华人民共和国香港特别行政区驻军法"
+summary: "中华人民共和国香港特别行政区驻军法 1996年12月30日第八届全国人民代表大会常务委员会第二十三次会议通过 第一章 总则 第一条 为了保障中央人民政府派驻香港特别行政区负责防务的军队依法履行职责，维护国家的主权、统一、领土完整和香港的安全，根据宪法和香港特别行政区基本法，制定本法。 第二条 中央人民政府派驻香港特别行政区负责防务的军队，由中国人民解放军陆军、海军、空军部队组成，称中国人民解放军驻香港部队（以下称香港驻军）。 第三条"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/hong-kong-garrison-law/README.md"

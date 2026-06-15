@@ -1,7 +1,8 @@
 ---
-title: "第二编 trial procedure"
-description: "程序法 - 第二编 trial procedure"
-date: 2026-06-14
+title: "第二编　审判程序"
+description: "程序法 - 第二编　审判程序"
+summary: "第二编　审判程序 第十二章 第一审普通程序 第一节 起诉和受理 第一百二十二条 起诉必须符合下列条件： （一）原告是与本案有直接利害关系的公民、法人和其他组织； （二）有明确的被告； （三）有具体的诉讼请求和事实、理由； （四）属于人民法院受理民事诉讼的范围和受诉人民法院管辖。 第一百二十三条 起诉应当向人民法院递交起诉状，并按照被告人数提出副本。 书写起诉状确有困难的，可以口头起诉，由人民法院记入笔录，并告知对方"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/civil-procedure/02-trial-procedure.md"

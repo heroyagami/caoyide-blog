@@ -1,7 +1,8 @@
 ---
-title: "cryptography law"
-description: "行政法 - cryptography law"
-date: 2026-06-14
+title: "中华人民共和国密码法"
+description: "行政法 - 中华人民共和国密码法"
+summary: "中华人民共和国密码法 2019年10月26日第十三届全国人民代表大会常务委员会第十四次会议通过 第一章 总则 第一条 为了规范密码应用和管理，促进密码事业发展，保障网络与信息安全，维护国家安全和社会公共利益，保护公民、法人和其他组织的合法权益，制定本法。 第二条 本法所称密码，是指采用特定变换的方法对信息等进行加密保护、安全认证的技术、产品和服务。 第三条 密码工作坚持总体国家安全观，遵循统一领导、分级负责，创新发展、"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/cryptography-law/README.md"

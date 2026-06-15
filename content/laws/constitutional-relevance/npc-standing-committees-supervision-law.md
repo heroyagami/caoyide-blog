@@ -1,7 +1,8 @@
 ---
-title: "npc standing committees supervision law"
-description: "宪法相关法 - npc standing committees supervision law"
-date: 2026-06-14
+title: "中华人民共和国各级人民代表大会常务委员会监督法"
+description: "宪法相关法 - 中华人民共和国各级人民代表大会常务委员会监督法"
+summary: "中华人民共和国各级人民代表大会常务委员会监督法 2006年8月27日第十届全国人民代表大会常务委员会第二十三次会议通过 根据2024年11月8日第十四届全国人民代表大会常务委员会第十二次会议《关于修改〈中华人民共和国各级人民代表大会常务委员会监督法〉的决定》修正 第一章 总则 第一条 为了保障全国人民代表大会常务委员会和县级以上地方各级人民代表大会常务委员会依法行使监督职权，坚持好、完善好、运行好人民代表大会制度，发展社会主义民主政治，推进全面"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/npc-standing-committees-supervision-law/README.md"

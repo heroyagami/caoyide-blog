@@ -1,7 +1,8 @@
 ---
-title: "anti espionage law"
-description: "刑法 - anti espionage law"
-date: 2026-06-14
+title: "中华人民共和国反间谍法"
+description: "刑法 - 中华人民共和国反间谍法"
+summary: "中华人民共和国反间谍法 2014年11月1日第十二届全国人民代表大会常务委员会第十一次会议通过 2023年4月26日第十四届全国人民代表大会常务委员会第二次会议修订 第一章 总则 第一条 为了加强反间谍工作，防范、制止和惩治间谍行为，维护国家安全，保护人民利益，根据宪法，制定本法。 第二条 反间谍工作坚持党中央集中统一领导，坚持总体国家安全观，坚持公开工作与秘密工作相结合、专门工作与群众路线相结合，坚持积极防御、依法惩治"
+date: 2026-06-15
 draft: false
 category: "刑法"
 law_file: "criminal-law/anti-espionage-law/README.md"

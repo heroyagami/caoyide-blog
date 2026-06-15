@@ -1,7 +1,8 @@
 ---
-title: "vocational education law"
-description: "行政法 - vocational education law"
-date: 2026-06-14
+title: "中华人民共和国职业教育法"
+description: "行政法 - 中华人民共和国职业教育法"
+summary: "中华人民共和国职业教育法 1996年5月15日第八届全国人民代表大会常务委员会第十九次会议通过 2022年4月20日第十三届全国人民代表大会常务委员会第三十四次会议修订 第一章 总 则 第一条 为了推动职业教育高质量发展，提高劳动者素质和技术技能水平，促进就业创业，建设教育强国、人力资源强国和技能型社会，推进社会主义现代化建设，根据宪法，制定本法。 第二条 本法所称职业教育，是指为了培养高素质技术技能人才，使受教育者具备从"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/vocational-education-law/README.md"

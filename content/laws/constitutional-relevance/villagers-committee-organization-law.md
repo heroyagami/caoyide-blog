@@ -1,7 +1,8 @@
 ---
-title: "villagers committee organization law"
-description: "宪法相关法 - villagers committee organization law"
-date: 2026-06-14
+title: "中华人民共和国村民委员会组织法"
+description: "宪法相关法 - 中华人民共和国村民委员会组织法"
+summary: "中华人民共和国村民委员会组织法 1998年11月4日第九届全国人民代表大会常务委员会第五次会议通过 2010年10月28日第十一届全国人民代表大会常务委员会第十七次会议修订 根据2018年12月29日第十三届全国人民代表大会常务委员会第七次会议《关于修改〈中华人民共和国村民委员会组织法〉〈中华人民共和国城市居民委员会组织法〉的决定》第一次修正 根据2025年10月28日第十四届全国人民代表大会常务委员会第十八次会议《关于修改〈中"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/villagers-committee-organization-law/README.md"

@@ -1,7 +1,8 @@
 ---
-title: "administrative compulsion law"
-description: "行政法 - administrative compulsion law"
-date: 2026-06-14
+title: "中华人民共和国行政强制法"
+description: "行政法 - 中华人民共和国行政强制法"
+summary: "中华人民共和国行政强制法 2011年6月30日第十一届全国人民代表大会常务委员会第二十一次会议通过 第一章 总 则 第一条 为了规范行政强制的设定和实施，保障和监督行政机关依法履行职责，维护公共利益和社会秩序，保护公民、法人和其他组织的合法权益，根据宪法，制定本法。 第二条 本法所称行政强制，包括行政强制措施和行政强制执行。 行政强制措施，是指行政机关在行政管理过程中，为制止违法行为、防止证据损毁、避免危害发生、控制危险扩"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/administrative-compulsion-law/README.md"

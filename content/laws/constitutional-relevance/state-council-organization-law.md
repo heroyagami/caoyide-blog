@@ -1,7 +1,8 @@
 ---
-title: "state council organization law"
-description: "宪法相关法 - state council organization law"
-date: 2026-06-14
+title: "中华人民共和国国务院组织法"
+description: "宪法相关法 - 中华人民共和国国务院组织法"
+summary: "中华人民共和国国务院组织法 1982年12月10日第五届全国人民代表大会第五次会议通过并于同日公布施行 2024年3月11日第十四届全国人民代表大会第二次会议修订 第一条 为了健全国务院的组织和工作制度，保障和规范国务院行使职权，根据宪法，制定本法。 第二条 中华人民共和国国务院，即中央人民政府，是最高国家权力机关的执行机关，是最高国家行政机关。 第三条 国务院坚持中国共产党的领导，坚持以马克思列宁主义、毛泽东思想、邓小平理"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/state-council-organization-law/README.md"

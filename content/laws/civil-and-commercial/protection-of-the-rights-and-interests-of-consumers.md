@@ -1,7 +1,8 @@
 ---
-title: "protection of the rights and interests of consumers"
-description: "民商法 - protection of the rights and interests of consumers"
-date: 2026-06-14
+title: "中华人民共和国消费者权益保护法"
+description: "民商法 - 中华人民共和国消费者权益保护法"
+summary: "中华人民共和国消费者权益保护法 1993年10月31日第八届全国人民代表大会常务委员会第四次会议通过 根据2009年8月27日第十一届全国人民代表大会常务委员会第十次会议《关于修改部分法律的决定》第一次修正 根据2013年10月25日第十二届全国人民代表大会常务委员会第五次会议《关于修改<中华人民共和国消费者权益保护法>的决定》第二次修正 第一章 总则 第一条 为保护消费者的合法权益，维护社会经济秩序，促进社会主义市场经济健康发"
+date: 2026-06-15
 draft: false
 category: "民商法"
 law_file: "civil-and-commercial/protection-of-the-rights-and-interests-of-consumers/README.md"

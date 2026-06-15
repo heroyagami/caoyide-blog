@@ -1,7 +1,8 @@
 ---
-title: "criminal law amendment vii"
-description: "刑法 - criminal law amendment vii"
-date: 2026-06-14
+title: "中华人民共和国刑法修正案（七）"
+description: "刑法 - 中华人民共和国刑法修正案（七）"
+summary: "中华人民共和国刑法修正案（七） 2009年2月28日第十一届全国人民代表大会常务委员会第七次会议通过 一、将刑法第一百五十一条第三款修改为：“走私珍稀植物及其制品等国家禁止进出口的其他货物、物品的，处五年以下有期徒刑或者拘役，并处或者单处罚金；情节严重的，处五年以上有期徒刑，并处罚金。” 二、将刑法第一百八十条第一款修改为：“证券、期货交易内幕信息的知情人员或者非法获取证券、期货交易内幕信息的人员，在涉及证券的发行，证券、期货交"
+date: 2026-06-15
 draft: false
 category: "刑法"
 law_file: "criminal-law/amendment/criminal-law-amendment-vii.md"

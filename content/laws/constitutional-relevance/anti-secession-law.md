@@ -1,7 +1,8 @@
 ---
-title: "anti secession law"
-description: "宪法相关法 - anti secession law"
-date: 2026-06-14
+title: "反分裂国家法"
+description: "宪法相关法 - 反分裂国家法"
+summary: "反分裂国家法 2005年3月14日第十届全国人民代表大会第三次会议通过 第一条 为了反对和遏制“台独”分裂势力分裂国家，促进祖国和平统一，维护台湾海峡地区和平稳定，维护国家主权和领土完整，维护中华民族的根本利益，根据宪法，制定本法。 第二条 世界上只有一个中国，大陆和台湾同属一个中国，中国的主权和领土完整不容分割。维护国家主权和领土完整是包括台湾同胞在内的全中国人民的共同义务。 台湾是中国的一部分。国家绝不允许"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/anti-secession-law/README.md"

@@ -1,7 +1,8 @@
 ---
-title: "criminal law amendment iii"
-description: "刑法 - criminal law amendment iii"
-date: 2026-06-14
+title: "中华人民共和国刑法修正案（三）"
+description: "刑法 - 中华人民共和国刑法修正案（三）"
+summary: "中华人民共和国刑法修正案（三） 2001年12月29日第九届全国人民代表大会常务委员会第二十五次会议通过 为了惩治恐怖活动犯罪，保障国家和人民生命、财产安全，维护社会秩序，对刑法作如下补充修改： 一、将刑法第一百一十四条修改为：“放火、决水、爆炸以及投放毒害性、放射性、传染病病原体等物质或者以其他危险方法危害公共安全，尚未造成严重后果的，处三年以上十年以下有期徒刑。” 二、将刑法第一百一十五条第一款修改为：“放火、决水、爆炸以及"
+date: 2026-06-15
 draft: false
 category: "刑法"
 law_file: "criminal-law/amendment/criminal-law-amendment-iii.md"

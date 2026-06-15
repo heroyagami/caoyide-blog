@@ -1,7 +1,8 @@
 ---
-title: "private education promotion law"
-description: "行政法 - private education promotion law"
-date: 2026-06-14
+title: "中华人民共和国民办教育促进法"
+description: "行政法 - 中华人民共和国民办教育促进法"
+summary: "中华人民共和国民办教育促进法 2002年12月28日第九届全国人民代表大会常务委员会第三十一次会议通过 根据2013年6月29日第十二届全国人民代表大会常务委员会第三次会议《关于修改〈中华人民共和国文物保护法〉等十二部法律的决定》第一次修正 根据2016年11月7日第十二届全国人民代表大会常务委员会第二十四次会议《关于修改〈中华人民共和国民办教育促进法〉的决定》第二次修正 根据2018年12月29日第十三届全国人民代表大会常务"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/private-education-promotion-law/README.md"

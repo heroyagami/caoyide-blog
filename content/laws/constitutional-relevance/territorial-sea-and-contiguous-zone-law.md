@@ -1,7 +1,8 @@
 ---
-title: "territorial sea and contiguous zone law"
-description: "宪法相关法 - territorial sea and contiguous zone law"
-date: 2026-06-14
+title: "中华人民共和国领海及毗连区法"
+description: "宪法相关法 - 中华人民共和国领海及毗连区法"
+summary: "中华人民共和国领海及毗连区法 1992年2月25日第七届全国人民代表大会常务委员会第二十四次会议通过 第一条 为行使中华人民共和国对领海的主权和对毗连区的管制权，维护国家安全和海洋权益，制定本法。 第二条 中华人民共和国领海为邻接中华人民共和国陆地领土和内水的一带海域。 中华人民共和国的陆地领土包括中华人民共和国大陆及其沿海岛屿、台湾及其包括钓鱼岛在内的附属各岛、澎湖列岛、东沙群岛、西沙群岛、中沙群岛、南沙群岛以及其他一切属于"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/territorial-sea-and-contiguous-zone-law/README.md"

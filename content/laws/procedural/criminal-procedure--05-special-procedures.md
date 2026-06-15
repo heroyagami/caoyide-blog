@@ -1,7 +1,8 @@
 ---
-title: "第五编 special procedures"
-description: "程序法 - 第五编 special procedures"
-date: 2026-06-14
+title: "第五编　特别程序"
+description: "程序法 - 第五编　特别程序"
+summary: "第五编　特别程序 第一章 未成年人刑事案件诉讼程序 第二百七十七条 对犯罪的未成年人实行教育、感化、挽救的方针，坚持教育为主、惩罚为辅的原则。 人民法院、人民检察院和公安机关办理未成年人刑事案件，应当保障未成年人行使其诉讼权利，保障未成年人得到法律帮助，并由熟悉未成年人身心特点的审判人员、检察人员、侦查人员承办。 第二百七十八条 未成年犯罪嫌疑人、被告人没有委托辩护人的，人民法院、人民检察院、公安机关应当通知法律援"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/criminal-procedure/05-special-procedures.md"

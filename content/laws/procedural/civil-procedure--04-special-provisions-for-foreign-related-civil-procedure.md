@@ -1,7 +1,8 @@
 ---
-title: "第四编 special provisions for foreign related civil procedure"
-description: "程序法 - 第四编 special provisions for foreign related civil procedure"
-date: 2026-06-14
+title: "第四编　涉外民事诉讼程序的特别规定"
+description: "程序法 - 第四编　涉外民事诉讼程序的特别规定"
+summary: "第四编　涉外民事诉讼程序的特别规定 第二十三章 一般原则 第二百六十六条 在中华人民共和国领域内进行涉外民事诉讼，适用本编规定。本编没有规定的，适用本法其他有关规定。 第二百六十七条 中华人民共和国缔结或者参加的国际条约同本法有不同规定的，适用该国际条约的规定，但中华人民共和国声明保留的条款除外。 第二百六十八条 对享有外交特权与豁免的外国人、外国组织或者国际组织提起的民事诉讼，应当依照中华人民共和国有关法律和中华人民共和国缔结或者"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/civil-procedure/04-special-provisions-for-foreign-related-civil-procedure.md"

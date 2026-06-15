@@ -1,8 +1,27 @@
-{{- $pages := partial "helper/pages.html" .Site.Home -}}
+{{- /* 自定义 search.json —— 覆盖 Stack 主题原版
+     原版只用 mainSections（只搜 posts）
+     这里搜 posts + laws 两类，确保 192 部法律也能被搜到
+     md 没有 type: 字段时，Type 是 default，所以用 Section 而不是 Type
+
+     踩坑（md-feedback-00024）：
+     1. Hugo layout lookup 对 page+search+json 组合很挑剔
+     2. 用 layouts/page/search.json / layouts/page.json 都不生效（生不出 JSON）
+     3. 用 layouts/_default/search.json 才生效（这个路径在 Hugo 模板链里更靠前）
+     4. 同时修改 themes/.../page/search.json 也无效（缓存或路径问题）
+     —— 最终方案：直接在 layouts/_default/search.json 覆写 */ -}}
+{{- $pages := where .Site.RegularPages "Section" "in" (slice "posts" "laws") -}}
 {{- $result := slice -}}
 
 {{- range $pages -}}
-    {{- $data := dict "title" .Title "date" .Date "permalink" .RelPermalink "content" (.Plain) "categories" .Params.categories "tags" .Params.tags -}}
+    {{- $data := dict "title" .Title "date" .Date "permalink" .RelPermalink "content" (.Plain) -}}
+    {{- /* 加上 summary 字段（来自 frontmatter），Fuse 会优先匹配 */ -}}
+    {{- with .Params.summary -}}
+        {{- $data = merge $data (dict "summary" .) -}}
+    {{- end -}}
+    {{- /* 加上分类字段，方便结果展示 */ -}}
+    {{- with .Params.category -}}
+        {{- $data = merge $data (dict "category" .) -}}
+    {{- end -}}
 
     {{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) -}}
     {{- if $image -}}

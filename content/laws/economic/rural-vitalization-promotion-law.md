@@ -1,7 +1,8 @@
 ---
-title: "rural vitalization promotion law"
-description: "经济法 - rural vitalization promotion law"
-date: 2026-06-14
+title: "中华人民共和国乡村振兴促进法"
+description: "经济法 - 中华人民共和国乡村振兴促进法"
+summary: "中华人民共和国乡村振兴促进法 2021年4月29日第十三届全国人民代表大会常务委员会第二十八次会议通过 第一章 总则 第一条 为了全面实施乡村振兴战略，促进农业全面升级、农村全面进步、农民全面发展，加快农业农村现代化，全面建设社会主义现代化国家，制定本法。 第二条 全面实施乡村振兴战略，开展促进乡村产业振兴、人才振兴、文化振兴、生态振兴、组织振兴，推进城乡融合发展等活动，适用本法。 本法所称乡村，是指城市建成区以外具有自然、社"
+date: 2026-06-15
 draft: false
 category: "经济法"
 law_file: "economic/rural-vitalization-promotion-law/README.md"

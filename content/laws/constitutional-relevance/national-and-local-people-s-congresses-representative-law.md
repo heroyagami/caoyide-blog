@@ -1,7 +1,8 @@
 ---
-title: "national and local people s congresses representative law"
-description: "宪法相关法 - national and local people s congresses representative law"
-date: 2026-06-14
+title: "中华人民共和国全国人民代表大会和地方各级人民代表大会代表法"
+description: "宪法相关法 - 中华人民共和国全国人民代表大会和地方各级人民代表大会代表法"
+summary: "中华人民共和国全国人民代表大会和地方各级人民代表大会代表法 1992年4月3日第七届全国人民代表大会第五次会议通过 根据2009年8月27日第十一届全国人民代表大会常务委员会第十次会议《关于修改部分法律的决定》第一次修正 根据2010年10月28日第十一届全国人民代表大会常务委员会第十七次会议《关于修改〈中华人民共和国全国人民代表大会和地方各级人民代表大会代表法〉的决定》第二次修正 根据2015年8月29日第十二届全国人民代表大会常务委员会第十六次会议《关"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/national-and-local-people-s-congresses-representative-law/README.md"

@@ -1,7 +1,8 @@
 ---
-title: "labor dispute mediation and arbitration law"
-description: "程序法 - labor dispute mediation and arbitration law"
-date: 2026-06-14
+title: "中华人民共和国劳动争议调解仲裁法"
+description: "程序法 - 中华人民共和国劳动争议调解仲裁法"
+summary: "中华人民共和国劳动争议调解仲裁法 2007年12月29日第十届全国人民代表大会常务委员会第三十一次会议通过 第一章 总则 第一条 为了公正及时解决劳动争议，保护当事人合法权益，促进劳动关系和谐稳定，制定本法。 第二条 中华人民共和国境内的用人单位与劳动者发生的下列劳动争议，适用本法： （一）因确认劳动关系发生的争议； （二）因订立、履行、变更、解除和终止劳动合同发生的争议； （三）因除名、辞退和辞职、离职发生的争议； （四）因工作"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/labor-dispute-mediation-and-arbitration-law/README.md"

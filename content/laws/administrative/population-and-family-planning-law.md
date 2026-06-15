@@ -1,7 +1,8 @@
 ---
-title: "population and family planning law"
-description: "行政法 - population and family planning law"
-date: 2026-06-14
+title: "中华人民共和国人口与计划生育法"
+description: "行政法 - 中华人民共和国人口与计划生育法"
+summary: "中华人民共和国人口与计划生育法 2001年12月29日第九届全国人民代表大会常务委员会第二十五次会议通过 根据2015年12月27日第十二届全国人民代表大会常务委员会第十八次会议《关于修改〈中华人民共和国人口与计划生育法〉的决定》第一次修正 根据2021年8月20日第十三届全国人民代表大会常务委员会第三十次会议《关于修改〈中华人民共和国人口与计划生育法〉的决定》第二次修正 第一章 总则 第一条 为了实现人口与经济、社会、资源、环"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/population-and-family-planning-law/README.md"

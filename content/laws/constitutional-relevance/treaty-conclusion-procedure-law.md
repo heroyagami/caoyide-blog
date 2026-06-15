@@ -1,7 +1,8 @@
 ---
-title: "treaty conclusion procedure law"
-description: "宪法相关法 - treaty conclusion procedure law"
-date: 2026-06-14
+title: "中华人民共和国缔结条约程序法"
+description: "宪法相关法 - 中华人民共和国缔结条约程序法"
+summary: "中华人民共和国缔结条约程序法 1990年12月28日第七届全国人民代表大会常务委员会第十七次会议通过 第一条 根据中华人民共和国宪法，制定本法。 第二条 本法适用于中华人民共和国同外国缔结的双边和多边条约、协定和其他具有条约、协定性质的文件。 第三条 中华人民共和国国务院，即中央人民政府，同外国缔结条约和协定。 中华人民共和国全国人民代表大会常务委员会决定同外国缔结的条约和重要协定的批准和废除。 中华人民共和国主席根据全国人民"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/treaty-conclusion-procedure-law/README.md"

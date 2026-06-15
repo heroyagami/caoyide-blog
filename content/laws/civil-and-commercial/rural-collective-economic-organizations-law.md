@@ -1,7 +1,8 @@
 ---
-title: "rural collective economic organizations law"
-description: "民商法 - rural collective economic organizations law"
-date: 2026-06-14
+title: "中华人民共和国农村集体经济组织法"
+description: "民商法 - 中华人民共和国农村集体经济组织法"
+summary: "中华人民共和国农村集体经济组织法 2024年6月28日第十四届全国人民代表大会常务委员会第十次会议通过 第一章 总则 第一条 为了维护农村集体经济组织及其成员的合法权益，规范农村集体经济组织及其运行管理，促进新型农村集体经济高质量发展，巩固和完善农村基本经营制度和社会主义基本经济制度，推进乡村全面振兴，加快建设农业强国，促进共同富裕，根据宪法，制定本法。 第二条 本法所称农村集体经济组织，是指以土地集体所有为基础，依法代表成员集体"
+date: 2026-06-15
 draft: false
 category: "民商法"
 law_file: "civil-and-commercial/rural-collective-economic-organizations-law/README.md"

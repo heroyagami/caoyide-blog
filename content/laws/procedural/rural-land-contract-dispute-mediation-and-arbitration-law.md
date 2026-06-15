@@ -1,7 +1,8 @@
 ---
-title: "rural land contract dispute mediation and arbitration law"
-description: "程序法 - rural land contract dispute mediation and arbitration law"
-date: 2026-06-14
+title: "中华人民共和国农村土地承包经营纠纷调解仲裁法"
+description: "程序法 - 中华人民共和国农村土地承包经营纠纷调解仲裁法"
+summary: "中华人民共和国农村土地承包经营纠纷调解仲裁法 2009年6月27日第十一届全国人民代表大会常务委员会第九次会议通过 第一章 总则 第一条 为了公正、及时解决农村土地承包经营纠纷，维护当事人的合法权益，促进农业、农村经济发展和农村社会和谐稳定，制定本法。 第二条 农村土地承包经营纠纷调解和仲裁，适用本法。 农村土地承包经营纠纷，包括因订立、履行、变更、解除和终止农村土地承包合同发生的纠纷，因农村土地承包经营权流转发生的纠纷，因收回、调整承包地发"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/rural-land-contract-dispute-mediation-and-arbitration-law/README.md"

@@ -1,7 +1,8 @@
 ---
-title: "anti food waste law"
-description: "行政法 - anti food waste law"
-date: 2026-06-14
+title: "中华人民共和国反食品浪费法"
+description: "行政法 - 中华人民共和国反食品浪费法"
+summary: "中华人民共和国反食品浪费法 2021年4月29日第十三届全国人民代表大会常务委员会第二十八次会议通过 第一条 为了防止食品浪费，保障国家粮食安全，弘扬中华民族传统美德，践行社会主义核心价值观，节约资源，保护环境，促进经济社会可持续发展，根据宪法，制定本法。 第二条 本法所称食品，是指《中华人民共和国食品安全法》规定的食品，包括各种供人食用或者饮用的食物。 本法所称食品浪费，是指对可安全食用或者饮用的食品未能按照其功能目的合理"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/anti-food-waste-law/README.md"

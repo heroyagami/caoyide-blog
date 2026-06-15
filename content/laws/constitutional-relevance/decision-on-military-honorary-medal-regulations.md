@@ -1,7 +1,8 @@
 ---
-title: "decision on military honorary medal regulations"
-description: "宪法相关法 - decision on military honorary medal regulations"
-date: 2026-06-14
+title: "全国人民代表大会常务委员会关于批准中央军事委员会《关于授予军队离休干部中国人民解放军功勋荣誉章的规定》的决定"
+description: "宪法相关法 - 全国人民代表大会常务委员会关于批准中央军事委员会《关于授予军队离休干部中国人民解放军功勋荣誉章的规定》的决定"
+summary: "全国人民代表大会常务委员会关于批准中央军事委员会《关于授予军队离休干部中国人民解放军功勋荣誉章的规定》的决定 1988年7月1日通过 第七届全国人民代表大会常务委员会第二次会议决定：批准中央军事委员会《关于授予军队离休干部中国人民解放军功勋荣誉章的规定》，由中央军事委员会公布施行。"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/decision-on-military-honorary-medal-regulations/README.md"

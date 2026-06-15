@@ -1,7 +1,8 @@
 ---
-title: "electronic signature law"
-description: "民商法 - electronic signature law"
-date: 2026-06-14
+title: "中华人民共和国电子签名法"
+description: "民商法 - 中华人民共和国电子签名法"
+summary: "中华人民共和国电子签名法 2004年8月28日第十届全国人民代表大会常务委员会第十一次会议通过 根据2015年4月24日第十二届全国人民代表大会常务委员会第十四次会议《关于修改〈中华人民共和国电力法〉等六部法律的决定》第一次修正 根据2019年4月23日第十三届全国人民代表大会常务委员会第十次会议《关于修改〈中华人民共和国建筑法〉等八部法律的决定》第二次修正 第一章 总则 第一条 为了规范电子签名行为，确立电子签名的法律效"
+date: 2026-06-15
 draft: false
 category: "民商法"
 law_file: "civil-and-commercial/electronic-signature-law/README.md"

@@ -1,7 +1,8 @@
 ---
-title: "maritime procedure law"
-description: "程序法 - maritime procedure law"
-date: 2026-06-14
+title: "中华人民共和国海事诉讼特别程序法"
+description: "程序法 - 中华人民共和国海事诉讼特别程序法"
+summary: "中华人民共和国海事诉讼特别程序法 （1999年12月25日第九届全国人民代表大会常务委员会第十三次会议通过） 第一章 总 则 第一条 为维护海事诉讼当事人的诉讼权利，保证人民法院查明事实，分清责任，正确适用法律，及时审理海事案件，制定本法。 第二条 在中华人民共和国领域内进行海事诉讼，适用《中华人民共和国民事诉讼法》和本法。本法有规定的，依照其规定。 第三条 中华人民共和国缔结或者参加的国际条约与《中华人民共和国民事诉讼法》和本法"
+date: 2026-06-15
 draft: false
 category: "程序法"
 law_file: "procedural/maritime-procedure-law/README.md"

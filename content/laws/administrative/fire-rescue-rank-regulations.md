@@ -1,7 +1,8 @@
 ---
-title: "fire rescue rank regulations"
-description: "行政法 - fire rescue rank regulations"
-date: 2026-06-14
+title: "中华人民共和国消防救援衔条例"
+description: "行政法 - 中华人民共和国消防救援衔条例"
+summary: "中华人民共和国消防救援衔条例 2018年10月26日第十三届全国人民代表大会常务委员会第六次会议通过 第一章 总则 第一条 为了加强国家综合性消防救援队伍正规化、专业化、职业化建设，增强消防救援人员的责任感、荣誉感和组织纪律性，有利于国家综合性消防救援队伍的指挥、管理和依法履行职责，根据宪法，制定本条例。 第二条 国家综合性消防救援队伍实行消防救援衔制度。 消防救援衔授予对象为纳入国家行政编制、由国务院应急管理部门统一领导管理"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/fire-rescue-rank-regulations/README.md"

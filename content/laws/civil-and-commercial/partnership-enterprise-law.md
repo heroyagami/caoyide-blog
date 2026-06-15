@@ -1,7 +1,8 @@
 ---
-title: "partnership enterprise law"
-description: "民商法 - partnership enterprise law"
-date: 2026-06-14
+title: "中华人民共和国合伙企业法"
+description: "民商法 - 中华人民共和国合伙企业法"
+summary: "中华人民共和国合伙企业法 1997年2月23日第八届全国人民代表大会常务委员会第二十四次会议通过 2006年8月27日第十届全国人民代表大会常务委员会第二十三次会议修订 第一章 总则 第一条 为了规范合伙企业的行为，保护合伙企业及其合伙人、债权人的合法权益，维护社会经济秩序，促进社会主义市场经济的发展，制定本法。 第二条 本法所称合伙企业，是指自然人、法人和其他组织依照本法在中国境内设立的普通合伙企业和有限合伙企业。 普通"
+date: 2026-06-15
 draft: false
 category: "民商法"
 law_file: "civil-and-commercial/partnership-enterprise-law/README.md"

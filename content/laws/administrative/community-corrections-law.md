@@ -1,7 +1,8 @@
 ---
-title: "community corrections law"
-description: "行政法 - community corrections law"
-date: 2026-06-14
+title: "中华人民共和国社区矫正法"
+description: "行政法 - 中华人民共和国社区矫正法"
+summary: "中华人民共和国社区矫正法 2019年12月28日第十三届全国人民代表大会常务委员会第十五次会议通过 第一章 总则 第一条 为了推进和规范社区矫正工作，保障刑事判决、刑事裁定和暂予监外执行决定的正确执行，提高教育矫正质量，促进社区矫正对象顺利融入社会，预防和减少犯罪，根据宪法，制定本法。 第二条 对被判处管制、宣告缓刑、假释和暂予监外执行的罪犯，依法实行社区矫正。 对社区矫正对象的监督管理、教育帮扶等活动，适用本法。 第三条"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/community-corrections-law/README.md"

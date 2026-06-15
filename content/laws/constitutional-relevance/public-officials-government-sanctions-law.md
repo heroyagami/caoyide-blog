@@ -1,7 +1,8 @@
 ---
-title: "public officials government sanctions law"
-description: "宪法相关法 - public officials government sanctions law"
-date: 2026-06-14
+title: "中华人民共和国公职人员政务处分法"
+description: "宪法相关法 - 中华人民共和国公职人员政务处分法"
+summary: "中华人民共和国公职人员政务处分法 2020年6月20日第十三届全国人民代表大会常务委员会第十九次会议通过 第一章 总则 第一条 为了规范政务处分，加强对所有行使公权力的公职人员的监督，促进公职人员依法履职、秉公用权、廉洁从政从业、坚持道德操守，根据《中华人民共和国监察法》，制定本法。 第二条 本法适用于监察机关对违法的公职人员给予政务处分的活动。 本法第二章、第三章适用于公职人员任免机关、单位对违法的公职人员给予处分。处分的程序、"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/public-officials-government-sanctions-law/README.md"

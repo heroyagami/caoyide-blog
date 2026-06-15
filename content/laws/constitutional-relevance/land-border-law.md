@@ -1,7 +1,8 @@
 ---
-title: "land border law"
-description: "宪法相关法 - land border law"
-date: 2026-06-14
+title: "中华人民共和国陆地国界法"
+description: "宪法相关法 - 中华人民共和国陆地国界法"
+summary: "中华人民共和国陆地国界法 2021年10月23日第十三届全国人民代表大会常务委员会第三十一次会议通过 第一章 总则 第一条 为了规范和加强陆地国界工作，保障陆地国界及边境的安全稳定，促进我国与陆地邻国睦邻友好和交流合作，维护国家主权、安全和领土完整，根据宪法，制定本法。 第二条 中华人民共和国陆地国界的划定和勘定，陆地国界及边境的防卫、管理和建设，陆地国界事务的国际合作等，适用本法。 第三条 陆地国界是指划分中华人民共和国"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/land-border-law/README.md"

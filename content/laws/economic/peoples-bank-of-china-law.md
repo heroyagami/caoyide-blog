@@ -1,7 +1,8 @@
 ---
-title: "peoples bank of china law"
-description: "经济法 - peoples bank of china law"
-date: 2026-06-14
+title: "中华人民共和国中国人民银行法"
+description: "经济法 - 中华人民共和国中国人民银行法"
+summary: "中华人民共和国中国人民银行法 1995年3月18日第八届全国人民代表大会第三次会议通过 根据2003年12月27日第十届全国人民代表大会常务委员会第六次会议《关于修改〈中华人民共和国中国人民银行法〉的决定》修正 第一章 总则 第一条 为了确立中国人民银行的地位，明确其职责，保证国家货币政策的正确制定和执行，建立和完善中央银行宏观调控体系，维护金融稳定，制定本法。 第二条 中国人民银行是中华人民共和国的中央银行。 中国人民银行在"
+date: 2026-06-15
 draft: false
 category: "经济法"
 law_file: "economic/peoples-bank-of-china-law/README.md"

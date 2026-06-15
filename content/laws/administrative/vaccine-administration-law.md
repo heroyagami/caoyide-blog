@@ -1,7 +1,8 @@
 ---
-title: "vaccine administration law"
-description: "行政法 - vaccine administration law"
-date: 2026-06-14
+title: "中华人民共和国疫苗管理法"
+description: "行政法 - 中华人民共和国疫苗管理法"
+summary: "中华人民共和国疫苗管理法 2019年6月29日第十三届全国人民代表大会常务委员会第十一次会议通过 第一章 总则 第一条 为了加强疫苗管理，保证疫苗质量和供应，规范预防接种，促进疫苗行业发展，保障公众健康，维护公共卫生安全，制定本法。 第二条 在中华人民共和国境内从事疫苗研制、生产、流通和预防接种及其监督管理活动，适用本法。本法未作规定的，适用《中华人民共和国药品管理法》、《中华人民共和国传染病防治法》等法律、行政法规的规定"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/vaccine-administration-law/README.md"

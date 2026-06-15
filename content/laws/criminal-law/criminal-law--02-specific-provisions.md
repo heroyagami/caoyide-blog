@@ -1,7 +1,8 @@
 ---
-title: "第二编 specific provisions"
-description: "刑法 - 第二编 specific provisions"
-date: 2026-06-14
+title: "第二编　分则"
+description: "刑法 - 第二编　分则"
+summary: "第二编　分则 第一章 危害国家安全罪 第一百零二条 勾结外国，危害中华人民共和国的主权、领土完整和安全的，处无期徒刑或者十年以上有期徒刑。 与境外机构、组织、个人相勾结，犯前款罪的，依照前款的规定处罚。 第一百零三条 组织、策划、实施分裂国家、破坏国家统一的，对首要分子或者罪行重大的，处无期徒刑或者十年以上有期徒刑；对积极参加的，处三年以上十年以下有期徒刑；对其他参加的，处三年以下有期徒刑、拘役、管制或者剥夺政"
+date: 2026-06-15
 draft: false
 category: "刑法"
 law_file: "criminal-law/criminal-law/02-specific-provisions.md"

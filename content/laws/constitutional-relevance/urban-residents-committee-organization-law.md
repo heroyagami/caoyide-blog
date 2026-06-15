@@ -1,7 +1,8 @@
 ---
-title: "urban residents committee organization law"
-description: "宪法相关法 - urban residents committee organization law"
-date: 2026-06-14
+title: "中华人民共和国城市居民委员会组织法"
+description: "宪法相关法 - 中华人民共和国城市居民委员会组织法"
+summary: "中华人民共和国城市居民委员会组织法 1989年12月26日第七届全国人民代表大会常务委员会第十一次会议通过 根据2018年12月29日第十三届全国人民代表大会常务委员会第七次会议《关于修改〈中华人民共和国村民委员会组织法〉〈中华人民共和国城市居民委员会组织法〉的决定》修正 2025年10月28日第十四届全国人民代表大会常务委员会第十八次会议修订 第一章 总则 第一条 为了健全基层群众自治制度，由城市居民依法办理自己的事情，发展基层民"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/urban-residents-committee-organization-law/README.md"

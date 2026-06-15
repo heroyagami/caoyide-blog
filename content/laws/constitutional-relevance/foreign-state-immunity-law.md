@@ -1,7 +1,8 @@
 ---
-title: "foreign state immunity law"
-description: "宪法相关法 - foreign state immunity law"
-date: 2026-06-14
+title: "中华人民共和国外国国家豁免法"
+description: "宪法相关法 - 中华人民共和国外国国家豁免法"
+summary: "中华人民共和国外国国家豁免法 2023年9月1日第十四届全国人民代表大会常务委员会第五次会议通过 第一条 为了健全外国国家豁免制度，明确中华人民共和国的法院对涉及外国国家及其财产民事案件的管辖，保护当事人合法权益，维护国家主权平等，促进对外友好交往，根据宪法，制定本法。 第二条 本法所称的外国国家包括： （一）外国主权国家； （二）外国主权国家的国家机关或者组成部分； （三）外国主权国家授权行使主权权力且基于该项授权从事活动的"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/foreign-state-immunity-law/README.md"

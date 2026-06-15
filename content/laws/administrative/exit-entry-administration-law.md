@@ -1,7 +1,8 @@
 ---
-title: "exit entry administration law"
-description: "行政法 - exit entry administration law"
-date: 2026-06-14
+title: "中华人民共和国出境入境管理法"
+description: "行政法 - 中华人民共和国出境入境管理法"
+summary: "中华人民共和国出境入境管理法 2012年6月30日第十一届全国人民代表大会常务委员会第二十七次会议通过 第一章 总 则 第一条 为了规范出境入境管理，维护中华人民共和国的主权、安全和社会秩序，促进对外交往和对外开放，制定本法。 第二条 中国公民出境入境、外国人入境出境、外国人在中国境内停留居留的管理，以及交通运输工具出境入境的边防检查，适用本法。 第三条 国家保护中国公民出境入境合法权益。 在中国境内的外国人的合法权益受法律保"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/exit-entry-administration-law/README.md"

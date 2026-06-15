@@ -1,7 +1,8 @@
 ---
-title: "physicians law"
-description: "行政法 - physicians law"
-date: 2026-06-14
+title: "中华人民共和国医师法"
+description: "行政法 - 中华人民共和国医师法"
+summary: "中华人民共和国医师法 2021年8月20日第十三届全国人民代表大会常务委员会第三十次会议通过 第一章 总则 第一条 为了保障医师合法权益，规范医师执业行为，加强医师队伍建设，保护人民健康，推进健康中国建设，制定本法。 第二条 本法所称医师，是指依法取得医师资格，经注册在医疗卫生机构中执业的专业医务人员，包括执业医师和执业助理医师。 第三条 医师应当坚持人民至上、生命至上，发扬人道主义精神，弘扬敬佑生命、救死扶伤、甘于奉"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/physicians-law/README.md"

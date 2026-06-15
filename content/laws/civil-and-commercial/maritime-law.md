@@ -1,7 +1,8 @@
 ---
-title: "maritime law"
-description: "民商法 - maritime law"
-date: 2026-06-14
+title: "中华人民共和国海商法"
+description: "民商法 - 中华人民共和国海商法"
+summary: "中华人民共和国海商法 1992年11月7日第七届全国人民代表大会常务委员会第二十八次会议通过 第一章 总 则 第一条 为了调整海上运输关系、船舶关系，维护当事人各方的合法权益，促进海上运输和经济贸易的发展，制定本法。 第二条 本法所称海上运输，是指海上货物运输和海上旅客运输，包括海江之间、江海之间的直达运输。 本法第四章海上货物运输合同的规定，不适用于中华人民共和国港口之间的海上货物运输。 第三条 本法所称船舶，是指海"
+date: 2026-06-15
 draft: false
 category: "民商法"
 law_file: "civil-and-commercial/maritime-law/README.md"

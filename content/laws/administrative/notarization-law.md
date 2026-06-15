@@ -1,7 +1,8 @@
 ---
-title: "notarization law"
-description: "行政法 - notarization law"
-date: 2026-06-14
+title: "中华人民共和国公证法"
+description: "行政法 - 中华人民共和国公证法"
+summary: "中华人民共和国公证法 2005年8月28日第十届全国人民代表大会常务委员会第十七次会议通过 根据2015年4月24日第十二届全国人民代表大会常务委员会第十四次会议《关于修改〈中华人民共和国义务教育法〉等五部法律的决定》第一次修正 根据2017年9月1日第十二届全国人民代表大会常务委员会第二十九次会议《关于修改〈中华人民共和国法官法〉等八部法律的决定》第二次修正 第一章 总则 第一条 为规范公证活动，保障公证机构和公证员"
+date: 2026-06-15
 draft: false
 category: "行政法"
 law_file: "administrative/notarization-law/README.md"

@@ -1,7 +1,8 @@
 ---
-title: "criminal law amendment ix"
-description: "刑法 - criminal law amendment ix"
-date: 2026-06-14
+title: "中华人民共和国刑法修正案（九）"
+description: "刑法 - 中华人民共和国刑法修正案（九）"
+summary: "中华人民共和国刑法修正案（九） 2015年8月29日第十二届全国人民代表大会常务委员会第十六次会议通过 一、在刑法第三十七条后增加一条，作为第三十七条之一:“因利用职业便利实施犯罪，或者实施违背职业要求的特定义务的犯罪被判处刑罚的，人民法院可以根据犯罪情况和预防再犯罪的需要，禁止其自刑罚执行完毕之日或者假释之日起从事相关职业，期限为三年至五年。 “被禁止从事相关职业的人违反人民法院依照前款规定作出的决定的，由公安机关依法给予处罚"
+date: 2026-06-15
 draft: false
 category: "刑法"
 law_file: "criminal-law/amendment/criminal-law-amendment-ix.md"

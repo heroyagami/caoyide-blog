@@ -1,7 +1,8 @@
 ---
-title: "individual income tax law"
-description: "经济法 - individual income tax law"
-date: 2026-06-14
+title: "中华人民共和国个人所得税法"
+description: "经济法 - 中华人民共和国个人所得税法"
+summary: "中华人民共和国个人所得税法 1980年9月10日第五届全国人民代表大会第三次会议通过 根据1993年10月31日第八届全国人民代表大会常务委员会第四次会议《关于修改<中华人民共和国个人所得税法>的决定》第一次修正 根据1999年8月30日第九届全国人民代表大会常务委员会第十一次会议《关于修改<中华人民共和国个人所得税法>的决定》第二次修正 根据2005年10月27日第十届全国人民代表大会常务委员会第十八次会议《关于修改<中华"
+date: 2026-06-15
 draft: false
 category: "经济法"
 law_file: "economic/individual-income-tax-law/README.md"

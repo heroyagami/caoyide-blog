@@ -1,7 +1,8 @@
 ---
-title: "national people s conference rules of procedure"
-description: "宪法相关法 - national people s conference rules of procedure"
-date: 2026-06-14
+title: "中华人民共和国全国人民代表大会议事规则"
+description: "宪法相关法 - 中华人民共和国全国人民代表大会议事规则"
+summary: "中华人民共和国全国人民代表大会议事规则 1989年4月4日第七届全国人民代表大会第二次会议通过 根据2021年3月11日第十三届全国人民代表大会第四次会议《关于修改〈中华人民共和国全国人民代表大会议事规则〉的决定》修正 第一章 会议的举行 第一条 根据宪法、全国人民代表大会组织法和全国人民代表大会的实践经验，制定本规则。 第二条 全国人民代表大会会议于每年第一季度举行，会议召开的日期由全国人民代表大会常务委员会决定并予以公布。 遇有特殊"
+date: 2026-06-15
 draft: false
 category: "宪法相关法"
 law_file: "constitutional-relevance/national-people-s-conference-rules-of-procedure/README.md"
