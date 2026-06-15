@@ -1,0 +1,16 @@
+{
+  "name": "caoyide-laws",
+  "description": "曹义德律师 - 法律文库（基于 JustLaws VuePress 二次定制）",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "categories:sort": "node scripts/sort-category-pages.js docs/category",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "@vuepress/plugin-search": "2.0.0-beta.48",
+    "@vuepress/plugin-docsearch": "2.0.0-beta.48",
+    "vuepress": "2.0.0-beta.48"
+  }
+}
