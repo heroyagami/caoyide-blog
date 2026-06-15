@@ -26,6 +26,8 @@
 {{ define "main" }}
     {{ if .Params.law_file }}
         {{/* ========== 法条全文页（law.html 内容内联） ========== */}}
+        {{ $lawFile := .Params.law_file }}
+        {{ $fullPath := printf "themes-data/laws/docs/%s" $lawFile }}
         <article class="article law-article">
             <div class="article-header">
                 <h1 class="article-title">{{ .Title }}</h1>
@@ -38,22 +40,57 @@
                 </div>
             </div>
 
-            <div class="article-content">
-                {{ $lawFile := .Params.law_file }}
-                {{ $fullPath := printf "themes-data/laws/docs/%s" $lawFile }}
+            <div class="article-content law-content-layout">
                 {{ if fileExists $fullPath }}
                     {{ $content := readFile $fullPath }}
-                    {{/* 给每条"第X条"加 id 锚点（用 span 代替 a——Hugo safeHTML 会转义裸 <a id>） */}}
-                    {{ $matches := findRE `\*\*第[^\*]+条\*\*` $content }}
+                    {{/* 提取所有章节标题（# / ## / ### / ####）—— 收集成目录，<span id> 锚点注入到原 markdown */}}
+                    {{ $headerPattern := `(?m)^(#{1,4})\s+(.+?)$` }}
+                    {{ $headers := findRE $headerPattern $content }}
                     {{ $anchoredContent := $content }}
-                    {{ range $matches }}
+                    {{ $chapters := slice }}
+                    {{ range $idx, $h := $headers }}
+                      {{ $matches := findRE $headerPattern $h }}
+                      {{ $level := sub (len (index $matches 0 | findRE `#`)) 0 }}
+                      {{ $level = sub (len (findRE `#` (index $matches 0))) 0 }}
+                      {{/* 解析 markdown 标题级别和纯文本 */}}
+                      {{ $firstHashes := "" }}
+                      {{ range (findRE `^#+` $h) }}{{ $firstHashes = . }}{{ end }}
+                      {{ $level = len $firstHashes }}
+                      {{ $titleText := strings.TrimSpace (strings.TrimPrefix $firstHashes $h) }}
+                      {{ $anchorId := printf "sec-%d" $idx }}
+                      {{ $chapters = $chapters | append (dict "level" $level "title" $titleText "anchor" $anchorId) }}
+                      {{/* 在标题行前面注入 <span id> 锚点（用 \n 隔开，避免被 markdown 当作同一段）*/}}
+                      {{ $spanTag := printf "<span id=\"%s\"></span>" $anchorId }}
+                      {{ $anchoredContent = replace $anchoredContent $h (printf "%s\n%s" $spanTag $h) }}
+                    {{ end }}
+
+                    {{/* 左侧章节目录（对标 justlaws.cn 333.png）*/}}
+                    {{ if gt (len $chapters) 0 }}
+                    <aside class="law-toc-sidebar" aria-label="章节目录">
+                        <div class="law-toc-title">章节目录</div>
+                        <nav class="law-toc-nav">
+                        <ul>
+                        {{- range $chapters -}}
+                          <li class="law-toc-level-{{ .level }}"><a href="#{{ .anchor }}">{{ .title }}</a></li>
+                        {{- end }}
+                        </ul>
+                        </nav>
+                    </aside>
+                    {{ end }}
+
+                    {{/* 右侧正文 —— 给"第X条"加锚点（保留原有逻辑）*/}}
+                    <div class="law-toc-body">
+                    {{ $articleMatches := findRE `\*\*第[^\*]+条\*\*` $anchoredContent }}
+                    {{ $finalContent := $anchoredContent }}
+                    {{ range $articleMatches }}
                         {{ $match := . }}
                         {{ $articleRaw := strings.TrimPrefix "**第" $match }}
                         {{ $articleRaw = strings.TrimSuffix "条**" $articleRaw }}
                         {{ $articleRaw = strings.TrimSpace $articleRaw }}
-                        {{ $anchoredContent = replace $anchoredContent $match (printf `<span id='article-%s'></span>%s` $articleRaw $match) }}
+                        {{ $finalContent = replace $finalContent $match (printf `<span id='article-%s'></span>%s` $articleRaw $match) }}
                     {{ end }}
-                    {{ $anchoredContent | safeHTML }}
+                    {{ $finalContent | safeHTML }}
+                    </div>
                 {{ else }}
                     <div class="law-error" style="padding: 1em; background: #fff3f3; border-left: 4px solid #DE2910; border-radius: 4px;">
                         <p>❌ 找不到法律文件：<code>{{ $fullPath }}</code></p>

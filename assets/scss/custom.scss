@@ -2622,3 +2622,273 @@ footer.site-footer {
 [data-scheme="dark"] .lawyer-profile h3 {
     color: rgba(255, 255, 255, 0.95);
 }
+
+/* ============================================================
+   法条详情页：左侧固定章节目录 + 右侧正文（对标 justlaws.cn 333.png）
+   视觉保持 caoyide 原 Stack 主题风格（黑白灰 + 蓝色重点色）
+   交互来源：2026-06-15 抄 justlaws.cn 左侧目录
+   ============================================================ */
+.law-content-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    position: relative;
+}
+
+.law-toc-sidebar {
+    flex: 0 0 200px;
+    position: sticky;
+    top: 80px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding: 1rem 0.8rem;
+    background: var(--card-background);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--radius-md, 10px);
+    font-size: 1.3rem;
+    line-height: 1.6;
+}
+.law-toc-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--card-text-color-main);
+    margin-bottom: 0.6em;
+    padding-bottom: 0.4em;
+    border-bottom: 1px solid var(--card-separator-color);
+}
+.law-toc-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.law-toc-nav li {
+    margin: 0.2em 0;
+    line-height: 1.5;
+}
+.law-toc-nav a {
+    color: var(--card-text-color-secondary);
+    text-decoration: none;
+    display: block;
+    padding: 2px 0;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.law-toc-nav a:hover {
+    color: var(--accent-color);
+    background: var(--card-background-selected);
+}
+.law-toc-level-1 a {
+    font-weight: 700;
+    color: var(--card-text-color-main);
+}
+.law-toc-level-3 a {
+    padding-left: 0.8em;
+}
+.law-toc-level-3 a::before {
+    content: "›";
+    color: var(--card-text-color-tertiary);
+    margin-right: 0.3em;
+    font-weight: 700;
+}
+.law-toc-level-4 a {
+    padding-left: 1.6em;
+    font-size: 1.2rem;
+    color: var(--card-text-color-tertiary);
+}
+.law-toc-level-4 a::before {
+    content: "·";
+    color: var(--card-text-color-tertiary);
+    margin-right: 0.3em;
+}
+
+.law-toc-body {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
+}
+
+[data-scheme="dark"] .law-toc-sidebar {
+    background: var(--card-background);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+[data-scheme="dark"] .law-toc-title {
+    color: rgba(255, 255, 255, 0.92);
+}
+
+/* 移动端：左侧目录改为顶部下拉，避免抢屏幕宽度 */
+@media (max-width: 900px) {
+    .law-content-layout {
+        flex-direction: column;
+    }
+    .law-toc-sidebar {
+        position: static;
+        width: 100%;
+        max-height: 200px;
+        flex: 1 1 auto;
+    }
+}
+
+/* ============================================================
+   法律文库入口页 + 分类页：顶部导航 + 悬停下拉
+   视觉保持 caoyide 原 Stack 主题风格（黑白灰 + 蓝色重点色）
+   交互来源：2026-06-15 抄 justlaws.cn 顶部导航（111.png/222.png）
+   ============================================================ */
+.laws-topnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 1.5rem;
+    background: var(--card-background);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--radius-md, 10px);
+    font-size: 1.4rem;
+    position: relative;
+    z-index: 50;
+}
+.laws-topnav-home,
+.laws-topnav-link {
+    color: var(--card-text-color-secondary);
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: color 0.15s, background 0.15s;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.laws-topnav-home:hover,
+.laws-topnav-link:hover {
+    color: var(--accent-color);
+    background: var(--card-background-selected);
+}
+.laws-topnav-home.is-active,
+.laws-topnav-item.is-active .laws-topnav-link {
+    color: var(--accent-color);
+    background: var(--card-background-selected);
+    font-weight: 700;
+}
+.caret {
+    margin-left: 2px;
+    font-size: 0.85em;
+    opacity: 0.6;
+}
+
+.laws-topnav-item {
+    position: relative;
+}
+.laws-topnav-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background: var(--card-background);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--radius-md, 10px);
+    box-shadow: var(--shadow-l2);
+    padding: 0.4rem 0;
+    z-index: 100;
+}
+.laws-topnav-item:hover .laws-topnav-dropdown,
+.laws-topnav-item:focus-within .laws-topnav-dropdown {
+    display: block;
+}
+.laws-topnav-dropdown-item,
+.laws-topnav-dropdown-more {
+    display: block;
+    padding: 6px 12px;
+    color: var(--card-text-color-secondary);
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: background 0.12s, color 0.12s;
+}
+.laws-topnav-dropdown-item:hover,
+.laws-topnav-dropdown-more:hover {
+    background: var(--card-background-selected);
+    color: var(--accent-color);
+}
+.laws-topnav-dropdown-more {
+    margin-top: 4px;
+    border-top: 1px solid var(--card-separator-color);
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+/* 中央简介区 */
+.laws-landing-intro {
+    padding: 1.5rem 0;
+}
+.laws-landing-intro h2 {
+    font-family: var(--serif-font-family, "Source Han Serif SC");
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0 0 0.6em 0;
+    color: var(--card-text-color-main);
+    border-left: 4px solid var(--accent-color);
+    padding-left: 14px;
+}
+.laws-landing-intro p {
+    color: var(--card-text-color-secondary);
+    margin: 0 0 1.2em 0;
+}
+.laws-landing-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.6rem;
+}
+.laws-landing-grid li a {
+    display: block;
+    padding: 12px 14px;
+    background: var(--card-background);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--radius-md, 10px);
+    color: var(--card-text-color-main);
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s;
+}
+.laws-landing-grid li a:hover {
+    border-color: var(--accent-color);
+    background: var(--card-background-selected);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-l1);
+}
+
+/* 分类页：法律列表（对标 222.png） */
+.laws-category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.laws-category-list li {
+    margin: 0.4em 0;
+    border-bottom: 1px dashed var(--card-separator-color);
+}
+.laws-category-list li:last-child {
+    border-bottom: 0;
+}
+.laws-category-list a {
+    display: block;
+    padding: 10px 4px;
+    color: var(--card-text-color-main);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    transition: color 0.15s, padding 0.15s;
+}
+.laws-category-list a:hover {
+    color: var(--accent-color);
+    padding-left: 12px;
+}
+
+[data-scheme="dark"] .laws-landing-intro h2 {
+    color: rgba(255, 255, 255, 0.95);
+}

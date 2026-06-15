@@ -1,51 +1,104 @@
 {{/*
   layout: laws/list.html
-  用法：当 content/laws/ 节点渲染时
-  作用：列出 7 大类法律（参考 just-laws 分类方式）
-  设计：保持 Stack 主题默认风格（黑白灰），不偏离 caoyide 现有设计
+  用法：Hugo 渲染 /laws/ 和 /laws/{dir}/ 两种页面都用这个
+       用 .File.Dir 深度判断：len 1 = /laws/ 入口；len ≥ 2 = /laws/{dir}/ 分类页
+  作用：
+    - /laws/ 入口页：顶部 8 大类导航 + 悬停下拉（对标 justlaws.cn 顶部导航）
+    - /laws/{dir}/ 分类页：本类法律列表（对标 justlaws.cn 第二屏 222.png）
+  设计：保持 Stack 主题默认风格（黑白灰 + 蓝色重点色）
+  交互来源（2026-06-15 调整）：对标 justlaws.cn — 只抄交互，不抄视觉（md-feedback-00021）
 
   踩坑（md-feedback-00022）：Windows 上 Hugo 的 .File.Dir 是 laws\administrative\（反斜杠+带尾斜杠），
-  不能用 where "File.Dir" "laws/administrative" 直接匹配，
-  必须用 strings.Contains 模糊匹配，或先 replaceRE 把反斜杠转正斜杠
+  用 where "File.Dir" "in" (slice Unix, slice Windows) 双匹配
 */}}
 {{ define "body-class" }}
-  article-page
+  article-page laws-landing
 {{ end }}
 
 {{ define "main" }}
+  {{ $allLaws := where $.Site.RegularPages "Section" "laws" }}
+
+  {{ $categories := slice
+    (dict "name" "宪法" "dir" "constitution")
+    (dict "name" "宪法相关法" "dir" "constitutional-relevance")
+    (dict "name" "民商法" "dir" "civil-and-commercial")
+    (dict "name" "刑法" "dir" "criminal-law")
+    (dict "name" "行政法" "dir" "administrative")
+    (dict "name" "经济法" "dir" "economic")
+    (dict "name" "程序法" "dir" "procedural")
+    (dict "name" "社会法" "dir" "social")
+  }}
+
+  {{/* 判断是入口页 /laws/ 还是分类页 /laws/{dir}/ */}}
+  {{ $dirNormalized := .File.Dir | replaceRE `\\` "/" }}
+  {{ $dirSegments := split $dirNormalized "/" }}
+  {{ $isCategoryPage := gt (len $dirSegments) 1 }}
+
+  {{/* 当前分类 dir（仅分类页用）*/}}
+  {{ $currentDir := "" }}
+  {{ $currentName := "" }}
+  {{ if $isCategoryPage }}
+    {{ $currentDir = index $dirSegments (sub (len $dirSegments) 1) }}
+    {{ range $categories }}
+      {{- if eq .dir $currentDir -}}
+        {{- $currentName = .name -}}
+      {{- end -}}
+    {{- end }}
+  {{ end }}
+
   <article class="article">
     <div class="article-header">
-      <h1 class="article-title">法律文库</h1>
-      <p class="article-summary">收录 192 部现行有效法律，按 7 大类组织。</p>
+      {{ if $isCategoryPage }}
+        <h1 class="article-title">{{ $currentName }}</h1>
+        {{ $catLaws := where $allLaws "File.Dir" "in" (slice (printf "laws/%s/" $currentDir) (printf "laws\\%s\\" $currentDir)) }}
+        <p class="article-summary">本类共 {{ len $catLaws }} 部法律。</p>
+      {{ else }}
+        <h1 class="article-title">法律文库</h1>
+        <p class="article-summary">收录 192 部现行有效法律，按 8 大类组织。鼠标悬停顶部导航可展开本类法律列表。</p>
+      {{ end }}
     </div>
 
     <div class="article-content">
-      {{ $allLaws := where $.Site.RegularPages "Section" "laws" }}
+      {{/* 顶部导航 + 悬停下拉 —— 对标 justlaws.cn（所有 laws 页面都显示，方便跳转）*/}}
+      <nav class="laws-topnav" aria-label="法律分类导航">
+        <a class="laws-topnav-home{{ if not $isCategoryPage }} is-active{{ end }}" href="/laws/">全部类别</a>
+        {{- range $categories }}
+          {{- $cat := . }}
+          {{- $navLaws := where $allLaws "File.Dir" "in" (slice (printf "laws/%s/" $cat.dir) (printf "laws\\%s\\" $cat.dir)) }}
+          {{- $isThis := and $isCategoryPage (eq $cat.dir $currentDir) }}
+          <div class="laws-topnav-item{{ if $isThis }} is-active{{ end }}">
+            <a class="laws-topnav-link" href="/laws/{{ $cat.dir }}/">{{ $cat.name }}<span class="caret">▾</span></a>
+            {{ if gt (len $navLaws) 0 }}
+              <div class="laws-topnav-dropdown" role="menu">
+                {{- range first 4 $navLaws }}
+                  <a class="laws-topnav-dropdown-item" role="menuitem" href="{{ .Permalink }}">{{ .Title }}</a>
+                {{- end }}
+                <a class="laws-topnav-dropdown-more" role="menuitem" href="/laws/{{ $cat.dir }}/">查看全部 {{ len $navLaws }} 部 →</a>
+              </div>
+            {{ end }}
+          </div>
+        {{- end }}
+      </nav>
 
-      {{ $categories := slice
-        (dict "name" "宪法" "dir" "constitution")
-        (dict "name" "宪法相关法" "dir" "constitutional-relevance")
-        (dict "name" "民商法" "dir" "civil-and-commercial")
-        (dict "name" "刑法" "dir" "criminal-law")
-        (dict "name" "行政法" "dir" "administrative")
-        (dict "name" "经济法" "dir" "economic")
-        (dict "name" "程序法" "dir" "procedural")
-        (dict "name" "社会法" "dir" "social")
-      }}
-
-      {{ range $categories }}
-        {{ $cat := . }}
-        {{ $catKey := $cat.dir }}
-        {{/* 用 strings.Contains 模糊匹配（兼容 Windows 反斜杠 + 带尾斜杠两种情况）*/}}
-        {{ $catLaws := where $allLaws "File.Dir" "in" (slice (printf "laws/%s/" $catKey) (printf "laws\\%s\\" $catKey)) }}
-        {{ if gt (len $catLaws) 0 }}
-          <section class="widget">
-            <h2 class="widget-title">{{ $cat.name }}（{{ len $catLaws }} 部）</h2>
-            <div class="widget-body">
-              <ul class="laws-list">{{ range $catLaws }}<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>{{ end }}</ul>
-            </div>
-          </section>
-        {{ end }}
+      {{ if $isCategoryPage }}
+        {{/* 分类页：法律列表 —— 对标 222.png */}}
+        {{ $catLaws := where $allLaws "File.Dir" "in" (slice (printf "laws/%s/" $currentDir) (printf "laws\\%s\\" $currentDir)) }}
+        <ul class="laws-category-list">
+          {{- range $catLaws -}}
+            <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+          {{- end }}
+        </ul>
+      {{ else }}
+        {{/* 入口页：中央简介 + 分类浏览 —— 对标 111.png */}}
+        <section class="laws-landing-intro">
+          <h2>分类浏览</h2>
+          <p>从顶部导航选一个大类开始，或从下方分类目录进入。</p>
+          <ul class="laws-landing-grid">
+            {{- range $categories -}}
+              <li><a href="/laws/{{ .dir }}/">{{ .name }}</a></li>
+            {{- end }}
+          </ul>
+        </section>
       {{ end }}
     </div>
   </article>
