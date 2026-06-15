@@ -89,7 +89,7 @@
                         {{ $articleRaw = strings.TrimSpace $articleRaw }}
                         {{ $finalContent = replace $finalContent $match (printf `<span id='article-%s'></span>%s` $articleRaw $match) }}
                     {{ end }}
-                    {{ $finalContent | safeHTML }}
+                    {{ $finalContent | markdownify }}
                     </div>
                 {{ else }}
                     <div class="law-error" style="padding: 1em; background: #fff3f3; border-left: 4px solid #DE2910; border-radius: 4px;">
