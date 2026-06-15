@@ -9,3 +9,9 @@
 [build]
     command = "bash build.sh"
     # Cloudflare Pages 默认输出目录 = public（与 Hugo 一致）
+
+# 锁定 Node.js 版本（VuePress 2.0 要求 Node 18+）
+[build.environment]
+    NODE_VERSION = "20"
+    # Hugo 版本（Cloudflare Pages 已预装 Hugo 0.x，但显式声明可读性更好）
+    HUGO_VERSION = "0.159.0"
