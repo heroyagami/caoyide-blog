@@ -8,6 +8,10 @@ hasCJKLanguage = true
 # 允许发布未来日期的文章
 buildFuture = true
 
+# content/laws/ 目录已迁出到 law-site/ 的 VuePress 子站
+# Hugo 不再扫描这个目录，避免和 VuePress 的 /laws/ 输出冲突
+ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/laws/.*/.*/.*\\.md$"]
+
 [pagination]
     pagerSize = 10
 

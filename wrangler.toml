@@ -1,0 +1,11 @@
+# Cloudflare Pages 构建配置
+# 文档：https://developers.cloudflare.com/pages/configuration/build-configuration/
+#
+# 单项目 monorepo：主站 Hugo + 法条库 VuePress 共用同一个 output 目录 public/
+# - Hugo（主站）输出到 public/
+# - VuePress（法条库）输出到 public/laws/
+# 见 build.sh
+
+[build]
+    command = "bash build.sh"
+    # Cloudflare Pages 默认输出目录 = public（与 Hugo 一致）
