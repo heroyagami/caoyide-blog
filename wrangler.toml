@@ -1,11 +1,15 @@
 # Cloudflare Pages 构建配置
 # 文档：https://developers.cloudflare.com/pages/configuration/build-configuration/
 #
-# 关键：Pages 用的是 build_command + pages_build_output_dir（平铺）
-# 不是 [build] command（那是 Workers 语法）
-#
-# 单项目 monorepo：主站 Hugo + 法条库 VuePress 共用同一个 output 目录 public/
-# - Hugo（主站）输出到 public/
-# - VuePress（法条库）输出到 public/laws/（由 build.sh 完成）
-build_command = "bash build.sh"
+# 关键：Cloudflare Pages 用 [build] 段（不是平铺 key）
+# 必填：name + pages_build_output_dir + [build] command
+# 可选：[build.environment] 设 Node/Hugo 版本
+name = "caoyide-blog"
 pages_build_output_dir = "public"
+
+[build]
+    command = "bash build.sh"
+
+[build.environment]
+    NODE_VERSION = "20"
+    HUGO_VERSION = "0.159.0"
