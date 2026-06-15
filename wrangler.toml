@@ -1,15 +1,14 @@
 # Cloudflare Pages 构建配置
 # 文档：https://developers.cloudflare.com/pages/configuration/build-configuration/
 #
-# 关键：Cloudflare Pages 用 [build] 段（不是平铺 key）
-# 必填：name + pages_build_output_dir + [build] command
-# 可选：[build.environment] 设 Node/Hugo 版本
+# 关键：Cloudflare Pages 只支持这几个平铺字段：
+# - name (必填)
+# - pages_build_output_dir (必填)
+# - command (构建命令，平铺)
+#
+# 不支持 [build] 段，不支持 [build.environment]
+# Node/Hugo 版本在 Cloudflare Pages UI 控制台设置
+
 name = "caoyide-blog"
 pages_build_output_dir = "public"
-
-[build]
-    command = "bash build.sh"
-
-[build.environment]
-    NODE_VERSION = "20"
-    HUGO_VERSION = "0.159.0"
+command = "bash build.sh"
