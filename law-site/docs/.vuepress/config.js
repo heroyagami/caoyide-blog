@@ -8,6 +8,8 @@ module.exports = {
   lang: "zh-CN",
   title: "法律文库",
   description: "收录 308 部现行有效法律 - 曹义德律师",
+  // 关键：部署到子路径 /laws/，所有资源链接前加 /laws/
+  base: "/laws/",
   head: [
     ["link", { rel: "icon", href: "/images/logo.png" }],
   ],

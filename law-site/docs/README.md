@@ -4,7 +4,7 @@ title: 法律文库
 heroImage: /images/logo.png
 actions:
   - text: 开始阅读
-    link: /constitution/preamble.md
+    link: /constitution/preamble.html
     type: primary
 features:
   - title: 简洁至上
