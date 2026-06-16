@@ -19,7 +19,7 @@ module.exports = {
     logo: false,
     navbar: [
       {
-        text: "🏠 返回主站",
+        text: "返回曹义德律师主站",
         link: "https://caoyide.com/",
       },
       {

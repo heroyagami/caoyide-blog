@@ -14,4 +14,8 @@ features:
     details: 持续收录新法律，及时跟进已收录法律的修订与修正，确保内容时效性。
 ---
 
+<div style="display: flex; justify-content: center; margin: 2rem 0;">
+  <img src="/images/caoyide-card.png" alt="曹义德律师" style="max-width: 360px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+</div>
+
 <div class="footer">法律文库 · 曹义德律师整理 · 2026</div>

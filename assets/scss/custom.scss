@@ -366,6 +366,7 @@ a {
     color: var(--accent-color);
     font-weight: 600;
 }
+/* 关于曹义德按钮宽度调整（5个字比法律文库4个字稍微宽一点） */
 #main-menu a[href*="/cases/"] {
     font-weight: 650;
     color: var(--accent-color);
@@ -374,6 +375,9 @@ a {
     justify-content: center;
     text-align: center;
     gap: 2px;
+    padding: 8px 14px;  /* 比法律文库稍宽：14px vs 12px */
+    min-width: auto;    /* 取消固定宽度，让内容决定 */
+    white-space: nowrap;
 }
 #main-menu a[href*="/cases/"] svg {
     width: 18px;
