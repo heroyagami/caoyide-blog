@@ -1,7 +1,6 @@
 ---
 home: true
 title: 法律文库
-heroImage: /images/logo.png
 actions:
   - text: 开始阅读
     link: /constitution/preamble.html

@@ -15,7 +15,8 @@ module.exports = {
   ],
 
   theme: defaultTheme({
-    logo: "/images/logo.png",
+    // logo 设为 false 隐藏左上角 Logo 区域
+    logo: false,
     navbar: [
       {
         text: "全部类别",
