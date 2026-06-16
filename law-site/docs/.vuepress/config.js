@@ -19,6 +19,10 @@ module.exports = {
     logo: false,
     navbar: [
       {
+        text: "🏠 返回主站",
+        link: "https://caoyide.com/",
+      },
+      {
         text: "全部类别",
         link: "/category/",
       },
