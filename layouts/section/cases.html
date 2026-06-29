@@ -2,11 +2,9 @@
 {{- $term := $.Site.GetPage "/categories/关于曹义德" -}}
 {{- $pages := $term.Pages -}}
 
-{{ with .Content }}
 <section class="lawyer-profile" style="margin-bottom:2rem;">
-  {{ . }}
+  <img src="/img/曹义德律师履历.png" alt="曹义德律师履历" style="max-width:100%;height:auto;">
 </section>
-{{ end }}
 
 {{ with $pages }}
 <h2 class="cases-count-header">全部文章（共 {{ len $pages }} 篇）</h2>
