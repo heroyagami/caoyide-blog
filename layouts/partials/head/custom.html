@@ -43,8 +43,13 @@
 <meta name="twitter:image" content="{{ site.BaseURL }}img/og-cover.jpg">
 <meta name="twitter:image:alt" content="曹义德律师 湖北刑事辩护 民商事诉讼">
 
-{{- /* 搜索引擎抓取 / 作者 / 关键词 */}}
+{{- /* 搜索引擎抓取 / 作者 / 关键词
+     注：归档页、搜索页在各自 layout 的 head block 里加了 noindex,follow,
+     这里默认的 index,follow 不再输出,避免与 noindex 冲突。 */ -}}
+{{- $noindexPage := or (eq .RelPermalink "/archives/") (eq .RelPermalink "/search/") -}}
+{{- if not $noindexPage -}}
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+{{- end -}}
 <meta name="author" content="曹义德">
 <meta name="keywords" content="曹义德律师,湖北律师,刑事辩护律师,民商事诉讼律师,婚姻家庭律师,合同纠纷律师,湖北江通律师事务所,黄石律师,武汉律师,反贪检察官,法学硕士">
 

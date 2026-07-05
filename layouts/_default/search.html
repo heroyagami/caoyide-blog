@@ -1,5 +1,6 @@
 {{ define "body-class" }}template-search{{ end }}
 {{ define "head" }}
+    <meta name="robots" content="noindex, follow">
     {{- with .OutputFormats.Get "json" -}}
         <link rel="preload" href="{{ .RelPermalink }}" as="fetch" crossorigin="anonymous">
     {{- end -}}

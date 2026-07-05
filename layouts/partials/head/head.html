@@ -11,6 +11,9 @@
     {{- $description = .Description -}}
 {{- else if .IsPage -}}
     {{- $description = .Summary -}}
+{{- else if or (eq .Kind "taxonomy") (eq .Kind "term") -}}
+    {{- $pageCount := len .Pages -}}
+    {{- $description = printf "曹义德律师关于「%s」的专业文章合集，涵盖%d篇法律解读与案例分析，专注湖北刑事辩护、民商事诉讼。" .Title $pageCount -}}
 {{- else if .Site.Params.description -}}
     {{- $description = .Site.Params.description -}}
 {{- end -}}
@@ -28,14 +31,25 @@
 {{- if and $paginator $paginator.HasPrev -}}
     {{ $title = $title | append (printf "Page %d" $paginator.PageNumber) }}
 {{- end -}}
-{{- $title = $title | append (default $siteTitle $pageTitle) -}}
+{{- if or (eq .Kind "taxonomy") (eq .Kind "term") -}}
+    {{- $title = $title | append (printf "%s相关文章" $pageTitle) $siteTitle -}}
+{{- else -}}
+    {{- $title = $title | append (default $siteTitle $pageTitle) -}}
+{{- end -}}
 {{- $resolvedTitle := delimit $title " - " -}}
 <title>{{ $resolvedTitle }}</title>
 
+{{- /* ---------- Canonical（修复分页页指向首页的问题） ---------- */ -}}
 {{ with .Params.canonicalUrl }}
 <link rel="canonical" href="{{ . }}">
 {{ else }}
-<link rel="canonical" href="{{ .Permalink }}">
+    {{- /* 仅列表页（home/section/taxonomy/term）才有 Paginator，否则会报 pagination not supported */ -}}
+    {{- $isList := or (eq .Kind "home") (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term") -}}
+    {{- if and $isList .Paginator (gt .Paginator.PageNumber 1) -}}
+    <link rel="canonical" href="{{ .Paginator.URL }}">
+    {{- else -}}
+    <link rel="canonical" href="{{ .Permalink }}">
+    {{- end -}}
 {{ end }}
 
 {{- partial "head/custom-font.html" . -}}
