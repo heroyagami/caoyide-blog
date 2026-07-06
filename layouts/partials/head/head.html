@@ -39,6 +39,13 @@
 {{- $resolvedTitle := delimit $title " - " -}}
 <title>{{ $resolvedTitle }}</title>
 
+{{- /* 单薄标签页（<3篇文章）自动 noindex，节省抓取预算 */ -}}
+{{- if or (eq .Kind "taxonomy") (eq .Kind "term") -}}
+    {{- if lt (len .Pages) 3 -}}
+    <meta name="robots" content="noindex, follow">
+    {{- end -}}
+{{- end -}}
+
 {{- /* ---------- Canonical（修复分页页指向首页的问题） ---------- */ -}}
 {{ with .Params.canonicalUrl }}
 <link rel="canonical" href="{{ . }}">

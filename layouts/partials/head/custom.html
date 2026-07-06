@@ -33,20 +33,38 @@
 <meta name="sogou_site_verification" content="{{ site.Params.sogou.siteVerificationTag }}">
 {{- end }}
 
-{{- /* 全站统一 OG 封面图（head.html 覆盖了 og:title/og:description/twitter:card，这里只补 image 系列） */}}
-<meta property="og:image" content="{{ site.BaseURL }}img/og-cover.jpg">
-<meta property="og:image:secure_url" content="{{ site.BaseURL }}img/og-cover.jpg">
+{{- /* 全站 OG 封面图（文章有独立封面则优先使用） */}}
+{{- $ogImage := printf "%s%s" site.BaseURL "img/og-cover.jpg" -}}
+{{- $ogWidth := "1200" -}}
+{{- $ogHeight := "630" -}}
+{{- if .IsPage -}}
+    {{- $cover := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) -}}
+    {{- if $cover -}}
+        {{- $ogImage = $cover.Permalink -}}
+        {{- $ogWidth = string $cover.Width -}}
+        {{- $ogHeight = string $cover.Height -}}
+    {{- end -}}
+{{- end -}}
+<meta property="og:image" content="{{ $ogImage }}">
+<meta property="og:image:secure_url" content="{{ $ogImage }}">
 <meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="{{ $ogWidth }}">
+<meta property="og:image:height" content="{{ $ogHeight }}">
 <meta property="og:image:alt" content="曹义德律师 湖北刑事辩护 民商事诉讼">
-<meta name="twitter:image" content="{{ site.BaseURL }}img/og-cover.jpg">
+<meta name="twitter:image" content="{{ $ogImage }}">
 <meta name="twitter:image:alt" content="曹义德律师 湖北刑事辩护 民商事诉讼">
 
 {{- /* 搜索引擎抓取 / 作者 / 关键词
-     注：归档页、搜索页在各自 layout 的 head block 里加了 noindex,follow,
-     这里默认的 index,follow 不再输出,避免与 noindex 冲突。 */ -}}
+     注：以下页面已在别处声明 noindex,follow，
+     这里默认的 index,follow 不再输出,避免双标签冲突：
+       1. 归档页 /archives/、搜索页 /search/ —— 在各自 layout 的 head block 加了 noindex
+       2. 单薄标签页（taxonomy/term 且文章数 <3）—— head.html 加了 noindex */ -}}
 {{- $noindexPage := or (eq .RelPermalink "/archives/") (eq .RelPermalink "/search/") -}}
+{{- if or (eq .Kind "taxonomy") (eq .Kind "term") -}}
+    {{- if lt (len .Pages) 3 -}}
+        {{- $noindexPage = true -}}
+    {{- end -}}
+{{- end -}}
 {{- if not $noindexPage -}}
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 {{- end -}}
@@ -267,6 +285,41 @@
 {{ $articleLd | jsonify (dict "noHTMLEscape" true) }}
 </script>
 {{- end }}
+{{- /* BreadcrumbList Schema（文章页） */ -}}
+{{- $catName := .Section -}}
+{{- $catUrl := printf "%s%s/" site.BaseURL .Section -}}
+{{- if .Params.categories -}}
+    {{- range first 1 .Params.categories -}}
+        {{- $catName = . -}}
+        {{- $catUrl = printf "%scategories/%s/" site.BaseURL (. | urlize) -}}
+    {{- end -}}
+{{- end -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "{{ site.BaseURL }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ $catName | jsonify (dict "noHTMLEscape" true) | safeJS }},
+      "item": "{{ $catUrl }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ .Title | jsonify (dict "noHTMLEscape" true) | safeJS }},
+      "item": "{{ .Permalink }}"
+    }
+  ]
+}
+</script>
 {{- else if or (eq .Kind "taxonomy") (eq .Kind "term") }}
 <script type="application/ld+json">
 {
