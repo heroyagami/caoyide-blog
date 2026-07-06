@@ -59,6 +59,11 @@ mkdir -p "$PUBLIC_DIR/laws"
 rm -rf "$PUBLIC_DIR/laws"/*
 cp -r "$LAW_SITE_DIR/docs/.vuepress/dist/." "$PUBLIC_DIR/laws/"
 
+echo "==> 3.5 生成法条库 sitemap"
+# 从 public/laws/ 的 HTML 文件反推 URL，生成 laws/sitemap.xml
+# 零依赖，纯 shell，Hugo build 前执行以免被 Hugo 覆盖
+bash "$ROOT_DIR/scripts/generate-laws-sitemap.sh" "$PUBLIC_DIR" "https://caoyide.com"
+
 echo "==> 4. Hugo build（主站）"
 cd "$ROOT_DIR"
 hugo --gc --minify

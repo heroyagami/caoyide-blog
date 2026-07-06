@@ -9,6 +9,7 @@
 User-agent: *
 Allow: /
 Sitemap: https://caoyide.com/sitemap.xml
+Sitemap: https://caoyide.com/laws/sitemap.xml
 
 # ---- AI 搜索引擎：明确放行（用户问问题时实时检索引用） ----
 # 豆包（字节跳动）—— Cloudflare 默认禁 Bytespider，本站主动放行
