@@ -8,9 +8,13 @@
             <div class="section-details">
                 <h3 class="section-count">{{ T "list.page" (len .Pages) }}</h3>
                 <h1 class="section-term">{{ .Title }}</h1>
-                {{ with .Params.description }}
-                    <h2 class="section-description">{{ . }}</h2>
-                {{ end }}
+                {{- /* 导语：手写 description 优先；标签页无手写则用通用模板兜底，避免 thin content
+                     复用主题 .section-description 样式（颜色/字号已配），仅把 h2 改 p 保单 h1 语义 */ -}}
+                {{ if .Params.description }}
+                    <p class="section-description">{{ .Params.description }}</p>
+                {{- else if or (eq .Kind "taxonomy") (eq .Kind "term") -}}
+                    <p class="section-description">本标签共收录 {{ len .Pages }} 篇相关文章，涵盖{{ .Title }}的法律解读与案例分析。曹义德律师专注湖北刑事辩护与民商事诉讼。</p>
+                {{- end -}}
             </div>
 
             {{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) -}}

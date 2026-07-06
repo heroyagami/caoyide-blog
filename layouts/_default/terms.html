@@ -7,6 +7,7 @@
 
 <header class="page-header">
     <h1>所有标签</h1>
+    {{ with .Params.description }}<p class="page-lead">{{ . }}</p>{{ end }}
 </header>
 
 <div class="terms-tags-grid">
