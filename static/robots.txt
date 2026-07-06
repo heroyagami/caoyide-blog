@@ -1,4 +1,46 @@
+# ============================================================
+# caoyide.com robots.txt
+# 策略：放行主流 AI 搜索引擎（豆包/元宝/千问/Kimi/Perplexity/ChatGPT Search）
+#       禁止 AI 训练爬虫（GPTBot/ClaudeBot/Google-Extended/Applebot-Extended/CCBot）
+#       区别：AI 搜索引用内容给用户引流，AI 训练拿内容回炉不给回报
+# ============================================================
+
+# ---- 默认：所有爬虫允许 + sitemap 入口 ----
 User-agent: *
 Allow: /
-
 Sitemap: https://caoyide.com/sitemap.xml
+
+# ---- AI 搜索引擎：明确放行（用户问问题时实时检索引用） ----
+# 豆包（字节跳动）—— Cloudflare 默认禁 Bytespider，本站主动放行
+User-agent: Bytespider
+Allow: /
+
+# Perplexity 搜索
+User-agent: PerplexityBot
+Allow: /
+
+# ChatGPT Search（OpenAI 的搜索专用 UA，区别于训练用的 GPTBot）
+User-agent: OAI-SearchBot
+Allow: /
+
+# ---- AI 训练爬虫：禁止（拿内容训模型不给引流回报） ----
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
