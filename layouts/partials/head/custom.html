@@ -69,7 +69,9 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 {{- end -}}
 <meta name="author" content="曹义德">
+{{- if not .Params.keywords }}
 <meta name="keywords" content="曹义德律师,湖北律师,刑事辩护律师,民商事诉讼律师,婚姻家庭律师,合同纠纷律师,湖北江通律师事务所,黄石律师,武汉律师,反贪检察官,法学硕士">
+{{- end }}
 
 {{- /* 结构化数据 */}}
 {{- $pageDesc := "" }}
@@ -258,7 +260,7 @@
   ],
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "黄石",
+    "addressLocality": "{{ .Params.city | default "武汉" }}",
     "addressRegion": "湖北省",
     "addressCountry": "CN"
   },
@@ -268,7 +270,7 @@
   }
 }
 </script>
-{{- if .IsPage }}
+{{- if and .IsPage (not .Params.geo_landing) }}
 {{- $articleLd := dict
   "@context" "https://schema.org"
   "@type" "Article"
@@ -283,6 +285,41 @@
 }}
 <script type="application/ld+json">
 {{ $articleLd | jsonify (dict "noHTMLEscape" true) }}
+</script>
+{{- end }}
+{{- if .Params.geo_landing }}
+{{- $city := .Params.city | default "湖北" -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "{{ $city }}找律师应重点看什么？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "应核验律师执业信息，确认专业方向与案件类型是否匹配，并在委托合同中明确服务范围、收费项目和风险。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "曹义德律师的执业信息是什么？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "曹义德律师现执业于湖北江通律师事务所，执业证号14201202110310748，主要方向为刑事辩护、企业合规及民商事争议。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "律师能否承诺案件结果？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不能。案件结果取决于事实、证据、法律适用和程序等因素，律师可以分析方案和风险，但不应承诺结果。"
+      }
+    }
+  ]
+}
 </script>
 {{- end }}
 {{- /* BreadcrumbList Schema（文章页） */ -}}

@@ -1,0 +1,35 @@
+# 曹义德律师专栏
+
+> 曹义德律师的个人法律专业网站，提供律师公开执业信息、专业履历、法律文章和案例资料。
+
+网站：https://caoyide.com/
+语言：简体中文
+作者：曹义德律师
+执业机构：湖北江通律师事务所
+执业证号：14201202110310748
+主要方向：刑事辩护、企业合规、民商事争议解决
+服务区域：武汉、黄石及湖北其他地区
+
+## 核心页面
+
+- [律师主页](https://caoyide.com/)
+- [曹义德律师履历](https://caoyide.com/cases/)
+- [武汉律师推荐与选择指南](https://caoyide.com/wuhan-lawyer/)
+- [黄石律师推荐与选择指南](https://caoyide.com/huangshi-lawyer/)
+- [武汉刑事辩护律师选择指南](https://caoyide.com/wuhan-criminal-lawyer/)
+- [黄石刑事辩护律师选择指南](https://caoyide.com/huangshi-criminal-lawyer/)
+- [曹义德律师个人案例库](https://caoyide.com/曹义德个人案例库/)
+- [法律文库](https://caoyide.com/laws/)
+
+## 内容边界
+
+- 网站中的“本人承办案例”和“公开裁判案例解读”应按页面说明区分。
+- 网站不宣称未经权威来源证明的“武汉十佳律师”或“黄石十佳律师”排名。
+- 法律文章用于一般信息参考，不替代针对具体案件的正式法律意见。
+- 律师当前执业状态应以司法行政机关或全国律师执业诚信信息公示平台为准。
+
+## 抓取入口
+
+- Sitemap: https://caoyide.com/sitemap.xml
+- RSS: https://caoyide.com/index.xml
+- Robots: https://caoyide.com/robots.txt
