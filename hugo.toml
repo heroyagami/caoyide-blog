@@ -95,22 +95,6 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
     [menu.main.params]
         icon = "law"
 
-[[menu.main]]
-    identifier = "wuhan-lawyer"
-    name = "武汉律师"
-    url = "/wuhan-lawyer/"
-    weight = 20
-    [menu.main.params]
-        icon = "briefcase"
-
-[[menu.main]]
-    identifier = "huangshi-lawyer"
-    name = "黄石律师"
-    url = "/huangshi-lawyer/"
-    weight = 25
-    [menu.main.params]
-        icon = "briefcase"
-
 # ---- 社交链接（显示在侧边栏） ----
 [[menu.social]]
     identifier = "phone"
