@@ -707,6 +707,7 @@ a {
     font-size: var(--text-sm);
     margin: 0;
 }
+.featured-about .about-card-header h1,
 .featured-about .about-card-header h2 {
     font-size: 2.2rem; margin: 0;
     color: var(--card-text-color-main);
@@ -740,7 +741,10 @@ a {
 }
 .featured-about .about-card-body h3,
 .featured-about .about-card-fields h3,
-.featured-about .about-card-contact h3 {
+.featured-about .about-card-contact h3,
+.featured-about .about-card-body h2,
+.featured-about .about-card-fields h2,
+.featured-about .about-card-contact h2 {
     font-size: 1.3rem; margin: 0 0 4px 0;
     color: var(--accent-color);
     font-weight: 700;
@@ -1019,7 +1023,10 @@ a {
 }
 [data-scheme="dark"] .featured-about .about-card-body h3,
 [data-scheme="dark"] .featured-about .about-card-fields h3,
-[data-scheme="dark"] .featured-about .about-card-contact h3 {
+[data-scheme="dark"] .featured-about .about-card-contact h3,
+[data-scheme="dark"] .featured-about .about-card-body h2,
+[data-scheme="dark"] .featured-about .about-card-fields h2,
+[data-scheme="dark"] .featured-about .about-card-contact h2 {
     color: var(--accent-color);
 }
 [data-scheme="dark"] .featured-about .about-card-contact a {

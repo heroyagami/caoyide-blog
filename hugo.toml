@@ -23,7 +23,7 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
 # ============================================================
 [params]
     mainSections = ["posts"]
-    rssFullContent = true
+    rssFullContent = false
 
     # SEO 兜底：Stack 主题的 data/description.html 读 Site.Params.description
     description = '曹义德律师，华中科技大学法学硕士，前反贪检察官，现任湖北江通律师事务所执业律师（执业证号 14201202110310748）。专注刑事辩护、民商事诉讼、婚姻家庭、合同纠纷，主要服务湖北武汉市及武汉「8+1」城市圈。法律咨询：18872778990（微信同号）。'
@@ -48,7 +48,7 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
     # ---- 页脚 ----
     [params.footer]
         since = 2025
-        customText = "湖北江通律师事务所 · 执业证号：14201202110310748 · 办公地：湖北武汉、黄石 · 主要服务湖北武汉市及武汉「8+1」城市圈 · 法律咨询：18872778990（微信同号）"
+        customText = "湖北江通律师事务所 · 执业证号：14201202110310748 · 办公地址：湖北省武汉市江汉区鸿鹄科技园1号楼6楼 · 服务武汉、黄石及湖北其他地区 · 法律咨询：18872778990（微信同号）"
 
     # ---- 侧边栏小部件 ----
     [params.widgets]
@@ -144,6 +144,10 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
 # ============================================================
 [outputs]
     home = ["HTML", "RSS"]
+
+[services]
+    [services.rss]
+        limit = 50
 
 # ============================================================
 # Fuse.js 搜索参数（Stack 搜索页使用）

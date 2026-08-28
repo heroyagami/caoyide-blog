@@ -2,6 +2,18 @@
 {{- $term := $.Site.GetPage "/categories/关于曹义德" -}}
 {{- $pages := $term.Pages -}}
 
+<article class="article lawyer-resume-page">
+  <header class="article-header">
+    <div class="article-details">
+      <h1 class="article-title">{{ .Title }}</h1>
+      {{ with .Description }}<p class="article-subtitle">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+  <div class="article-content">
+    {{ .Content }}
+  </div>
+</article>
+
 <section class="lawyer-profile" style="margin-bottom:2rem;">
   <img src="/img/曹义德律师履历.png" alt="曹义德律师履历" style="max-width:100%;height:auto;">
 </section>

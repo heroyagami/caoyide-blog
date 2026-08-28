@@ -2,10 +2,10 @@
   partial: article/components/related-laws
   用法：layouts/_default/single.html 中 {{ partial "article/components/related-laws" . }}
   作用：根据 frontmatter 的 related_laws 列表，渲染为链接列表
-        点击跳转到 /laws/cat/lawName--lawFile/#article-XXX
+        点击跳转到 VuePress 法律库中的对应法律页面
 
   related_laws 数据格式（来自早期 gen-laws-md.mjs）：
-    4 段："cat/lawName/lawFile.md/article"   → /laws/cat/lawName--lawFile/
+    4 段："cat/lawName/lawFile.md/article"   → /laws/cat/lawName/lawFile.html
     3 段："cat/lawFile.md/article"           → /laws/cat/lawFile/
   用最后一段是否带 .md 来动态判断（兼容两种格式）
 */}}
@@ -35,10 +35,10 @@
         {{ $lawUrl := "" }}
         {{ $displayName := "" }}
         {{ if strings.HasSuffix $prevPart ".md" }}
-          {{/* 4 段：cat/lawName/lawFile.md/article → /laws/cat/lawName--lawFile/ */}}
+          {{/* 4 段：VuePress 多文件法律 → /laws/cat/lawName/lawFile.html */}}
           {{ $lawFile := strings.TrimSuffix ".md" $prevPart }}
           {{ $lawName := index $parts 1 }}
-          {{ $lawUrl = printf "/laws/%s/%s--%s/" $catDir $lawName $lawFile }}
+          {{ $lawUrl = printf "/laws/%s/%s/%s.html" $catDir $lawName $lawFile }}
           {{ $displayName = printf "%s %s" $lawName $lawFile }}
         {{ else }}
           {{/* 3 段：cat/lawFile.md/article → /laws/cat/lawFile/ */}}
@@ -46,10 +46,8 @@
           {{ $lawUrl = printf "/laws/%s/%s/" $catDir $lawFile }}
           {{ $displayName = $lawFile }}
         {{ end }}
-        {{ $anchor := printf "article-%s" $article }}
-
         <li style="margin: 0.3em 0; padding: 0.2em 0;">
-          <a href="{{ $lawUrl }}#{{ $anchor }}" style="color: var(--card-text-color-main); text-decoration: none; display: flex; align-items: center;">
+          <a href="{{ $lawUrl }}" style="color: var(--card-text-color-main); text-decoration: none; display: flex; align-items: center;">
             <span style="color: var(--accent-color); margin-right: 0.5em;">▸</span>
             <span>{{ $category }} · {{ $displayName }} · 第 {{ $article }} 条</span>
           </a>

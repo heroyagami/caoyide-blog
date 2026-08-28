@@ -2,6 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="{{ .Params.redirectUrl | absURL }}">
     <meta http-equiv="refresh" content="0; url={{ .Params.redirectUrl }}">
     <title>{{ .Title }}</title>
     <script>window.location.href = "{{ .Params.redirectUrl }}";</script>

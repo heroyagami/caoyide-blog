@@ -1,11 +1,15 @@
 public/
 resources/
 .hugo_build.lock
+.hugo/
+.git_broken/
 hugo_cache/
 *.bak
 content/posts/Clippings/
 Horizon-ai-news/
 node_modules/
+midscene_run/
+nul
 .obsidian/
 _desensitized_backup/
 static/img/avatar.jpg.bak.20260608

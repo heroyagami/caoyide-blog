@@ -9,17 +9,12 @@
 {{- /* 百度自动推送 */}}
 {{- if hugo.IsProduction }}
 <script>
-(function(){
+window.addEventListener('load', function () {
   var bp = document.createElement('script');
-  var curProtocol = window.location.protocol.split(':')[0];
-  if (curProtocol === 'https') {
-    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-  } else {
-    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-  }
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(bp, s);
-})();
+  bp.async = true;
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  document.body.appendChild(bp);
+});
 </script>
 {{- end }}
 
@@ -97,7 +92,7 @@
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "湖北江通律师事务所",
+      "streetAddress": "鸿鹄科技园1号楼6楼",
       "addressLocality": "武汉",
       "addressRegion": "湖北省",
       "addressCountry": "CN"
@@ -107,9 +102,16 @@
       "name": "华中科技大学"
     },
     "worksFor": {
-      "@type": "LegalService",
+      "@type": "Organization",
+      "@id": "{{ site.BaseURL }}#lawFirm",
       "name": "湖北江通律师事务所",
-      "url": "{{ site.BaseURL }}"
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "鸿鹄科技园1号楼6楼",
+        "addressLocality": "武汉",
+        "addressRegion": "湖北省",
+        "addressCountry": "CN"
+      }
     },
     "knowsAbout": [
       "刑事辩护",
@@ -132,20 +134,27 @@
     "@context": "https://schema.org",
     "@type": "LegalService",
     "@id": "{{ site.BaseURL }}#legalService",
-    "name": "湖北江通律师事务所",
+    "name": "曹义德律师法律服务",
     "url": "{{ site.BaseURL }}",
     "telephone": "+86-18872778990",
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "鸿鹄科技园1号楼6楼",
       "addressLocality": "武汉",
       "addressRegion": "湖北省",
       "addressCountry": "CN"
     },
     "areaServed": "湖北省",
-    "employee": {
+    "provider": {
       "@type": "Attorney",
+      "@id": "{{ site.BaseURL }}#attorney",
       "name": "曹义德"
+    },
+    "parentOrganization": {
+      "@type": "Organization",
+      "@id": "{{ site.BaseURL }}#lawFirm",
+      "name": "湖北江通律师事务所"
     }
   },
   {
@@ -188,7 +197,7 @@
         "name": "曹义德律师在哪个律所执业？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "曹义德律师现任湖北江通律师事务所执业律师，办公地位于湖北武汉、黄石，主要服务湖北武汉市及武汉「8+1」城市圈。"
+          "text": "曹义德律师现任湖北江通律师事务所执业律师，办公地址位于湖北省武汉市江汉区鸿鹄科技园1号楼6楼，服务武汉、黄石及湖北其他地区。"
         }
       },
       {
@@ -242,8 +251,16 @@
   "image": "{{ site.BaseURL }}img/avatar.jpg",
   "priceRange": "$$",
   "worksFor": {
-    "@type": "LegalService",
-    "name": "湖北江通律师事务所"
+    "@type": "Organization",
+    "@id": "{{ site.BaseURL }}#lawFirm",
+    "name": "湖北江通律师事务所",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "鸿鹄科技园1号楼6楼",
+      "addressLocality": "武汉",
+      "addressRegion": "湖北省",
+      "addressCountry": "CN"
+    }
   },
   "knowsAbout": [
     "刑事辩护",
@@ -260,7 +277,8 @@
   ],
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "{{ .Params.city | default "武汉" }}",
+    "streetAddress": "鸿鹄科技园1号楼6楼",
+    "addressLocality": "武汉",
     "addressRegion": "湖北省",
     "addressCountry": "CN"
   },

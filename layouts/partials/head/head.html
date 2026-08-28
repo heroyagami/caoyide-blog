@@ -32,7 +32,8 @@
     {{ $title = $title | append (printf "Page %d" $paginator.PageNumber) }}
 {{- end -}}
 {{- if or (eq .Kind "taxonomy") (eq .Kind "term") -}}
-    {{- $title = $title | append (printf "%s相关文章" $pageTitle) $siteTitle -}}
+    {{- $taxonomyLabel := cond (eq .Data.Plural "categories") "分类" "标签" -}}
+    {{- $title = $title | append (printf "%s：%s相关文章" $taxonomyLabel $pageTitle) $siteTitle -}}
 {{- else -}}
     {{- $title = $title | append (default $siteTitle $pageTitle) -}}
 {{- end -}}
