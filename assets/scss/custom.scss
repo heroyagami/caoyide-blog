@@ -9,6 +9,7 @@
     --base-font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", var(--sys-font-family), sans-serif;
     --heading-font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC", var(--sys-font-family), sans-serif;
     --serif-font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "SimSun", serif;
+    --article-reading-font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", "Hiragino Sans GB", var(--sys-font-family), sans-serif;
 
     /* 字号阶梯 */
     --text-xs: 1.1rem;
@@ -1805,22 +1806,23 @@ footer.site-footer {
    ============================================================ */
 
 /* ---- 9.1 H 字号梯度 + 字重 + 行高 ----
-   h2/h3 走思源宋体 + 左侧蓝边（editorial 风格，沿用既有意图） */
+   文章标题与正文统一为屏幕友好的中文无衬线体，避免 Windows 回退宋体后笔画发虚 */
 .article-content {
+    font-family: var(--article-reading-font-family);
     h1 { font-size: 2.4rem;  font-weight: 700; line-height: 1.35; }
     h2 {
-        font-family: var(--serif-font-family);
+        font-family: var(--heading-font-family);
         font-size: 2.0rem;
         font-weight: 700;
-        line-height: 1.4;
+        line-height: 1.5;
         padding-left: 16px;
         border-left: 4px solid var(--accent-color);
     }
     h3 {
-        font-family: var(--serif-font-family);
+        font-family: var(--heading-font-family);
         font-size: 1.75rem;
-        font-weight: 650;
-        line-height: 1.4;
+        font-weight: 600;
+        line-height: 1.5;
         padding-left: 12px;
         border-left: 3px solid var(--card-separator-color);
     }
@@ -1833,9 +1835,10 @@ footer.site-footer {
 .article-content p,
 .article-content li,
 .article-content figcaption {
-    font-size: var(--text-base);
-    line-height: 1.75;
+    font-size: 1.65rem;
+    line-height: 1.9;
     font-weight: 400;
+    letter-spacing: 0.015em;
 }
 .featured-about .about-card-body p,
 .featured-about .about-card-body li {
@@ -2208,14 +2211,15 @@ footer.site-footer {
     color: var(--accent-color);
 }
 
-/* ---- 10.2 副标题：md 灰字 + 思源宋体（与正文 H2/H3 同源，editorial 感）---- */
+/* ---- 10.2 副标题：与正文同源，用颜色和尺寸区分层级 ---- */
 .main-article > .article-header .article-subtitle {
-    font-size: var(--text-lg) !important;   /* 1.85rem ≈ 18.5px，覆盖列表场景规则 */
+    font-size: 1.7rem !important;
     font-weight: 400;
-    line-height: 1.55;
+    line-height: 1.75;
     color: var(--card-text-color-secondary);
-    font-family: var(--serif-font-family);
-    font-style: italic;
+    font-family: var(--article-reading-font-family);
+    font-style: normal;
+    letter-spacing: 0.01em;
     margin: 0 0 var(--space-5);
     max-width: 56rem;
 }
