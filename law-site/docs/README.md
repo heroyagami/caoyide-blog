@@ -15,8 +15,8 @@ features:
     details: 输入法律名称或关键词，快速找到对应法律与章节。
   - title: 系统分类
     details: 宪法、民商法、刑法、程序法等八大门类清晰组织。
-  - title: 持续更新
-    details: 跟进法律制定、修订与修正，便于日常检索阅读。
+  - title: 定期维护
+    details: 定期核对法律制定、修订与修正信息，便于日常检索阅读。
 ---
 
 <section class="law-library-section" aria-labelledby="law-categories-title">

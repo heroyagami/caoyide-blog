@@ -51,21 +51,53 @@ html {
   font-size: 1.2rem;
 }
 
-/* 返回主站链接强调效果 */
-.navbar .navbar-items-wrapper .navbar-item:first-child {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  color: #fff !important;
-  padding: 6px 14px;
-  border-radius: 20px;
+/* 返回主站入口与整排导航保持同一视觉层级 */
+.navbar .navbar-items-wrapper .navbar-item:first-child > a {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: #2563eb !important;
+  padding: 0;
+  border-radius: 0;
   font-weight: 600;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+  transition: color 0.2s ease;
+  box-shadow: none;
 }
 
-.navbar .navbar-items-wrapper .navbar-item:first-child:hover {
-  background: linear-gradient(135deg, #1d4ed8, #1e40af);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+.navbar .navbar-items-wrapper .navbar-item:first-child > a::before {
+  content: "←";
+  margin-right: 0.3rem;
+  font-size: 0.9em;
+}
+
+.navbar .navbar-items-wrapper .navbar-item:first-child > a:hover {
+  background: transparent;
+  color: #1d4ed8 !important;
+  transform: none;
+  box-shadow: none;
+}
+
+.navbar .navbar-items-wrapper,
+.navbar .navbar-items,
+.navbar .navbar-item {
+  align-items: center;
+}
+
+.navbar .navbar-items {
+  gap: 0.15rem;
+}
+
+.navbar .navbar-item {
+  white-space: nowrap;
+}
+
+.navbar .navbar-item > a {
+  display: inline-flex;
+  align-items: center;
+  height: 27px;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 27px;
 }
 
 /* 法律文库首页：延续曹义德律师主站的深蓝专业视觉 */
@@ -89,15 +121,8 @@ html {
 }
 
 .home .hero::before {
-  content: "CAOYIDE  /  LEGAL LIBRARY";
-  display: inline-flex;
-  padding: 0.42rem 0.8rem;
-  border: 1px solid rgba(147, 197, 253, 0.3);
-  border-radius: 999px;
-  color: #93c5fd;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  content: none;
+  display: none;
 }
 
 .home .hero::after {
@@ -115,7 +140,7 @@ html {
 .home .hero h1 {
   position: relative;
   z-index: 1;
-  margin: 1.3rem 0 0.8rem;
+  margin: 0 0 0.8rem;
   color: #fff;
   font-size: clamp(2.8rem, 5vw, 4.4rem);
   font-weight: 750;
