@@ -1281,6 +1281,44 @@ footer.site-footer {
 .subsection-list {
     width: 100%;
 }
+
+/* 相关文章横向滑动：将 Windows 默认白色滚动条收敛为品牌化细轨道 */
+.related-content .subsection-list {
+    -webkit-mask-image: none;
+    mask-image: none;
+    padding-bottom: 6px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x proximity;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(96, 165, 250, 0.55) rgba(148, 163, 184, 0.10);
+}
+.related-content .subsection-list::-webkit-scrollbar {
+    height: 6px;
+}
+.related-content .subsection-list::-webkit-scrollbar-track {
+    background: rgba(148, 163, 184, 0.10);
+    border-radius: var(--radius-full);
+}
+.related-content .subsection-list::-webkit-scrollbar-thumb {
+    background: rgba(96, 165, 250, 0.55);
+    border-radius: var(--radius-full);
+}
+.related-content .subsection-list::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+.related-content .article-list--tile article {
+    scroll-snap-align: start;
+}
+[data-scheme="dark"] .related-content .subsection-list {
+    scrollbar-color: rgba(96, 165, 250, 0.62) rgba(255, 255, 255, 0.06);
+}
+[data-scheme="dark"] .related-content .subsection-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.06);
+}
+[data-scheme="dark"] .related-content .subsection-list::-webkit-scrollbar-thumb {
+    background: rgba(96, 165, 250, 0.62);
+}
 .article-list--tile {
     display: grid;
     grid-template-columns: 1fr;
