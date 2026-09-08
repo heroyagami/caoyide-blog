@@ -17,7 +17,7 @@
 
     {{- $TOCManuallyDisabled := eq .Params.toc false -}}
     {{- $TOCEnabled := and (not $TOCManuallyDisabled) $TOCWidgetEnabled -}}
-    {{- $hasTOC := ge (len .TableOfContents) 0 -}}
+    {{- $hasTOC := gt (len .TableOfContents) 0 -}}
     {{- .Scratch.Set "TOCEnabled" (and $TOCEnabled $hasTOC) -}}
 
     {{- .Scratch.Set "hasWidget" (or $HasWidgetNotTOC (and $TOCEnabled $hasTOC)) -}}
@@ -27,6 +27,10 @@
     {{ partial "article/components/breadcrumb" . }}
 
     {{ partial "article/article.html" . }}
+
+    {{ partial "article/components/review-status" . }}
+
+    {{ partial "article/components/consultation-cta" . }}
 
     {{ partial "article/components/daily-nav" . }}
 
