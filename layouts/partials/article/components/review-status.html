@@ -1,0 +1,27 @@
+{{- $status := .Params.review_status | default "legacy" -}}
+{{- if or (eq $status "verified") .Params.last_verified .Params.legal_sources .Params.case_sources -}}
+<section class="legal-review-card" aria-label="内容核验信息">
+  <div class="legal-review-title">{{ if eq $status "verified" }}✓ 已完成专业核验{{ else }}内容核验信息{{ end }}</div>
+  <div class="legal-review-meta">
+    {{- with .Params.reviewed_by }}<span>审核：{{ . }}</span>{{ end -}}
+    {{- with .Params.last_verified }}<span>最后核验：{{ . }}</span>{{ end -}}
+  </div>
+  {{- with .Params.legal_sources }}
+  <details>
+    <summary>法律依据（{{ len . }}）</summary>
+    <ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+  </details>
+  {{- end }}
+  {{- with .Params.case_sources }}
+  <details>
+    <summary>案例/裁判来源（{{ len . }}）</summary>
+    <ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+  </details>
+  {{- end }}
+  <p class="legal-review-disclaimer">本文用于一般法律信息与观点交流，不构成对具体案件结果的承诺。个案应结合事实、证据和最新法律规定判断。</p>
+</section>
+{{- end -}}
+
+<style>
+.legal-review-card{margin:1.2rem 0;padding:1rem 1.1rem;border:1px solid var(--card-separator-color);border-radius:14px;background:var(--card-background);font-size:.92rem}.legal-review-title{font-weight:700;margin-bottom:.35rem}.legal-review-meta{display:flex;gap:.8rem;flex-wrap:wrap;color:var(--card-text-color-secondary);font-size:.85rem}.legal-review-card details{margin-top:.55rem}.legal-review-card ul{margin:.45rem 0 .2rem 1.2rem}.legal-review-disclaimer{margin:.7rem 0 0;color:var(--card-text-color-secondary);font-size:.84rem;line-height:1.65}
+</style>

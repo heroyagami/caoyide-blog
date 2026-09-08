@@ -1,4 +1,4 @@
-name: Daily AI News (Horizon)
+name: Daily AI × Law Intelligence (Horizon)
 
 on:
   schedule:
@@ -13,14 +13,16 @@ jobs:
   horizon-daily:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout site
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Clone Horizon repo
+      - name: Clone pinned Horizon
         run: |
           git clone https://github.com/heroyagami/Horizon.git Horizon-ai-news
+          cd Horizon-ai-news
+          git checkout 7c193de8910802ef73a2588c0b851f0772fbc1b2
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -33,20 +35,10 @@ jobs:
       - name: Install Horizon
         run: |
           cd Horizon-ai-news
-          uv sync
+          uv sync --frozen
 
-      - name: Write config file
-        run: |
-          echo '{"version":"1.0","ai":{"provider":"deepseek","model":"deepseek-chat","api_key_env":"DEEPSEEK_API_KEY","temperature":0.3,"max_tokens":4096,"throttle_sec":0,"analysis_concurrency":1,"enrichment_concurrency":1,"languages":["zh","en"]},"email":null,"sources":{"hackernews":{"enabled":true,"fetch_top_stories":30,"min_score":50},"rss":[{"name":"Simon Willison","url":"https://simonwillison.net/atom/everything/","enabled":true,"category":"ai-tools"}],"github":[{"type":"user_events","username":"anthropics","enabled":true},{"type":"repo_releases","owner":"anthropics","repo":"anthropic-sdk-python","enabled":true}],"reddit":{"enabled":true,"subreddits":[{"subreddit":"law","enabled":true,"sort":"hot","time_filter":"day","fetch_limit":10,"min_score":20},{"subreddit":"MachineLearning","enabled":true,"sort":"hot","time_filter":"day","fetch_limit":10,"min_score":50}],"users":[],"fetch_comments":3}},"filtering":{"ai_score_threshold":5.5,"time_window_hours":48},"webhook":{"enabled":false}}' > Horizon-ai-news/data/config.json
-
-      - name: Patch orchestrator
-        run: |
-          sed -i 's|docs/_posts|content/posts/ai-daily|g' Horizon-ai-news/src/orchestrator.py
-
-      - name: Debug config
-        run: |
-          echo "=== Config ==="
-          cat Horizon-ai-news/data/config.json
+      - name: Use repository config
+        run: cp config.json Horizon-ai-news/data/config.json
 
       - name: Run Horizon
         env:
@@ -55,10 +47,16 @@ jobs:
           cd Horizon-ai-news
           uv run horizon --hours 48
 
-      - name: Commit and push
+      - name: Convert only law/compliance output to review drafts
+        run: |
+          python scripts/prepare-horizon-post.py \
+            Horizon-ai-news/docs/_posts \
+            content/posts/ai-daily
+
+      - name: Commit review drafts
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Horizon AI"
           git add content/posts/ai-daily/
-          git diff --staged --quiet || git commit -m "📡 Horizon 日报 $(date +'%Y-%m-%d')"
+          git diff --staged --quiet || git commit -m "chore: add AI-law review draft $(date +'%Y-%m-%d')"
           git push
