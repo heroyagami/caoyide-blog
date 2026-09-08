@@ -22,7 +22,7 @@ jobs:
         run: |
           git clone https://github.com/heroyagami/Horizon.git Horizon-ai-news
           cd Horizon-ai-news
-          git checkout 7c193de8910802ef73a2588c0b851f0772fbc1b2
+          git checkout 22d42c17a70bc269c9492ef72276e8bb31e4505f
 
       - name: Set up Python
         uses: actions/setup-python@v5
