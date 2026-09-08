@@ -1,9 +1,7 @@
 {{- $status := .Params.review_status | default "legacy" -}}
 {{- if or (eq $status "verified") .Params.last_verified .Params.legal_sources .Params.case_sources -}}
 <section class="legal-review-card" aria-label="内容核验信息">
-  <div class="legal-review-title">
-    {{- if eq $status "verified" -}}✓ 已完成专业核验{{- else -}}内容核验信息{{- end -}}
-  </div>
+  <div class="legal-review-title">{{ if eq $status "verified" }}✓ 已完成专业核验{{ else }}内容核验信息{{ end }}</div>
   <div class="legal-review-meta">
     {{- with .Params.reviewed_by }}<span>审核：{{ . }}</span>{{ end -}}
     {{- with .Params.last_verified }}<span>最后核验：{{ . }}</span>{{ end -}}
@@ -14,7 +12,9 @@
     <ul>
       {{- range . }}
         {{- if reflect.IsMap . -}}
-          <li>{{ with index . "url" }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ index $.Params "title" | default (index . "title") }}</a>{{ else }}{{ index . "title" }}{{ end }}</li>
+          {{- $title := index . "title" | default "法律依据" -}}
+          {{- $url := index . "url" -}}
+          <li>{{ if $url }}<a href="{{ $url }}" target="_blank" rel="noopener noreferrer">{{ $title }}</a>{{ else }}{{ $title }}{{ end }}</li>
         {{- else -}}
           <li>{{ . }}</li>
         {{- end -}}
@@ -28,7 +28,9 @@
     <ul>
       {{- range . }}
         {{- if reflect.IsMap . -}}
-          <li>{{ with index . "url" }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ index . "title" | default (index . "case_number") | default "裁判来源" }}</a>{{ else }}{{ index . "title" | default (index . "case_number") | default "裁判来源" }}{{ end }}</li>
+          {{- $title := index . "title" | default (index . "case_number") | default "裁判来源" -}}
+          {{- $url := index . "url" -}}
+          <li>{{ if $url }}<a href="{{ $url }}" target="_blank" rel="noopener noreferrer">{{ $title }}</a>{{ else }}{{ $title }}{{ end }}</li>
         {{- else -}}
           <li>{{ . }}</li>
         {{- end -}}
