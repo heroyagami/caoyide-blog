@@ -18,6 +18,12 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
 [permalinks]
     posts = "/posts/:slug/"
 
+# 专业专题作为独立 taxonomy，便于文章/日报汇聚成长期 Topic Cluster
+[taxonomies]
+    category = "categories"
+    tag = "tags"
+    topic = "topics"
+
 # ============================================================
 # Stack 主题参数
 # ============================================================
@@ -86,6 +92,14 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
     weight = 10
     [menu.main.params]
         icon = "briefcase"
+
+[[menu.main]]
+    identifier = "topics"
+    name = "专业专题"
+    url = "/topics/"
+    weight = 12
+    [menu.main.params]
+        icon = "categories"
 
 [[menu.main]]
     identifier = "laws"
@@ -159,4 +173,4 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
     distance = 1000
     threshold = 0.4
     minMatchCharLength = 1
-    keys = ["title", "summary", "permalink", "content", "tags"]
+    keys = ["title", "summary", "permalink", "content", "tags", "topics"]
