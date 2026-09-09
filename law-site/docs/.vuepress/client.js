@@ -5,6 +5,26 @@ import { defineClientConfig } from "@vuepress/client";
 
 let backlinkDataPromise = null;
 
+function ensureBacklinkStyles() {
+  if (typeof document === "undefined" || document.getElementById("law-backlink-styles")) return;
+  const style = document.createElement("style");
+  style.id = "law-backlink-styles";
+  style.textContent = `
+    .law-article-backlinks{margin:2rem 0 0;padding:1.1rem 1.2rem;border:1px solid #dbe4f0;border-radius:14px;background:#f8fbff}
+    .law-article-backlinks h2{margin:0 0 .35rem!important;border:0!important;font-size:1.08rem!important;color:#0f2748}
+    .law-article-backlinks-intro{margin:.2rem 0 .75rem;color:#64748b;font-size:.88rem}
+    .law-article-backlinks ul{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+    .law-article-backlinks li{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;padding:.55rem .65rem;border-radius:9px;background:#fff}
+    .law-article-backlinks a{text-decoration:none!important;font-weight:600}
+    .law-article-backlinks li span{white-space:nowrap;color:#94a3b8;font-size:.76rem}
+    html.dark .law-article-backlinks{border-color:rgba(148,163,184,.16);background:#111827}
+    html.dark .law-article-backlinks h2{color:#f1f5f9}
+    html.dark .law-article-backlinks li{background:#0f172a}
+    @media(max-width:560px){.law-article-backlinks li{display:grid;gap:.2rem}}
+  `;
+  document.head.appendChild(style);
+}
+
 function loadBacklinks() {
   if (!backlinkDataPromise) {
     backlinkDataPromise = fetch("/laws/article-backlinks.json", { cache: "no-cache" })
@@ -16,11 +36,12 @@ function loadBacklinks() {
 
 async function renderLawBacklinks() {
   if (typeof window === "undefined") return;
+  ensureBacklinkStyles();
 
   document.querySelectorAll(".law-article-backlinks").forEach((node) => node.remove());
 
   const data = await loadBacklinks();
-  let path = window.location.pathname;
+  const path = window.location.pathname;
   const candidates = [
     path,
     path.endsWith("/") ? path.slice(0, -1) : path + "/",
