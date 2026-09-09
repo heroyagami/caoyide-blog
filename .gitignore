@@ -16,7 +16,10 @@ static/img/avatar.jpg.bak.20260608
 package-lock.json
 
 # VuePress 子站（law-site）
+!law-site/package-lock.json
 law-site/node_modules/
 law-site/docs/.vuepress/dist/
 law-site/docs/.vuepress/.cache/
 law-site/docs/.vuepress/.temp/
+# 构建时由脚本生成，不持久化
+law-site/docs/.vuepress/public/article-backlinks.json
