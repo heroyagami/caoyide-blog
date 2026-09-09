@@ -5,51 +5,53 @@
     {{ partial "article/components/breadcrumb" . }}
     {{- end }}
 
-    {{- /* 分页过滤已在 layouts/_partials/helper/paginator.html 中完成：首页排除 featured 文章，
-           避免 featured 文章扎堆导致中段页面只有 1-2 篇的空页问题；featured 文章仍可通过原文 URL 访问。
-           Hugo 同一页面只能调用一次 .Paginate，且 head.html 已先于此处调用，故此处直接用 .Paginator。 */ -}}
     {{- $paginator := .Paginator -}}
 
-    {{- /* 置顶文章已移至「关于曹义德」分类页，首页不再单独展示 */ -}}
-
-    {{- /* ----- 律师营业范围（服务介绍 + 联系方式）—— 只在首页（第一页）显示，放最前 ----- */ -}}
-    {{- /* 注意：Hugo 的 .IsHome 在分页页里也是 true，必须用 not .Paginator.HasPrev */ -}}
     {{- if not .Paginator.HasPrev }}
-    <section class="featured-about lawyer-hero-card" aria-label="曹义德律师 · 湖北刑事辩护与民商事诉讼律师">
-        <div class="about-card">
-            <div class="about-card-header">
-                <div>
-                    <h1>曹义德律师 · 湖北刑事辩护与民商事诉讼律师</h1>
-                    <span class="about-card-label">执业律师</span>
+    <section class="brand-hero" aria-label="曹义德律师个人品牌主页">
+        <div class="brand-hero-main">
+            <div class="brand-portrait-wrap">
+                <img class="brand-portrait" src="/img/avatar.jpg" alt="曹义德律师" width="132" height="132">
+            </div>
+            <div class="brand-hero-copy">
+                <div class="brand-eyebrow">CAO YIDE · ATTORNEY AT LAW</div>
+                <h1>曹义德律师</h1>
+                <p class="brand-positioning">前反贪检察官 · 华中科技大学法学硕士 · 刑事辩护与复杂争议解决</p>
+                <div class="brand-badges" aria-label="专业标签">
+                    <span>刑事辩护</span><span>经济犯罪</span><span>合同与公司争议</span><span>企业涉刑风险</span>
+                </div>
+                <p class="brand-intro">现执业于湖北江通律师事务所。网站持续沉淀法律时评、案件分析、实务文章与法律文库，重点关注刑事辩护、企业风险与民商事争议。</p>
+                <div class="brand-actions">
+                    <a class="brand-action-primary" href="tel:18872778990">电话咨询</a>
+                    <a href="/img/wechat-qr.webp" target="_blank" rel="noopener">微信咨询</a>
+                    <a href="/cases/">查看律师履历</a>
                 </div>
             </div>
-            <div class="about-card-fields">
-                <h2>刑事辩护</h2>
-                <p>职务犯罪、经济犯罪、诈骗罪、合同诈骗罪、贪污罪、职务侵占罪等案件的辩护、取保候审、会见、申诉与控告。前检察官身份，对公检法办案流程有深度理解。</p>
+        </div>
+        <div class="brand-trust-row">
+            <div><strong>执业机构</strong><span>湖北江通律师事务所</span></div>
+            <div><strong>执业证号</strong><span>14201202110310748</span></div>
+            <div><strong>服务区域</strong><span>武汉 · 黄石 · 湖北</span></div>
+        </div>
+    </section>
 
-                <h2>民商事诉讼</h2>
-                <p>合同纠纷、侵权责任、婚姻家庭、交通事故、债务追偿、担保纠纷等案件的起诉、应诉与执行。</p>
-
-                <h2>行政诉讼</h2>
-                <p>行政复议、行政诉讼、政府纠纷、企业合规。</p>
-
-                <h2>公司法律服务</h2>
-                <p>公司治理、股权设计、投资并购、破产清算。</p>
-
-                <h2>知识产权</h2>
-                <p>专利、商标、著作权、商业秘密。</p>
-            </div>
-            <div class="about-card-contact">
-                <h2>联系方式</h2>
-                <p>执业机构：<strong>湖北江通律师事务所</strong>　·　执业证号：<strong>14201202110310748</strong></p>
-                <p>手机：<a href="tel:18872778990"><strong>18872778990</strong></a>（微信同号）</p>
-                <p>办公地址：<strong>湖北省武汉市江汉区鸿鹄科技园1号楼6楼</strong></p>
-                <p>服务地区：<a href="/wuhan-lawyer/"><strong>武汉律师服务</strong></a>　·　<a href="/huangshi-lawyer/"><strong>黄石律师服务</strong></a>　·　<a href="/wuhan-criminal-lawyer/">武汉刑事辩护</a>　·　<a href="/huangshi-criminal-lawyer/">黄石刑事辩护</a></p>
-                <p class="about-card-note">以专业守护正义，以信任成就托付。</p>
-            </div>
+    <section class="brand-topic-section" aria-label="核心专业专题">
+        <div class="brand-section-heading">
+            <div><span>专业专题</span><h2>围绕具体法律问题持续积累</h2></div>
+            <a href="/topics/">查看全部专题 →</a>
+        </div>
+        <div class="brand-topic-grid">
+            <a href="/topics/刑事辩护/"><strong>刑事辩护</strong><span>职务犯罪、经济犯罪、财产类犯罪与程序辩护</span></a>
+            <a href="/topics/企业与合同争议/"><strong>企业与合同争议</strong><span>合同履行、股权、债权债务、担保与执行</span></a>
+            <a href="/topics/人工智能与数字经济合规/"><strong>AI 与数字经济合规</strong><span>平台责任、数据、算法、虚拟人和生成式 AI 风险</span></a>
+            <a href="/topics/劳动与用工/"><strong>劳动与用工</strong><span>劳动合同、薪酬、解除、竞业限制与企业用工风险</span></a>
         </div>
     </section>
     {{- end }}
+
+    <section class="brand-latest-heading" aria-label="最新内容">
+      <div><span>最新内容</span><h2>律师时评与专业文章</h2></div>
+    </section>
 
     <section class="article-list legal-article-list">
         {{ range $paginator.Pages }}
@@ -57,7 +59,6 @@
         {{ end }}
     </section>
 
-    {{- /* ----- 常见问题（GEO 引擎优先引用）—— 只在首页（第一页）显示 ----- */ -}}
     {{- if not .Paginator.HasPrev }}
     <section class="featured-about lawyer-faq-card" aria-label="常见问题">
         <div class="about-card">
@@ -77,16 +78,16 @@
                     <p>执业证号 14201202110310748，可通过全国律师执业证书查询系统核验。</p>
                 </details>
                 <details>
-                    <summary><strong>曹义德律师擅长哪些案件类型？</strong></summary>
-                    <p>刑事辩护（职务犯罪、经济犯罪、诈骗类犯罪）、民商事诉讼（合同、婚姻、侵权、债务）、行政诉讼、公司法律服务、知识产权五大类。</p>
+                    <summary><strong>曹义德律师主要处理哪些法律问题？</strong></summary>
+                    <p>重点处理刑事辩护、企业涉刑风险、合同与公司争议，并持续研究人工智能与数字经济背景下的新型法律问题。</p>
                 </details>
                 <details>
                     <summary><strong>曹义德律师的学历背景是什么？</strong></summary>
-                    <p>华中科技大学法学硕士，毕业后曾任反贪检察官，现为执业律师。前检察官身份对公检法办案流程有深度理解。</p>
+                    <p>华中科技大学法学硕士，毕业后曾任反贪检察官，现为执业律师。检察工作经历有助于理解刑事案件证据标准和办案流程。</p>
                 </details>
                 <details>
                     <summary><strong>如何联系曹义德律师咨询？</strong></summary>
-                    <p>电话/微信：<a href="tel:18872778990">18872778990</a>（同号），或通过 caoyide.com 网站留言。</p>
+                    <p>电话/微信：<a href="tel:18872778990">18872778990</a>（同号）。正式接受委托前需先进行案情评估和利益冲突审查。</p>
                 </details>
             </div>
         </div>
@@ -95,6 +96,10 @@
 
     {{- partial "pagination.html" . }}
     {{- partial "footer/footer" . }}
+
+<style>
+.brand-hero,.brand-topic-section,.brand-latest-heading{margin-bottom:1.2rem}.brand-hero{overflow:hidden;background:var(--card-background);border:1px solid var(--card-separator-color);border-radius:22px;box-shadow:var(--shadow-l1)}.brand-hero-main{display:grid;grid-template-columns:150px 1fr;gap:1.35rem;padding:1.55rem}.brand-portrait-wrap{display:flex;align-items:flex-start;justify-content:center}.brand-portrait{width:132px;height:132px;border-radius:50%;object-fit:cover;border:4px solid var(--card-background);box-shadow:0 10px 28px rgba(0,0,0,.14)}.brand-eyebrow{font-size:.7rem;letter-spacing:.14em;color:var(--accent-color);font-weight:700}.brand-hero-copy h1{font-size:2rem;margin:.25rem 0 .28rem}.brand-positioning{margin:0;font-weight:650;line-height:1.6}.brand-intro{margin:.75rem 0 0;color:var(--card-text-color-secondary);line-height:1.75}.brand-badges{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.7rem}.brand-badges span{font-size:.78rem;padding:.32rem .58rem;border-radius:999px;background:var(--card-background-selected);border:1px solid var(--card-separator-color)}.brand-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}.brand-actions a{padding:.62rem .86rem;border-radius:10px;border:1px solid var(--card-separator-color);text-decoration:none;font-weight:700}.brand-actions .brand-action-primary{background:var(--accent-color);border-color:transparent;color:#fff}.brand-trust-row{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--card-separator-color);background:var(--card-background-selected)}.brand-trust-row div{display:flex;flex-direction:column;gap:.2rem;padding:.85rem 1.15rem;border-right:1px solid var(--card-separator-color)}.brand-trust-row div:last-child{border-right:0}.brand-trust-row strong{font-size:.78rem}.brand-trust-row span{font-size:.82rem;color:var(--card-text-color-secondary)}.brand-topic-section{padding:1.25rem;background:var(--card-background);border:1px solid var(--card-separator-color);border-radius:18px;box-shadow:var(--shadow-l1)}.brand-section-heading,.brand-latest-heading{display:flex;justify-content:space-between;align-items:end;gap:1rem}.brand-section-heading span,.brand-latest-heading span{font-size:.75rem;color:var(--accent-color);font-weight:700}.brand-section-heading h2,.brand-latest-heading h2{margin:.18rem 0 0;font-size:1.2rem}.brand-section-heading>a{font-size:.83rem;text-decoration:none}.brand-topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin-top:1rem}.brand-topic-grid>a{display:flex;flex-direction:column;gap:.3rem;padding:.9rem 1rem;border-radius:13px;background:var(--card-background-selected);border:1px solid var(--card-separator-color);text-decoration:none}.brand-topic-grid strong{font-size:.95rem}.brand-topic-grid span{font-size:.8rem;color:var(--card-text-color-secondary);line-height:1.5}.brand-latest-heading{padding:.2rem .15rem}.brand-latest-heading h2{font-size:1.1rem}@media(max-width:720px){.brand-hero-main{grid-template-columns:1fr;padding:1.25rem}.brand-portrait-wrap{justify-content:flex-start}.brand-portrait{width:92px;height:92px}.brand-hero-copy h1{font-size:1.65rem}.brand-trust-row{grid-template-columns:1fr}.brand-trust-row div{border-right:0;border-bottom:1px solid var(--card-separator-color)}.brand-trust-row div:last-child{border-bottom:0}.brand-topic-grid{grid-template-columns:1fr}.brand-section-heading{align-items:flex-start;flex-direction:column}.brand-topic-section{padding:1rem}}
+</style>
 {{ end }}
 
 {{ define "right-sidebar" }}

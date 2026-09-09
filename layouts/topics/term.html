@@ -1,0 +1,23 @@
+{{ define "main" }}
+  {{ partial "article/components/breadcrumb" . }}
+  <section class="topic-term-page">
+    <header class="topic-term-header">
+      <div class="topic-term-eyebrow">专题</div>
+      <h1>{{ .Title }}</h1>
+      {{ with .Content }}<div class="topic-term-intro">{{ . }}</div>{{ else }}<p>持续汇总与「{{ .Title }}」相关的法律解读、时评、案例观察与实务提示。</p>{{ end }}
+    </header>
+    <section class="article-list legal-article-list">
+      {{ range .Pages.ByDate.Reverse }}
+        {{ partial "article-list/default" . }}
+      {{ end }}
+    </section>
+  </section>
+  {{ partial "footer/footer" . }}
+<style>
+.topic-term-page{display:grid;gap:1rem}.topic-term-header{padding:1.35rem 1.45rem;background:var(--card-background);border:1px solid var(--card-separator-color);border-radius:18px;box-shadow:var(--shadow-l1)}.topic-term-eyebrow{font-size:.76rem;color:var(--accent-color);font-weight:700}.topic-term-header h1{margin:.3rem 0 .45rem}.topic-term-header p,.topic-term-intro{margin:0;color:var(--card-text-color-secondary);line-height:1.75}
+</style>
+{{ end }}
+
+{{ define "right-sidebar" }}
+  {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}
