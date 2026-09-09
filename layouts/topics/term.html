@@ -1,20 +1,66 @@
 {{ define "main" }}
   {{ partial "article/components/breadcrumb" . }}
+
+  {{- $keywords := slice .Title -}}
+  {{- if eq .Title "刑事辩护" -}}
+    {{- $keywords = slice "刑事辩护" "刑事" "扫黑除恶" "职务犯罪" "经济犯罪" "诈骗" "合同诈骗" "职务侵占" "取保候审" "刑事申诉" -}}
+  {{- else if eq .Title "企业与合同争议" -}}
+    {{- $keywords = slice "合同纠纷" "合同" "公司" "股权" "债权债务" "债务" "担保" "执行" "营商环境" "市场监管" "消费者权益" -}}
+  {{- else if eq .Title "人工智能与数字经济合规" -}}
+    {{- $keywords = slice "人工智能" "AI" "生成式AI" "虚拟人" "直播带货" "数据合规" "个人信息" "网络安全" "版权" "算法" "平台责任" -}}
+  {{- else if eq .Title "劳动与用工" -}}
+    {{- $keywords = slice "劳动法" "劳动争议" "劳动用工" "劳动合同" "加班" "工资" "孕期" "竞业限制" "工伤" "辞退" -}}
+  {{- end -}}
+
+  {{- $matched := slice -}}
+  {{- $seen := newScratch -}}
+
+  {{- /* 显式 topics 始终优先 */ -}}
+  {{- range .Pages -}}
+    {{- $matched = $matched | append . -}}
+    {{- $seen.Set .RelPermalink true -}}
+  {{- end -}}
+
+  {{- /* 当前日报任务本来就会写 tags：无需改任务即可自动进入专题 */ -}}
+  {{- $candidates := where .Site.RegularPages "Section" "in" (slice "posts" "daily") -}}
+  {{- range $p := $candidates -}}
+    {{- $hit := false -}}
+    {{- $explicitTopics := $p.Params.topics | default (slice) -}}
+    {{- if in $explicitTopics $.Title -}}
+      {{- $hit = true -}}
+    {{- end -}}
+    {{- if not $hit -}}
+      {{- $tags := $p.Params.tags | default (slice) -}}
+      {{- range $keyword := $keywords -}}
+        {{- if in $tags $keyword -}}
+          {{- $hit = true -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if and $hit (not ($seen.Get $p.RelPermalink)) -}}
+      {{- $matched = $matched | append $p -}}
+      {{- $seen.Set $p.RelPermalink true -}}
+    {{- end -}}
+  {{- end -}}
+
   <section class="topic-term-page">
     <header class="topic-term-header">
       <div class="topic-term-eyebrow">专题</div>
       <h1>{{ .Title }}</h1>
       {{ with .Content }}<div class="topic-term-intro">{{ . }}</div>{{ else }}<p>持续汇总与「{{ .Title }}」相关的法律解读、时评、案例观察与实务提示。</p>{{ end }}
+      <div class="topic-term-count">已汇总 {{ len $matched }} 篇相关内容</div>
     </header>
     <section class="article-list legal-article-list">
-      {{ range .Pages.ByDate.Reverse }}
+      {{ range sort $matched "Date" "desc" }}
         {{ partial "article-list/default" . }}
+      {{ else }}
+        <article class="topic-term-empty">专题正在持续整理，新日报和专业文章会自动归入这里。</article>
       {{ end }}
     </section>
   </section>
   {{ partial "footer/footer" . }}
 <style>
-.topic-term-page{display:grid;gap:1rem}.topic-term-header{padding:1.35rem 1.45rem;background:var(--card-background);border:1px solid var(--card-separator-color);border-radius:18px;box-shadow:var(--shadow-l1)}.topic-term-eyebrow{font-size:.76rem;color:var(--accent-color);font-weight:700}.topic-term-header h1{margin:.3rem 0 .45rem}.topic-term-header p,.topic-term-intro{margin:0;color:var(--card-text-color-secondary);line-height:1.75}
+.topic-term-page{display:grid;gap:1rem}.topic-term-header{padding:1.35rem 1.45rem;background:var(--card-background);border:1px solid var(--card-separator-color);border-radius:18px;box-shadow:var(--shadow-l1)}.topic-term-eyebrow{font-size:.76rem;color:var(--accent-color);font-weight:700}.topic-term-header h1{margin:.3rem 0 .45rem}.topic-term-header p,.topic-term-intro{margin:0;color:var(--card-text-color-secondary);line-height:1.75}.topic-term-count{margin-top:.8rem;font-size:.8rem;color:var(--card-text-color-tertiary)}.topic-term-empty{padding:1rem 1.2rem;background:var(--card-background);border:1px solid var(--card-separator-color);border-radius:14px;color:var(--card-text-color-secondary)}
 </style>
 {{ end }}
 
