@@ -8,52 +8,22 @@
     {{- $paginator := .Paginator -}}
 
     {{- if not .Paginator.HasPrev }}
-    <section class="brand-hero" aria-label="曹义德律师个人品牌主页">
-        <div class="brand-hero-main">
-            <div class="brand-portrait-wrap">
-                <img class="brand-portrait" src="/img/avatar.jpg" alt="曹义德律师" width="132" height="132">
-            </div>
-            <div class="brand-hero-copy">
-                <div class="brand-eyebrow">CAO YIDE · ATTORNEY AT LAW</div>
-                <h1>曹义德律师</h1>
-                <p class="brand-positioning">前反贪检察官 · 华中科技大学法学硕士 · 刑事辩护与复杂争议解决</p>
-                <div class="brand-badges" aria-label="专业标签">
-                    <span>刑事辩护</span><span>经济犯罪</span><span>合同与公司争议</span><span>企业涉刑风险</span>
-                </div>
-                <p class="brand-intro">现执业于湖北江通律师事务所。网站持续沉淀法律时评、案件分析、实务文章与法律文库，重点关注刑事辩护、企业风险与民商事争议。</p>
-                <div class="brand-actions">
-                    <a class="brand-action-primary" href="tel:18872778990">电话咨询</a>
-                    <a href="/img/wechat-qr.webp" target="_blank" rel="noopener">微信咨询</a>
-                    <a href="/cases/">查看律师履历</a>
-                </div>
-            </div>
-        </div>
-        <div class="brand-trust-row">
-            <div><strong>执业机构</strong><span>湖北江通律师事务所</span></div>
-            <div><strong>执业证号</strong><span>14201202110310748</span></div>
-            <div><strong>服务区域</strong><span>武汉 · 黄石 · 湖北</span></div>
-        </div>
-    </section>
-
-    <section class="brand-topic-section" aria-label="核心专业专题">
-        <div class="brand-section-heading">
-            <div><span>专业专题</span><h2>围绕具体法律问题持续积累</h2></div>
-            <a href="/topics/">查看全部专题 →</a>
-        </div>
-        <div class="brand-topic-grid">
-            <a href="/topics/刑事辩护/"><strong>刑事辩护</strong><span>职务犯罪、经济犯罪、财产类犯罪与程序辩护</span></a>
-            <a href="/topics/企业与合同争议/"><strong>企业与合同争议</strong><span>合同履行、股权、债权债务、担保与执行</span></a>
-            <a href="/topics/人工智能与数字经济合规/"><strong>AI 与数字经济合规</strong><span>平台责任、数据、算法、虚拟人和生成式 AI 风险</span></a>
-            <a href="/topics/劳动与用工/"><strong>劳动与用工</strong><span>劳动合同、薪酬、解除、竞业限制与企业用工风险</span></a>
-        </div>
-    </section>
+    <nav class="home-topic-links" aria-label="专业专题">
+        <span>专业专题</span>
+        <a href="/topics/刑事辩护/">刑事辩护</a>
+        <a href="/topics/企业与合同争议/">企业与合同争议</a>
+        <a href="/topics/人工智能与数字经济合规/">AI 与数字经济合规</a>
+        <a href="/topics/劳动与用工/">劳动与用工</a>
+        <a class="home-topic-more" href="/topics/">全部专题 →</a>
+    </nav>
     {{- end }}
 
-    <section class="brand-latest-heading" aria-label="最新内容">
-      <div><span>最新内容</span><h2>律师时评与专业文章</h2></div>
-    </section>
+    <header class="home-feed-heading">
+        <h1>{{ if .Paginator.HasPrev }}最新内容 · 第 {{ .Paginator.PageNumber }} 页{{ else }}最新文章与律师时评{{ end }}</h1>
+        {{- if not .Paginator.HasPrev }}<p>法律实务、案件观察与每日重要法治动态</p>{{- end }}
+    </header>
 
-    <section class="article-list legal-article-list">
+    <section class="article-list legal-article-list home-feed">
         {{ range $paginator.Pages }}
             {{ partial "article-list/default" . }}
         {{ end }}
@@ -98,7 +68,7 @@
     {{- partial "footer/footer" . }}
 
 <style>
-.brand-hero,.brand-topic-section,.brand-latest-heading{margin-bottom:1.2rem}.brand-hero{overflow:hidden;background:var(--card-background);border:1px solid var(--card-separator-color);border-radius:22px;box-shadow:var(--shadow-l1)}.brand-hero-main{display:grid;grid-template-columns:150px 1fr;gap:1.35rem;padding:1.55rem}.brand-portrait-wrap{display:flex;align-items:flex-start;justify-content:center}.brand-portrait{width:132px;height:132px;border-radius:50%;object-fit:cover;border:4px solid var(--card-background);box-shadow:0 10px 28px rgba(0,0,0,.14)}.brand-eyebrow{font-size:.7rem;letter-spacing:.14em;color:var(--accent-color);font-weight:700}.brand-hero-copy h1{font-size:2rem;margin:.25rem 0 .28rem}.brand-positioning{margin:0;font-weight:650;line-height:1.6}.brand-intro{margin:.75rem 0 0;color:var(--card-text-color-secondary);line-height:1.75}.brand-badges{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.7rem}.brand-badges span{font-size:.78rem;padding:.32rem .58rem;border-radius:999px;background:var(--card-background-selected);border:1px solid var(--card-separator-color)}.brand-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}.brand-actions a{padding:.62rem .86rem;border-radius:10px;border:1px solid var(--card-separator-color);text-decoration:none;font-weight:700}.brand-actions .brand-action-primary{background:var(--accent-color);border-color:transparent;color:#fff}.brand-trust-row{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--card-separator-color);background:var(--card-background-selected)}.brand-trust-row div{display:flex;flex-direction:column;gap:.2rem;padding:.85rem 1.15rem;border-right:1px solid var(--card-separator-color)}.brand-trust-row div:last-child{border-right:0}.brand-trust-row strong{font-size:.78rem}.brand-trust-row span{font-size:.82rem;color:var(--card-text-color-secondary)}.brand-topic-section{padding:1.25rem;background:var(--card-background);border:1px solid var(--card-separator-color);border-radius:18px;box-shadow:var(--shadow-l1)}.brand-section-heading,.brand-latest-heading{display:flex;justify-content:space-between;align-items:end;gap:1rem}.brand-section-heading span,.brand-latest-heading span{font-size:.75rem;color:var(--accent-color);font-weight:700}.brand-section-heading h2,.brand-latest-heading h2{margin:.18rem 0 0;font-size:1.2rem}.brand-section-heading>a{font-size:.83rem;text-decoration:none}.brand-topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin-top:1rem}.brand-topic-grid>a{display:flex;flex-direction:column;gap:.3rem;padding:.9rem 1rem;border-radius:13px;background:var(--card-background-selected);border:1px solid var(--card-separator-color);text-decoration:none}.brand-topic-grid strong{font-size:.95rem}.brand-topic-grid span{font-size:.8rem;color:var(--card-text-color-secondary);line-height:1.5}.brand-latest-heading{padding:.2rem .15rem}.brand-latest-heading h2{font-size:1.1rem}@media(max-width:720px){.brand-hero-main{grid-template-columns:1fr;padding:1.25rem}.brand-portrait-wrap{justify-content:flex-start}.brand-portrait{width:92px;height:92px}.brand-hero-copy h1{font-size:1.65rem}.brand-trust-row{grid-template-columns:1fr}.brand-trust-row div{border-right:0;border-bottom:1px solid var(--card-separator-color)}.brand-trust-row div:last-child{border-bottom:0}.brand-topic-grid{grid-template-columns:1fr}.brand-section-heading{align-items:flex-start;flex-direction:column}.brand-topic-section{padding:1rem}}
+.home-topic-links{display:flex;align-items:center;flex-wrap:wrap;gap:.45rem .85rem;margin:0 0 1rem;padding:.75rem 0;border-bottom:1px solid var(--card-separator-color);font-size:.82rem}.home-topic-links span{color:var(--card-text-color-tertiary);font-weight:700}.home-topic-links a{color:var(--card-text-color-secondary);text-decoration:none}.home-topic-links a:hover{color:var(--accent-color)}.home-topic-links .home-topic-more{margin-left:auto;color:var(--accent-color)}.home-feed-heading{display:flex;align-items:baseline;gap:.75rem;margin:0 0 .8rem;padding:0 .1rem}.home-feed-heading h1{margin:0;color:var(--card-text-color-main);font-size:1.18rem;line-height:1.4}.home-feed-heading p{margin:0;color:var(--card-text-color-tertiary);font-size:.78rem}.home-feed{gap:0;border-top:1px solid var(--card-separator-color)}.home-feed .legal-entry-card{border:0;border-bottom:1px solid var(--card-separator-color);border-radius:0!important;box-shadow:none;background:transparent}.home-feed .legal-entry-card:hover{transform:none;box-shadow:none;border-color:var(--accent-color);background:var(--card-background)}.home-feed .legal-entry-link{display:block;padding:1rem .25rem}.home-feed .legal-entry-art{display:none}.home-feed .legal-entry-kicker{margin-bottom:.42rem;padding:.18rem .45rem}.home-feed .legal-entry-title{margin-bottom:.35rem;color:var(--card-text-color-main);font-size:1.02rem;line-height:1.5}.home-feed .legal-entry-meta{margin-bottom:.38rem}.home-feed .legal-entry-summary{color:var(--card-text-color-secondary);line-height:1.6}[data-scheme="dark"] .home-feed .legal-entry-title{color:#f3f6fb}[data-scheme="dark"] .home-feed .legal-entry-summary{color:#bdc7d6}@media(max-width:720px){.home-topic-links{gap:.5rem .7rem;white-space:normal}.home-topic-links .home-topic-more{margin-left:0}.home-feed-heading{display:block}.home-feed-heading p{margin-top:.2rem}.home-feed .legal-entry-link{padding:.9rem 0}.home-feed .legal-entry-summary{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}}
 </style>
 {{ end }}
 
