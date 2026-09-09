@@ -4,20 +4,24 @@
     <header class="topic-hub-header">
       <div class="topic-hub-eyebrow">PROFESSIONAL TOPICS</div>
       <h1>专业专题</h1>
-      <p>把分散的日报、法律解读、案例观察和法条资料，按具体法律问题长期沉淀在同一个专题里。</p>
+      <p>把分散的日报、法律解读、案例观察和法条资料，按具体法律问题长期沉淀在同一个专题里。新文章写入 <code>topics</code> 后，会自动进入相应专题。</p>
     </header>
     <div class="topic-hub-grid">
+      <a class="topic-hub-card" href="/topics/刑事辩护/"><strong>刑事辩护</strong><span>职务犯罪、经济犯罪、财产类犯罪与刑事程序</span></a>
+      <a class="topic-hub-card" href="/topics/企业与合同争议/"><strong>企业与合同争议</strong><span>合同、股权、债务、担保、执行与经营风险</span></a>
+      <a class="topic-hub-card" href="/topics/人工智能与数字经济合规/"><strong>AI 与数字经济合规</strong><span>平台、数据、算法、虚拟人和生成式 AI 责任</span></a>
+      <a class="topic-hub-card" href="/topics/劳动与用工/"><strong>劳动与用工</strong><span>劳动合同、薪酬、解除、竞业限制与用工合规</span></a>
       {{ range .Data.Terms.ByCount }}
-      <a class="topic-hub-card" href="{{ .Page.RelPermalink }}">
-        <strong>{{ .Page.Title }}</strong>
-        <span>{{ .Count }} 篇内容</span>
-      </a>
+        {{- $title := .Page.Title -}}
+        {{- if not (in (slice "刑事辩护" "企业与合同争议" "人工智能与数字经济合规" "劳动与用工") $title) -}}
+        <a class="topic-hub-card" href="{{ .Page.RelPermalink }}"><strong>{{ $title }}</strong><span>{{ .Count }} 篇内容</span></a>
+        {{- end -}}
       {{ end }}
     </div>
   </section>
   {{ partial "footer/footer" . }}
 <style>
-.topic-hub-page{display:grid;gap:1.2rem}.topic-hub-header,.topic-hub-card{background:var(--card-background);border:1px solid var(--card-separator-color);border-radius:18px;box-shadow:var(--shadow-l1)}.topic-hub-header{padding:1.5rem}.topic-hub-eyebrow{font-size:.72rem;letter-spacing:.14em;color:var(--accent-color);font-weight:700}.topic-hub-header h1{margin:.35rem 0 .5rem}.topic-hub-header p{margin:0;color:var(--card-text-color-secondary);line-height:1.7}.topic-hub-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.topic-hub-card{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 1.2rem;text-decoration:none}.topic-hub-card strong{font-size:1rem}.topic-hub-card span{font-size:.82rem;color:var(--card-text-color-secondary)}@media(max-width:720px){.topic-hub-grid{grid-template-columns:1fr}}
+.topic-hub-page{display:grid;gap:1.2rem}.topic-hub-header,.topic-hub-card{background:var(--card-background);border:1px solid var(--card-separator-color);border-radius:18px;box-shadow:var(--shadow-l1)}.topic-hub-header{padding:1.5rem}.topic-hub-eyebrow{font-size:.72rem;letter-spacing:.14em;color:var(--accent-color);font-weight:700}.topic-hub-header h1{margin:.35rem 0 .5rem}.topic-hub-header p{margin:0;color:var(--card-text-color-secondary);line-height:1.7}.topic-hub-header code{font-size:.86em}.topic-hub-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.topic-hub-card{display:flex;flex-direction:column;align-items:flex-start;gap:.35rem;padding:1.1rem 1.2rem;text-decoration:none}.topic-hub-card strong{font-size:1rem}.topic-hub-card span{font-size:.82rem;color:var(--card-text-color-secondary);line-height:1.55}@media(max-width:720px){.topic-hub-grid{grid-template-columns:1fr}}
 </style>
 {{ end }}
 
