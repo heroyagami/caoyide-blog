@@ -32,7 +32,9 @@
     {{ $title = $title | append (printf "Page %d" $paginator.PageNumber) }}
 {{- end -}}
 {{- if or (eq .Kind "taxonomy") (eq .Kind "term") -}}
-    {{- $taxonomyLabel := cond (eq .Data.Plural "categories") "分类" "标签" -}}
+    {{- $taxonomyLabel := "标签" -}}
+    {{- if eq .Data.Plural "categories" -}}{{- $taxonomyLabel = "分类" -}}{{- end -}}
+    {{- if eq .Data.Plural "topics" -}}{{- $taxonomyLabel = "专题" -}}{{- end -}}
     {{- $title = $title | append (printf "%s：%s相关文章" $taxonomyLabel $pageTitle) $siteTitle -}}
 {{- else -}}
     {{- $title = $title | append (default $siteTitle $pageTitle) -}}
@@ -40,9 +42,9 @@
 {{- $resolvedTitle := delimit $title " - " -}}
 <title>{{ $resolvedTitle }}</title>
 
-{{- /* 单薄标签页（<3篇文章）自动 noindex，节省抓取预算 */ -}}
+{{- /* 单薄标签页（<3篇文章）自动 noindex，节省抓取预算；专业专题允许从首篇开始建立索引 */ -}}
 {{- if or (eq .Kind "taxonomy") (eq .Kind "term") -}}
-    {{- if lt (len .Pages) 3 -}}
+    {{- if and (ne .Data.Plural "topics") (lt (len .Pages) 3) -}}
     <meta name="robots" content="noindex, follow">
     {{- end -}}
 {{- end -}}
@@ -51,7 +53,6 @@
 {{ with .Params.canonicalUrl }}
 <link rel="canonical" href="{{ . }}">
 {{ else }}
-    {{- /* 仅列表页（home/section/taxonomy/term）才有 Paginator，否则会报 pagination not supported */ -}}
     {{- $isList := or (eq .Kind "home") (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term") -}}
     {{- if and $isList .Paginator (gt .Paginator.PageNumber 1) -}}
     <link rel="canonical" href="{{ .Paginator.URL }}">
@@ -93,6 +94,9 @@
     {{- end -}}
 {{- end -}}
 
+{{- /* 自动文章品牌封面：独立 image 优先；无 image 时输出 SVG，后续 custom.html 继续提供 JPG fallback */ -}}
+{{- partial "head/og-auto.html" . -}}
+
 {{- /* ---------- Twitter Card ---------- */ -}}
 <meta name='twitter:card' content='summary_large_image'>
 <meta name='twitter:title' {{ printf "content=%q" $resolvedTitle | safeHTMLAttr }}>
@@ -111,6 +115,9 @@
     {{- partial "cookies/analytics.html" . -}}
 {{- else -}}
     {{- template "_internal/google_analytics.html" . -}}
-{{- end -}}
+{{- end }}
+
+{{- /* 稳定人物/律所/网站/文章实体图 */ -}}
+{{- partial "head/schema-identity.html" . -}}
 
 {{- partial "head/custom.html" . -}}
