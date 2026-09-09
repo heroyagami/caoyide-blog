@@ -1,4 +1,5 @@
-{{- if and .IsPage (eq .Section "posts") -}}
+{{- $consultSections := .Site.Params.mainSections | default (slice "posts" "daily") -}}
+{{- if and .IsPage (in $consultSections .Section) -}}
 <section class="lawyer-consult-card" aria-label="法律咨询">
   <div class="lawyer-consult-profile">
     <img src="/img/avatar.jpg" alt="曹义德律师" width="72" height="72" loading="lazy">
@@ -14,10 +15,6 @@
     <a href="/cases/">查看律师履历</a>
   </div>
 </section>
-<div class="mobile-consult-bar" aria-label="移动端咨询入口">
-  <a href="tel:18872778990">电话咨询</a>
-  <a href="/img/wechat-qr.webp" target="_blank" rel="noopener">微信咨询</a>
-</div>
 <style>
 .lawyer-consult-card{margin:1.6rem 0;padding:1.2rem;border:1px solid var(--card-separator-color);border-radius:16px;background:var(--card-background);box-shadow:var(--shadow-l1)}.lawyer-consult-profile{display:flex;gap:1rem;align-items:center}.lawyer-consult-profile img{border-radius:50%;object-fit:cover;flex:0 0 auto}.lawyer-consult-name{font-size:1.08rem;font-weight:700}.lawyer-consult-cred{margin-top:.18rem;color:var(--card-text-color-secondary);font-size:.86rem;line-height:1.5}.lawyer-consult-note{margin-top:.45rem;font-size:.9rem;line-height:1.65}.lawyer-consult-actions{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1rem}.lawyer-consult-actions a{padding:.62rem .9rem;border-radius:10px;border:1px solid var(--card-separator-color);text-decoration:none;font-weight:600}.lawyer-consult-actions .consult-primary{background:var(--accent-color);color:#fff;border-color:transparent}.mobile-consult-bar{display:none}@media(max-width:768px){body.article-page{padding-bottom:68px}.lawyer-consult-profile{align-items:flex-start}.lawyer-consult-profile img{width:58px;height:58px}.mobile-consult-bar{position:fixed;z-index:90;left:12px;right:12px;bottom:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px;border-radius:14px;background:var(--card-background);box-shadow:0 8px 30px rgba(0,0,0,.18);border:1px solid var(--card-separator-color)}.mobile-consult-bar a{text-align:center;padding:.68rem .5rem;border-radius:10px;text-decoration:none;font-weight:700}.mobile-consult-bar a:first-child{background:var(--accent-color);color:#fff}}
 </style>
