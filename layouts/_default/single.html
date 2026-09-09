@@ -228,6 +228,10 @@
         {{/* ========== 普通文章页（Stack 主题原始布局） ========== */}}
         {{ partial "article/article.html" . }}
 
+        {{ partial "article/components/review-status" . }}
+
+        {{ partial "article/components/consultation-cta" . }}
+
         {{ if .Params.links }}
             {{ partial "article/components/links" . }}
         {{ end }}
