@@ -1,0 +1,26 @@
+{{ define "main" }}
+  {{ partial "article/components/breadcrumb" . }}
+  <section class="topic-hub-page">
+    <header class="topic-hub-header">
+      <div class="topic-hub-eyebrow">PROFESSIONAL TOPICS</div>
+      <h1>专业专题</h1>
+      <p>把分散的日报、法律解读、案例观察和法条资料，按具体法律问题长期沉淀在同一个专题里。</p>
+    </header>
+    <div class="topic-hub-grid">
+      {{ range .Data.Terms.ByCount }}
+      <a class="topic-hub-card" href="{{ .Page.RelPermalink }}">
+        <strong>{{ .Page.Title }}</strong>
+        <span>{{ .Count }} 篇内容</span>
+      </a>
+      {{ end }}
+    </div>
+  </section>
+  {{ partial "footer/footer" . }}
+<style>
+.topic-hub-page{display:grid;gap:1.2rem}.topic-hub-header,.topic-hub-card{background:var(--card-background);border:1px solid var(--card-separator-color);border-radius:18px;box-shadow:var(--shadow-l1)}.topic-hub-header{padding:1.5rem}.topic-hub-eyebrow{font-size:.72rem;letter-spacing:.14em;color:var(--accent-color);font-weight:700}.topic-hub-header h1{margin:.35rem 0 .5rem}.topic-hub-header p{margin:0;color:var(--card-text-color-secondary);line-height:1.7}.topic-hub-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.topic-hub-card{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 1.2rem;text-decoration:none}.topic-hub-card strong{font-size:1rem}.topic-hub-card span{font-size:.82rem;color:var(--card-text-color-secondary)}@media(max-width:720px){.topic-hub-grid{grid-template-columns:1fr}}
+</style>
+{{ end }}
+
+{{ define "right-sidebar" }}
+  {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}
