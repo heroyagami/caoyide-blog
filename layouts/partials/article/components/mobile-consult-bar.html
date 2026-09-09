@@ -1,0 +1,7 @@
+{{- $consultSections := .Site.Params.mainSections | default (slice "posts" "daily") -}}
+{{- if and .IsPage (in $consultSections .Section) -}}
+<div class="mobile-consult-bar" aria-label="移动端咨询入口">
+  <a href="tel:18872778990">电话咨询</a>
+  <a href="/img/wechat-qr.webp" target="_blank" rel="noopener">微信咨询</a>
+</div>
+{{- end -}}
