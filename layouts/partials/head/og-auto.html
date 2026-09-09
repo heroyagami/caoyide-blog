@@ -1,0 +1,19 @@
+{{- /*
+  无独立 image 时，为文章/日报生成轻量品牌 SVG 预览。
+  custom.html 仍会输出 JPG 通用图作为兼容性 fallback；本标签放在它前面。
+*/ -}}
+{{- if and .IsPage (not .Params.image) -}}
+  {{- $rawTitle := .Params.cover_title | default .Title | plainify -}}
+  {{- $title := $rawTitle | truncate 34 -}}
+  {{- $label := cond (eq .Section "daily") "律师时评日报" "曹义德律师 · 法律观察" -}}
+  {{- $safeTitle := $title | htmlEscape -}}
+  {{- $safeLabel := $label | htmlEscape -}}
+  {{- $svg := printf `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#101923"/><rect x="64" y="62" width="8" height="506" rx="4" fill="#c79b55"/><text x="108" y="132" fill="#c79b55" font-size="28" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-weight="700">%s</text><foreignObject x="108" y="175" width="950" height="285"><div xmlns="http://www.w3.org/1999/xhtml" style="font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;font-size:68px;line-height:1.28;font-weight:800;color:#f5f1e8;word-break:break-word;display:flex;align-items:center;height:100%%;">%s</div></foreignObject><text x="108" y="520" fill="#b7c0ca" font-size="28" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">前反贪检察官 · 华中科技大学法学硕士</text><text x="108" y="562" fill="#7f8b98" font-size="24" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">caoyide.com</text></svg>` $safeLabel $safeTitle -}}
+  {{- $name := printf "og/%s.svg" (md5 .RelPermalink) -}}
+  {{- $resource := resources.FromString $name $svg -}}
+  <meta property="og:image" content="{{ $resource.Permalink }}">
+  <meta property="og:image:type" content="image/svg+xml">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ $title }}">
+{{- end -}}
