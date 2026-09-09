@@ -1,0 +1,60 @@
+{{- /*
+  稳定实体图：所有页面复用同一组 @id，避免把“当前文章 URL”误当成律师实体 URL。
+  保留 custom.html 的既有 Schema 作为兼容层；相同 @id 的实体会被语义合并。
+*/ -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Attorney",
+      "@id": "{{ site.BaseURL }}#attorney",
+      "name": "曹义德",
+      "alternateName": "曹义德律师",
+      "url": "{{ site.BaseURL }}",
+      "image": "{{ site.BaseURL }}img/avatar.jpg",
+      "telephone": "+86-18872778990",
+      "jobTitle": "执业律师",
+      "worksFor": {"@id": "{{ site.BaseURL }}#lawFirm"},
+      "alumniOf": {"@type": "CollegeOrUniversity", "name": "华中科技大学"},
+      "knowsAbout": ["刑事辩护","经济犯罪","职务犯罪","合同纠纷","公司争议","企业涉刑风险","人工智能与数字经济合规"]
+    },
+    {
+      "@type": "Organization",
+      "@id": "{{ site.BaseURL }}#lawFirm",
+      "name": "湖北江通律师事务所",
+      "url": "{{ site.BaseURL }}cases/"
+    },
+    {
+      "@type": "LegalService",
+      "@id": "{{ site.BaseURL }}#legalService",
+      "name": "曹义德律师法律服务",
+      "url": "{{ site.BaseURL }}",
+      "telephone": "+86-18872778990",
+      "provider": {"@id": "{{ site.BaseURL }}#attorney"},
+      "parentOrganization": {"@id": "{{ site.BaseURL }}#lawFirm"},
+      "areaServed": [{"@type":"City","name":"武汉"},{"@type":"City","name":"黄石"},{"@type":"AdministrativeArea","name":"湖北省"}]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.BaseURL }}#website",
+      "name": "曹义德律师专栏",
+      "url": "{{ site.BaseURL }}",
+      "inLanguage": "zh-CN",
+      "publisher": {"@id": "{{ site.BaseURL }}#attorney"}
+    }{{ if .IsPage }},
+    {
+      "@type": "Article",
+      "@id": "{{ .Permalink }}#article",
+      "headline": {{ .Title | jsonify (dict "noHTMLEscape" true) | safeJS }},
+      "url": "{{ .Permalink }}",
+      "mainEntityOfPage": "{{ .Permalink }}",
+      "inLanguage": "zh-CN",
+      "author": {"@id": "{{ site.BaseURL }}#attorney"},
+      "publisher": {"@id": "{{ site.BaseURL }}#attorney"}{{ if not .Date.IsZero }},
+      "datePublished": "{{ .Date.Format "2006-01-02T15:04:05-07:00" }}"{{ end }}{{ if not .Lastmod.IsZero }},
+      "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}"{{ end }}
+    }{{ end }}
+  ]
+}
+</script>
