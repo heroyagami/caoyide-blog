@@ -22,7 +22,7 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
 # Stack 主题参数
 # ============================================================
 [params]
-    mainSections = ["posts"]
+    mainSections = ["posts", "daily"]
     rssFullContent = false
 
     # SEO 兜底：Stack 主题的 data/description.html 读 Site.Params.description
