@@ -1,12 +1,15 @@
 {{- $isClipping := findRE `Clippings` .File.Dir -}}
+{{- $isDaily := eq .Section "daily" -}}
 {{- $primaryTag := "" -}}
-{{- if and .Params.tags (gt (len .Params.tags) 0) -}}
+{{- if $isDaily -}}
+  {{- $primaryTag = "律师时评日报" -}}
+{{- else if and .Params.tags (gt (len .Params.tags) 0) -}}
   {{- $primaryTag = index .Params.tags 0 -}}
 {{- else -}}
-  {{- $primaryTag = "热点日报" -}}
+  {{- $primaryTag = "法律观察" -}}
 {{- end -}}
 {{- $summary := .Summary | plainify | truncate 96 -}}
-<article class="legal-entry-card {{ if $isClipping }}daily-entry{{ end }}">
+<article class="legal-entry-card {{ if or $isClipping $isDaily }}daily-entry{{ end }}">
     <a class="legal-entry-link" href="{{ .RelPermalink }}">
         <div class="legal-entry-content">
             <div class="legal-entry-kicker">{{ $primaryTag }}</div>
