@@ -23,8 +23,9 @@ ATTORNEY_DESCRIPTION = (
     "曹义德律师，华中科技大学法学硕士，前反贪检察官，现任湖北江通律师事务所执业律师。"
     "主要从事刑事辩护、企业合规及民商事争议解决。"
 )
+# Hugo --minify may remove attribute quotes, so accept both quoted and unquoted forms.
 SCRIPT_RE = re.compile(
-    r'(<script\s+type=["\']application/ld\+json["\']\s*>)(.*?)(</script>)',
+    r'(<script\b[^>]*\btype=(?:["\']application/ld\+json["\']|application/ld\+json)[^>]*>)(.*?)(</script>)',
     re.I | re.S,
 )
 
@@ -40,7 +41,7 @@ def normalize(node, page_url: str):
     node_type = node.get("@type")
     node_id = node.get("@id")
 
-    if node_id == ATTORNEY_ID or node_type == "Attorney" and node.get("name") in {"曹义德", "曹义德律师"}:
+    if node_id == ATTORNEY_ID or (node_type == "Attorney" and node.get("name") in {"曹义德", "曹义德律师"}):
         node["@id"] = ATTORNEY_ID
         node["url"] = BASE
         node["description"] = ATTORNEY_DESCRIPTION
@@ -84,13 +85,15 @@ def page_url_for(path: Path) -> str:
     return BASE + rel
 
 
-def process(path: Path) -> bool:
+def process(path: Path) -> tuple[bool, int]:
     text = path.read_text(encoding="utf-8", errors="ignore")
     page_url = page_url_for(path)
     changed = False
+    matched = 0
 
     def repl(match: re.Match[str]) -> str:
-        nonlocal changed
+        nonlocal changed, matched
+        matched += 1
         raw = match.group(2).strip()
         try:
             data = json.loads(raw)
@@ -108,15 +111,20 @@ def process(path: Path) -> bool:
     updated = SCRIPT_RE.sub(repl, text)
     if changed:
         path.write_text(updated, encoding="utf-8")
-    return changed
+    return changed, matched
 
 
 def main() -> int:
     changed = 0
+    matched = 0
     for path in PUBLIC.rglob("*.html"):
-        if process(path):
+        did_change, count = process(path)
+        matched += count
+        if did_change:
             changed += 1
-    print(f"Structured-data normalization complete: {changed} HTML file(s) updated.")
+    print(f"Structured-data normalization complete: {matched} JSON-LD block(s) found; {changed} HTML file(s) updated.")
+    if matched == 0:
+        raise SystemExit("ERROR: no JSON-LD blocks found in built HTML; schema normalization did not run.")
     return 0
 
 
