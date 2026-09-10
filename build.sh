@@ -13,6 +13,7 @@
 #   8. 自动识别文章提及法条，生成双向法律知识图谱、related_laws 机器元数据并回填 Article JSON-LD
 #   9. 生成“法律问题/案件类型 → 文章 → 法律 → 专业领域 → 曹义德律师”主题实体网络
 #  10. 生成“用户搜索意图 → 主题 → 文章 → 法律 → 专业领域 → 曹义德律师”检索意图网络
+#  11. 从未覆盖搜索意图生成优先级内容缺口 feed，并执行质量校验
 
 set -euo pipefail
 
@@ -83,6 +84,10 @@ python3 "$ROOT_DIR/scripts/build-legal-topic-graph.py"
 echo "==> 9. 生成用户搜索意图实体网络并执行质量校验"
 python3 "$ROOT_DIR/scripts/build-legal-search-intent-graph.py"
 
+echo "==> 10. 生成法律内容缺口 feed"
+python3 "$ROOT_DIR/scripts/build-legal-content-gaps.py"
+python3 "$ROOT_DIR/scripts/check-legal-content-gaps.py"
+
 echo ""
 echo "✅ 构建完成！"
 echo "   主站输出：$PUBLIC_DIR/"
@@ -96,3 +101,5 @@ echo "   文章 related_topics 元数据：$PUBLIC_DIR/article-related-topics.js
 echo "   法律搜索意图图谱：$PUBLIC_DIR/legal-intent-graph.json"
 echo "   法律搜索意图反向索引：$PUBLIC_DIR/legal-intent-reverse.json"
 echo "   文章 related_intents 元数据：$PUBLIC_DIR/article-related-intents.json"
+echo "   法律内容缺口 feed：$PUBLIC_DIR/legal-content-gaps.json"
+echo "   法律内容缺口报告：$ROOT_DIR/build-reports/legal-content-gap-report.md"

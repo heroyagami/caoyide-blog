@@ -14,6 +14,7 @@ nul
 _desensitized_backup/
 static/img/avatar.jpg.bak.20260608
 package-lock.json
+build-reports/
 
 # VuePress 子站（law-site）
 !law-site/package-lock.json
