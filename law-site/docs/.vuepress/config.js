@@ -11,7 +11,7 @@ module.exports = {
   // 关键：部署到子路径 /laws/，所有资源链接前加 /laws/
   base: "/laws/",
   head: [
-    ["link", { rel: "icon", href: "/images/logo.png" }],
+    ["link", { rel: "icon", href: "/img/favicon.svg" }],
   ],
 
   theme: defaultTheme({
