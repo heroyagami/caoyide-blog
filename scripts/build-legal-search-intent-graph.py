@@ -167,8 +167,10 @@ def match_intents(visible: str, topic_ids: set[str], intents: list[dict]) -> lis
 
 def main() -> int:
     intents = load_config()
-    article_topics = load_json(ARTICLE_TOPICS_PATH)
-    article_laws = load_json(ARTICLE_LAWS_PATH)
+    article_topics_doc = load_json(ARTICLE_TOPICS_PATH)
+    article_topics = article_topics_doc.get("articles") or {}
+    article_laws_doc = load_json(ARTICLE_LAWS_PATH)
+    article_laws = article_laws_doc.get("articles") or {}
     topic_graph = load_json(TOPIC_GRAPH_PATH)
 
     topic_nodes = topic_graph.get("nodes", {}).get("topics", [])
