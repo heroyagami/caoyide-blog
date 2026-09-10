@@ -96,10 +96,15 @@ def walk_json(node):
             yield from walk_json(item)
 
 
+def parse_jsonld(raw: str):
+    """Decode HTML entities introduced around jsonify output before JSON parsing."""
+    return json.loads(html.unescape(raw.strip()))
+
+
 def has_article_jsonld(text: str) -> bool:
     for match in SCRIPT_RE.finditer(text):
         try:
-            data = json.loads(match.group(2).strip())
+            data = parse_jsonld(match.group(2))
         except json.JSONDecodeError:
             continue
         if any(node.get("@type") == "Article" for node in walk_json(data) if isinstance(node, dict)):
@@ -118,9 +123,8 @@ def inject_citations(text: str, law_nodes: list[dict], current_url: str) -> tupl
 
     def repl(match: re.Match[str]) -> str:
         nonlocal changed
-        raw = match.group(2).strip()
         try:
-            data = json.loads(raw)
+            data = parse_jsonld(match.group(2))
         except json.JSONDecodeError:
             return match.group(0)
 
@@ -215,6 +219,8 @@ def main() -> int:
     )
     if article_pages == 0:
         raise SystemExit("ERROR: no Article JSON-LD found; legal graph enrichment did not run.")
+    if pages and enriched == 0:
+        raise SystemExit("ERROR: laws were matched but Article JSON-LD was not enriched.")
     return 0
 
 
