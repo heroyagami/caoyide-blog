@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "description": "法律内容缺口优先级配置。仅用于机器可读选题 feed，不改变站点可见页面。",
+  "practiceAreaWeights": {
+    "https://caoyide.com/#practice-criminal": 25,
+    "https://caoyide.com/#practice-civil-commercial": 22,
+    "https://caoyide.com/#practice-corporate": 22,
+    "https://caoyide.com/#practice-enforcement": 21,
+    "https://caoyide.com/#practice-construction": 20,
+    "https://caoyide.com/#practice-labor": 19,
+    "https://caoyide.com/#practice-administrative": 18,
+    "https://caoyide.com/#practice-family": 16,
+    "https://caoyide.com/#practice-consumer-data": 15
+  },
+  "intentTypeWeights": {
+    "defense-strategy": 10,
+    "sentencing": 10,
+    "litigation": 9,
+    "procedure": 9,
+    "remedy": 9,
+    "compensation": 9,
+    "corporate-governance": 8,
+    "dispute-resolution": 8,
+    "legal-definition": 8,
+    "legal-validity": 8,
+    "property-division": 7,
+    "custody": 7,
+    "compliance": 7
+  },
+  "topicScarcityMax": 18,
+  "lawSupportBonus": 10,
+  "baseScore": 35,
+  "maxScore": 100
+}
