@@ -35,6 +35,8 @@ SCRIPT_RE = re.compile(
 )
 SPACE_RE = re.compile(r"\s+")
 CHINESE_RE = re.compile(r"[\u4e00-\u9fff]")
+GENERIC_SECTION_TITLE_RE = re.compile(r"^第[一二三四五六七八九十百零〇0-9]+[编章节部分]")
+GENERIC_SECTION_TITLES = {"序言", "附则", "总则", "分则", "总纲"}
 
 
 def clean_text(value: str) -> str:
@@ -101,6 +103,17 @@ def generated_aliases(title: str, blocked: set[str]) -> list[str]:
     return aliases
 
 
+def is_normative_law_title(title: str) -> bool:
+    """Exclude chapter/part pages that are useful for reading but are not law entities."""
+    normalized = SPACE_RE.sub(" ", title).strip()
+    compact = normalized.replace(" ", "")
+    if normalized in GENERIC_SECTION_TITLES or compact in GENERIC_SECTION_TITLES:
+        return False
+    if GENERIC_SECTION_TITLE_RE.match(normalized) or GENERIC_SECTION_TITLE_RE.match(compact):
+        return False
+    return True
+
+
 def build_law_catalog(curated: dict[str, list[str]], blocked: set[str]) -> list[dict]:
     laws: list[dict] = []
     for path in sorted((PUBLIC / "laws").rglob("*.html")):
@@ -109,6 +122,8 @@ def build_law_catalog(curated: dict[str, list[str]], blocked: set[str]) -> list[
             continue
         text = path.read_text(encoding="utf-8", errors="ignore")
         title = title_of(text, unquote(path.stem))
+        if not is_normative_law_title(title):
+            continue
         aliases = generated_aliases(title, blocked)
         for alias in curated.get(title, []):
             if alias not in aliases and alias not in blocked:
