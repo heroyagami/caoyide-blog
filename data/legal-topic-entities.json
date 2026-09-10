@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "description": "人工维护的法律问题/案件类型实体。用于构建案件类型→文章→法律→曹义德律师专业领域的机器可读主题网络，不改变页面正文与可见布局。",
+  "person": {
+    "id": "https://caoyide.com/#person",
+    "name": "曹义德律师",
+    "url": "https://caoyide.com/"
+  },
+  "practiceAreas": [
+    {"id":"https://caoyide.com/#practice-criminal","name":"刑事辩护"},
+    {"id":"https://caoyide.com/#practice-civil-commercial","name":"民商事争议解决"},
+    {"id":"https://caoyide.com/#practice-corporate","name":"公司与股权"},
+    {"id":"https://caoyide.com/#practice-labor","name":"劳动争议"},
+    {"id":"https://caoyide.com/#practice-construction","name":"建设工程"},
+    {"id":"https://caoyide.com/#practice-family","name":"婚姻家事"},
+    {"id":"https://caoyide.com/#practice-enforcement","name":"执行与债权实现"},
+    {"id":"https://caoyide.com/#practice-administrative","name":"行政争议"},
+    {"id":"https://caoyide.com/#practice-consumer-data","name":"消费者与数据权益"}
+  ],
+  "topics": [
+    {"id":"https://caoyide.com/#topic-duty-embezzlement","name":"职务侵占","aliases":["职务侵占罪","职务侵占"],"practiceArea":"https://caoyide.com/#practice-criminal"},
+    {"id":"https://caoyide.com/#topic-contract-dispute","name":"合同纠纷","aliases":["合同纠纷","合同违约","合同争议"],"practiceArea":"https://caoyide.com/#practice-civil-commercial"},
+    {"id":"https://caoyide.com/#topic-labor-dispute","name":"劳动争议","aliases":["劳动争议","劳动纠纷","劳动仲裁","违法解除","经济补偿金"],"practiceArea":"https://caoyide.com/#practice-labor"},
+    {"id":"https://caoyide.com/#topic-construction","name":"建设工程纠纷","aliases":["建设工程纠纷","建设工程施工合同","工程款","工程欠款","工程结算"],"practiceArea":"https://caoyide.com/#practice-construction"},
+    {"id":"https://caoyide.com/#topic-family","name":"婚姻家事纠纷","aliases":["婚姻家事","离婚纠纷","夫妻共同财产","婚前财产","抚养权"],"practiceArea":"https://caoyide.com/#practice-family"},
+    {"id":"https://caoyide.com/#topic-enforcement-objection","name":"执行异议","aliases":["执行异议","执行异议之诉","案外人执行异议"],"practiceArea":"https://caoyide.com/#practice-enforcement"},
+    {"id":"https://caoyide.com/#topic-criminal-defense","name":"刑事辩护","aliases":["刑事辩护","无罪辩护","罪轻辩护","取保候审"],"practiceArea":"https://caoyide.com/#practice-criminal"},
+    {"id":"https://caoyide.com/#topic-corporate-equity","name":"公司治理与股权纠纷","aliases":["公司治理","股权纠纷","股东纠纷","股权转让","股东会决议"],"practiceArea":"https://caoyide.com/#practice-corporate"},
+    {"id":"https://caoyide.com/#topic-debt","name":"债权债务纠纷","aliases":["债权债务","债务纠纷","欠款纠纷","民间借贷","应收账款"],"practiceArea":"https://caoyide.com/#practice-civil-commercial"},
+    {"id":"https://caoyide.com/#topic-administrative","name":"行政争议","aliases":["行政争议","行政诉讼","行政复议","行政处罚"],"practiceArea":"https://caoyide.com/#practice-administrative"},
+    {"id":"https://caoyide.com/#topic-consumer","name":"消费者权益保护","aliases":["消费者权益","消费维权","退一赔三","欺诈消费者"],"practiceArea":"https://caoyide.com/#practice-consumer-data"},
+    {"id":"https://caoyide.com/#topic-personal-data","name":"个人信息保护","aliases":["个人信息保护","个人信息泄露","隐私泄露","数据合规"],"practiceArea":"https://caoyide.com/#practice-consumer-data"}
+  ],
+  "blockedAliases": ["纠纷","争议","合同","公司","股权","债务","执行","刑事","行政","消费者","个人信息"]
+}

@@ -11,6 +11,7 @@
 #   6. Hugo build
 #   7. 统一 JSON-LD 实体关系（不改变页面视觉）
 #   8. 自动识别文章提及法条，生成双向法律知识图谱、related_laws 机器元数据并回填 Article JSON-LD
+#   9. 生成“法律问题/案件类型 → 文章 → 法律 → 专业领域 → 曹义德律师”主题实体网络
 
 set -euo pipefail
 
@@ -75,6 +76,9 @@ python3 "$ROOT_DIR/scripts/postprocess-schema.py"
 echo "==> 7. 生成双向文章-法条知识图谱并执行质量校验"
 python3 "$ROOT_DIR/scripts/enrich-legal-graph.py"
 
+echo "==> 8. 生成法律主题实体网络并执行质量校验"
+python3 "$ROOT_DIR/scripts/build-legal-topic-graph.py"
+
 echo ""
 echo "✅ 构建完成！"
 echo "   主站输出：$PUBLIC_DIR/"
@@ -82,3 +86,6 @@ echo "   法条库：$PUBLIC_DIR/laws/"
 echo "   正向知识图谱：$PUBLIC_DIR/legal-graph.json"
 echo "   法律反向索引：$PUBLIC_DIR/legal-graph-reverse.json"
 echo "   文章 related_laws 元数据：$PUBLIC_DIR/article-related-laws.json"
+echo "   法律主题图谱：$PUBLIC_DIR/legal-topic-graph.json"
+echo "   法律主题反向索引：$PUBLIC_DIR/legal-topic-reverse.json"
+echo "   文章 related_topics 元数据：$PUBLIC_DIR/article-related-topics.json"
