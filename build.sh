@@ -9,6 +9,7 @@
 #   4. 复制 VuePress 输出到 public/laws/（先清空旧产物）
 #   5. 生成法条库 sitemap
 #   6. Hugo build
+#   7. 统一 JSON-LD 实体关系（不改变页面视觉）
 
 set -euo pipefail
 
@@ -66,6 +67,9 @@ bash "$ROOT_DIR/scripts/generate-laws-sitemap.sh" "$PUBLIC_DIR" "https://caoyide
 echo "==> 5. Hugo build（主站）"
 cd "$ROOT_DIR"
 hugo --gc --minify
+
+echo "==> 6. 统一结构化数据实体"
+python3 "$ROOT_DIR/scripts/postprocess-schema.py"
 
 echo ""
 echo "✅ 构建完成！"
