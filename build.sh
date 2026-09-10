@@ -10,6 +10,7 @@
 #   5. 生成法条库 sitemap
 #   6. Hugo build
 #   7. 统一 JSON-LD 实体关系（不改变页面视觉）
+#   8. 自动识别文章提及法条，生成法律知识图谱并回填 Article JSON-LD
 
 set -euo pipefail
 
@@ -71,7 +72,11 @@ hugo --gc --minify
 echo "==> 6. 统一结构化数据实体"
 python3 "$ROOT_DIR/scripts/postprocess-schema.py"
 
+echo "==> 7. 生成文章-法条知识图谱"
+python3 "$ROOT_DIR/scripts/enrich-legal-graph.py"
+
 echo ""
 echo "✅ 构建完成！"
 echo "   主站输出：$PUBLIC_DIR/"
 echo "   法条库：$PUBLIC_DIR/laws/"
+echo "   法律知识图谱：$PUBLIC_DIR/legal-graph.json"
