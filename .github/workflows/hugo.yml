@@ -25,7 +25,7 @@ jobs:
             .hugo
             law-site/node_modules
             law-site/docs/.vuepress/.cache
-          key: site-build-${{ runner.os }}-${{ hashFiles('law-site/package.json', 'hugo.toml') }}
+          key: site-build-${{ runner.os }}-${{ hashFiles('law-site/package.json', 'law-site/package-lock.json', 'hugo.toml') }}
           restore-keys: |
             site-build-${{ runner.os }}-
 
@@ -37,6 +37,9 @@ jobs:
 
       - name: Build
         run: bash build.sh
+
+      - name: Validate built internal links
+        run: python3 scripts/check-built-links.py
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
