@@ -47,18 +47,22 @@
     {{- end -}}
 {{- end -}}
 
-{{- /* ---------- Canonical（修复分页页指向首页的问题） ---------- */ -}}
-{{ with .Params.canonicalUrl }}
-<link rel="canonical" href="{{ . }}">
-{{ else }}
-    {{- /* 仅列表页（home/section/taxonomy/term）才有 Paginator，否则会报 pagination not supported */ -}}
-    {{- $isList := or (eq .Kind "home") (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term") -}}
+{{- /* ---------- Canonical：统一给 canonical / OG / 分享元数据复用 ---------- */ -}}
+{{- $isList := or (eq .Kind "home") (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term") -}}
+{{- $canonicalURL := .Permalink -}}
+{{- with .Params.canonicalUrl -}}
+    {{- $canonicalURL = . -}}
+{{- else -}}
     {{- if and $isList .Paginator (gt .Paginator.PageNumber 1) -}}
-    <link rel="canonical" href="{{ .Paginator.URL }}">
-    {{- else -}}
-    <link rel="canonical" href="{{ .Permalink }}">
+        {{- $canonicalURL = .Paginator.URL -}}
     {{- end -}}
-{{ end }}
+{{- end -}}
+<link rel="canonical" href="{{ $canonicalURL }}">
+
+{{- if and $isList $paginator -}}
+    {{- if $paginator.HasPrev }}<link rel="prev" href="{{ $paginator.Prev.URL }}">{{ end -}}
+    {{- if $paginator.HasNext }}<link rel="next" href="{{ $paginator.Next.URL }}">{{ end -}}
+{{- end -}}
 
 {{- partial "head/custom-font.html" . -}}
 {{- partial "head/style.html" . -}}
@@ -67,12 +71,13 @@
 {{- /* ---------- Open Graph（自管，不用主题 partialCached） ---------- */ -}}
 <meta property='og:title' {{ printf "content=%q" $resolvedTitle | safeHTMLAttr }}>
 <meta property='og:description' {{ printf "content=%q" (replaceRE "\n" " " $description | plainify) | safeHTMLAttr }}>
-<meta property='og:url' content='{{ .Permalink }}'>
+<meta property='og:url' content='{{ $canonicalURL }}'>
 <meta property='og:site_name' content='{{ $siteTitle }}'>
 <meta property='og:type' content='{{ if .IsPage }}article{{ else }}website{{ end }}'>
 <meta property='og:locale' content='zh_CN'>
 
 {{- if .IsPage -}}
+    <meta property='article:author' content='曹义德律师'>
     {{- if not .Date.IsZero -}}
         <meta property='article:published_time' content='{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}'/>
     {{- end -}}
@@ -89,7 +94,7 @@
     {{- end -}}
 {{- else -}}
     {{- if not .Site.Lastmod.IsZero -}}
-        <meta property='og:updated_time' content='{{ .Site.Lastmod.Format " 2006-01-02T15:04:05-07:00 " | safeHTML }}'/>
+        <meta property='og:updated_time' content='{{ .Site.Lastmod.Format "2006-01-02T15:04:05-07:00" | safeHTML }}'/>
     {{- end -}}
 {{- end -}}
 
