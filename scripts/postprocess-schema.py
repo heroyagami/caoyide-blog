@@ -8,6 +8,7 @@ single stable lawyer identity and connects Article/CollectionPage objects to it.
 
 from __future__ import annotations
 
+import html
 import json
 import re
 from pathlib import Path
@@ -85,20 +86,22 @@ def page_url_for(path: Path) -> str:
     return BASE + rel
 
 
-def process(path: Path) -> tuple[bool, int]:
+def process(path: Path) -> tuple[bool, int, int]:
     text = path.read_text(encoding="utf-8", errors="ignore")
     page_url = page_url_for(path)
     changed = False
     matched = 0
+    parsed = 0
 
     def repl(match: re.Match[str]) -> str:
-        nonlocal changed, matched
+        nonlocal changed, matched, parsed
         matched += 1
-        raw = match.group(2).strip()
+        raw = html.unescape(match.group(2).strip())
         try:
             data = json.loads(raw)
         except json.JSONDecodeError:
             return match.group(0)
+        parsed += 1
         before = json.dumps(data, ensure_ascii=False, sort_keys=True)
         normalize(data, page_url)
         after = json.dumps(data, ensure_ascii=False, sort_keys=True)
@@ -111,20 +114,27 @@ def process(path: Path) -> tuple[bool, int]:
     updated = SCRIPT_RE.sub(repl, text)
     if changed:
         path.write_text(updated, encoding="utf-8")
-    return changed, matched
+    return changed, matched, parsed
 
 
 def main() -> int:
     changed = 0
     matched = 0
+    parsed = 0
     for path in PUBLIC.rglob("*.html"):
-        did_change, count = process(path)
+        did_change, count, parsed_count = process(path)
         matched += count
+        parsed += parsed_count
         if did_change:
             changed += 1
-    print(f"Structured-data normalization complete: {matched} JSON-LD block(s) found; {changed} HTML file(s) updated.")
+    print(
+        f"Structured-data normalization complete: {matched} JSON-LD block(s) found; "
+        f"{parsed} parsed; {changed} HTML file(s) updated."
+    )
     if matched == 0:
         raise SystemExit("ERROR: no JSON-LD blocks found in built HTML; schema normalization did not run.")
+    if parsed == 0:
+        raise SystemExit("ERROR: JSON-LD blocks were found but none could be parsed.")
     return 0
 
 
