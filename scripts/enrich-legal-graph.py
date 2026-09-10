@@ -21,7 +21,6 @@ GRAPH_PATH = PUBLIC / "legal-graph.json"
 
 TITLE_RE = re.compile(r"<title[^>]*>(.*?)</title>", re.I | re.S)
 TAG_RE = re.compile(r"<[^>]+>")
-# Hugo --minify may remove attribute quotes, so accept quoted and unquoted JSON-LD types.
 SCRIPT_RE = re.compile(
     r'(<script\b[^>]*\btype=(?:["\']application/ld\+json["\']|application/ld\+json)[^>]*>)(.*?)(</script>)',
     re.I | re.S,
@@ -64,8 +63,7 @@ def law_aliases(title: str) -> list[str]:
         candidates.append(short)
     aliases = []
     for item in candidates:
-        chinese_count = len(CHINESE_RE.findall(item))
-        if chinese_count >= 4 and item not in aliases:
+        if len(CHINESE_RE.findall(item)) >= 4 and item not in aliases:
             aliases.append(item)
     return aliases
 
@@ -97,15 +95,20 @@ def walk_json(node):
 
 
 def parse_jsonld(raw: str):
-    """Decode HTML entities introduced around jsonify output before JSON parsing."""
-    return json.loads(html.unescape(raw.strip()))
+    """Parse normal, HTML-escaped, or one-level double-encoded JSON-LD."""
+    value = json.loads(html.unescape(raw.strip()))
+    if isinstance(value, str):
+        candidate = html.unescape(value.strip())
+        if candidate.startswith(("{", "[")):
+            value = json.loads(candidate)
+    return value
 
 
 def has_article_jsonld(text: str) -> bool:
     for match in SCRIPT_RE.finditer(text):
         try:
             data = parse_jsonld(match.group(2))
-        except json.JSONDecodeError:
+        except (json.JSONDecodeError, TypeError):
             continue
         if any(node.get("@type") == "Article" for node in walk_json(data) if isinstance(node, dict)):
             return True
@@ -125,7 +128,7 @@ def inject_citations(text: str, law_nodes: list[dict], current_url: str) -> tupl
         nonlocal changed
         try:
             data = parse_jsonld(match.group(2))
-        except json.JSONDecodeError:
+        except (json.JSONDecodeError, TypeError):
             return match.group(0)
 
         touched = False
@@ -176,7 +179,6 @@ def main() -> int:
         for law in laws:
             if any(alias in visible for alias in law["aliases"]):
                 matched.append(law)
-        # Prefer more specific/longer titles and keep JSON-LD payload bounded.
         matched.sort(key=lambda item: max(len(a) for a in item["aliases"]), reverse=True)
         matched = matched[:12]
         if not matched:
