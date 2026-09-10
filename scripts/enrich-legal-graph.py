@@ -21,7 +21,11 @@ GRAPH_PATH = PUBLIC / "legal-graph.json"
 
 TITLE_RE = re.compile(r"<title[^>]*>(.*?)</title>", re.I | re.S)
 TAG_RE = re.compile(r"<[^>]+>")
-SCRIPT_RE = re.compile(r'(<script\b[^>]*type=["\']application/ld\+json["\'][^>]*>)(.*?)(</script>)', re.I | re.S)
+# Hugo --minify may remove attribute quotes, so accept quoted and unquoted JSON-LD types.
+SCRIPT_RE = re.compile(
+    r'(<script\b[^>]*\btype=(?:["\']application/ld\+json["\']|application/ld\+json)[^>]*>)(.*?)(</script>)',
+    re.I | re.S,
+)
 SPACE_RE = re.compile(r"\s+")
 CHINESE_RE = re.compile(r"[\u4e00-\u9fff]")
 
@@ -209,6 +213,8 @@ def main() -> int:
         f"Legal graph complete: {len(laws)} law pages indexed; {article_pages} Article page(s) scanned; "
         f"{len(pages)} linked; {len(edges)} edges; {enriched} HTML page(s) enriched."
     )
+    if article_pages == 0:
+        raise SystemExit("ERROR: no Article JSON-LD found; legal graph enrichment did not run.")
     return 0
 
 
