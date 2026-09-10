@@ -34,14 +34,14 @@ MAX_INTENTS_PER_ARTICLE = 6
 TITLE_RE = re.compile(r"<title[^>]*>(.*?)</title>", re.I | re.S)
 TAG_RE = re.compile(r"<[^>]+>")
 SCRIPT_RE = re.compile(
-    r'(<script\\b[^>]*\\btype=(?:["\\']application/ld\\+json["\\']|application/ld\\+json)[^>]*>)(.*?)(</script>)',
+    r'(<script\b[^>]*\btype=(?:["\']application/ld\+json["\']|application/ld\+json)[^>]*>)(.*?)(</script>)',
     re.I | re.S,
 )
-SPACE_RE = re.compile(r"\\s+")
+SPACE_RE = re.compile(r"\s+")
 
 
 def clean_text(value: str) -> str:
-    value = re.sub(r"<(script|style)\\b[^>]*>.*?</\\1>", " ", value, flags=re.I | re.S)
+    value = re.sub(r"<(script|style)\b[^>]*>.*?</\1>", " ", value, flags=re.I | re.S)
     value = TAG_RE.sub(" ", value)
     return SPACE_RE.sub(" ", html.unescape(value)).strip()
 
@@ -167,8 +167,10 @@ def match_intents(visible: str, topic_ids: set[str], intents: list[dict]) -> lis
 
 def main() -> int:
     intents = load_config()
-    article_topics = load_json(ARTICLE_TOPICS_PATH)
-    article_laws = load_json(ARTICLE_LAWS_PATH)
+    article_topics_doc = load_json(ARTICLE_TOPICS_PATH)
+    article_topics = article_topics_doc.get("articles") or {}
+    article_laws_doc = load_json(ARTICLE_LAWS_PATH)
+    article_laws = article_laws_doc.get("articles") or {}
     topic_graph = load_json(TOPIC_GRAPH_PATH)
 
     topic_nodes = topic_graph.get("nodes", {}).get("topics", [])
