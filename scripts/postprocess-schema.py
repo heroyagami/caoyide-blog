@@ -24,11 +24,20 @@ ATTORNEY_DESCRIPTION = (
     "曹义德律师，华中科技大学法学硕士，前反贪检察官，现任湖北江通律师事务所执业律师。"
     "主要从事刑事辩护、企业合规及民商事争议解决。"
 )
-# Hugo --minify may remove attribute quotes, so accept both quoted and unquoted forms.
 SCRIPT_RE = re.compile(
     r'(<script\b[^>]*\btype=(?:["\']application/ld\+json["\']|application/ld\+json)[^>]*>)(.*?)(</script>)',
     re.I | re.S,
 )
+
+
+def parse_jsonld(raw: str):
+    """Parse normal, HTML-escaped, or one-level double-encoded JSON-LD."""
+    value = json.loads(html.unescape(raw.strip()))
+    if isinstance(value, str):
+        candidate = html.unescape(value.strip())
+        if candidate.startswith(("{", "[")):
+            value = json.loads(candidate)
+    return value
 
 
 def normalize(node, page_url: str):
@@ -86,23 +95,27 @@ def page_url_for(path: Path) -> str:
     return BASE + rel
 
 
-def process(path: Path) -> tuple[bool, int, int]:
+def process(path: Path) -> tuple[bool, int, int, int]:
     text = path.read_text(encoding="utf-8", errors="ignore")
     page_url = page_url_for(path)
     changed = False
     matched = 0
     parsed = 0
+    articles = 0
 
     def repl(match: re.Match[str]) -> str:
-        nonlocal changed, matched, parsed
+        nonlocal changed, matched, parsed, articles
         matched += 1
-        raw = html.unescape(match.group(2).strip())
         try:
-            data = json.loads(raw)
-        except json.JSONDecodeError:
+            data = parse_jsonld(match.group(2))
+        except (json.JSONDecodeError, TypeError):
             return match.group(0)
         parsed += 1
         before = json.dumps(data, ensure_ascii=False, sort_keys=True)
+        if isinstance(data, dict) and data.get("@type") == "Article":
+            articles += 1
+        elif isinstance(data, list):
+            articles += sum(1 for item in data if isinstance(item, dict) and item.get("@type") == "Article")
         normalize(data, page_url)
         after = json.dumps(data, ensure_ascii=False, sort_keys=True)
         if before == after:
@@ -114,22 +127,24 @@ def process(path: Path) -> tuple[bool, int, int]:
     updated = SCRIPT_RE.sub(repl, text)
     if changed:
         path.write_text(updated, encoding="utf-8")
-    return changed, matched, parsed
+    return changed, matched, parsed, articles
 
 
 def main() -> int:
     changed = 0
     matched = 0
     parsed = 0
+    articles = 0
     for path in PUBLIC.rglob("*.html"):
-        did_change, count, parsed_count = process(path)
+        did_change, count, parsed_count, article_count = process(path)
         matched += count
         parsed += parsed_count
+        articles += article_count
         if did_change:
             changed += 1
     print(
         f"Structured-data normalization complete: {matched} JSON-LD block(s) found; "
-        f"{parsed} parsed; {changed} HTML file(s) updated."
+        f"{parsed} parsed; {articles} Article block(s); {changed} HTML file(s) updated."
     )
     if matched == 0:
         raise SystemExit("ERROR: no JSON-LD blocks found in built HTML; schema normalization did not run.")
