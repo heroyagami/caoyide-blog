@@ -18,8 +18,22 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Cache Hugo and VuePress build data
+        uses: actions/cache@v4
+        with:
+          path: |
+            .hugo
+            law-site/node_modules
+            law-site/docs/.vuepress/.cache
+          key: site-build-${{ runner.os }}-${{ hashFiles('law-site/package.json', 'hugo.toml') }}
+          restore-keys: |
+            site-build-${{ runner.os }}-
+
       - name: Validate automated legal content review status
         run: python3 scripts/check-legal-review.py
+
+      - name: Validate content integrity
+        run: python3 scripts/check-site-integrity.py
 
       - name: Build
         run: bash build.sh
