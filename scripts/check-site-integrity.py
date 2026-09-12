@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Repository integrity checks for the lawyer content site.
 
-Strict on URL/canonical collisions, malformed law references and required daily
-metadata. Editorial issues such as duplicate titles stay warnings. Stdlib only.
+Strict on URL/canonical collisions, malformed law references, required daily
+metadata and machine-linked evergreen legal content. Editorial issues such as
+duplicate titles stay warnings. Stdlib only.
 """
 
 from __future__ import annotations
 
+import json
 import re
 import sys
 from collections import defaultdict
@@ -17,6 +19,8 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content"
 LAW_DOCS = ROOT / "law-site" / "docs"
 SITE_HOST = "caoyide.com"
+INTENT_CONFIG = ROOT / "data" / "legal-search-intents.json"
+TOPIC_CONFIG = ROOT / "data" / "legal-topic-entities.json"
 
 
 def frontmatter(text: str) -> str:
@@ -68,7 +72,6 @@ def inferred_url(path: Path, block: str) -> str:
     if rel.parts and rel.parts[0] == "posts":
         return f"/posts/{slug}/"
     if rel.parts and rel.parts[0] == "daily":
-        # Mirrors hugo.toml: /daily/:year/:month/:slug/
         year = rel.parts[1] if len(rel.parts) > 1 else ""
         month = rel.parts[2] if len(rel.parts) > 2 else ""
         return f"/daily/{year}/{month}/{slug}/"
@@ -83,6 +86,15 @@ def expected_law_source(ref: str) -> Path | None:
     if len(parts) >= 4:
         return LAW_DOCS.joinpath(*parts[:-1])
     return LAW_DOCS / parts[0] / parts[1]
+
+
+def load_entity_sets() -> tuple[set[str], set[str], set[str]]:
+    intent_doc = json.loads(INTENT_CONFIG.read_text(encoding="utf-8"))
+    topic_doc = json.loads(TOPIC_CONFIG.read_text(encoding="utf-8"))
+    intent_ids = {str(item.get("id", "")) for item in intent_doc.get("intents", []) if item.get("id")}
+    topic_ids = {str(item.get("id", "")) for item in topic_doc.get("topics", []) if item.get("id")}
+    practice_names = {str(item.get("name", "")) for item in topic_doc.get("practiceAreas", []) if item.get("name")}
+    return intent_ids, topic_ids, practice_names
 
 
 def check_daily(path: Path, block: str, errors: list[str], warnings: list[str]) -> None:
@@ -105,12 +117,67 @@ def check_daily(path: Path, block: str, errors: list[str], warnings: list[str]) 
         warnings.append(f"Daily has no cover_title: {path}")
 
 
+def check_evergreen(
+    path: Path,
+    block: str,
+    errors: list[str],
+    warnings: list[str],
+    intent_ids: set[str],
+    topic_ids: set[str],
+    practice_names: set[str],
+) -> None:
+    required = (
+        "title",
+        "date",
+        "author",
+        "type",
+        "description",
+        "intent_id",
+        "topic_id",
+        "practice_area",
+        "review_status",
+    )
+    for key in required:
+        if not scalar(block, key):
+            errors.append(f"Evergreen metadata missing '{key}': {path}")
+
+    if scalar(block, "type") != "evergreen":
+        errors.append(f"Evergreen type must be 'evergreen': {path}")
+    if scalar(block, "author") not in {"曹义德律师", "曹义德"}:
+        warnings.append(f"Unexpected evergreen author: {path} -> {scalar(block, 'author')!r}")
+
+    intent_id = scalar(block, "intent_id")
+    topic_id = scalar(block, "topic_id")
+    practice_area = scalar(block, "practice_area")
+    if intent_id and intent_id not in intent_ids:
+        errors.append(f"Unknown evergreen intent_id: {path} -> {intent_id}")
+    if topic_id and topic_id not in topic_ids:
+        errors.append(f"Unknown evergreen topic_id: {path} -> {topic_id}")
+    if practice_area and practice_area not in practice_names:
+        errors.append(f"Unknown evergreen practice_area: {path} -> {practice_area}")
+
+    if not has_key(block, "draft"):
+        errors.append(f"Evergreen metadata missing 'draft': {path}")
+
+    status = scalar(block, "review_status")
+    if not is_draft(block):
+        if status != "verified":
+            errors.append(f"Published evergreen article must be verified: {path}")
+        if not scalar(block, "reviewed_by"):
+            errors.append(f"Published evergreen article missing reviewed_by: {path}")
+        if not scalar(block, "last_verified"):
+            errors.append(f"Published evergreen article missing last_verified: {path}")
+        if not list_value(block, "legal_sources"):
+            warnings.append(f"Published evergreen article has no legal_sources: {path}")
+
+
 def main() -> int:
     errors: list[str] = []
     warnings: list[str] = []
     urls: dict[str, Path] = {}
     canonicals: dict[str, Path] = {}
     titles: defaultdict[str, list[Path]] = defaultdict(list)
+    intent_ids, topic_ids, practice_names = load_entity_sets()
 
     for path in CONTENT.rglob("*.md"):
         if "laws" in path.parts:
@@ -123,6 +190,10 @@ def main() -> int:
         rel = path.relative_to(CONTENT)
         if rel.parts and rel.parts[0] == "daily":
             check_daily(path.relative_to(ROOT), block, errors, warnings)
+        if scalar(block, "type") == "evergreen":
+            check_evergreen(
+                path.relative_to(ROOT), block, errors, warnings, intent_ids, topic_ids, practice_names
+            )
 
         if is_draft(block):
             continue
