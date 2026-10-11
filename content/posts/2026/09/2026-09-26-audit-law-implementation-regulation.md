@@ -1,6 +1,7 @@
 ---
 title: "审计查出问题后，企业只要整改就行吗？新《审计法实施条例》的责任提醒"
 date: 2026-09-26
+slug: "2026-09-26-audit-law-implementation-regulation"
 draft: false
 author: "曹义德律师"
 type: "post"
