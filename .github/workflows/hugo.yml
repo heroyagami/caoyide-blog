@@ -1,4 +1,4 @@
-name: Publish caoyide.com to Cloudflare Pages
+name: Validate Hugo build and Cloudflare Git deployment
 
 on:
   push:
@@ -42,51 +42,31 @@ jobs:
       - name: Validate built internal links
         run: python3 scripts/check-built-links.py
 
-      - name: Check Cloudflare Pages deploy credentials
-        id: cloudflare_auth
-        shell: bash
-        env:
-          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CF_API_TOKEN }}
-          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || vars.CLOUDFLARE_ACCOUNT_ID || secrets.CF_ACCOUNT_ID }}
-        run: |
-          if [ -n "$CF_TOKEN" ] && [ -n "$CF_ACCOUNT" ]; then
-            echo 'ready=true' >> "$GITHUB_OUTPUT"
-            echo 'Cloudflare credentials are configured.'
-          else
-            echo 'ready=false' >> "$GITHUB_OUTPUT"
-            echo '::error::Cloudflare Pages deployment unavailable: set CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID in repository Actions secrets/variables.'
-            exit 1
-          fi
-
-      - name: Deploy Hugo output to Cloudflare Pages
-        if: steps.cloudflare_auth.outputs.ready == 'true'
-        uses: cloudflare/wrangler-action@v4
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CF_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || vars.CLOUDFLARE_ACCOUNT_ID || secrets.CF_ACCOUNT_ID }}
-          command: pages deploy public --project-name=caoyide-blog --branch=main
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Verify production article after Cloudflare deploy
-        if: steps.cloudflare_auth.outputs.ready == 'true'
+      # Production is deployed by Cloudflare Pages Git integration on main.
+      # Verify actual Hugo-generated permalinks instead of guessing from filenames.
+      - name: Verify Cloudflare production deployment
         shell: bash
         run: |
           set -euo pipefail
-          latest="$(find content/daily -type f -name '*.md' | sort | tail -1)"
-          relative="${latest#content/daily/}"
-          yyyy="$(echo "$relative" | cut -d/ -f1)"
-          mm="$(echo "$relative" | cut -d/ -f2)"
-          slug="$(basename "$relative" .md)"
-          article="https://caoyide.com/daily/$yyyy/$mm/$slug/"
-          for attempt in 1 2 3 4 5; do
+          article="$(python3 - <<'PY'
+          import xml.etree.ElementTree as ET
+          root = ET.parse('public/index.xml').getroot()
+          links = [item.findtext('link', '') for item in root.findall('./channel/item')]
+          print(next(link for link in links if '/daily/' in link))
+          PY
+          )"
+          for attempt in $(seq 1 16); do
             echo "Production check $attempt: $article"
-            status="$(curl --silent --show-error --location --output /tmp/deployed-article.html --write-out '%{http_code}' --max-time 30 "$article" || true)"
+            status="$(curl --silent --show-error --location --output /tmp/deployed-article.html --write-out '%{http_code}' --max-time 20 "$article" || true)"
             if [ "$status" = '200' ] && grep -q '曹义德律师' /tmp/deployed-article.html; then
-              echo "Published successfully: $article"
-              exit 0
+              homepage_status="$(curl --silent --show-error --location --output /tmp/deployed-home.html --write-out '%{http_code}' --max-time 20 'https://caoyide.com/' || true)"
+              article_path="${article#https://caoyide.com}"
+              if [ "$homepage_status" = '200' ] && grep -Fq "$article_path" /tmp/deployed-home.html; then
+                echo "Verified latest daily on production homepage: $article"
+                exit 0
+              fi
             fi
             sleep 15
           done
-          echo "::error::Cloudflare deployment did not surface latest daily: $article"
+          echo "::error::Cloudflare Git deployment has not surfaced the latest daily on production. Check the Cloudflare Pages deployment for this main commit."
           exit 1
-
