@@ -48,6 +48,52 @@ jobs:
         with:
           path: ./public
 
+      - name: Check Cloudflare Pages deploy credentials
+        id: cloudflare_auth
+        shell: bash
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CF_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || vars.CLOUDFLARE_ACCOUNT_ID || secrets.CF_ACCOUNT_ID }}
+        run: |
+          if [ -n "$CF_TOKEN" ] && [ -n "$CF_ACCOUNT" ]; then
+            echo 'ready=true' >> "$GITHUB_OUTPUT"
+            echo 'Cloudflare credentials are configured.'
+          else
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            echo '::warning::Cloudflare Pages deployment unavailable: set CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID in repository Actions secrets/variables.'
+          fi
+
+      - name: Deploy Hugo output to Cloudflare Pages
+        if: steps.cloudflare_auth.outputs.ready == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || vars.CLOUDFLARE_ACCOUNT_ID || secrets.CF_ACCOUNT_ID }}
+          command: pages deploy public --project-name=caoyide-blog --branch=main
+
+      - name: Verify production article after Cloudflare deploy
+        if: steps.cloudflare_auth.outputs.ready == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          latest="$(find content/daily -type f -name '*.md' | sort | tail -1)"
+          relative="${latest#content/daily/}"
+          yyyy="$(echo "$relative" | cut -d/ -f1)"
+          mm="$(echo "$relative" | cut -d/ -f2)"
+          slug="$(basename "$relative" .md)"
+          article="https://caoyide.com/daily/$yyyy/$mm/$slug/"
+          for attempt in 1 2 3 4 5; do
+            echo "Production check $attempt: $article"
+            status="$(curl --silent --show-error --location --output /tmp/deployed-article.html --write-out '%{http_code}' --max-time 30 "$article" || true)"
+            if [ "$status" = '200' ] && grep -q '曹义德律师' /tmp/deployed-article.html; then
+              echo "Published successfully: $article"
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "::error::Cloudflare deployment did not surface latest daily: $article"
+          exit 1
+
   deploy:
     environment:
       name: github-pages
