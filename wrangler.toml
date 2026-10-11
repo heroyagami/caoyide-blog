@@ -1,14 +1,7 @@
-# Cloudflare Pages 构建配置
-# 文档：https://developers.cloudflare.com/pages/configuration/build-configuration/
-#
-# 关键：Cloudflare Pages 只支持这几个平铺字段：
-# - name (必填)
-# - pages_build_output_dir (必填)
-# - command (构建命令，平铺)
-#
-# 不支持 [build] 段，不支持 [build.environment]
-# Node/Hugo 版本在 Cloudflare Pages UI 控制台设置
-
+# Cloudflare Pages project deployment configuration.
+# Hugo + VuePress assets are built with `bash build.sh` in GitHub Actions.
+# If using Cloudflare Git integration, set its Build command to `bash build.sh`
+# and its Build output directory to `public` in the Cloudflare dashboard.
+# The Wrangler configuration does not support a top-level `command` key.
 name = "caoyide-blog"
-pages_build_output_dir = "public"
-command = "bash build.sh"
+pages_build_output_dir = "./public"
