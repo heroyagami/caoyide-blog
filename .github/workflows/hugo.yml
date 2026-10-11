@@ -60,12 +60,13 @@ jobs:
             echo 'Cloudflare credentials are configured.'
           else
             echo 'ready=false' >> "$GITHUB_OUTPUT"
-            echo '::warning::Cloudflare Pages deployment unavailable: set CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID in repository Actions secrets/variables.'
+            echo '::error::Cloudflare Pages deployment unavailable: set CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID in repository Actions secrets/variables.'
+            exit 1
           fi
 
       - name: Deploy Hugo output to Cloudflare Pages
         if: steps.cloudflare_auth.outputs.ready == 'true'
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || vars.CLOUDFLARE_ACCOUNT_ID || secrets.CF_ACCOUNT_ID }}
