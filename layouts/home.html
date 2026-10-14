@@ -61,6 +61,24 @@
     </section>
     {{- end }}
 
+
+    {{- /* 热点深度独立展示：首页第一页展示最近两期，原有法律日报列表保持不变。 */ -}}
+    {{- if not .Paginator.HasPrev -}}
+      {{- $hotspotPages := where .Site.RegularPages "Section" "hotspot-daily" -}}
+      {{- with first 2 $hotspotPages.ByDate.Reverse -}}
+      <header class="home-section-heading" aria-label="热点深度">
+        <span>社会热点 · 时评</span>
+        <h2>热点深度</h2>
+        <p>从真实人物和社会事件出发，讲事实，也讲判断。<a href="/hotspot-daily/">查看全部热点深度文章 →</a></p>
+      </header>
+      <section class="article-list legal-article-list" aria-label="最新热点深度文章">
+        {{- range . -}}
+          {{ partial "article-list/default" . }}
+        {{- end -}}
+      </section>
+      {{- end -}}
+    {{- end -}}
+
     {{- if not .Paginator.HasPrev }}
     <header class="home-section-heading">
         <span>法律观察</span>

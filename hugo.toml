@@ -18,6 +18,7 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
 [permalinks]
     posts = "/posts/:slug/"
     daily = "/daily/:year/:month/:slug/"
+    hotspot-daily = "/hotspot-daily/:year/:month/:slug/"
 
 # ============================================================
 # Stack 主题参数
@@ -88,6 +89,14 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
     weight = 10
     [menu.main.params]
         icon = "briefcase"
+
+[[menu.main]]
+    identifier = "hotspot"
+    name = "热点深度"
+    url = "/hotspot-daily/"
+    weight = 13
+    [menu.main.params]
+        icon = "article"
 
 [[menu.main]]
     identifier = "laws"

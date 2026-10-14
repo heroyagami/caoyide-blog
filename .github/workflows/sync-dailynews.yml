@@ -1,0 +1,78 @@
+name: Sync DailyNews hotspot articles to caoyide.com
+
+on:
+  schedule:
+    # Beijing 08:45 / 10:45 / 13:45 / 19:45
+    - cron: "45 0,2,5,11 * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/sync-dailynews.yml"
+      - "scripts/sync-dailynews.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-dailynews-main
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout site repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+
+      - name: Fetch and validate published DailyNews articles
+        id: fetch
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/sync-dailynews.py
+
+      - name: Commit synchronized Markdown articles
+        id: commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/hotspot-daily/
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No new DailyNews articles."
+          else
+            git commit -m "content: sync DailyNews hotspot articles"
+            git push origin HEAD:main
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Cloudflare Git integration deploys pushes to main."
+          fi
+
+      - name: Verify latest hotspot page and homepage on production
+        if: steps.commit.outputs.changed == 'true'
+        shell: bash
+        env:
+          DATE: ${{ steps.fetch.outputs.latest_date }}
+        run: |
+          set -euo pipefail
+          year="${DATE:0:4}"
+          month="${DATE:5:2}"
+          route="/hotspot-daily/${year}/${month}/${DATE}/"
+          article="https://caoyide.com${route}"
+          for attempt in $(seq 1 36); do
+            status="$(curl -L -sS --max-time 20 -o /tmp/hotspot-article.html -w '%{http_code}' "$article" || true)"
+            homepage_status="$(curl -L -sS --max-time 20 -o /tmp/hotspot-home.html -w '%{http_code}' 'https://caoyide.com/' || true)"
+            if [ "$status" = "200" ] && [ "$homepage_status" = "200" ] \
+              && grep -q '今日热点深度文章池' /tmp/hotspot-article.html \
+              && grep -Fq "$route" /tmp/hotspot-home.html; then
+              echo "Verified production article and homepage: $article"
+              exit 0
+            fi
+            echo "Waiting for Cloudflare (attempt $attempt): article=$status homepage=$homepage_status"
+            sleep 20
+          done
+          echo "::error::GitHub sync succeeded but website does not yet show latest hotspot."
+          exit 1
