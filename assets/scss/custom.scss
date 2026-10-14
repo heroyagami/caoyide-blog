@@ -2558,6 +2558,7 @@ footer.site-footer {
 .template-home::before {
     animation: none;
     background-position: 0 0, 0 0, 0 0;
+    opacity: 0.35;
 }
 
 .template-home .main-container > main,
@@ -2565,23 +2566,32 @@ footer.site-footer {
     animation: none;
 }
 
+.template-home .main-container > main {
+    gap: 2.4rem;
+}
+
+.template-home .featured-about {
+    margin-bottom: 0;
+}
+
 .template-home .lawyer-hero-card .about-card {
-    padding: clamp(2.2rem, 4vw, 3.4rem);
+    padding: clamp(2rem, 3vw, 3.2rem);
     overflow: hidden;
     background: color-mix(in srgb, var(--card-background) 94%, transparent);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    box-shadow: 0 18px 46px rgba(15, 23, 42, 0.08);
+    box-shadow: var(--shadow-l1);
 }
 
 .template-home .lawyer-hero-card .about-card:hover {
     transform: none;
-    box-shadow: 0 18px 46px rgba(15, 23, 42, 0.08);
+    box-shadow: var(--shadow-l1);
 }
 
 .template-home .lawyer-hero-card .about-card::before {
-    transform-origin: left center;
-    animation: homeRuleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    height: 2px;
+    background: var(--accent-color);
+    animation: none;
 }
 
 .lawyer-hero-overline {
@@ -2592,47 +2602,45 @@ footer.site-footer {
     padding-bottom: 1.2rem;
     border-bottom: 1px solid var(--card-separator-color);
     color: var(--card-text-color-tertiary);
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0;
 }
 
 .lawyer-hero-intro {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: end;
-    gap: 2rem;
-    padding: 2.5rem 0 2.2rem;
+    display: block;
+    padding: 2.4rem 0;
 }
 
 .lawyer-hero-title {
-    animation: homeTitleIn 650ms 80ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: none;
 }
 
 .lawyer-hero-kicker {
-    margin: 0 0 0.9rem;
+    margin: 0 0 0.8rem;
     color: var(--accent-color);
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-size: 1.35rem;
+    font-weight: 500;
+    letter-spacing: 0;
 }
 
 .template-home .lawyer-hero-title h1 {
     margin: 0;
     color: var(--card-text-color-main);
     font-family: var(--heading-font-family);
-    font-size: clamp(3rem, 3.4vw, 3.5rem);
-    font-weight: 760;
-    line-height: 1.24;
-    letter-spacing: -0.025em;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0;
 }
 
-.template-home .lawyer-hero-title h1 span {
+.lawyer-hero-subtitle {
     display: block;
-    margin-top: 0.35rem;
+    margin: 0.6rem 0 0;
     color: var(--card-text-color-secondary);
-    font-size: 0.54em;
-    font-weight: 650;
+    font-size: 1.7rem;
+    font-weight: 500;
+    line-height: 1.6;
     letter-spacing: 0;
 }
 
@@ -2640,14 +2648,17 @@ footer.site-footer {
     max-width: 52rem;
     margin: 1.2rem 0 0;
     color: var(--card-text-color-secondary);
-    font-size: 1.45rem;
+    font-size: 1.5rem;
+    font-weight: 400;
     line-height: 1.75;
 }
 
 .lawyer-hero-region {
-    min-width: 12rem;
-    padding-left: 1.5rem;
-    border-left: 2px solid var(--accent-color);
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    margin-top: 1.2rem;
 }
 
 .lawyer-hero-region > span,
@@ -2655,16 +2666,16 @@ footer.site-footer {
     display: block;
     margin-bottom: 0.35rem;
     color: var(--card-text-color-tertiary);
-    font-size: 1.05rem;
-    font-weight: 650;
-    letter-spacing: 0.08em;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0;
 }
 
 .lawyer-hero-region p {
     margin: 0;
     color: var(--card-text-color-main);
-    font-size: 1.35rem;
-    font-weight: 650;
+    font-size: 1.4rem;
+    font-weight: 400;
     line-height: 1.55;
 }
 
@@ -2679,16 +2690,16 @@ footer.site-footer {
 
 .lawyer-practice-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1.65fr) minmax(15rem, 0.9fr);
-    gap: 2.6rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
     padding: 2.2rem 0;
     border-top: 1px solid var(--card-separator-color);
 }
 
 .lawyer-practice-primary {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2.2rem;
+    grid-template-columns: repeat(auto-fit, minmax(unquote("min(100%, 24rem)"), 1fr));
+    gap: 2.8rem;
 }
 
 .lawyer-practice-primary article {
@@ -2699,40 +2710,43 @@ footer.site-footer {
 .template-home .lawyer-practice-primary h2 {
     margin: 0 0 0.8rem;
     color: var(--card-text-color-main);
-    font-size: 1.75rem;
-    line-height: 1.35;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.5;
 }
 
 .lawyer-practice-primary p {
     margin: 0;
     color: var(--card-text-color-secondary);
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    font-weight: 400;
     line-height: 1.75;
 }
 
 .lawyer-practice-secondary {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(unquote("min(100%, 18rem)"), 1fr));
     align-content: start;
-    gap: 0;
+    gap: 2rem;
     margin: 0;
     border-top: 1px solid var(--card-separator-color);
 }
 
 .lawyer-practice-secondary div {
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--card-separator-color);
+    padding: 1.5rem 0 0;
 }
 
 .lawyer-practice-secondary dt {
     color: var(--card-text-color-main);
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.4rem;
+    font-weight: 600;
 }
 
 .lawyer-practice-secondary dd {
     margin: 0.35rem 0 0;
     color: var(--card-text-color-tertiary);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    font-weight: 400;
     line-height: 1.6;
 }
 
@@ -2747,8 +2761,8 @@ footer.site-footer {
 .lawyer-hero-contact a,
 .lawyer-hero-contact strong {
     color: var(--card-text-color-main);
-    font-size: 1.25rem;
-    font-weight: 650;
+    font-size: 1.4rem;
+    font-weight: 500;
     line-height: 1.6;
     text-decoration: none;
 }
@@ -2759,14 +2773,17 @@ footer.site-footer {
 
 .home-section-heading {
     display: block;
-    padding: 1.4rem 0 0.4rem;
+    position: relative;
+    padding: 0;
+    margin-top: 0.8rem;
 }
 
 .home-section-heading h2 {
     margin: 0;
     color: var(--card-text-color-main);
-    font-size: clamp(2.1rem, 2vw, 2.4rem);
-    line-height: 1.35;
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1.5;
     letter-spacing: -0.01em;
     text-wrap: balance;
 }
@@ -2774,9 +2791,21 @@ footer.site-footer {
 .home-section-heading p {
     margin: 0.55rem 0 0;
     color: var(--card-text-color-tertiary);
-    font-size: 1.35rem;
+    font-size: 1.4rem;
+    font-weight: 400;
     line-height: 1.7;
     text-wrap: pretty;
+}
+
+.home-section-more {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 0.6rem;
+    min-height: 32px;
+    color: var(--accent-color);
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.6;
 }
 
 /* 首页文章列表改为编辑部式索引，去掉重复蓝纸与统一悬浮卡片 */
@@ -2802,14 +2831,7 @@ footer.site-footer {
 }
 
 .template-home .legal-entry-card::before {
-    content: "";
-    position: absolute;
-    inset: 1.4rem auto 1.4rem 0;
-    width: 3px;
-    background: var(--accent-color);
-    transform: scaleY(0);
-    transform-origin: center;
-    transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    content: none;
 }
 
 .template-home .legal-entry-card:hover {
@@ -2819,13 +2841,9 @@ footer.site-footer {
     background: var(--card-background-selected);
 }
 
-.template-home .legal-entry-card:hover::before {
-    transform: scaleY(1);
-}
-
 .template-home .legal-entry-link {
     display: block;
-    padding: 2.1rem 2.2rem;
+    padding: 2.4rem 2.2rem;
 }
 
 .template-home .legal-entry-art {
@@ -2835,28 +2853,45 @@ footer.site-footer {
 .template-home .legal-entry-title {
     max-width: 62rem;
     margin-bottom: 0.75rem;
-    font-size: 1.75rem;
-    line-height: 1.48;
-    transition: color 180ms ease-out, transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.65;
+    transition: color 180ms ease-out;
 }
 
 .template-home .legal-entry-card:hover .legal-entry-title {
     color: var(--accent-color);
-    transform: translateX(0.35rem);
+    transform: none;
 }
 
 .template-home .legal-entry-summary {
     max-width: 62rem;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    font-weight: 400;
     line-height: 1.75;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 
 .template-home .legal-entry-kicker {
     padding: 0;
     border-radius: 0;
     background: transparent;
-    font-size: 1.05rem;
-    letter-spacing: 0.06em;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.template-home .legal-entry-meta {
+    font-size: 1.2rem;
+    font-weight: 400;
+    gap: 1.2rem;
+}
+
+.template-home .legal-entry-meta span::before {
+    content: none;
 }
 
 .template-home .lawyer-faq-card {
@@ -2871,6 +2906,28 @@ footer.site-footer {
     min-height: 44px;
 }
 
+.template-home .lawyer-faq-card .about-card {
+    background: var(--card-background);
+    backdrop-filter: none;
+    box-shadow: var(--shadow-l1);
+}
+
+.template-home .lawyer-faq-card .about-card::before {
+    content: none;
+}
+
+.template-home .lawyer-faq-card .about-card-header h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.template-home .lawyer-faq-card summary strong {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.7;
+}
+
 /* 不放大视觉体积，只补足首页高频入口的触控热区 */
 .template-home .site-name a,
 .template-home .search-form.widget input,
@@ -2880,24 +2937,21 @@ footer.site-footer {
     min-height: 44px;
 }
 
-.template-home .site-name a,
-.template-home .timeline-item {
+.template-home .site-name a {
     display: inline-flex;
     align-items: center;
 }
 
+.template-home .timeline-item {
+    display: flex;
+}
+
+.template-home .timeline-dot {
+    top: calc(50% - 4px);
+}
+
 .template-home .quicklink-item {
     align-items: center;
-}
-
-@keyframes homeRuleIn {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
-}
-
-@keyframes homeTitleIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 768px) {
@@ -2956,6 +3010,10 @@ footer.site-footer {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 0.8rem;
         margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 1.2rem 0;
+        background: transparent;
     }
 
     .template-home #main-menu > li:not(.menu-bottom-section) > a {
@@ -2974,6 +3032,12 @@ footer.site-footer {
         min-height: 44px;
     }
 
+    .template-home #main-menu .menu-bottom-section > .menu {
+        padding: 0;
+        margin: 0;
+        background: transparent;
+    }
+
     .template-home .lawyer-hero-card .about-card {
         padding: 2rem 1.8rem;
     }
@@ -2987,6 +3051,7 @@ footer.site-footer {
     .lawyer-hero-intro,
     .lawyer-practice-layout,
     .lawyer-practice-primary,
+    .lawyer-practice-secondary,
     .lawyer-hero-contact {
         grid-template-columns: 1fr;
     }
@@ -2997,17 +3062,16 @@ footer.site-footer {
     }
 
     .template-home .lawyer-hero-title h1 {
-        font-size: clamp(2.8rem, 8vw, 3.2rem);
+        font-size: 2.8rem;
         line-height: 1.3;
     }
 
-    .template-home .lawyer-hero-title h1 span {
-        font-size: 0.5em;
-        line-height: 1.55;
+    .lawyer-hero-subtitle {
+        font-size: 1.6rem;
     }
 
     .lawyer-hero-region {
-        padding-left: 1rem;
+        margin-top: 1rem;
     }
 
     .lawyer-practice-layout {
@@ -3016,6 +3080,23 @@ footer.site-footer {
 
     .lawyer-practice-primary {
         gap: 1.8rem;
+    }
+
+    .lawyer-practice-secondary {
+        gap: 1.2rem;
+        padding-top: 1.4rem;
+    }
+
+    .lawyer-practice-secondary div {
+        display: grid;
+        grid-template-columns: 9.2rem minmax(0, 1fr);
+        gap: 1rem;
+        padding: 0;
+        align-items: baseline;
+    }
+
+    .lawyer-practice-secondary dd {
+        margin: 0;
     }
 
     .lawyer-hero-contact {
@@ -3035,7 +3116,7 @@ footer.site-footer {
     }
 
     .template-home .legal-entry-title {
-        font-size: 1.65rem;
+        font-size: 1.7rem;
     }
 }
 
