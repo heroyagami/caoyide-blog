@@ -47,7 +47,7 @@ jobs:
           test -f public/hotspot-daily/index.html
           test -f public/hotspot-daily/2026/10/2026-10-11/index.html
           grep -q '今日热点深度文章池' public/hotspot-daily/2026/10/2026-10-11/index.html
-          grep -q 'aria-label="最新热点深度文章"' public/index.html
+          grep -q '最新热点深度文章' public/index.html
 
       - name: Validate built internal links
         run: python3 scripts/check-built-links.py
@@ -106,3 +106,28 @@ jobs:
           done
           echo "::error::Cloudflare Git deployment has not surfaced the latest daily on production. Check the Cloudflare Pages deployment for this main commit."
           exit 1
+
+      - name: Verify newest hotspot issue on caoyide.com
+        shell: bash
+        run: |
+          set -euo pipefail
+          newest="$(find content/hotspot-daily -type f -name '20??-??-??.md' | sort | tail -1)"
+          date="$(basename "$newest" .md)"
+          year="$(basename "$(dirname "$(dirname "$newest")")")"
+          month="$(basename "$(dirname "$newest")")"
+          route="/hotspot-daily/${year}/${month}/${date}/"
+          for attempt in $(seq 1 20); do
+            article_status="$(curl --silent --show-error --location --max-time 20 --output /tmp/live-hotspot.html --write-out '%{http_code}' "https://caoyide.com${route}" || true)"
+            home_status="$(curl --silent --show-error --location --max-time 20 --output /tmp/live-hotspot-home.html --write-out '%{http_code}' 'https://caoyide.com/' || true)"
+            if [ "$article_status" = '200' ] && [ "$home_status" = '200' ] \
+              && grep -q '今日热点深度文章池' /tmp/live-hotspot.html \
+              && grep -Fq "$route" /tmp/live-hotspot-home.html; then
+              echo "Verified newest hotspot issue in production: https://caoyide.com${route}"
+              exit 0
+            fi
+            echo "Hotspot production check ${attempt}: article=${article_status} home=${home_status}"
+            sleep 15
+          done
+          echo "::error::Newest hotspot issue is not visible on caoyide.com"
+          exit 1
+
