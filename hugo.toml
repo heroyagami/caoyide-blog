@@ -18,7 +18,7 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
 [permalinks]
     posts = "/posts/:slug/"
     daily = "/daily/:year/:month/:slug/"
-    hotspot-daily = "/hotspot-daily/:year/:month/:slug/"
+    hotspot-daily = "/hotspot-daily/:year/:month/:contentbasename/"
 
 # ============================================================
 # Stack 主题参数

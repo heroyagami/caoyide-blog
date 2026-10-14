@@ -40,6 +40,15 @@ jobs:
       - name: Build
         run: bash build.sh
 
+      - name: Verify DailyNews hotspot pages in Hugo output
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f public/hotspot-daily/index.html
+          test -f public/hotspot-daily/2026/10/2026-10-11/index.html
+          grep -q '今日热点深度文章池' public/hotspot-daily/2026/10/2026-10-11/index.html
+          grep -q 'aria-label="最新热点深度文章"' public/index.html
+
       - name: Validate built internal links
         run: python3 scripts/check-built-links.py
 

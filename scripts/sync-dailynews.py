@@ -85,7 +85,17 @@ def main() -> int:
         dest = ROOT / path
         if ROOT not in dest.parents:
             raise ValueError(f"Unsafe destination: {path}")
-        incoming.append((dest, raw))
+        # The public source stays unchanged; mirror gets a stable Hugo URL.
+        source_text = raw.decode("utf-8")
+        source_fm = source_text.split("\n---\n", 1)[0]
+        if re.search(r"(?m)^url:\s*", source_fm):
+            raise ValueError(f"{path}: unexpected source URL override")
+        year, month, date = SOURCE_PATTERN.fullmatch(path).groups()
+        url = f"/hotspot-daily/{year}/{month}/{date}/"
+        site_text = source_text.replace(
+            "\n---\n", f'\nurl: "{url}"\n---\n', 1
+        )
+        incoming.append((dest, site_text.encode("utf-8")))
     changed = 0
     for dest, raw in incoming:
         if dest.is_file() and dest.read_bytes() == raw:
