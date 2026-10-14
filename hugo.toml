@@ -96,7 +96,7 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
     url = "/hotspot-daily/"
     weight = 13
     [menu.main.params]
-        icon = "article"
+        icon = "file-description"
 
 [[menu.main]]
     identifier = "laws"
