@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  checks: read
   deployments: write
 
 jobs:
@@ -41,6 +42,32 @@ jobs:
 
       - name: Validate built internal links
         run: python3 scripts/check-built-links.py
+
+      - name: Verify Cloudflare deployment for this commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 40); do
+            checks="$(gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/check-runs?per_page=100&filter=latest")"
+            state="$(jq -r --arg sha "$GITHUB_SHA" '
+              [.check_runs[] | select(.head_sha == $sha and .name == "Cloudflare Pages" and .app.slug == "cloudflare-workers-and-pages")]
+              | sort_by(.id) | last
+              | if . == null then "waiting" elif .status != "completed" then "waiting" else .conclusion end
+            ' <<< "$checks")"
+            echo "Cloudflare check for $GITHUB_SHA: $state (attempt $attempt)"
+            if [ "$state" = 'success' ]; then
+              exit 0
+            fi
+            if [ "$state" != 'waiting' ]; then
+              echo "::error::Cloudflare deployment for $GITHUB_SHA completed with $state"
+              exit 1
+            fi
+            sleep 15
+          done
+          echo "::error::No successful Cloudflare deployment for $GITHUB_SHA within 10 minutes"
+          exit 1
 
       # Production is deployed by Cloudflare Pages Git integration on main.
       # Verify actual Hugo-generated permalinks instead of guessing from filenames.
