@@ -37,12 +37,10 @@
             <div class="lawyer-practice-layout">
                 <div class="lawyer-practice-primary">
                     <article>
-                        <span class="practice-index">01</span>
                         <h2>刑事辩护</h2>
                         <p>职务犯罪、经济犯罪、诈骗罪、合同诈骗罪、贪污罪、职务侵占罪等案件的辩护、取保候审、会见、申诉与控告。</p>
                     </article>
                     <article>
-                        <span class="practice-index">02</span>
                         <h2>民商事诉讼</h2>
                         <p>合同纠纷、侵权责任、婚姻家庭、交通事故、债务追偿、担保纠纷等案件的起诉、应诉与执行。</p>
                     </article>
@@ -67,7 +65,6 @@
       {{- $hotspotPages := where .Site.RegularPages "Section" "hotspot-daily" -}}
       {{- with first 2 $hotspotPages.ByDate.Reverse -}}
       <header class="home-section-heading" aria-label="热点深度">
-        <span>社会热点 · 时评</span>
         <h2>热点深度</h2>
         <p>从真实人物和社会事件出发，讲事实，也讲判断。<a href="/hotspot-daily/">查看全部热点深度文章 →</a></p>
       </header>
@@ -81,7 +78,6 @@
 
     {{- if not .Paginator.HasPrev }}
     <header class="home-section-heading">
-        <span>法律观察</span>
         <h2>最新文章与实务评论</h2>
         <p>关注正在发生的法律事件，也解释日常生活中的规则与责任。</p>
     </header>

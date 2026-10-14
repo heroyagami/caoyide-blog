@@ -91,14 +91,6 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
         icon = "briefcase"
 
 [[menu.main]]
-    identifier = "hotspot"
-    name = "热点深度"
-    url = "/hotspot-daily/"
-    weight = 13
-    [menu.main.params]
-        icon = "file-description"
-
-[[menu.main]]
     identifier = "laws"
     name = "法律文库"
     url = "/laws/"
