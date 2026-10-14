@@ -1,0 +1,29 @@
+{{ define "body-class" }}template-hotspot-archive{{ end }}
+
+{{ define "main" }}
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <a href="/">返回首页</a>
+  </nav>
+
+  {{- $issues := .RegularPagesRecursive.ByDate.Reverse -}}
+  <header class="section-card" aria-label="热点深度栏目说明">
+    <div class="section-details">
+      <h1 class="section-term">热点深度</h1>
+      <p class="section-description">曹义德律师热点深度日报 · 共 {{ len $issues }} 期</p>
+      {{ with .Description }}<p class="section-description">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+
+  <section class="article-list--compact" aria-label="热点深度文章列表">
+    {{- range .Paginator.Pages -}}
+      {{ partial "article-list/compact" . }}
+    {{- end -}}
+  </section>
+
+  {{ partial "pagination.html" . }}
+  {{ partialCached "footer/footer" . }}
+{{ end }}
+
+{{ define "right-sidebar" }}
+  {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}

@@ -48,6 +48,14 @@ jobs:
           test -f public/hotspot-daily/2026/10/2026-10-11/index.html
           grep -q '今日热点深度文章池' public/hotspot-daily/2026/10/2026-10-11/index.html
           grep -q '最新热点深度文章' public/index.html
+          # Section isolation: hotspot list must contain hotspot issues, never case-library items.
+          grep -q '热点深度文章列表' public/hotspot-daily/index.html
+          grep -q '黄奇帆被查' public/hotspot-daily/index.html
+          ! grep -q '代理某某证券诉某房地产集团' public/hotspot-daily/index.html
+          # Cases remain a separate, unchanged archive.
+          test -f public/cases/index.html
+          grep -q '代理某某证券诉某房地产集团' public/cases/index.html
+          ! grep -q '黄奇帆被查' public/cases/index.html
 
       - name: Validate built internal links
         run: python3 scripts/check-built-links.py
@@ -119,9 +127,16 @@ jobs:
           for attempt in $(seq 1 20); do
             article_status="$(curl --silent --show-error --location --max-time 20 --output /tmp/live-hotspot.html --write-out '%{http_code}' "https://caoyide.com${route}" || true)"
             home_status="$(curl --silent --show-error --location --max-time 20 --output /tmp/live-hotspot-home.html --write-out '%{http_code}' 'https://caoyide.com/' || true)"
+            archive_status="$(curl --silent --show-error --location --max-time 20 --output /tmp/live-hotspot-archive.html --write-out '%{http_code}' 'https://caoyide.com/hotspot-daily/' || true)"
+            cases_status="$(curl --silent --show-error --location --max-time 20 --output /tmp/live-cases.html --write-out '%{http_code}' 'https://caoyide.com/cases/' || true)"
             if [ "$article_status" = '200' ] && [ "$home_status" = '200' ] \
+              && [ "$archive_status" = '200' ] && [ "$cases_status" = '200' ] \
               && grep -q '今日热点深度文章池' /tmp/live-hotspot.html \
-              && grep -Fq "$route" /tmp/live-hotspot-home.html; then
+              && grep -Fq "$route" /tmp/live-hotspot-home.html \
+              && grep -q '热点深度文章列表' /tmp/live-hotspot-archive.html \
+              && grep -Fq "$route" /tmp/live-hotspot-archive.html \
+              && ! grep -q '代理某某证券诉某房地产集团' /tmp/live-hotspot-archive.html \
+              && grep -q '代理某某证券诉某房地产集团' /tmp/live-cases.html; then
               echo "Verified newest hotspot issue in production: https://caoyide.com${route}"
               exit 0
             fi

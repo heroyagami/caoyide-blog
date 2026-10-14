@@ -7,6 +7,12 @@
 {{- if or .IsHome (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term") -}}
     {{- $pages := partial "helper/pages.html" . -}}
 
+    {{- /* 热点深度是多级目录，须跨年/月子栏目获取实际 Markdown 文章，
+           否则分页仅包含年份目录而没有日报。 */ -}}
+    {{- if and (eq .Kind "section") (eq .Section "hotspot-daily") -}}
+        {{- $pages = .RegularPagesRecursive.ByDate.Reverse -}}
+    {{- end -}}
+
     {{- if .IsHome -}}
         {{- $featured := where $pages "Params.featured" true -}}
         {{- $pages = $pages | complement $featured -}}
