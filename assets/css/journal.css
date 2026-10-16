@@ -96,7 +96,7 @@ body.journal-site .main-container > main { grid-column: 1; grid-row: 1; display:
 .journal-tools a { display: flex; align-items: center; gap: 14px; min-height: 74px; color: var(--journal-ink); font-size: 14px; }
 .journal-tools a > span { display: flex; color: var(--journal-gold); }
 .journal-tools svg { width: 24px; height: 24px; stroke-width: 1.3; }
-.journal-tools svg path[fill] { fill: currentColor; }
+.journal-tools svg path[fill]:not([fill="none"]) { fill: currentColor; }
 .journal-tools small { display: block; margin-top: 6px; color: var(--journal-muted); font-size: 11px; line-height: 1.6; }
 .journal-tools b { margin-left: auto; color: var(--journal-muted); font-size: 21px; font-weight: 400; }
 .journal-archive-list a, .journal-topic-list a { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 38px; color: var(--journal-copy); font-size: 14px; }
