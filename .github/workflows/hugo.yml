@@ -57,6 +57,9 @@ jobs:
           grep -q '代理某某证券诉某房地产集团' public/cases/index.html
           ! grep -q '黄奇帆被查' public/cases/index.html
 
+      - name: Validate AI search discovery assets and article schema
+        run: python3 scripts/check-ai-discovery.py
+
       - name: Validate built internal links
         run: python3 scripts/check-built-links.py
 
