@@ -1,0 +1,19 @@
+<header class="journal-masthead">
+  <div class="journal-masthead-inner">
+    <a class="journal-brand" href="{{ .Site.Home.RelPermalink }}" aria-label="曹义德律师，返回首页">
+      <span class="journal-monogram" aria-hidden="true">CYD</span>
+      <span>曹义德律师</span>
+    </a>
+    <nav class="journal-nav" aria-label="主导航">
+      <a href="/" {{ if .IsHome }}aria-current="page"{{ end }}>首页</a>
+      <a href="/hotspot-daily/" {{ if eq .Section "hotspot-daily" }}aria-current="page"{{ end }}>热点深度</a>
+      <a href="/laws/">法律文库</a>
+      <a href="/cases/" {{ if eq .Section "cases" }}aria-current="page"{{ end }}>关于我</a>
+    </nav>
+    <form class="journal-search" action="/search/" role="search">
+      <label class="journal-sr-only" for="journal-keyword">搜索文章或法律问题</label>
+      <input id="journal-keyword" type="search" name="keyword" placeholder="搜索文章、法律问题…" required>
+      <button type="submit" aria-label="搜索">{{ partial "helper/icon" "search" }}</button>
+    </form>
+  </div>
+</header>

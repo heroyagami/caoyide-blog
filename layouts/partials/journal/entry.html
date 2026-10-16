@@ -1,0 +1,15 @@
+{{- $category := "实务文章" -}}
+{{- if eq .Section "hotspot-daily" -}}{{- $category = "热点深度" -}}
+{{- else if eq .Section "daily" -}}{{- $category = "法律日报" -}}
+{{- else -}}{{- with .Params.categories -}}{{- $category = index . 0 -}}{{- end -}}{{- end -}}
+{{- $title := replaceRE `^曹义德律师(?:热点深度日报|法律日报|时评日报)[｜|：: ]*` "" .Title -}}
+{{- $summary := .Description | default (.Summary | plainify) | plainify | truncate 150 -}}
+<article class="journal-entry">
+  <p class="journal-entry-category">{{ $category }}</p>
+  <h2><a href="{{ .RelPermalink }}" title="{{ .Title }}">{{ $title }}</a></h2>
+  {{ with $summary }}<p class="journal-entry-summary">{{ . }}</p>{{ end }}
+  <div class="journal-entry-meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+    {{ if .ReadingTime }}<span>{{ .ReadingTime }} 分钟阅读</span>{{ end }}
+  </div>
+</article>

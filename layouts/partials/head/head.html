@@ -119,3 +119,6 @@
 {{- end -}}
 
 {{- partial "head/custom.html" . -}}
+{{- $journalStyle := resources.Get "css/journal.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $journalStyle.RelPermalink }}">
+<meta name="theme-color" content="#0d1b25">

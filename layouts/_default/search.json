@@ -9,7 +9,7 @@
      3. 用 layouts/_default/search.json 才生效（这个路径在 Hugo 模板链里更靠前）
      4. 同时修改 themes/.../page/search.json 也无效（缓存或路径问题）
      —— 最终方案：直接在 layouts/_default/search.json 覆写 */ -}}
-{{- $pages := where .Site.RegularPages "Section" "in" (slice "posts" "laws") -}}
+{{- $pages := where .Site.RegularPages "Section" "in" (slice "posts" "daily" "hotspot-daily" "laws") -}}
 {{- $result := slice -}}
 
 {{- range $pages -}}

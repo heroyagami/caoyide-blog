@@ -36,8 +36,8 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
         lastUpdated = "2006-01-02"
 
     [params.colorScheme]
-        toggle = true
-        default = "auto"
+        toggle = false
+        default = "dark"
 
     # ---- 左侧边栏 ----
     [params.sidebar]

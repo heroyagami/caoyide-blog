@@ -1,0 +1,36 @@
+<aside class="journal-sidebar" aria-label="作者与资源">
+  <section class="journal-author" aria-labelledby="journal-author-name">
+    <div class="journal-author-heading">
+      <a href="/cases/" tabindex="-1" aria-hidden="true"><img src="{{ .Site.Params.sidebar.avatar | relURL }}" width="84" height="84" alt="" fetchpriority="high"></a>
+      <div><h2 id="journal-author-name"><a href="/cases/">曹义德</a></h2><p>律师</p></div>
+    </div>
+    <p class="journal-credentials">前反贪检察官 · 华中科技大学法学硕士</p>
+    <p class="journal-author-bio">关注刑事辩护、民商事诉讼<br>与日常法律问题。</p>
+    <div class="journal-author-location"><span>武汉 · 黄石</span><a href="/cases/#contact">联系我 <span aria-hidden="true">↗</span></a></div>
+  </section>
+  <section class="journal-sidebar-section" aria-labelledby="journal-tools-title">
+    <h2 id="journal-tools-title">常用工具</h2>
+    <ul class="journal-tools">
+      <li><a href="https://flk.npc.gov.cn/index" target="_blank" rel="noopener noreferrer"><span>{{ partial "helper/icon" "file-description" }}</span><div>法律法规库<small>现行法律、行政法规与司法解释</small></div><b aria-hidden="true">›</b></a></li>
+      <li><a href="https://wenshu.court.gov.cn/" target="_blank" rel="noopener noreferrer"><span>{{ partial "helper/icon" "file-description" }}</span><div>裁判文书网<small>查询公开裁判文书</small></div><b aria-hidden="true">›</b></a></li>
+      <li><a href="https://credit.acla.org.cn/" target="_blank" rel="noopener noreferrer"><span>{{ partial "helper/icon" "shield-check" }}</span><div>律师证书查询<small>核验律师执业信息</small></div><b aria-hidden="true">›</b></a></li>
+    </ul>
+  </section>
+  {{- $pages := partial "helper/pages.html" .Site.Home -}}
+  <section class="journal-sidebar-section" aria-labelledby="journal-archives-title">
+    <h2 id="journal-archives-title"><a href="/archives/">文章归档</a></h2>
+    <ul class="journal-archive-list">
+      {{ range first 4 ($pages.GroupByDate "2006") }}
+      <li><a href="/archives/#{{ .Key }}"><span>{{ .Key }}<small>{{ len .Pages }} 篇</small></span><span aria-hidden="true">›</span></a></li>
+      {{ end }}
+    </ul>
+  </section>
+  <section class="journal-sidebar-section" aria-labelledby="journal-topics-title">
+    <h2 id="journal-topics-title">阅读主题</h2>
+    <ul class="journal-topic-list">
+      {{ range first 6 .Site.Taxonomies.tags.ByCount }}
+      <li><a href="{{ .Page.RelPermalink }}"><span>{{ .Page.Title }}</span><small>{{ .Count }}</small></a></li>
+      {{ end }}
+    </ul>
+  </section>
+</aside>
