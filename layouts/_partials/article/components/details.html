@@ -4,10 +4,7 @@
     {{ if $Page.Params.categories }}
     <header class="article-category">
         {{ range ($Page.GetTerms "categories") }}
-            {{ $color := partial "helper/color-from-str" .LinkTitle }}
-            {{ $BackgroundColor := default $color.BackgroundColor .Params.style.background }}
-            {{ $TextColor := default $color.TextColor .Params.style.color }}
-            <a href="{{ .RelPermalink }}" style="background-color: {{ $BackgroundColor | safeCSS }}; color: {{ $TextColor | safeCSS }};">
+            <a href="{{ .RelPermalink }}">
                 {{ .LinkTitle }}
             </a>
         {{ end }}
@@ -28,9 +25,9 @@
         {{ end }}
 
         {{ with $Page.Params.description }}
-        <h2 class="article-subtitle">
+        <p class="article-subtitle">
             {{ . }}
-        </h2>
+        </p>
         {{ end }}
     </div>
 

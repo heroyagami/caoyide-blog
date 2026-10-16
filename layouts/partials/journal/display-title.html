@@ -1,0 +1,8 @@
+{{- /* 列表中日期已独立展示，只去除日报的重复前缀；正文、SEO 标题均保留原文。 */ -}}
+{{- $title := .Title -}}
+{{- if in (slice "daily" "hotspot-daily") .Section -}}
+  {{- $title = replaceRE `^曹义德律师(?:热点深度日报|法律日报|时评日报)[｜|：: ]*` "" $title -}}
+  {{- $withoutDate := replaceRE `^(?:20\d{2}年\d{1,2}月\d{1,2}日|20\d{2}-\d{1,2}-\d{1,2}|\d{1,2}月\d{1,2}日)[｜|：: ]*` "" $title -}}
+  {{- if ne $withoutDate "" -}}{{- $title = $withoutDate -}}{{- end -}}
+{{- end -}}
+{{- return $title -}}

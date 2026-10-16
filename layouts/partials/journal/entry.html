@@ -2,7 +2,7 @@
 {{- if eq .Section "hotspot-daily" -}}{{- $category = "热点深度" -}}
 {{- else if eq .Section "daily" -}}{{- $category = "法律日报" -}}
 {{- else -}}{{- with .Params.categories -}}{{- $category = index . 0 -}}{{- end -}}{{- end -}}
-{{- $title := replaceRE `^曹义德律师(?:热点深度日报|法律日报|时评日报)[｜|：: ]*` "" .Title -}}
+{{- $title := partial "journal/display-title.html" . -}}
 {{- $summary := .Description | default (.Summary | plainify) | plainify | truncate 150 -}}
 <article class="journal-entry">
   <p class="journal-entry-category">{{ $category }}</p>

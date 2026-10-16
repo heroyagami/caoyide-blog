@@ -930,11 +930,6 @@ a {
     display: flex !important;
 }
 
-/* ---- 手机端：右侧边栏（TOC目录）始终显示 ---- */
-.right-sidebar {
-    display: flex !important;
-}
-
 /* ---- 防止文章导航与右侧栏重叠 ---- */
 .main-container .main {
     max-width: 100%;
