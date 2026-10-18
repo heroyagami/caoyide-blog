@@ -6,13 +6,17 @@
     {{- end -}}
 {{ end }}
 {{ define "main" }}
+<header class="journal-page-heading">
+    <h1>站内搜索</h1>
+    <p>查找文章、案例解读与法律条文。</p>
+</header>
 <form action="{{ .RelPermalink }}" class="search-form"{{ with .OutputFormats.Get "json" -}} data-json="{{ .RelPermalink }}"{{- end }}>
     <p>
-        <label>{{ T "search.title" }}</label>
-        <input name="keyword" placeholder="{{ T `search.placeholder` }}" />
+        <label class="journal-sr-only" for="search-keyword">{{ T "search.title" }}</label>
+        <input id="search-keyword" type="search" name="keyword" placeholder="输入关键词，如劳动争议、合同…" />
     </p>
 
-    <button title="{{ T `search.title` }}">
+    <button title="{{ T `search.title` }}" aria-label="搜索">
         {{ partial "helper/icon" "search" }}
     </button>
 </form>

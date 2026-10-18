@@ -8,6 +8,10 @@
         <div class="archives-header-top">
             <a href="{{ .Site.Home.RelPermalink }}" class="archives-back-link">&larr; 返回首页</a>
         </div>
+        <div class="journal-page-heading">
+            <h1>文章归档</h1>
+            <p>按年月浏览实务文章与法律知识。</p>
+        </div>
         {{ $totalCount := len (where .Site.RegularPages "Type" "in" (slice "posts" "cases" "法律知识库")) }}
 
         <div class="archives-total-count">
@@ -45,5 +49,5 @@
 {{ end }}
 
 {{ define "right-sidebar" }}
-    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+    {{ partial "journal/sidebar.html" . }}
 {{ end }}

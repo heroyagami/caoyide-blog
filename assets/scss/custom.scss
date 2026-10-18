@@ -101,14 +101,6 @@ html {
     margin: 6px 0 0;
 }
 
-/* 归档页 H2/H3（年份/月份标题）*/
-.template-archives h2,
-.template-archives h3 {
-    font-size: 1.4rem !important;
-    font-weight: 600 !important;
-    color: var(--card-text-color-main);
-}
-
 /* 链接层级统一：11px 微小 / 13px 标签 / 15px 正文 / 17px 强调 */
 a {
     transition: color 0.18s ease-out, opacity 0.18s ease-out;

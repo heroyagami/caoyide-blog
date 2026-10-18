@@ -147,6 +147,44 @@ body.journal-site .lawyer-faq-card p { font-size: 13px; line-height: 1.9; }
 .journal-contact img { display: block; width: 210px; max-width: 100%; height: auto; margin-top: 20px; }
 body.journal-site .back-to-top, body.journal-site .reading-progress { background: var(--journal-panel); color: var(--journal-gold); border-color: var(--journal-rule); }
 body.journal-site .reading-progress { background: var(--journal-gold); }
+/* 栏目、归档与搜索延续首页的文字层级，避免旧卡片样式割裂阅读。 */
+body.journal-site .breadcrumb, .journal-site .archives-header-top { margin: 0 0 24px; font-size: 13px; }
+body.journal-site .section-card { padding: 0 0 24px; margin: 0; border-bottom: 1px solid var(--journal-rule); }
+body.journal-site .section-card .section-details { padding: 0; gap: 10px; }
+body.journal-site .section-term { margin: 0; font-size: 32px; font-weight: 500; line-height: 1.5; letter-spacing: 2px; }
+body.journal-site .section-count { margin: 0; color: var(--journal-muted); font-size: 13px; font-weight: 400; }
+body.journal-site .section-description { max-width: 46em; margin: 0; color: var(--journal-copy); font-size: 15px; line-height: 1.9; }
+body.journal-site .article-list--compact .article-title { font-weight: 500; line-break: strict; text-wrap: pretty; }
+body.journal-site .article-list--compact .article-details { min-width: 0; }
+body.journal-site .article-list--compact .article-meta { color: var(--journal-muted); font-size: 13px; }
+body.journal-site .article-list--compact article > a:hover .article-title { color: var(--journal-gold); }
+.journal-site .journal-feed-heading nav a { display: inline-flex; align-items: center; min-height: 32px; }
+.journal-site .journal-tools a:hover, .journal-site .journal-topic-list a:hover, .journal-site .journal-archive-list a:hover { color: var(--journal-gold); }
+.journal-site .journal-search { min-height: 44px; }
+.journal-site .journal-search button { min-width: 44px; }
+body.journal-site.template-archives .archives-total-count { margin: 18px 0 28px; padding: 0; border: 0; border-radius: 0; background: transparent; }
+body.journal-site.template-archives .archives-total-number { font-size: 20px; font-weight: 400; font-variant-numeric: tabular-nums; }
+body.journal-site.template-archives .archives-date { margin: 32px 0 22px; padding: 0; border: 0; font: 500 27px/1.5 var(--journal-serif); }
+body.journal-site.template-archives .archives-year-count { border: 0; padding: 0; background: transparent; font: 400 13px/1.6 var(--base-font-family); }
+body.journal-site.template-archives .archives-month { padding: 0; margin: 0 0 30px; border: 0; border-radius: 0; background: transparent; }
+body.journal-site.template-archives .archives-month-title { margin: 0; padding: 0 0 12px; font-size: 15px; font-weight: 400; color: var(--journal-gold); }
+body.journal-site.template-archives .article-list--compact article > a { padding: 18px 0; }
+body.journal-site.template-archives .article-list--compact .article-title { font-size: 19px; }
+body.journal-site.template-search .journal-search { display: none; }
+body.journal-site.template-search .main-container { max-width: 960px; }
+body.journal-site.template-search .search-form { margin: 26px 0 28px; --button-size: 56px; }
+body.journal-site.template-search .search-form input { height: 56px; padding: 12px 60px 12px 18px; border: 1px solid var(--journal-rule); border-radius: 2px; background: var(--journal-panel); box-shadow: none; font-size: 16px; }
+body.journal-site.template-search .search-form input:focus-visible { outline: 2px solid var(--journal-gold); outline-offset: 3px; }
+body.journal-site.template-search .search-form button:focus-visible { outline: 2px solid var(--journal-gold); outline-offset: 3px; }
+body.journal-site.template-search .search-result--title { margin: 0; padding-bottom: 18px; border-bottom: 1px solid var(--journal-rule); font-size: 13px; font-weight: 400; color: var(--journal-muted); }
+body.journal-site.template-search .search-result-item { margin: 0; }
+body.journal-site.template-search .article-preview { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-top: 12px; color: var(--journal-copy); font-size: 15px; line-height: 1.85; }
+body.journal-site.template-search mark { padding: 0 2px; background: #d4b48a; color: #0d1b25; border-radius: 2px; }
+body.journal-site .lawyer-resume-page, body.journal-site .lawyer-profile { max-width: 820px; margin-inline: auto; }
+body.journal-site .lawyer-resume-page .article-details { padding: 0 0 28px; gap: 14px; border-bottom: 1px solid var(--journal-rule); }
+body.journal-site .lawyer-resume-page .article-title { font-size: 30px; font-weight: 500; line-height: 1.6; }
+body.journal-site .lawyer-resume-page .article-subtitle { margin: 0; color: var(--journal-copy); font-size: 16px; line-height: 1.85; }
+body.journal-site .lawyer-resume-page .article-content { max-width: none; padding-inline: 0; }
 @media (min-width: 1600px) {
   .journal-masthead-inner, body.journal-site .main-container { width: min(100% - 160px, 1480px); }
   body.journal-site .main-container:has(> .journal-sidebar), body.journal-site .main-container:has(> .right-sidebar) { grid-template-columns: minmax(0, 1fr) 340px; column-gap: 60px; }
@@ -197,15 +235,20 @@ body.journal-site .reading-progress { background: var(--journal-gold); }
   .journal-entry-category { font-size: 12px; margin-bottom: 7px; }
   .journal-entry-summary { font-size: 15px; line-height: 1.85; margin-bottom: 12px; }
   .journal-entry-meta { font-size: 12px; }
-  .journal-feed-heading { gap: 12px; margin-top: 32px; }
+  .journal-feed-heading { flex-wrap: wrap; gap: 12px; margin-top: 32px; }
   .journal-feed-heading h2 { font-size: 21px; white-space: nowrap; }
-  .journal-feed-heading nav { gap: 13px; font-size: 11px; }
+  .journal-feed-heading nav { font-size: 13px; gap: 20px; }
   .journal-sidebar { grid-template-columns: 1fr; gap: 0; }
   .journal-sidebar-section { padding-block: 23px; }
   body.journal-site .main-article .article-header .article-details { padding: 12px 0 20px; }
   body.journal-site .article-content { padding: 0; font-size: 16px; line-height: 1.95; }
   body.journal-site .article-list--compact .article-title { font-size: 20px; }
   body.journal-site .site-footer { margin-top: 24px; }
+  body.journal-site .section-term { font-size: 28px; }
+  body.journal-site .section-description { font-size: 14px; }
+  body.journal-site .lawyer-resume-page .article-title { font-size: 25px; }
+  body.journal-site.template-archives .article-list--compact .article-title { font-size: 18px; }
+  body.journal-site .main-article .article-toc summary { min-height: 44px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
