@@ -1,12 +1,9 @@
 {{ define "body-class" }}template-hotspot-archive{{ end }}
 
 {{ define "main" }}
-  {{- $issues := .RegularPagesRecursive.ByDate.Reverse -}}
-  <header class="section-card" aria-label="热点深度栏目说明">
+  <header class="section-card">
     <div class="section-details">
       <h1 class="section-term">热点深度</h1>
-      <p class="section-description">曹义德律师热点深度日报 · 共 {{ len $issues }} 期</p>
-      {{ with .Description }}<p class="section-description">{{ . }}</p>{{ end }}
     </div>
   </header>
   {{ partial "journal/feed-nav.html" . }}

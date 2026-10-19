@@ -1,15 +1,6 @@
-{{- if in (slice "posts" "daily" "hotspot-daily") .Section -}}
-{{- $labels := dict "posts" "实务文章" "daily" "法律日报" "hotspot-daily" "热点深度" -}}
-<aside class="journal-reading-bar" aria-label="阅读工具">
-  <a class="journal-reading-back" href="/{{ .Section }}/"><span aria-hidden="true">←</span> {{ index $labels .Section }}</a>
-  <div class="journal-reading-actions">
-    <button type="button" data-reader-font aria-pressed="false" aria-label="使用大字阅读" hidden>大字</button>
-    {{ if .Scratch.Get "TOCEnabled" }}
-    <details class="journal-reader-toc">
-      <summary>目录 <span aria-hidden="true">⌄</span></summary>
-      <nav aria-label="文章目录">{{ partial "article/components/toc" . | safeHTML }}</nav>
-    </details>
-    {{ end }}
-  </div>
-</aside>
+{{- if and (in (slice "posts" "daily" "hotspot-daily") .Section) (.Scratch.Get "TOCEnabled") -}}
+<details class="journal-article-toc">
+  <summary>文章目录</summary>
+  <nav aria-label="文章目录">{{ partial "article/components/toc" . | safeHTML }}</nav>
+</details>
 {{- end -}}

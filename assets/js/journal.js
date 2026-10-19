@@ -1,29 +1,11 @@
-/* Small reading controls. Articles and navigation remain usable without JavaScript. */
+/* In-flow article contents and search highlights; native navigation works without JavaScript. */
 (() => {
   const content = document.querySelector('.main-article .article-content');
-  const bar = document.querySelector('.journal-reading-bar');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const scrollTo = node => node.scrollIntoView({block: 'center', behavior: reduceMotion.matches ? 'auto' : 'smooth'});
 
-  if (bar && content) {
-    const font = bar.querySelector('[data-reader-font]');
-    const setSize = large => {
-      document.documentElement.dataset.readingSize = large ? 'large' : 'normal';
-      font.setAttribute('aria-pressed', String(large));
-      font.setAttribute('aria-label', large ? '恢复标准正文字号' : '使用大字阅读');
-      font.textContent = large ? '标准字号' : '大字';
-    };
-    let large = false;
-    try { large = localStorage.getItem('journal-reading-size') === 'large'; } catch {}
-    setSize(large);
-    font.hidden = false;
-    font.addEventListener('click', () => {
-      large = !large;
-      setSize(large);
-      try { localStorage.setItem('journal-reading-size', large ? 'large' : 'normal'); } catch {}
-    });
-
-    const toc = bar.querySelector('.journal-reader-toc');
+  if (content) {
+    const toc = document.querySelector('.journal-article-toc');
     if (toc) {
       const summary = toc.querySelector('summary');
       const close = focus => { toc.open = false; if (focus) summary.focus(); };
@@ -40,7 +22,6 @@
         target.scrollIntoView({block: 'start', behavior: reduceMotion.matches ? 'auto' : 'smooth'});
       });
       document.addEventListener('keydown', event => { if (event.key === 'Escape' && toc.open) close(true); });
-      document.addEventListener('click', event => { if (toc.open && !toc.contains(event.target)) close(false); });
     }
 
     const links = [...document.querySelectorAll('.widget--toc a[href^="#"]')];

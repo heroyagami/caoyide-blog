@@ -1,0 +1,11 @@
+{{- $labels := dict "posts" "实务文章" "daily" "法律日报" "hotspot-daily" "热点深度" -}}
+<header class="journal-article-header">
+  {{ with index $labels .Section }}<a class="journal-article-back" href="/{{ $.Section }}/"><span aria-hidden="true">←</span> {{ . }}</a>{{ end }}
+  <h1>{{ partial "journal/display-title.html" . }}</h1>
+  {{ if not .Date.IsZero }}
+  <div class="journal-article-meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006年1月2日" }}</time>
+    {{ if gt .ReadingTime 0 }}<span>阅读约 {{ .ReadingTime }} 分钟</span>{{ end }}
+  </div>
+  {{ end }}
+</header>

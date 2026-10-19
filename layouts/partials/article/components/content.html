@@ -2,10 +2,14 @@
 {{- $headings := findRE `(?s)^\s*<h1(?:\s[^>]*)?>.*?</h1>\s*` $content 1 -}}
 {{- with $headings -}}
   {{- $heading := index . 0 -}}
-  {{- if eq (strings.TrimSpace ($heading | plainify | htmlUnescape)) (strings.TrimSpace ($.Title | htmlUnescape)) -}}
+  {{- $headingText := strings.TrimSpace ($heading | plainify | htmlUnescape) -}}
+  {{- $isJournalLabel := and (in (slice "daily" "hotspot-daily") $.Section) (or (eq $headingText "今日热点深度文章池") (gt (len (findRE `^曹义德律师(?:热点深度日报|法律日报|时评日报)` $headingText)) 0)) -}}
+  {{- if or (eq $headingText (strings.TrimSpace ($.Title | htmlUnescape))) $isJournalLabel -}}
     {{- $content = strings.TrimPrefix $heading $content -}}
   {{- end -}}
 {{- end -}}
+{{- /* 页面标题是唯一一级标题；正文中的独立一级标题保留文字与锚点，改为章节标题。 */ -}}
+{{- $content = $content | replaceRE `<h1(\s[^>]*)?>` `<h2${1}>` | replaceRE `</h1>` `</h2>` -}}
 <section class="article-content">
   {{- $wrappedTable := printf "<div class=\"table-wrapper\">${1}</div>" -}}
   {{ $content | replaceRE "(<table>(?:.|\n)+?</table>)" $wrappedTable | safeHTML }}
