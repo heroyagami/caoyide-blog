@@ -1,379 +1,233 @@
-interface pageData {
-    title: string,
-    date: string,
-    permalink: string,
-    content: string,
-    image?: string,
-    preview: string,
-    matchCount: number,
-    categories?: string[],
-    tags?: string[]
+interface PageData {
+    title: string; displayTitle?: string; date: string; permalink: string;
+    content: string; section?: string; tags?: string[];
 }
+interface Result { page: PageData; score: number; }
+const labels: Record<string, string> = {posts: '实务文章', daily: '法律日报', 'hotspot-daily': '热点深度'};
 
-interface match {
-    start: number,
-    end: number
+function element<K extends keyof HTMLElementTagNameMap>(tag: K, className = '', text = ''): HTMLElementTagNameMap[K] {
+    const node = document.createElement(tag);
+    node.className = className;
+    node.textContent = text;
+    return node;
 }
-
-const tagsToReplace: Record<string, string> = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    '…': '&hellip;'
-};
-
-function replaceTag(tag: string): string {
-    return tagsToReplace[tag] || tag;
-}
-
-function replaceHTMLEnt(str: string): string {
-    return str.replace(/[&<>"]/g, replaceTag);
-}
-
-function escapeRegExp(string: string): string {
-    return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
-}
-
-function formatDate(dateStr: string): string {
-    if (!dateStr) return '';
-    const d = new Date(dateStr);
-    return d.toISOString().slice(0, 10);
+function highlighted(text: string, words: string[]): DocumentFragment {
+    const fragment = document.createDocumentFragment();
+    if (!words.length) { fragment.append(text); return fragment; }
+    const escaped = words.map(word => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const regex = new RegExp(escaped.join('|'), 'gi');
+    let start = 0;
+    for (const match of text.matchAll(regex)) {
+        fragment.append(text.slice(start, match.index));
+        fragment.append(element('mark', '', match[0]));
+        start = match.index! + match[0].length;
+    }
+    fragment.append(text.slice(start));
+    return fragment;
 }
 
 class Search {
-    private data: pageData[];
-    private form: HTMLFormElement;
-    private input: HTMLInputElement;
-    private list: HTMLDivElement;
-    private resultTitle: HTMLHeadingElement;
-    private resultTitleTemplate: string;
-    private container: HTMLDivElement;
-    private debounceTimer: number | null = null;
-    private emptyState: HTMLDivElement | null = null;
-    private searchQuery: string = '';
+    private dataPromise: Promise<PageData[]> | null = null;
+    private sequence = 0;
+    private timer = 0;
+    private composing = false;
+    private results: Result[] = [];
+    private shown = 0;
+    private words: string[] = [];
+    private scope = 'all';
+    private sort = 'relevance';
+    private readonly batch = 20;
+    private readonly input: HTMLInputElement;
+    private readonly list = document.querySelector<HTMLElement>('.search-result--list')!;
+    private readonly status = document.querySelector<HTMLElement>('.journal-search-status')!;
+    private readonly controls = document.querySelector<HTMLElement>('.journal-search-controls')!;
+    private readonly sortSelect = document.querySelector<HTMLSelectElement>('#search-sort')!;
+    private readonly more = document.querySelector<HTMLButtonElement>('.journal-load-more')!;
 
-    constructor({ form, input, list, resultTitle, resultTitleTemplate }: {
-        form: HTMLFormElement,
-        input: HTMLInputElement,
-        list: HTMLDivElement,
-        resultTitle: HTMLHeadingElement,
-        resultTitleTemplate: string
-    }) {
-        this.form = form;
-        this.input = input;
-        this.list = list;
-        this.resultTitle = resultTitle;
-        this.resultTitleTemplate = resultTitleTemplate;
-        this.container = list.parentElement as HTMLDivElement;
-
-        if (this.input.value.trim() !== '') {
-            this.doSearch(this.input.value.split(' '));
-        }
-        else {
-            this.handleQueryString();
-        }
-
-        this.bindQueryStringChange();
-        this.bindSearchForm();
+    constructor(private form: HTMLFormElement) {
+        this.input = form.querySelector('input[name=keyword]')!;
+        this.form.addEventListener('submit', event => {
+            event.preventDefault();
+            if (this.composing) return;
+            this.updateURL(false);
+            void this.run();
+        });
+        this.input.addEventListener('compositionstart', () => { this.composing = true; this.cancel(); });
+        this.input.addEventListener('compositionend', () => { this.composing = false; this.schedule(); });
+        this.input.addEventListener('input', () => { if (!this.composing) this.schedule(); });
+        this.controls.querySelectorAll<HTMLButtonElement>('[data-scope]').forEach(button => {
+            button.addEventListener('click', () => {
+                this.scope = button.dataset.scope!;
+                this.updateURL(false);
+                void this.run();
+            });
+        });
+        this.sortSelect.addEventListener('change', () => {
+            this.sort = this.sortSelect.value;
+            this.updateURL(false);
+            void this.run();
+        });
+        this.more.addEventListener('click', () => this.appendBatch(true));
+        window.addEventListener('popstate', () => this.readURL());
+        this.readURL();
     }
-
-    private static processMatches(str: string, matches: match[], ellipsis: boolean = true, charLimit = 140, offset = 30): string {
-        matches.sort((a, b) => a.start - b.start);
-
-        let i = 0,
-            lastIndex = 0,
-            charCount = 0;
-
-        const resultArray: string[] = [];
-
-        while (i < matches.length) {
-            const item = matches[i];
-
-            if (ellipsis && item.start - offset > lastIndex) {
-                resultArray.push(`${replaceHTMLEnt(str.substring(lastIndex, lastIndex + offset))} [...] `);
-                resultArray.push(`${replaceHTMLEnt(str.substring(item.start - offset, item.start))}`);
-                charCount += offset * 2;
-            }
-            else {
-                resultArray.push(replaceHTMLEnt(str.substring(lastIndex, item.start)));
-                charCount += item.start - lastIndex;
-            }
-
-            let j = i + 1,
-                end = item.end;
-
-            while (j < matches.length && matches[j].start <= end) {
-                end = Math.max(matches[j].end, end);
-                ++j;
-            }
-
-            resultArray.push(`<mark>${replaceHTMLEnt(str.substring(item.start, end))}</mark>`);
-            charCount += end - item.start;
-
-            i = j;
-            lastIndex = end;
-
-            if (ellipsis && charCount > charLimit) break;
-        }
-
-        if (lastIndex < str.length) {
-            let end = str.length;
-            if (ellipsis) end = Math.min(end, lastIndex + offset);
-
-            resultArray.push(`${replaceHTMLEnt(str.substring(lastIndex, end))}`);
-
-            if (ellipsis && end != str.length) {
-                resultArray.push(` [...]`);
-            }
-        }
-
-        return resultArray.join('');
+    private cancel() {
+        window.clearTimeout(this.timer);
+        this.sequence++;
+        this.list.removeAttribute('aria-busy');
     }
-
-    private async searchKeywords(keywords: string[]) {
-        const rawData = await this.getData();
-        const results: pageData[] = [];
-
-        const cleanKeywords = keywords.filter(k => k.trim() !== '');
-        if (cleanKeywords.length === 0) return results;
-
-        const regex = new RegExp(cleanKeywords.map(k => escapeRegExp(k)).join('|'), 'gi');
-
-        for (const item of rawData) {
-            const titleMatches: match[] = [],
-                contentMatches: match[] = [];
-
-            let result: pageData = {
-                ...item,
-                preview: '',
-                matchCount: 0
-            }
-
-            const contentMatchAll = item.content.matchAll(regex);
-            for (const match of Array.from(contentMatchAll)) {
-                contentMatches.push({
-                    start: match.index!,
-                    end: match.index! + match[0].length
-                });
-            }
-
-            const titleMatchAll = item.title.matchAll(regex);
-            for (const match of Array.from(titleMatchAll)) {
-                titleMatches.push({
-                    start: match.index!,
-                    end: match.index! + match[0].length
-                });
-            }
-
-            if (titleMatches.length > 0) result.title = Search.processMatches(result.title, titleMatches, false);
-            if (contentMatches.length > 0) {
-                result.preview = Search.processMatches(result.content, contentMatches);
-            }
-            else {
-                result.preview = replaceHTMLEnt(result.content.substring(0, 140));
-            }
-
-            result.matchCount = titleMatches.length + contentMatches.length;
-            if (result.matchCount > 0) results.push(result);
-        }
-
-        return results.sort((a, b) => b.matchCount - a.matchCount);
+    private schedule() {
+        this.cancel();
+        this.updateURL(true);
+        if (!this.input.value.trim()) { void this.run(); return; }
+        this.timer = window.setTimeout(() => void this.run(), 250);
     }
-
-    private async doSearch(keywords: string[]) {
-        const startTime = performance.now();
-
-        const results = await this.searchKeywords(keywords);
-        this.clear();
-        this.searchQuery = keywords.filter(k => k.trim()).join(' ');
-
-        if (results.length === 0) {
-            this.showEmptyState(keywords.join(' '));
+    private readURL() {
+        const params = new URL(location.href).searchParams;
+        this.input.value = (params.get('keyword') || '').slice(0, 120);
+        const scope = params.get('type') || 'all';
+        this.scope = labels[scope] ? scope : 'all';
+        this.sort = params.get('sort') === 'date' ? 'date' : 'relevance';
+        void this.run();
+    }
+    private updateURL(replace: boolean) {
+        const url = new URL(location.href);
+        const values: Record<string, string> = {
+            keyword: this.input.value.trim().slice(0, 120),
+            type: this.scope === 'all' ? '' : this.scope,
+            sort: this.sort === 'date' ? 'date' : ''
+        };
+        Object.entries(values).forEach(([name, value]) => value ? url.searchParams.set(name, value) : url.searchParams.delete(name));
+        if (url.href !== location.href) history[replace ? 'replaceState' : 'pushState'](null, '', url);
+    }
+    private async getData(): Promise<PageData[]> {
+        if (!this.dataPromise) {
+            this.dataPromise = (async () => {
+                const controller = new AbortController();
+                const timeout = window.setTimeout(() => controller.abort(), 12000);
+                try {
+                    const response = await fetch(this.form.dataset.json!, {signal: controller.signal});
+                    if (!response.ok) throw new Error('Search index unavailable');
+                    const data: unknown = await response.json();
+                    if (!Array.isArray(data)) throw new Error('Invalid search index');
+                    return data.filter((item): item is PageData => typeof item.title === 'string' && typeof item.content === 'string' && typeof item.permalink === 'string' && item.permalink.startsWith('/') && !item.permalink.startsWith('//'));
+                } finally { window.clearTimeout(timeout); }
+            })().catch(error => { this.dataPromise = null; throw error; });
+        }
+        return this.dataPromise;
+    }
+    private async run() {
+        this.cancel();
+        const id = this.sequence;
+        this.words = [...new Set(this.input.value.trim().split(/\s+/).filter(Boolean))].slice(0, 8);
+        this.controls.hidden = !this.words.length;
+        this.sortSelect.value = this.sort;
+        this.controls.querySelectorAll<HTMLElement>('[data-scope]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.scope === this.scope)));
+        this.list.replaceChildren();
+        this.more.hidden = true;
+        this.results = [];
+        this.shown = 0;
+        if (!this.words.length) {
+            this.status.textContent = '输入关键词，或从这些常见问题开始。';
+            this.suggestions();
             return;
         }
-
-        for (const item of results) {
-            this.list.append(Search.render(item, this.searchQuery));
-        }
-
-        const endTime = performance.now();
-
-        this.resultTitle.innerText = this.generateResultTitle(results.length, ((endTime - startTime) / 1000).toPrecision(1));
-
-        this.container?.classList.remove('hidden');
-    }
-
-    private showEmptyState(query: string) {
-        this.container?.classList.remove('hidden');
-        this.resultTitle.innerText = `未找到与「${query}」相关的文章`;
-
-        const emptyDiv = document.createElement('div');
-        emptyDiv.className = 'search-empty';
-        const suggestions = ['工伤', '离婚', '合同', '侵权', '刑事', '知识产权', '劳动纠纷', '民间借贷'];
-        const randomSuggestions = suggestions.sort(() => Math.random() - 0.5).slice(0, 4);
-        emptyDiv.innerHTML = `
-            <p>试试这些热门搜索：</p>
-            <div class="search-suggestions">
-                ${randomSuggestions.map(s => `<a href="?keyword=${encodeURIComponent(s)}" class="search-suggestion-tag">${s}</a>`).join('')}
-            </div>
-        `;
-        this.list.appendChild(emptyDiv);
-        this.emptyState = emptyDiv;
-    }
-
-    private generateResultTitle(resultLen: number, time: string) {
-        return this.resultTitleTemplate.replace("#PAGES_COUNT", resultLen.toString()).replace("#TIME_SECONDS", time);
-    }
-
-    public async getData() {
-        if (!this.data) {
-            const jsonURL = this.form.dataset.json as string;
-            this.data = await fetch(jsonURL).then(res => res.json());
-            const parser = new DOMParser();
-
-            for (const item of this.data) {
-                item.content = parser.parseFromString(item.content, 'text/html').body.innerText || '';
+        this.status.textContent = '正在查找文章…';
+        this.list.setAttribute('aria-busy', 'true');
+        const words = this.words.map(word => word.toLocaleLowerCase());
+        const scope = this.scope;
+        const sort = this.sort;
+        try {
+            const data = await this.getData();
+            if (id !== this.sequence) return;
+            for (const page of data) {
+                if (scope !== 'all' && page.section !== scope) continue;
+                const title = (page.displayTitle || page.title).toLocaleLowerCase();
+                const content = page.content.toLocaleLowerCase();
+                const all = title + ' ' + page.title.toLocaleLowerCase() + ' ' + content + ' ' + (page.tags || []).join(' ').toLocaleLowerCase();
+                if (!words.every(word => all.includes(word))) continue;
+                let score = title.includes(words.join(' ')) ? 100 : 0;
+                words.forEach(word => {
+                    if (title.includes(word)) score += 50;
+                    score += Math.min(8, content.split(word).length - 1);
+                });
+                this.results.push({page, score});
             }
-        }
-
-        return this.data;
-    }
-
-    private bindSearchForm() {
-        let lastSearch = '';
-
-        const eventHandler = (e: Event) => {
-            e.preventDefault();
-            const keywords = this.input.value.trim();
-
-            Search.updateQueryString(keywords, true);
-
-            if (keywords === '') {
-                lastSearch = '';
-                return this.clear();
+            this.results.sort((a, b) => (sort === 'date' ? 0 : b.score - a.score) || (b.page.date || '').localeCompare(a.page.date || ''));
+            this.list.removeAttribute('aria-busy');
+            if (!this.results.length) {
+                this.status.textContent = `没有找到${scope === 'all' ? '' : '这类内容中'}与「${this.input.value.trim()}」相关的文章。试试更短的关键词。`;
+                if (scope !== 'all') {
+                    const reset = element('button', 'journal-text-button', '在全部类型中查找');
+                    reset.type = 'button';
+                    reset.addEventListener('click', () => { this.scope = 'all'; this.updateURL(false); void this.run(); });
+                    this.list.append(reset);
+                }
+                this.suggestions();
+                return;
             }
-
-            if (lastSearch === keywords) return;
-            lastSearch = keywords;
-
-            // Debounce 300ms
-            if (this.debounceTimer) clearTimeout(this.debounceTimer);
-            this.debounceTimer = window.setTimeout(() => {
-                this.doSearch(keywords.split(' '));
-            }, 300);
+            this.appendBatch();
+        } catch {
+            if (id !== this.sequence) return;
+            this.list.removeAttribute('aria-busy');
+            this.status.textContent = '暂时无法加载搜索内容，你输入的关键词已保留。';
+            const retry = element('button', 'journal-text-button', '重新加载');
+            retry.type = 'button';
+            retry.addEventListener('click', () => void this.run());
+            this.list.append(retry);
         }
-
-        this.input.addEventListener('input', eventHandler);
-        this.input.addEventListener('compositionend', (e: Event) => {
-            // IME composition end — trigger immediately (no debounce needed, input already debounced)
-            const handler = eventHandler as (e: Event) => void;
-            handler(e);
+    }
+    private suggestions() {
+        const nav = element('nav', 'search-suggestions');
+        nav.setAttribute('aria-label', '常见搜索');
+        ['劳动争议', '合同', '婚姻家庭', '刑事辩护'].forEach(word => {
+            const link = element('a', 'search-suggestion-tag', word);
+            link.href = '?keyword=' + encodeURIComponent(word);
+            nav.append(link);
         });
+        this.list.append(nav);
     }
-
-    private clear() {
-        this.list.innerHTML = '';
-        this.resultTitle.innerText = '';
-        this.container.classList.add('hidden');
-        this.emptyState = null;
-        if (this.debounceTimer) {
-            clearTimeout(this.debounceTimer);
-            this.debounceTimer = null;
-        }
+    private appendBatch(focus = false) {
+        const next = this.results.slice(this.shown, this.shown + this.batch);
+        const fragment = document.createDocumentFragment();
+        next.forEach(({page}) => fragment.append(this.render(page)));
+        const first = fragment.querySelector<HTMLAnchorElement>('.article-title a');
+        this.list.append(fragment);
+        this.shown += next.length;
+        this.status.textContent = `找到 ${this.results.length} 篇文章${this.results.length > this.batch ? `，已显示 ${this.shown} 篇` : ''}。`;
+        this.more.hidden = this.shown >= this.results.length;
+        this.more.textContent = `再显示 ${Math.min(this.batch, this.results.length - this.shown)} 篇`;
+        if (focus) first?.focus({preventScroll: true});
     }
-
-    private bindQueryStringChange() {
-        window.addEventListener('popstate', () => {
-            this.handleQueryString()
-        })
-    }
-
-    private handleQueryString() {
-        const pageURL = new URL(window.location.toString());
-        const keywords = pageURL.searchParams.get('keyword') || '';
-        this.input.value = keywords;
-
-        if (keywords) {
-            this.doSearch(keywords.split(' '));
-        }
-        else {
-            this.clear()
-        }
-    }
-
-    private static updateQueryString(keywords: string, replaceState = false) {
-        const pageURL = new URL(window.location.toString());
-
-        if (keywords === '') {
-            pageURL.searchParams.delete('keyword')
-        }
-        else {
-            pageURL.searchParams.set('keyword', keywords);
-        }
-
-        if (replaceState) {
-            window.history.replaceState('', '', pageURL.toString());
-        }
-        else {
-            window.history.pushState('', '', pageURL.toString());
-        }
-    }
-
-    public static render(item: pageData, highlight?: string) {
-        const dateStr = formatDate(item.date);
-        const catBadge = item.categories && item.categories.length > 0
-            ? `<span class="search-category">${item.categories[0]}</span>`
-            : '';
-        const articleUrl = highlight
-            ? `${item.permalink}?highlight=${encodeURIComponent(highlight)}`
-            : item.permalink;
-
-        return (
-            <article class="search-result-item">
-                <a href={articleUrl}>
-                    <div class="article-details">
-                        <div class="search-meta">
-                            {dateStr && <time class="search-date">{dateStr}</time>}
-                            {catBadge && <span dangerouslySetInnerHTML={{ __html: catBadge }}></span>}
-                        </div>
-                        <h2 class="article-title" dangerouslySetInnerHTML={{ __html: item.title }}></h2>
-                        <section class="article-preview" dangerouslySetInnerHTML={{ __html: item.preview }}></section>
-                    </div>
-                    {item.image &&
-                        <div class="article-image">
-                            <img src={item.image} loading="lazy" />
-                        </div>
-                    }
-                </a>
-            </article>
-        );
+    private render(page: PageData): HTMLElement {
+        const article = element('article', 'search-result-item');
+        const details = element('div', 'article-details');
+        const meta = element('div', 'search-meta');
+        const date = element('time', 'search-date', (page.date || '').slice(0, 10).replaceAll('-', '.'));
+        date.dateTime = (page.date || '').slice(0, 10);
+        meta.append(date);
+        if (page.section && labels[page.section]) meta.append(element('span', 'search-category', labels[page.section]));
+        const heading = element('h2', 'article-title');
+        const link = element('a');
+        const url = new URL(page.permalink, location.origin);
+        url.searchParams.set('highlight', this.words.join(' '));
+        link.href = url.pathname + url.search;
+        link.append(highlighted(page.displayTitle || page.title, this.words));
+        heading.append(link);
+        const preview = element('p', 'article-preview');
+        let content = page.content.replace(/\s+/g, ' ').trim();
+        const titleText = page.title.replace(/\s+/g, ' ').trim();
+        if (content.startsWith(titleText)) content = content.slice(titleText.length).trim();
+        const lower = content.toLocaleLowerCase();
+        const hits = this.words.map(word => lower.indexOf(word.toLocaleLowerCase())).filter(index => index >= 0);
+        const start = hits.length ? Math.max(0, Math.min(...hits) - 30) : 0;
+        preview.append(highlighted((start ? '…' : '') + content.slice(start, start + 150) + (content.length > start + 150 ? '…' : ''), this.words));
+        details.append(meta, heading, preview);
+        article.append(details);
+        return article;
     }
 }
 
-declare global {
-    interface Window {
-        searchResultTitleTemplate: string;
-    }
-}
-
-window.addEventListener('load', () => {
-    setTimeout(function () {
-        const searchForm = document.querySelector('.search-form') as HTMLFormElement,
-            searchInput = searchForm?.querySelector('input') as HTMLInputElement,
-            searchResultList = document.querySelector('.search-result--list') as HTMLDivElement,
-            searchResultTitle = document.querySelector('.search-result--title') as HTMLHeadingElement;
-
-        if (!searchForm || !searchInput || !searchResultList || !searchResultTitle) return;
-
-        new Search({
-            form: searchForm,
-            input: searchInput,
-            list: searchResultList,
-            resultTitle: searchResultTitle,
-            resultTitleTemplate: window.searchResultTitleTemplate
-        });
-    }, 0);
-})
-
+const form = document.querySelector<HTMLFormElement>('.template-search .search-form');
+if (form) new Search(form);
 export default Search;

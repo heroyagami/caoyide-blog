@@ -373,3 +373,40 @@ html.dark .home .footer { border-color: rgba(148, 163, 184, 0.14); }
   .law-category-card { min-height: 7.4rem; }
   .law-quick-links a { grid-template-columns: 1fr; gap: 0.3rem; }
 }
+
+/* The library opens with a visible search field, followed by compact categories. */
+.theme-container:has(.law-finder) .navbar .search-box { display: none; }
+.law-finder { position: relative; margin-bottom: 2.8rem; }
+.law-finder > label { display: block; margin-bottom: .7rem; color: #334155; font-size: .95rem; }
+.law-finder form { display: flex; min-height: 54px; border: 1px solid #94a3b8; border-radius: 3px; background: #fff; }
+.law-finder form:focus-within { outline: 2px solid #2563eb; outline-offset: 3px; }
+.law-finder input { min-width: 0; flex: 1; width: 100%; padding: 12px 16px; border: 0; border-radius: 3px; outline: 0; background: transparent; color: #0f2748; font: inherit; font-size: 16px; }
+.law-finder input::placeholder { color: #526174; }
+.law-finder button { flex-shrink: 0; min-width: 68px; border: 0; border-left: 1px solid #cbd5e1; background: transparent; color: #1d4ed8; font: inherit; cursor: pointer; }
+.law-finder-panel { position: absolute; z-index: 30; top: calc(100% + 8px); width: 100%; max-height: min(60vh, 440px); overflow: auto; border: 1px solid #94a3b8; border-radius: 3px; background: #fff; box-shadow: 0 10px 24px #0f172a1a; }
+.law-finder-panel ul { list-style: none; margin: 0; padding: 6px; }
+.law-finder-panel a { display: block; padding: 12px; color: #0f2748; text-decoration: none !important; line-height: 1.65; }
+.law-finder-panel a[aria-selected="true"], .law-finder-panel a:hover { background: #eef3fa; }
+.law-finder-panel strong, .law-finder-panel span { display: block; }
+.law-finder-panel span { color: #526174; font-size: .9rem; }
+.law-finder-panel p { padding: 8px 16px; font-size: .95rem; }
+html.dark .law-finder > label { color: #cbd5e1; }
+html.dark .law-finder form, html.dark .law-finder-panel { border-color: #64748b; background: #111827; }
+html.dark .law-finder input, html.dark .law-finder-panel a { color: #f1f5f9; }
+html.dark .law-finder input::placeholder, html.dark .law-finder-panel span { color: #a8b6c8; }
+html.dark .law-finder button { color: #93c5fd; border-color: #64748b; }
+html.dark .law-finder-panel a[aria-selected="true"], html.dark .law-finder-panel a:hover { background: #1e293b; }
+@media (max-width: 560px) {
+  .law-category-card { display: grid; grid-template-columns: 24px minmax(0, 1fr); grid-template-areas: 'index name' 'index note'; column-gap: 14px; row-gap: 3px; min-height: 0; padding: 16px; border-radius: 3px; box-shadow: none; }
+  .law-category-card .law-card-index { grid-area: index; margin: 0; padding-top: 3px; }
+  .law-category-card strong { grid-area: name; }
+  .law-category-card small { grid-area: note; margin-top: 0; }
+  .law-finder { margin-bottom: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .law-category-card, .law-quick-links a, .home .hero .action-button { transition: none; }
+  .law-category-card:hover, .law-quick-links a:hover, .home .hero .action-button:hover { transform: none; }
+}
+
+.theme-default-content:not(.custom) { font-size: 16px; line-height: 1.85; }

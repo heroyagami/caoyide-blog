@@ -21,7 +21,10 @@
             <main id="main-content" class="main full-width" tabindex="-1">
                 {{- block "main" . }}{{- end }}
             </main>
+            {{ partialCached "footer/footer" . }}
         </div>
         {{ partial "footer/include.html" . }}
+        {{- $journalScript := resources.Get "js/journal.js" | minify | fingerprint -}}
+        <script src="{{ $journalScript.RelPermalink }}" defer></script>
     </body>
 </html>

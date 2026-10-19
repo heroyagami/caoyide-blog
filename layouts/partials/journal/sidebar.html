@@ -16,15 +16,17 @@
       <li><a href="https://credit.acla.org.cn/" target="_blank" rel="noopener noreferrer"><span>{{ partial "helper/icon" "user" }}</span><div>律师证书查询<small>核验律师执业信息</small></div><b aria-hidden="true">›</b></a></li>
     </ul>
   </section>
-  {{- $pages := where .Site.RegularPages "Type" "in" (slice "posts" "cases" "法律知识库") -}}
+  {{- $pages := partial "journal/archive-pages.html" . -}}
+  {{ if ne .RelPermalink "/archives/" }}
   <section class="journal-sidebar-section" aria-labelledby="journal-archives-title">
-    <h2 id="journal-archives-title">{{ if eq .RelPermalink "/archives/" }}文章归档{{ else }}<a href="/archives/">文章归档</a>{{ end }}</h2>
+    <h2 id="journal-archives-title"><a href="/archives/">文章归档</a></h2>
     <ul class="journal-archive-list">
       {{ range first 4 ($pages.GroupByDate "2006") }}
       <li><a href="/archives/#{{ .Key }}"><span>{{ .Key }}<small>{{ len .Pages }} 篇</small></span><span aria-hidden="true">›</span></a></li>
       {{ end }}
     </ul>
   </section>
+  {{ end }}
   <section class="journal-sidebar-section" aria-labelledby="journal-topics-title">
     <h2 id="journal-topics-title">阅读主题</h2>
     <ul class="journal-topic-list">

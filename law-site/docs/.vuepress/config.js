@@ -21,6 +21,7 @@ module.exports = {
       {
         text: "返回主站",
         link: "https://caoyide.com/",
+        target: "_self",
       },
       {
         text: "全部类别",

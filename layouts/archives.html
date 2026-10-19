@@ -7,9 +7,10 @@
     <header>
         <div class="journal-page-heading">
             <h1>文章归档</h1>
-            <p>按年月浏览实务文章与法律知识。</p>
+            <p>按年月浏览全部文章，展开月份即可查看。</p>
         </div>
-        {{ $totalCount := len (where .Site.RegularPages "Type" "in" (slice "posts" "cases" "法律知识库")) }}
+        {{ $pages := partial "journal/archive-pages.html" . }}
+        {{ $totalCount := len $pages }}
 
         <div class="archives-total-count">
             <span class="archives-total-label">文章总数</span>
@@ -18,8 +19,10 @@
         </div>
     </header>
 
-    {{ $pages := where .Site.RegularPages "Type" "in" (slice "posts" "cases" "法律知识库") }}
+    {{ $pages := partial "journal/archive-pages.html" . }}
     {{ $groupedByYear := $pages.GroupByDate "2006" }}
+    {{ $latestMonth := (index $pages.ByDate.Reverse 0).Date.Format "2006-01" }}
+    <nav class="journal-archive-years" aria-label="按年份跳转">{{ range $groupedByYear }}<a href="#{{ .Key }}">{{ .Key }} 年</a>{{ end }}</nav>
 
     {{ range $groupedByYear }}
     {{- if gt (int .Key) 1900 }}
@@ -29,20 +32,20 @@
 
         {{ range .Pages.GroupByDate "01" }}
         {{ $monthNum := .Key | strings.TrimLeft "0" }}
-        <div class="archives-month">
-            <h3 class="archives-month-title">{{ $monthNum }} 月 <span class="archives-month-count">{{ len .Pages }} 篇</span></h3>
+        <details class="archives-month" {{ if eq (printf "%s-%s" $yearId .Key) $latestMonth }}open{{ end }}>
+            <summary class="archives-month-title">{{ $monthNum }} 月 <span class="archives-month-count">{{ len .Pages }} 篇</span><span class="journal-disclosure-icon" aria-hidden="true">+</span></summary>
             <div class="article-list--compact">
                 {{ range .Pages }}
                     {{ partial "article-list/compact" . }}
                 {{ end }}
             </div>
-        </div>
+        </details>
         {{ end }}
     </div>
     {{- end }}
     {{ end }}
 
-    {{ partialCached "footer/footer" . }}
+
 {{ end }}
 
 {{ define "right-sidebar" }}

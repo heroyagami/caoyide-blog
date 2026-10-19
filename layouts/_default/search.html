@@ -8,12 +8,12 @@
 {{ define "main" }}
 <header class="journal-page-heading">
     <h1>站内搜索</h1>
-    <p>查找文章、案例解读与法律条文。</p>
+    <p>查找文章中的法律问题、案例与观点。</p>
 </header>
 <form action="{{ .RelPermalink }}" class="search-form"{{ with .OutputFormats.Get "json" -}} data-json="{{ .RelPermalink }}"{{- end }}>
     <p>
         <label class="journal-sr-only" for="search-keyword">{{ T "search.title" }}</label>
-        <input id="search-keyword" type="search" name="keyword" placeholder="输入关键词，如劳动争议、合同…" />
+        <input id="search-keyword" type="search" name="keyword" placeholder="输入关键词，如劳动争议、合同…" maxlength="120" autocomplete="off" enterkeyhint="search" />
     </p>
 
     <button title="{{ T `search.title` }}" aria-label="搜索">
@@ -21,18 +21,25 @@
     </button>
 </form>
 
-<div class="search-result hidden">
-    <h3 class="search-result--title section-title"></h3>
-    <div class="search-result--list article-list--compact"></div>
+<div class="journal-search-controls" hidden>
+    <div class="journal-search-scopes" role="group" aria-label="搜索范围">
+        <button type="button" data-scope="all" aria-pressed="true">全部</button>
+        <button type="button" data-scope="posts" aria-pressed="false">实务</button>
+        <button type="button" data-scope="hotspot-daily" aria-pressed="false">热点</button>
+        <button type="button" data-scope="daily" aria-pressed="false">日报</button>
+    </div>
+    <label class="journal-search-sort">排序<select id="search-sort"><option value="relevance">相关优先</option><option value="date">最新优先</option></select></label>
 </div>
-
-<script>
-    window.searchResultTitleTemplate = "{{ T `search.resultTitle` }}"
-</script>
+<p class="journal-search-status" role="status" aria-live="polite" aria-atomic="true"></p>
+<div class="search-result">
+    <div class="search-result--list article-list--compact"></div>
+    <button class="journal-load-more" type="button" hidden>显示更多文章</button>
+</div>
+<noscript><p>搜索需要启用 JavaScript。你也可以通过首页的文章分类浏览内容。</p></noscript>
 
 {{- $opts := dict "minify" hugo.IsProduction "JSXFactory" "createElement" -}}
 {{- $searchScript := resources.Get "ts/search.tsx" | js.Build $opts -}}
 <script type="text/javascript" src="{{ $searchScript.RelPermalink }}" defer></script>
 
-{{ partialCached "footer/footer" . }}
+
 {{ end }}

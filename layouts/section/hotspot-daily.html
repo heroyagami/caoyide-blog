@@ -9,6 +9,7 @@
       {{ with .Description }}<p class="section-description">{{ . }}</p>{{ end }}
     </div>
   </header>
+  {{ partial "journal/feed-nav.html" . }}
 
   <section class="journal-feed" aria-label="热点深度文章列表">
     {{- range .Paginator.Pages -}}
@@ -17,7 +18,7 @@
   </section>
 
   {{ partial "pagination.html" . }}
-  {{ partialCached "footer/footer" . }}
+
 {{ end }}
 
 {{ define "right-sidebar" }}

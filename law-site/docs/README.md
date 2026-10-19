@@ -5,6 +5,8 @@ heroText: 法律文库
 tagline: 308 部现行有效法律，按八大门类系统整理
 ---
 
+<LawFinder />
+
 <section class="law-library-section" aria-labelledby="law-categories-title">
   <div class="law-section-heading">
     <div>

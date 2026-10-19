@@ -24,8 +24,8 @@ ignoreFiles = ["content/laws/.*\\.md$", "content/laws/.*/.*\\.md$", "content/law
 # Stack 主题参数
 # ============================================================
 [params]
-    # 普通文章 + 云端日报使用同一套既有文章列表/详情模板，不改变排版
-    mainSections = ["posts", "daily"]
+    # 按栏目归入文章流；兼容文章前置元数据中的 type: post
+    mainSections = ["posts", "daily", "hotspot-daily"]
     rssFullContent = false
 
     # SEO 兜底：Stack 主题的 data/description.html 读 Site.Params.description

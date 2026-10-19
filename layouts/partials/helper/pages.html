@@ -1,0 +1,12 @@
+{{- $pages := .Pages -}}
+{{- if .IsHome -}}
+  {{- /* Front matter may use type: post. Reader-facing sections define the feed. */ -}}
+  {{- $pages = where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
+{{- else if and (eq .Kind "section") (in .Site.Params.mainSections .Section) -}}
+  {{- $pages = .RegularPagesRecursive -}}
+{{- else if or (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term") -}}
+  {{- $sections := .Sections -}}
+  {{- $pages = .Pages | complement $sections -}}
+  {{- if not $pages -}}{{- $pages = $sections -}}{{- end -}}
+{{- end -}}
+{{- return $pages.ByDate.Reverse -}}

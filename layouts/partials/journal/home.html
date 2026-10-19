@@ -1,24 +1,12 @@
 {{- $paginator := .Paginator -}}
 <header class="journal-page-heading">
-  <h1>热点深度</h1>
-  <p>从真实人物和社会事件出发，讲事实，也讲判断。</p>
+  <h1>法律与日常</h1>
+  <p>实务分析、法律资讯与社会观察。</p>
 </header>
 
-{{ if not $paginator.HasPrev }}
-  {{ with first 2 ((where .Site.RegularPages "Section" "hotspot-daily").ByDate.Reverse) }}
-  <section class="journal-feed journal-hotspots" aria-label="最新热点深度文章">
-    {{ range . }}{{ partial "journal/entry.html" . }}{{ end }}
-  </section>
-  {{ end }}
-{{ end }}
-
-<div class="journal-feed-heading">
-  <h2>最新文章</h2>
-  <nav aria-label="文章栏目"><a href="/posts/">实务文章</a><a href="/daily/">法律日报</a></nav>
-</div>
-<section class="journal-feed" aria-label="最新法律文章">
+{{ partial "journal/feed-nav.html" . }}
+<section class="journal-feed" aria-label="最新文章">
   {{ range $paginator.Pages }}{{ partial "journal/entry.html" . }}{{ end }}
 </section>
 {{ partial "pagination.html" . }}
 {{ if not $paginator.HasPrev }}{{ partial "journal/faq.html" . }}{{ end }}
-{{ partial "footer/footer" . }}

@@ -1,0 +1,12 @@
+{{- $content := .Content -}}
+{{- $headings := findRE `(?s)^\s*<h1(?:\s[^>]*)?>.*?</h1>\s*` $content 1 -}}
+{{- with $headings -}}
+  {{- $heading := index . 0 -}}
+  {{- if eq (strings.TrimSpace ($heading | plainify | htmlUnescape)) (strings.TrimSpace ($.Title | htmlUnescape)) -}}
+    {{- $content = strings.TrimPrefix $heading $content -}}
+  {{- end -}}
+{{- end -}}
+<section class="article-content">
+  {{- $wrappedTable := printf "<div class=\"table-wrapper\">${1}</div>" -}}
+  {{ $content | replaceRE "(<table>(?:.|\n)+?</table>)" $wrappedTable | safeHTML }}
+</section>

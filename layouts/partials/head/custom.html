@@ -229,7 +229,7 @@ window.addEventListener('load', function () {
         "name": "如何联系曹义德律师咨询？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "电话/微信：18872778990（同号），或通过 caoyide.com 网站留言。"
+          "text": "电话/微信：18872778990（同号）。"
         }
       }
     ]
@@ -514,16 +514,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /* ---- 2. 返回顶部按钮 ---- */
   function initBackToTop() {
-    var btn = doc.createElement('div');
+    var btn = doc.createElement('button');
+    btn.type = 'button';
+    btn.setAttribute('aria-label', '返回顶部');
     btn.className = 'back-to-top';
     btn.innerHTML = '↑';
     btn.title = '返回顶部';
-    btn.addEventListener('click', function() { win.scrollTo({ top: 0, behavior: 'smooth' }); });
+    btn.addEventListener('click', function() { win.scrollTo({ top: 0, behavior: win.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); });
     doc.body.appendChild(btn);
 
     function toggle() {
       var vh = win.innerHeight;
-      btn.classList.toggle('visible', win.scrollY > vh);
+      var visible = win.scrollY > vh;
+      btn.hidden = !visible;
+      btn.classList.toggle('visible', visible);
     }
     win.addEventListener('scroll', toggle, { passive: true });
     toggle();
@@ -703,113 +707,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-  /* ---- 9. 文章页搜索词高亮 + 仅显示匹配段落 ---- */
-  function initArticleHighlight() {
-    var params = new URLSearchParams(win.location.search);
-    var q = params.get('highlight');
-    if (!q) return;
-    var article = doc.querySelector('.article-content');
-    if (!article) return;
-
-    var keywords = q.split(/\s+/).filter(Boolean);
-    if (!keywords.length) return;
-
-    // Step 1: highlight matching text
-    keywords.forEach(function(kw) {
-      var escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, function(m) { return '\\' + m; });
-      var regex = new RegExp('(' + escaped + ')', 'gi');
-      highlightTextNodes(article, regex);
-    });
-
-    // Step 2: hide blocks without matches
-    var blocks = article.querySelectorAll('p, h2, h3, h4, h5, h6, li, blockquote, figcaption');
-    var hiddenCount = 0;
-    blocks.forEach(function(el) {
-      if (!el.querySelector('mark')) {
-        el.classList.add('search-hidden');
-        hiddenCount++;
-      }
-    });
-
-    // Step 3: hide empty parent lists
-    article.querySelectorAll('ul, ol').forEach(function(list) {
-      var visibleItems = list.querySelectorAll('li:not(.search-hidden)');
-      if (visibleItems.length === 0) {
-        list.classList.add('search-hidden');
-      }
-    });
-
-    // Step 4: show toggle button
-    if (hiddenCount > 0) {
-      var bar = doc.createElement('div');
-      bar.className = 'search-filter-bar';
-      bar.innerHTML = '<span class="search-filter-info">已筛选匹配「<strong>' + keywords.join(' ') + '</strong>」的内容</span>' +
-        '<button class="search-filter-toggle">显示全部</button>';
-      article.parentNode.insertBefore(bar, article);
-
-      bar.querySelector('.search-filter-toggle').addEventListener('click', function() {
-        var isHidden = article.classList.toggle('search-show-all');
-        this.textContent = isHidden ? '收起筛选' : '显示全部';
-        bar.querySelector('.search-filter-info').style.opacity = isHidden ? '0' : '1';
-      });
-    }
-
-    // Step 5: scroll to first visible mark
-    var allMarks = article.querySelectorAll('mark');
-    var firstVisible = null;
-    for (var i = 0; i < allMarks.length; i++) {
-      if (!allMarks[i].closest('.search-hidden')) {
-        firstVisible = allMarks[i];
-        break;
-      }
-    }
-    if (firstVisible) {
-      firstVisible.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }
-
-  function highlightTextNodes(root, regex) {
-    var walker = doc.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-      acceptNode: function(node) {
-        // Skip <mark>, <script>, <style>, <code>, <pre>
-        var parent = node.parentElement;
-        if (!parent) return NodeFilter.FILTER_REJECT;
-        var tag = parent.tagName;
-        if (tag === 'MARK' || tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
-        return NodeFilter.FILTER_ACCEPT;
-      }
-    });
-
-    var nodes = [];
-    while (walker.nextNode()) {
-      nodes.push(walker.currentNode);
-    }
-
-    nodes.forEach(function(node) {
-      var text = node.textContent;
-      if (!text || !regex.test(text)) return;
-      regex.lastIndex = 0;
-      var parent = node.parentNode;
-      var frag = doc.createDocumentFragment();
-      var lastIndex = 0;
-      var match;
-      while ((match = regex.exec(text)) !== null) {
-        if (match.index > lastIndex) {
-          frag.appendChild(doc.createTextNode(text.slice(lastIndex, match.index)));
-        }
-        var mark = doc.createElement('mark');
-        mark.textContent = match[0];
-        frag.appendChild(mark);
-        lastIndex = regex.lastIndex;
-        if (!match[0]) regex.lastIndex++;
-      }
-      if (lastIndex < text.length) {
-        frag.appendChild(doc.createTextNode(text.slice(lastIndex)));
-      }
-      parent.replaceChild(frag, node);
-    });
-  }
-
   /* ---- 启动 ---- */
   if (doc.readyState === 'loading') {
     doc.addEventListener('DOMContentLoaded', function() {
@@ -821,7 +718,6 @@ document.addEventListener('DOMContentLoaded', function() {
       initSidebarSearch();
       initSearchShortcut();
       initWechatQR();
-      initArticleHighlight();
     });
   } else {
     initExternalLinks();
@@ -831,7 +727,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initSidebarSearch();
     initSearchShortcut();
     initWechatQR();
-    initArticleHighlight();
   }
 })();
 </script>

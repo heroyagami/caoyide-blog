@@ -1,0 +1,6 @@
+<nav class="journal-feed-nav" aria-label="文章分类">
+  <a href="/" {{ if .IsHome }}aria-current="page"{{ end }}>全部</a>
+  {{ range slice (dict "section" "posts" "label" "实务文章") (dict "section" "hotspot-daily" "label" "热点深度") (dict "section" "daily" "label" "法律日报") }}
+  <a href="/{{ .section }}/" {{ if eq $.Section .section }}aria-current="page"{{ end }}>{{ .label }}</a>
+  {{ end }}
+</nav>
