@@ -1,0 +1,13 @@
+{{- $headings := dict
+  "all" (dict "title" "法律与日常" "description" "实务分析、法律资讯与社会观察。")
+  "posts" (dict "title" "实务文章" "description" "案件分析、办案经验与实务解读。")
+  "hotspot-daily" (dict "title" "热点深度" "description" "社会热点背后的事实与法律思考。")
+  "daily" (dict "title" "法律日报" "description" "法律动态、典型案例与每日观察。")
+-}}
+{{- $key := .Section -}}
+{{- if .IsHome -}}{{- $key = "all" -}}{{- end -}}
+{{- $heading := index $headings $key | default (dict "title" .Title "description" .Description) -}}
+<header class="journal-page-heading">
+  <h1>{{ $heading.title }}</h1>
+  {{ with $heading.description }}<p>{{ . }}</p>{{ end }}
+</header>

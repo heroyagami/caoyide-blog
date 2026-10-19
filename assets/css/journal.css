@@ -351,10 +351,14 @@ body.journal-site.template-archives .archives-month-title { display: flex; align
   body.journal-site *, body.journal-site *::before, body.journal-site *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 
-/* Article widths are independent of the wider archive and home feed. */
+/* Articles share the masthead's outer edges and use the available desktop width. */
 @media (min-width: 901px) {
-  body.journal-site.article-page .main-container { width: min(100% - 96px, 1060px); }
-  body.journal-site.article-page .main-container:has(> .right-sidebar) { grid-template-columns: minmax(0, 748px) 220px; column-gap: 64px; }
+  body.journal-site.article-page .main-container:has(> .right-sidebar) { grid-template-columns: minmax(0, 1fr) clamp(220px, 18vw, 280px); column-gap: clamp(32px, 3.2vw, 60px); }
+  body.journal-site.article-page .main-article > .journal-article-header,
+  body.journal-site.article-page .main-article > .article-content,
+  body.journal-site.article-page .main-article > .article-footer,
+  body.journal-site.article-page .journal-match-bar { max-width: none; }
+  body.journal-site.article-page .main-container:not(:has(> .right-sidebar)) > main { max-width: 1140px; }
   body.journal-site.article-page .right-sidebar { padding-left: 24px; }
   body.journal-site.article-page .right-sidebar .widget-title { font-size: 16px; font-weight: 500; margin-bottom: 18px; }
   body.journal-site.article-page .right-sidebar #TableOfContents { font-size: 13px; line-height: 1.8; }

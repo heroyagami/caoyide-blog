@@ -1,11 +1,7 @@
 {{ define "body-class" }}template-hotspot-archive{{ end }}
 
 {{ define "main" }}
-  <header class="section-card">
-    <div class="section-details">
-      <h1 class="section-term">热点深度</h1>
-    </div>
-  </header>
+  {{ partial "journal/feed-heading.html" . }}
   {{ partial "journal/feed-nav.html" . }}
 
   <section class="journal-feed" aria-label="热点深度文章列表">

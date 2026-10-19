@@ -1,8 +1,5 @@
 {{- $paginator := .Paginator -}}
-<header class="journal-page-heading">
-  <h1>法律与日常</h1>
-  <p>实务分析、法律资讯与社会观察。</p>
-</header>
+{{ partial "journal/feed-heading.html" . }}
 
 {{ partial "journal/feed-nav.html" . }}
 <section class="journal-feed" aria-label="最新文章">

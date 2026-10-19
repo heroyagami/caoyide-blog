@@ -1,10 +1,5 @@
 {{ define "main" }}
-  <header class="section-card">
-    <div class="section-details">
-      <h1 class="section-term">{{ if eq .Section "posts" }}实务文章{{ else if eq .Section "daily" }}法律日报{{ else }}{{ .Title }}{{ end }}</h1>
-      {{ with .Description }}<p class="section-description">{{ . }}</p>{{ end }}
-    </div>
-  </header>
+  {{ partial "journal/feed-heading.html" . }}
   {{ partial "journal/feed-nav.html" . }}
 
   {{- with .Content -}}
