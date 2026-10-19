@@ -19,17 +19,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: 0340c1f5459575b4dafd70c4b882d333c389781a
-      - name: Download that commit's Hugo build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-          run-id: 39191782200
-          github-token: ${{ github.token }}
-          path: verification-build
-      - name: Unpack the cloud build
-        run: |
-          mkdir -p verification-build/site
-          tar -xf verification-build/artifact.tar -C verification-build/site
+          submodules: recursive
+      - name: Rebuild the published commit with the production Hugo pipeline
+        run: bash build.sh
       - name: Compare production bodies, canonical URLs and entry links
         shell: bash
         run: |
@@ -38,7 +30,7 @@ jobs:
           from html.parser import HTMLParser
           from xml.etree import ElementTree as ET
 
-          ROOT = pathlib.Path("verification-build/site")
+          ROOT = pathlib.Path("public")
           BASE = "https://caoyide.com"
           TARGETS = [
               ("content/daily/2026/10/2026-10-18.md", "/daily/2026/10/2026-10-18-judicial-data-safety-review/"),
@@ -121,7 +113,7 @@ jobs:
                   assert "/posts/cross-border-cold-chain-cargo-claims/" in paths(posts), "feature missing in posts archive"
                   today = fetch("/daily/2026/10/2026-10-19-cold-chain-corporate-disclosure/")
                   assert "/posts/cross-border-cold-chain-cargo-claims/" in paths(today), "daily feature link missing"
-                  pathlib.Path("publication-verification.json").write_text(json.dumps({"source_commit": "0340c1f5459575b4dafd70c4b882d333c389781a", "build_run": 39191782200, "articles": report, "homepage_daily_entries": True, "feature_via_home_posts": True, "daily_feature_link": True}, ensure_ascii=False, indent=2), encoding="utf-8")
+                  pathlib.Path("publication-verification.json").write_text(json.dumps({"source_commit": "0340c1f5459575b4dafd70c4b882d333c389781a", "verification_rebuild": "bash build.sh", "articles": report, "homepage_daily_entries": True, "feature_via_home_posts": True, "daily_feature_link": True}, ensure_ascii=False, indent=2), encoding="utf-8")
                   with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
                       summary.write("# Production publication verified\n\nSource commit: `0340c1f5459575b4dafd70c4b882d333c389781a`\n\n")
                       for row in report:
