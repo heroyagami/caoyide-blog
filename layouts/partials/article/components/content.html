@@ -10,7 +10,7 @@
 {{- end -}}
 {{- /* 页面标题是唯一一级标题；正文中的独立一级标题保留文字与锚点，改为章节标题。 */ -}}
 {{- $content = $content | replaceRE `<h1(\s[^>]*)?>` `<h2${1}>` | replaceRE `</h1>` `</h2>` -}}
-<section class="article-content">
+<section class="article-content" aria-label="{{ if eq .Section "hotspot-daily" }}今日热点深度文章池{{ else }}文章正文{{ end }}">
   {{- $wrappedTable := printf "<div class=\"table-wrapper\">${1}</div>" -}}
   {{ $content | replaceRE "(<table>(?:.|\n)+?</table>)" $wrappedTable | safeHTML }}
 </section>
