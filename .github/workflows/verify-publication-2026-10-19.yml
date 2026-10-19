@@ -1,0 +1,143 @@
+name: Verify legal publication 2026-10-19
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/verify-publication-2026-10-19.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Read the published source commit
+        uses: actions/checkout@v4
+        with:
+          ref: 0340c1f5459575b4dafd70c4b882d333c389781a
+      - name: Download that commit's Hugo build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          run-id: 39191782200
+          github-token: ${{ github.token }}
+          path: verification-build
+      - name: Unpack the cloud build
+        run: |
+          mkdir -p verification-build/site
+          tar -xf verification-build/artifact.tar -C verification-build/site
+      - name: Compare production bodies, canonical URLs and entry links
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, re, time, urllib.parse, urllib.request
+          from html.parser import HTMLParser
+          from xml.etree import ElementTree as ET
+
+          ROOT = pathlib.Path("verification-build/site")
+          BASE = "https://caoyide.com"
+          TARGETS = [
+              ("content/daily/2026/10/2026-10-18.md", "/daily/2026/10/2026-10-18-judicial-data-safety-review/"),
+              ("content/posts/2026/10/2026-10-19-cross-border-cold-chain-cargo-claims.md", "/posts/cross-border-cold-chain-cargo-claims/"),
+              ("content/daily/2026/10/2026-10-19.md", "/daily/2026/10/2026-10-19-cold-chain-corporate-disclosure/"),
+              ("content/daily/2026/10/2026-10-17.md", "/daily/2026/10/曹义德律师法律日报2026年10月17日价格法修正草案将提请审议超龄劳动者工伤保障被再次说清/"),
+              ("content/posts/2026/10/2026-10-17-over-age-worker-work-injury-2026.md", "/posts/over-age-worker-work-injury-2026/"),
+          ]
+          VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
+
+          class Page(HTMLParser):
+              def __init__(self, html):
+                  super().__init__(convert_charrefs=True)
+                  self.canonical = None
+                  self.links = []
+                  self.body_parts = []
+                  self.depth = 0
+                  self.feed(html)
+              def handle_starttag(self, tag, attrs):
+                  attrs = dict(attrs)
+                  if tag == "link" and "canonical" in attrs.get("rel", "").split():
+                      self.canonical = attrs.get("href")
+                  if tag == "a" and attrs.get("href"):
+                      self.links.append(attrs["href"])
+                  if self.depth:
+                      if tag not in VOID:
+                          self.depth += 1
+                  elif "article-content" in attrs.get("class", "").split():
+                      self.depth = 1
+              def handle_endtag(self, tag):
+                  if self.depth and tag not in VOID:
+                      self.depth -= 1
+              def handle_data(self, data):
+                  if self.depth:
+                      self.body_parts.append(data)
+              def body(self):
+                  return re.sub(r"\s+", "", "".join(self.body_parts))
+
+          def fetch(route):
+              url = BASE + route
+              req = urllib.request.Request(
+                  urllib.parse.quote(url, safe=":/?=&%"), headers={"User-Agent": "Caoyide-Publication-Verification/1.0", "Cache-Control": "no-cache"})
+              with urllib.request.urlopen(req, timeout=30) as response:
+                  status = response.status
+                  html = response.read().decode("utf-8")
+                  print(f"HTTP {status} {url}", flush=True)
+                  assert status == 200, (status, url)
+                  return Page(html)
+
+          def paths(page):
+              return {urllib.parse.unquote(urllib.parse.urlsplit(link).path) for link in page.links}
+
+          sitemap = {urllib.parse.unquote(node.text) for node in ET.parse(ROOT / "sitemap.xml").getroot().iter() if node.tag.endswith("}loc")}
+          expected = []
+          for source, route in TARGETS:
+              route = urllib.parse.unquote(route)
+              built = Page((ROOT / route.lstrip("/") / "index.html").read_text(encoding="utf-8"))
+              assert urllib.parse.unquote(built.canonical or "") == BASE + route, ("built canonical", source, built.canonical)
+              assert BASE + route in sitemap, ("missing Hugo sitemap permalink", route)
+              assert len(built.body()) > 500, ("missing built article body", source)
+              expected.append((source, route, built))
+
+          for attempt in range(1, 21):
+              try:
+                  report = []
+                  for source, route, built in expected:
+                      live = fetch(route)
+                      assert urllib.parse.unquote(live.canonical or "") == BASE + route, ("production canonical", route, live.canonical)
+                      assert live.body() == built.body(), ("production body differs from Hugo build", route, len(live.body()), len(built.body()))
+                      assert set(built.links).issubset(set(live.links)), ("article link missing", route)
+                      row = {"source": source, "url": BASE + route, "http": 200, "canonical_match": True, "body_match": True, "normalized_body_characters": len(live.body()), "body_sha256": hashlib.sha256(live.body().encode()).hexdigest()}
+                      report.append(row)
+                      print("VERIFIED " + json.dumps(row, ensure_ascii=False), flush=True)
+                  home = fetch("/")
+                  home_paths = paths(home)
+                  for route in ["/daily/2026/10/2026-10-19-cold-chain-corporate-disclosure/", "/daily/2026/10/2026-10-18-judicial-data-safety-review/"]:
+                      assert route in home_paths, ("homepage entry missing", route)
+                  assert "/posts/" in home_paths, "homepage posts entry missing"
+                  posts = fetch("/posts/")
+                  assert "/posts/cross-border-cold-chain-cargo-claims/" in paths(posts), "feature missing in posts archive"
+                  today = fetch("/daily/2026/10/2026-10-19-cold-chain-corporate-disclosure/")
+                  assert "/posts/cross-border-cold-chain-cargo-claims/" in paths(today), "daily feature link missing"
+                  pathlib.Path("publication-verification.json").write_text(json.dumps({"source_commit": "0340c1f5459575b4dafd70c4b882d333c389781a", "build_run": 39191782200, "articles": report, "homepage_daily_entries": True, "feature_via_home_posts": True, "daily_feature_link": True}, ensure_ascii=False, indent=2), encoding="utf-8")
+                  with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+                      summary.write("# Production publication verified\n\nSource commit: `0340c1f5459575b4dafd70c4b882d333c389781a`\n\n")
+                      for row in report:
+                          summary.write("- [HTTP 200; canonical and full body match](" + row["url"] + ")\n")
+                      summary.write("\nHomepage contains both new dailies. Homepage posts entry reaches the feature. Daily links to the feature.\n")
+                  print("ALL PUBLICATION CHECKS PASSED", flush=True)
+                  break
+              except Exception as exc:
+                  print(f"Attempt {attempt}: {type(exc).__name__}: {exc}", flush=True)
+                  if attempt == 20:
+                      raise
+                  time.sleep(15)
+          PY
+      - name: Preserve the verification report
+        uses: actions/upload-artifact@v4
+        with:
+          name: legal-publication-verification-2026-10-19
+          path: publication-verification.json
+          retention-days: 30
