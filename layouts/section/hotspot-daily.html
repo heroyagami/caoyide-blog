@@ -1,10 +1,6 @@
 {{ define "body-class" }}template-hotspot-archive{{ end }}
 
 {{ define "main" }}
-  <nav class="breadcrumb" aria-label="breadcrumb">
-    <a href="/">返回首页</a>
-  </nav>
-
   {{- $issues := .RegularPagesRecursive.ByDate.Reverse -}}
   <header class="section-card" aria-label="热点深度栏目说明">
     <div class="section-details">

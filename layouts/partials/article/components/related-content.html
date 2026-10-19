@@ -1,4 +1,18 @@
-{{- $related := (.Site.RegularPages.Related .) | first 5 -}}
+{{- /* 正文已经推荐的文章不在文末重复展示。 */ -}}
+{{- $linkedPaths := slice -}}
+{{- $siteHost := (urls.Parse .Site.BaseURL).Host -}}
+{{- range findRESubmatch `href=["']([^"']+)["']` .Content -}}
+    {{- $url := urls.Parse (index . 1) -}}
+    {{- if or (eq $url.Host "") (eq $url.Host $siteHost) -}}
+        {{- $linkedPaths = $linkedPaths | append $url.Path -}}
+    {{- end -}}
+{{- end -}}
+{{- $related := slice -}}
+{{- range .Site.RegularPages.Related . -}}
+    {{- if and (lt (len $related) 3) (not (in $linkedPaths (urls.Parse .RelPermalink).Path)) -}}
+        {{- $related = $related | append . -}}
+    {{- end -}}
+{{- end -}}
 {{- with $related -}}
 <aside class="related-content">
     <h2 class="section-title">{{ T "article.relatedContent" }}</h2>

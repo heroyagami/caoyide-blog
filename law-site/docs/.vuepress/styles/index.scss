@@ -221,7 +221,7 @@ html {
 
 .home .theme-default-content {
   max-width: 1100px;
-  padding: 4.8rem 1.5rem 0;
+  padding: 2.8rem 1.5rem 0;
 }
 
 .law-library-section + .law-library-section { margin-top: 4rem; }
@@ -236,6 +236,7 @@ html {
 
 .law-section-heading h2 {
   margin: 0.25rem 0 0;
+  padding: 0;
   border: 0;
   color: #0f2748;
   font-size: 1.8rem;
@@ -367,7 +368,7 @@ html.dark .home .footer { border-color: rgba(148, 163, 184, 0.14); }
   .home .hero .actions { display: grid; }
   .home .hero .action-button { margin: 0; }
   .home .features { display: grid; margin-top: -2.4rem; }
-  .home .theme-default-content { padding-top: 3.5rem; }
+  .home .theme-default-content { padding-top: 2rem; }
   .law-category-grid { grid-template-columns: 1fr; }
   .law-category-card { min-height: 7.4rem; }
   .law-quick-links a { grid-template-columns: 1fr; gap: 0.3rem; }

@@ -9,13 +9,12 @@
   <section class="journal-feed journal-hotspots" aria-label="最新热点深度文章">
     {{ range . }}{{ partial "journal/entry.html" . }}{{ end }}
   </section>
-  <a class="journal-archive-link" href="/hotspot-daily/">全部热点深度文章 <span aria-hidden="true">→</span></a>
   {{ end }}
 {{ end }}
 
 <div class="journal-feed-heading">
   <h2>最新文章</h2>
-  <nav aria-label="文章栏目"><a href="/posts/">实务文章</a><a href="/daily/">法律日报</a><a href="/archives/">归档 <span aria-hidden="true">↗</span></a></nav>
+  <nav aria-label="文章栏目"><a href="/posts/">实务文章</a><a href="/daily/">法律日报</a></nav>
 </div>
 <section class="journal-feed" aria-label="最新法律文章">
   {{ range $paginator.Pages }}{{ partial "journal/entry.html" . }}{{ end }}

@@ -5,9 +5,6 @@
 {{ end }}
 {{ define "main" }}
     <header>
-        <div class="archives-header-top">
-            <a href="{{ .Site.Home.RelPermalink }}" class="archives-back-link">&larr; 返回首页</a>
-        </div>
         <div class="journal-page-heading">
             <h1>文章归档</h1>
             <p>按年月浏览实务文章与法律知识。</p>
@@ -28,7 +25,7 @@
     {{- if gt (int .Key) 1900 }}
     {{ $yearId := lower (replace .Key " " "-") }}
     <div class="archives-group" id="{{ $yearId }}">
-        <h2 class="archives-date section-title"><a href="{{ $.RelPermalink }}#{{ $yearId }}">{{ .Key }} 年</a> <span class="archives-year-count">{{ len .Pages }} 篇</span></h2>
+        <h2 class="archives-date section-title">{{ .Key }} 年 <span class="archives-year-count">{{ len .Pages }} 篇</span></h2>
 
         {{ range .Pages.GroupByDate "01" }}
         {{ $monthNum := .Key | strings.TrimLeft "0" }}

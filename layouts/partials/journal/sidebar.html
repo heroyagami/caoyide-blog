@@ -1,8 +1,8 @@
 <aside class="journal-sidebar" aria-label="作者与资源">
   <section class="journal-author" aria-labelledby="journal-author-name">
     <div class="journal-author-heading">
-      <a href="/cases/" tabindex="-1" aria-hidden="true"><img src="{{ .Site.Params.sidebar.avatar | relURL }}" width="84" height="84" alt="" fetchpriority="high"></a>
-      <div><h2 id="journal-author-name"><a href="/cases/">曹义德</a></h2><p>律师</p></div>
+      <img src="{{ .Site.Params.sidebar.avatar | relURL }}" width="84" height="84" alt="曹义德律师" fetchpriority="high">
+      <div><h2 id="journal-author-name">曹义德</h2><p>律师</p></div>
     </div>
     <p class="journal-credentials">前反贪检察官 · 华中科技大学法学硕士</p>
     <p class="journal-author-bio">关注刑事辩护、民商事诉讼<br>与日常法律问题。</p>
@@ -18,7 +18,7 @@
   </section>
   {{- $pages := where .Site.RegularPages "Type" "in" (slice "posts" "cases" "法律知识库") -}}
   <section class="journal-sidebar-section" aria-labelledby="journal-archives-title">
-    <h2 id="journal-archives-title"><a href="/archives/">文章归档</a></h2>
+    <h2 id="journal-archives-title">{{ if eq .RelPermalink "/archives/" }}文章归档{{ else }}<a href="/archives/">文章归档</a>{{ end }}</h2>
     <ul class="journal-archive-list">
       {{ range first 4 ($pages.GroupByDate "2006") }}
       <li><a href="/archives/#{{ .Key }}"><span>{{ .Key }}<small>{{ len .Pages }} 篇</small></span><span aria-hidden="true">›</span></a></li>

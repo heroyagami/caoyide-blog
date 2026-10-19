@@ -1,8 +1,4 @@
 {{ define "main" }}
-  <nav class="breadcrumb" aria-label="breadcrumb">
-    <a href="/">返回首页</a>
-  </nav>
-
   <header class="section-card">
     <div class="section-details">
       <h1 class="section-term">{{ .Title }}</h1>
@@ -25,5 +21,5 @@
 {{ end }}
 
 {{ define "right-sidebar" }}
-  {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+  {{ partial "journal/sidebar.html" . }}
 {{ end }}

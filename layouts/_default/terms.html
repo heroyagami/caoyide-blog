@@ -1,10 +1,6 @@
 {{ define "body-class" }}template-terms{{ end }}
 {{- define "main" }}
 
-<nav class="breadcrumb" aria-label="breadcrumb">
-    <a href="/">返回首页</a>
-</nav>
-
 <header class="page-header">
     <h1>所有标签</h1>
     {{ with .Params.description }}<p class="page-lead">{{ . }}</p>{{ end }}
