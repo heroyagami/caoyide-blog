@@ -71,6 +71,7 @@ bash "$ROOT_DIR/scripts/generate-laws-sitemap.sh" "$PUBLIC_DIR" "https://caoyide
 echo "==> 5. Hugo build（主站）"
 cd "$ROOT_DIR"
 hugo --gc --minify
+python3 "$ROOT_DIR/scripts/check-journal-navigation.py"
 
 echo "==> 6. 统一结构化数据实体"
 python3 "$ROOT_DIR/scripts/postprocess-schema.py"
