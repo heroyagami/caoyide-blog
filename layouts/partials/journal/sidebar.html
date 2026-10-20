@@ -1,16 +1,19 @@
 <aside class="journal-sidebar" aria-label="作者与资源">
   <section class="journal-author" aria-labelledby="journal-author-name">
+    <a class="journal-author-link" href="/cases/" aria-label="关于曹义德：查看执业背景与履历">
     <div class="journal-author-heading">
       <img src="{{ .Site.Params.sidebar.avatar | relURL }}" width="84" height="84" alt="曹义德律师" fetchpriority="high">
       <div><h2 id="journal-author-name">曹义德</h2><p>律师</p></div>
     </div>
     <p class="journal-credentials">前反贪检察官 · 华中科技大学法学硕士</p>
     <p class="journal-author-bio">关注刑事辩护、民商事诉讼<br>与日常法律问题。</p>
-    <div class="journal-author-location"><span>武汉 · 黄石</span><a href="/cases/">关于曹义德</a></div>
+    <div class="journal-author-location"><span>武汉 · 黄石</span><span class="journal-author-more">关于曹义德</span></div>
+    </a>
   </section>
   <section class="journal-sidebar-section" aria-labelledby="journal-tools-title">
     <h2 id="journal-tools-title">常用工具</h2>
     <ul class="journal-tools">
+      <li><a href="/laws/"><span>{{ partial "helper/icon" "file-description" }}</span><div>法律文库<small>按类别查阅法律、法规与司法解释</small></div><b aria-hidden="true">›</b></a></li>
       <li><a href="https://flk.npc.gov.cn/index" target="_blank" rel="noopener noreferrer"><span>{{ partial "helper/icon" "file-description" }}</span><div>法律法规库<small>现行法律、行政法规与司法解释</small></div><b aria-hidden="true">›</b></a></li>
       <li><a href="https://wenshu.court.gov.cn/" target="_blank" rel="noopener noreferrer"><span>{{ partial "helper/icon" "file-description" }}</span><div>裁判文书网<small>查询公开裁判文书</small></div><b aria-hidden="true">›</b></a></li>
       <li><a href="https://credit.acla.org.cn/" target="_blank" rel="noopener noreferrer"><span>{{ partial "helper/icon" "user" }}</span><div>律师证书查询<small>核验律师执业信息</small></div><b aria-hidden="true">›</b></a></li>
