@@ -38,5 +38,8 @@ jobs:
       - name: Build Hugo and law library
         run: bash build.sh
 
+      - name: Validate AI search discovery assets and article schema
+        run: python3 scripts/check-ai-discovery.py
+
       - name: Validate built internal links
         run: python3 scripts/check-built-links.py
