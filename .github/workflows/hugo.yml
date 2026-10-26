@@ -44,18 +44,23 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -f public/hotspot-daily/index.html
-          test -f public/hotspot-daily/2026/10/2026-10-11/index.html
-          grep -q '今日热点深度文章池' public/hotspot-daily/2026/10/2026-10-11/index.html
-          grep -q '/hotspot-daily/' public/index.html
-          # Section isolation: hotspot list must contain hotspot issues, never case-library items.
-          grep -q '热点深度' public/hotspot-daily/index.html
-          grep -q '黄奇帆被查' public/hotspot-daily/index.html
-          ! grep -q '代理某某证券诉某房地产集团' public/hotspot-daily/index.html
-          # Cases remain a separate, unchanged archive.
-          test -f public/cases/index.html
-          grep -q '代理某某证券诉某房地产集团' public/cases/index.html
-          ! grep -q '黄奇帆被查' public/cases/index.html
+          failed=0
+          must_exist() { if [ ! -f "$1" ]; then echo "::error::Missing built file: $1"; failed=1; fi; }
+          must_contain() { if ! grep -Fq "$2" "$1"; then echo "::error::Missing '$2' in $1"; failed=1; fi; }
+          must_not_contain() { if grep -Fq "$2" "$1"; then echo "::error::Unexpected '$2' in $1"; failed=1; fi; }
+          must_exist public/hotspot-daily/index.html
+          must_exist public/hotspot-daily/2026/10/2026-10-11/index.html
+          must_exist public/index.html
+          must_exist public/cases/index.html
+          if [ "$failed" -eq 0 ]; then
+            must_contain public/hotspot-daily/2026/10/2026-10-11/index.html '今日热点深度文章池'
+            must_contain public/index.html '/hotspot-daily/'
+            must_contain public/hotspot-daily/index.html '热点深度'
+            must_not_contain public/hotspot-daily/index.html '代理某某证券诉某房地产集团'
+            must_contain public/cases/index.html '代理某某证券诉某房地产集团'
+            must_not_contain public/cases/index.html '黄奇帆被查'
+          fi
+          exit "$failed"
 
       - name: Validate built internal links
         run: python3 scripts/check-built-links.py
