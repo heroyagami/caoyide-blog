@@ -151,3 +151,26 @@ jobs:
           echo "::error::Newest hotspot issue is not visible on caoyide.com"
           exit 1
 
+      - name: Verify published evergreen article on caoyide.com
+        shell: bash
+        run: |
+          set -euo pipefail
+          route='/posts/debt-no-agreed-interest/'
+          test -f "public/${route#/}index.html"
+          grep -Fq "$route" public/sitemap.xml
+          for attempt in $(seq 1 20); do
+            article_status="$(curl --silent --show-error --location --max-time 20 --output /tmp/live-evergreen.html --write-out '%{http_code}' "https://caoyide.com${route}" || true)"
+            sitemap_status="$(curl --silent --show-error --location --max-time 20 --output /tmp/live-evergreen-sitemap.xml --write-out '%{http_code}' 'https://caoyide.com/sitemap.xml' || true)"
+            if [ "$article_status" = '200' ] && [ "$sitemap_status" = '200' ] \
+              && grep -Fq '欠款没有约定利息，还能要求对方支付利息吗' /tmp/live-evergreen.html \
+              && grep -Fq '借款期限内没有约定利息' /tmp/live-evergreen.html \
+              && grep -Fq "https://caoyide.com${route}" /tmp/live-evergreen-sitemap.xml; then
+              echo "Verified evergreen article: https://caoyide.com${route}"
+              exit 0
+            fi
+            echo "Evergreen production check ${attempt}: article=${article_status}, sitemap=${sitemap_status}"
+            sleep 15
+          done
+          echo "::error::Evergreen article missing from production, body, or sitemap: https://caoyide.com${route}"
+          exit 1
+
