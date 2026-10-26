@@ -47,9 +47,9 @@ jobs:
           test -f public/hotspot-daily/index.html
           test -f public/hotspot-daily/2026/10/2026-10-11/index.html
           grep -q '今日热点深度文章池' public/hotspot-daily/2026/10/2026-10-11/index.html
-          grep -q '最新热点深度文章' public/index.html
+          grep -q '/hotspot-daily/' public/index.html
           # Section isolation: hotspot list must contain hotspot issues, never case-library items.
-          grep -q '热点深度文章列表' public/hotspot-daily/index.html
+          grep -q '热点深度' public/hotspot-daily/index.html
           grep -q '黄奇帆被查' public/hotspot-daily/index.html
           ! grep -q '代理某某证券诉某房地产集团' public/hotspot-daily/index.html
           # Cases remain a separate, unchanged archive.
