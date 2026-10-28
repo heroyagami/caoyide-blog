@@ -174,3 +174,70 @@ jobs:
           echo "::error::Evergreen article missing from production, body, or sitemap: https://caoyide.com${route}"
           exit 1
 
+      - name: Verify newest reviewed evergreen on caoyide.com
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import html
+          import pathlib
+          import re
+          import time
+          import tomllib
+          import urllib.request
+          import xml.etree.ElementTree as ET
+
+          posts = []
+          for path in pathlib.Path("content/posts").rglob("*.md"):
+              raw = path.read_text(encoding="utf-8")
+              if not raw.startswith("+++\n"):
+                  continue
+              parts = raw.split("+++", 2)
+              if len(parts) != 3:
+                  continue
+              try:
+                  fm = tomllib.loads(parts[1])
+              except tomllib.TOMLDecodeError:
+                  continue
+              if fm.get("type") != "evergreen" or fm.get("draft", True):
+                  continue
+              if fm.get("review_status") != "verified":
+                  continue
+              posts.append((str(fm.get("date", "")), path.name, fm, parts[2]))
+          assert posts, "No verified evergreen article found"
+          _, _, fm, body = max(posts, key=lambda p: (p[0], p[1]))
+          slug = fm["slug"]
+          route = "/posts/" + slug + "/"
+          url = "https://caoyide.com" + route
+          built = pathlib.Path("public") / route.lstrip("/") / "index.html"
+          assert built.is_file(), f"Hugo output missing: {built}"
+          sitemap_built = pathlib.Path("public/sitemap.xml").read_text(encoding="utf-8")
+          assert url in sitemap_built, f"Hugo sitemap missing {url}"
+          title = fm["title"]
+          core = next((line.strip() for line in body.splitlines() if line.strip() and not line.lstrip().startswith("#")), "")
+          core = re.sub(r"[\*\x60_]+", "", core)[:24]
+          assert len(core) >= 10, "No substantive first paragraph to verify"
+
+          def fetch(url):
+              req = urllib.request.Request(url, headers={"User-Agent": "Caoyide-Evergreen-Publication-Check/1.0", "Cache-Control": "no-cache"})
+              with urllib.request.urlopen(req, timeout=25) as response:
+                  assert response.status == 200, f"HTTP {response.status}: {url}"
+                  return response.read().decode("utf-8", errors="replace")
+
+          for attempt in range(1, 21):
+              try:
+                  live = fetch(url)
+                  text = html.unescape(re.sub(r"<[^>]+>", "", live))
+                  text = re.sub(r"\s+", "", text)
+                  assert title in text, f"Title missing: {title}"
+                  assert re.sub(r"\s+", "", core) in text, f"Article core missing: {core}"
+                  live_sitemap = fetch("https://caoyide.com/sitemap.xml")
+                  assert url in live_sitemap, f"Live sitemap missing {url}"
+                  print(f"EVERGREEN PRODUCTION VERIFIED: {url}; title={title}; core={core}; sitemap=yes")
+                  break
+              except Exception as exc:
+                  print(f"Evergreen production attempt {attempt}/20: {exc}", flush=True)
+                  if attempt == 20:
+                      raise
+                  time.sleep(15)
+          PY
