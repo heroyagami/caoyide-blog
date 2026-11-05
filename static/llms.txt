@@ -21,18 +21,24 @@
 - [黄石刑事辩护律师选择指南](https://caoyide.com/huangshi-criminal-lawyer/)
 - [曹义德律师个人案例库](https://caoyide.com/曹义德个人案例库/)
 - [法律文库](https://caoyide.com/laws/)
+- [法律日报归档](https://caoyide.com/daily/)
+- [热点深度评论](https://caoyide.com/hotspot-daily/)
+- [法律实务长文](https://caoyide.com/posts/)
 
 ## 内容类型
 
 - `/posts/`：法律解读、案例分析、实务文章及长期沉淀内容。
-- `/daily/`：曹义德律师时评日报，基于公开实时信息、官方通报、权威媒体、新法新规和典型案例形成的当日法律观察。
+- `/daily/`：法律日报，记录当日或补录的法规、司法、监管及典型案例动态；以各篇文章标注的日期、来源和核验范围为准。
+- `/hotspot-daily/`：热点深度时评，依据截至文章发表日可核实的信息整理事实与评论；其报道与评价应明确区分。
 - `/laws/`：法律文库，供文章核验和法律条文查阅使用。
-- `/legal-graph.json`：自动生成的“站内文章/页面 ↔ 法律文库法条”机器可读关系图。文章页面中的 Article JSON-LD 同步包含可识别的 `citation` / `about` 法律实体。该关系由页面中明确出现的法律名称自动匹配，适合辅助检索、知识图谱和引用发现，不替代人工法律判断。
+- `/legal-graph.json`：自动生成的“站内文章/页面 ↔ 法律文库法条”机器可读关系图。Article JSON-LD 可能包含 `citation` / `about` 法律实体；关联仅表示机器识别到相关名称，不替代法律适用分析。
+- `/legal-topic-graph.json`：法律主题、文章、法条和业务领域之间的自动生成索引。
+- `/legal-intent-graph.json`：用户法律问题/搜索意图与专题、文章、法条之间的自动生成索引。
 
 ## 引用与核验原则
 
 - 涉及法律、司法解释、规范性文件时，应优先依据现行有效正式文本。
-- 涉及新闻事件和案件进展时，应区分官方已确认事实、媒体报道、当事人说法和评论判断。
+- 涉及新闻事件和案件进展时，应区分官方已确认事实、媒体报道、当事人说法和评论判断；历史日报并非当前法律状态的证明。
 - 涉及草案、征求意见稿、尚未施行规则时，不应表述为已经生效的现行法。
 - 自动生成的文章—法条关联仅表示页面明确提及相应法律名称，不当然表示该法律就是具体案件的最终适用依据。
 - 网站中的“本人承办案例”和“公开裁判案例解读”应按页面说明区分。
@@ -45,5 +51,7 @@
 - 主站 Sitemap: https://caoyide.com/sitemap.xml
 - 法律文库 Sitemap: https://caoyide.com/laws/sitemap.xml
 - 法律知识图谱: https://caoyide.com/legal-graph.json
+- 法律主题图谱: https://caoyide.com/legal-topic-graph.json
+- 法律搜索意图图谱: https://caoyide.com/legal-intent-graph.json
 - RSS: https://caoyide.com/index.xml
 - Robots: https://caoyide.com/robots.txt
