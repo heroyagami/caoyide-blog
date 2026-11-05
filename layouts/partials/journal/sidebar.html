@@ -31,7 +31,10 @@
   </section>
   {{ end }}
   <section class="journal-sidebar-section" aria-labelledby="journal-topics-title">
-    <h2 id="journal-topics-title">阅读主题</h2>
+    <div class="journal-sidebar-heading">
+      <h2 id="journal-topics-title">阅读主题</h2>
+      <a class="journal-all-topics" href="/categories/">全部标签 <span aria-hidden="true">→</span></a>
+    </div>
     <ul class="journal-topic-list">
       {{ range first 6 .Site.Taxonomies.tags.ByCount }}
       <li><a href="{{ .Page.RelPermalink }}"><span>{{ .Page.Title }}</span><small>{{ .Count }}</small></a></li>

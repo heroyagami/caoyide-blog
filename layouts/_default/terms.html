@@ -12,7 +12,7 @@
     {{- $name := .Name }}
     {{- $count := .Count }}
     {{- with site.GetPage (printf "/%s/%s" $type $name) }}
-    <a href="{{ .Permalink }}" class="term-tag-card">
+    <a href="{{ .RelPermalink }}" class="term-tag-card">
         <span class="term-tag-name">{{ .Name }}</span>
         <span class="term-tag-count">{{ $count }}</span>
     </a>
@@ -21,3 +21,7 @@
 </div>
 
 {{- end }}{{/* end main */ -}}
+
+{{ define "right-sidebar" }}
+    {{ partial "journal/sidebar.html" . }}
+{{ end }}
