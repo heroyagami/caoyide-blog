@@ -62,6 +62,9 @@ jobs:
           fi
           exit "$failed"
 
+      - name: Validate AI search discovery assets and article schema
+        run: python3 scripts/check-ai-discovery.py
+
       - name: Validate built internal links
         run: python3 scripts/check-built-links.py
 
