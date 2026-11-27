@@ -4,7 +4,7 @@
 
 ## 现有状态与切换条件
 
-历史迁移已经完成固定源版本的46份文件逐字节核验（仅添加稳定 URL），站点构建通过。data/hotspot-source.json 的 mode=site 时，原同步脚本不联网、不修改内容；mode=legacy 可用于明确回退。先启用 site 冻结历史镜像，再更新云任务目标，确认下一次直接写入和网站结果后才考虑归档旧仓库。切换前后均不补录历史任务。
+历史迁移已保全全部49份旧库文件并离线核验。站点是唯一写入目标，data/hotspot-source.json 保持 mode=site。合并退役变更之前，维护者必须确认切换后首份热点日报实际写入站点主分支、回读一致、页面可访问，并核实没有旧同步在途；未满足条件不得合并。退役后旧同步脚本与定时 workflow 移除，不恢复双写；历史回滚需明确审查 Git 历史。切换前后均不补录历史任务。
 
 ## 直接写入契约（切换后适用）
 
@@ -16,4 +16,4 @@
 
 ## 核验
 
-使用 scripts/audit-hotspot-migration.py 离线核对 data/dailynews-archive-manifest.json。46份历史热点文章以网站版本和逆向 URL 转换恢复原始字节；旧库其余3份文件完整保存在 docs/dailynews-legacy/（不进入 Hugo content，避免重复发布）。所有49份文件均以固定来源 Git blob SHA 核验，无需访问旧库。历史基线不应无意修改；合法修订应另行记录。部署流程保留；旧同步调度在 site 模式下安全空转，首次直接归档实际成功前仍保留 legacy 回退能力及旧仓库。
+使用 scripts/audit-hotspot-migration.py 离线核对 data/dailynews-archive-manifest.json。46份历史热点文章以网站版本和逆向 URL 转换恢复原始字节；旧库其余3份文件完整保存在 docs/dailynews-legacy/（不进入 Hugo content，避免重复发布）。所有49份文件均以固定来源 Git blob SHA 核验，无需访问旧库。历史基线不应无意修改；合法修订应另行记录。部署流程保留。退役后审计不联网，历史资料只读，旧库不再是网站运行依赖。
