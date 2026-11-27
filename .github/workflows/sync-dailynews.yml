@@ -6,9 +6,11 @@ on:
     - cron: "45 0,2,5,11 * * *"
   workflow_dispatch:
   push:
+    branches: [main]
     paths:
       - ".github/workflows/sync-dailynews.yml"
       - "scripts/sync-dailynews.py"
+      - "data/hotspot-source.json"
 
 permissions:
   contents: write
