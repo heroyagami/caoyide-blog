@@ -1,49 +1,61 @@
 #!/usr/bin/env python3
-"""Read-only byte-for-byte verification of the legacy hotspot mirror."""
-from __future__ import annotations
+"""Offline verification of the exact DailyNews migration baseline; no network."""
 import argparse
-import importlib.util
+import hashlib
 import json
-import re
 from pathlib import Path
-from urllib.parse import quote
+import re
 
-spec = importlib.util.spec_from_file_location("legacy_sync", Path(__file__).with_name("sync-dailynews.py"))
-legacy = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(legacy)
+ROOT = Path(__file__).resolve().parents[1]
+MANIFEST = ROOT / "data" / "dailynews-archive-manifest.json"
+PATTERN = re.compile(r"^content/hotspot-daily/(\d{4})/(\d{2})/(\d{4}-\d{2}-\d{2})\.md$")
 
-def verify(ref: str) -> int:
-    if not re.fullmatch(r"[0-9a-f]{40}", ref):
-        raise ValueError("Expected immutable source commit SHA")
-    url = f"https://api.github.com/repos/{legacy.SOURCE_REPO}/git/trees/{ref}?recursive=1"
-    tree = json.loads(legacy.fetch(url))
-    if tree.get("truncated"):
-        raise ValueError("Truncated source tree")
-    entries = [(x["path"], x["sha"]) for x in tree["tree"]
-               if x["type"] == "blob" and legacy.SOURCE_PATTERN.fullmatch(x["path"])]
-    if not entries or len(entries) > legacy.MAX_FILES:
-        raise ValueError("Unexpected source entry count")
-    failures = []
-    for path, sha in sorted(entries):
-        year, month, date = legacy.SOURCE_PATTERN.fullmatch(path).groups()
+def blob_sha(data):
+    return hashlib.sha1(f"blob {len(data)}\0".encode() + data).hexdigest()
+
+def read_local(relative):
+    path = ROOT / relative
+    if not path.is_file() or ROOT not in path.resolve().parents:
+        raise ValueError("Missing or unsafe local archive path: " + relative)
+    return path.read_bytes()
+
+def verify(source_ref=None):
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    if manifest["schemaVersion"] != 1 or (source_ref and source_ref != manifest["sourceRevision"]):
+        raise ValueError("Unexpected historical baseline")
+    articles, other = manifest["articles"], manifest["otherFiles"]
+    if len(articles) != 46 or len(other) != 3:
+        raise ValueError("Unexpected archive counts")
+    seen = set()
+    for item in articles:
+        path = item["path"]
+        match = PATTERN.fullmatch(path)
+        if not match or path in seen:
+            raise ValueError("Bad or duplicate path: " + path)
+        seen.add(path)
+        year, month, date = match.groups()
         if date[:4] != year or date[5:7] != month:
-            raise ValueError("Invalid source date path")
-        raw = legacy.fetch(f"https://raw.githubusercontent.com/{legacy.SOURCE_REPO}/{ref}/{quote(path)}")
-        legacy.validate(path, raw, sha)
-        source = raw.decode("utf-8")
-        if re.search(r"(?m)^url:\s*", source.split("\n---\n",1)[0]):
-            raise ValueError("Unexpected source URL override")
-        expected = source.replace("\n---\n", f'\nurl: "/hotspot-daily/{year}/{month}/{date}/"\n---\n', 1).encode("utf-8")
-        target = legacy.ROOT / path
-        if not target.is_file() or target.read_bytes() != expected:
-            failures.append(path)
-    if failures:
-        print("MISSING OR DIFFERENT: " + ", ".join(failures))
-        return 1
-    print(f"PASS: {len(entries)} legacy hotspot files match byte-for-byte after stable URL transformation.")
+            raise ValueError("Wrong archive date path")
+        data = read_local(path)
+        if blob_sha(data) != item["siteBlob"]:
+            raise ValueError("Site baseline differs: " + path)
+        marker = f'\nurl: "/hotspot-daily/{year}/{month}/{date}/"\n---\n'.encode()
+        if data.count(marker) != 1:
+            raise ValueError("Unexpected URL transform: " + path)
+        source = data.replace(marker, b"\n---\n", 1)
+        if blob_sha(source) != item["sourceBlob"]:
+            raise ValueError("Original bytes cannot be reconstructed: " + path)
+    for item in other:
+        path = item["path"]
+        if not path.startswith("docs/dailynews-legacy/") or path in seen:
+            raise ValueError("Bad or duplicate legacy file path")
+        seen.add(path)
+        if blob_sha(read_local(path)) != item["sha"]:
+            raise ValueError("Legacy document differs: " + path)
+    print(f"PASS: {len(articles)} original hotspot Markdown files reconstruct exactly; {len(other)} other files match source blobs; no network.")
     return 0
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--source-ref", required=True)
+    p.add_argument("--source-ref")
     raise SystemExit(verify(p.parse_args().source_ref))
