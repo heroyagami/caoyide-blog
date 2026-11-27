@@ -16,4 +16,4 @@
 
 ## 核验
 
-使用 scripts/audit-hotspot-migration.py 比较旧库固定提交与网站现有镜像，复用旧校验规则、稳定 URL 转换、逐文件 SHA 与字节比较。只读检查，任何差异阻塞切换；不自动覆盖或发布。部署流程保留；旧同步调度在 site 模式下安全空转，不覆盖任何新旧稿件。
+使用 scripts/audit-hotspot-migration.py 离线核对 data/dailynews-archive-manifest.json。46份历史热点文章以网站版本和逆向 URL 转换恢复原始字节；旧库其余3份文件完整保存在 docs/dailynews-legacy/（不进入 Hugo content，避免重复发布）。所有49份文件均以固定来源 Git blob SHA 核验，无需访问旧库。历史基线不应无意修改；合法修订应另行记录。部署流程保留；旧同步调度在 site 模式下安全空转，首次直接归档实际成功前仍保留 legacy 回退能力及旧仓库。

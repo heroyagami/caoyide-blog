@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "heroyagami/DailyNews",
+  "sourceRevision": "ad28a13ce48e118f430d17a152be0d47acd2db5b",
+  "sourceTree": "0c8e8469fc2a5eaa4c08a4ef23488f6faa89e34b",
+  "siteRevision": "19d9422dee07023f4e45cd2956b3aa34c01e9f20",
+  "articles": [
+    {
+      "path": "content/hotspot-daily/2026/09/2026-09-12.md",
+      "sourceBlob": "642617d969095f6080899090ee79036e3e3529a6",
+      "siteBlob": "fd5715ff4a1684a3025ab2ea2364905d60082884"
+    },
+    {
+      "path": "content/hotspot-daily/2026/09/2026-09-13.md",
+      "sourceBlob": "0047504dda187a1ca574cbe2818c2bcd824a4112",
+      "siteBlob": "f220b5451aa353d963179d6157adadc4d6e5df1a"
+    },
+    {
+      "path": "content/hotspot-daily/2026/09/2026-09-14.md",
+      "sourceBlob": "c8c41129ec8c431e28f0dde472d52b18ed8b151e",
+      "siteBlob": "91c5c61fbfa6fd9bf7fcf680f46170eabbe9702c"
+    },
+    {
+      "path": "content/hotspot-daily/2026/09/2026-09-15.md",
+      "sourceBlob": "8d5af5c1e5058be3bf5c238cc636d27c18cd53cf",
+      "siteBlob": "ea4189ab18c56f09480853c8ecf390f42720112a"
+    },
+    {
+      "path": "content/hotspot-daily/2026/09/2026-09-16.md",
+      "sourceBlob": "e1321cc6b366c5b911a0a8e2a1e2ae4c3358e145",
+      "siteBlob": "34d429c95ad54a8f735f749a011344e6b37daf32"
+    },
+    {
+      "path": "content/hotspot-daily/2026/09/2026-09-17.md",
+      "sourceBlob": "dfcff57db14db2077e2882d274aac82aede8d631",
+      "siteBlob": "1be06039ff02e64236cf04f513915c961fc30b0b"
+    },
+    {
+      "path": "content/hotspot-daily/2026/09/2026-09-18.md",
+      "sourceBlob": "cdf8a4b934bfc5e57c53dde89da5540cddebdcf4",
+      "siteBlob": "1a9970d1f378296477f8ddc5463b992a163bb7f8"
+    },
+    {
+      "path": "content/hotspot-daily/2026/09/2026-09-19.md",
+      "sourceBlob": "046d1f6dc6e622217376c177ec9763e6170a4f45",
+      "siteBlob": "d32658bdce901be78d32656ca04c5751625d5e7f"
+    },
+    {
+      "path": "content/hotspot-daily/2026/09/2026-09-20.md",
+      "sourceBlob": "af6f9e48b6c6e64df27e2d1f53920da38abe262b",
+      "siteBlob": "cf165343e835fcbbf6df2d7a4816375ba0a8e8e6"
+    },
+    {
+      "path": "content/hotspot-daily/2026/09/2026-09-21.md",
+      "sourceBlob": "e4ac81d1176e0400d2ac760948c4516604f3affc",
+      "siteBlob": "c4b640576b08bcc7f167a7bf90b518c18640f951"
+    },
+    {
+      "path": "content/hotspot-daily/2026/09/2026-09-22.md",
+      "sourceBlob": "659236e256da6cecb239d4c0cb857c9feae9bb04",
+      "siteBlob": "a50a7fa2c7811888209972a3ac62ffa8fda60634"
+    },
+    {
+      "path": "content/hotspot-daily/2026/09/2026-09-23.md",
+      "sourceBlob": "650ee1ae18b705bf33d03e14f45466326539ead8",
+      "siteBlob": "5d959ab2bbc641426b1e0c32235bca2dc4663204"
+    },
+    {
+      "path": "content/hotspot-daily/2026/09/2026-09-24.md",
+      "sourceBlob": "d6216fb405a46de529379f262301fd4bcd70d863",
+      "siteBlob": "f00ae1b6847137901bd9c55d69c517abcd2f6b14"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-08.md",
+      "sourceBlob": "9801a8b08b248bb756480256171ea358a5607f55",
+      "siteBlob": "e5539cce8cfc121c8d71842bacee5df6a9bc784b"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-11.md",
+      "sourceBlob": "48a4470ef92270070c65f3d094fb016d1b0e145f",
+      "siteBlob": "910bf0f3e2793948a0eaf2245123a542e38b0131"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-12.md",
+      "sourceBlob": "fa9caaffd580394f0396581ad7e842b38c41564c",
+      "siteBlob": "4761c66027084ac8c1d1e95b1677e3c8efae4fba"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-14.md",
+      "sourceBlob": "010faf7c7febcecd74f7ebe3c35d0fa87484dd01",
+      "siteBlob": "b3c04dd5c43b33eb7cc8bb1c1559c5b0bea48ec4"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-15.md",
+      "sourceBlob": "0e9accd9885b21a8b4c3fac9a15a4458240780f0",
+      "siteBlob": "c64fa241745285404281120161c36e0e3413883c"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-16.md",
+      "sourceBlob": "27c2609cad4575b08355a703050283b30fd9fa7f",
+      "siteBlob": "3575b95046f78b060de86e9b24b21fc3819c137d"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-17.md",
+      "sourceBlob": "242fa9b2b6a8d85d7ef6573c891187b58f671f54",
+      "siteBlob": "539f1a9f4159cf429f72e41ef7d7bfd76393ffa8"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-18.md",
+      "sourceBlob": "c32282d78801e42bcda1f3a1f22b685dc3950579",
+      "siteBlob": "8cffecf59d90a7d34d5d25160de6116e4bd7356a"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-19.md",
+      "sourceBlob": "bd27f7c89606221b5eb20f4223787056c29aeb30",
+      "siteBlob": "68575f13d58e91598e61f4287b2a77710cb65f45"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-20.md",
+      "sourceBlob": "dc514e30df0cd754365fdbcce6563160338ca925",
+      "siteBlob": "67e5f941bca17146c62f66088bf0a49f3b326555"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-21.md",
+      "sourceBlob": "d8aefcdc306acb3249731cf72639aa561ecaa774",
+      "siteBlob": "964470903e78133d4a0f9b4af49e07aec80789bb"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-22.md",
+      "sourceBlob": "321ccd2e1accabcba118d177c4312c7b3cbd52e7",
+      "siteBlob": "014efdafe3e2bf7ac925ffd4d4733322236e5ce6"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-23.md",
+      "sourceBlob": "9c1a6732616c49d9143cb3f7bca57de967d2a368",
+      "siteBlob": "18aab56c61a16313e3f4b59d36b4f5f68ec4a834"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-24.md",
+      "sourceBlob": "eb52a7b57a9db8ab8825027ceb579f1f1c98f92a",
+      "siteBlob": "349b415f82466b7ec0ba97489b768f42ff526b98"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-25.md",
+      "sourceBlob": "a19edec325afa3798c5db852e1a8fb54fa99cc69",
+      "siteBlob": "63bbc1ef36186485fd7a210c8c98188f1cedc3a7"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-26.md",
+      "sourceBlob": "14cf648116e9fced7039fb81d49aadd3cd40da89",
+      "siteBlob": "fc09253de52a8586ad00827f78971e949a109f2e"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-27.md",
+      "sourceBlob": "7b2697b2880cb2322bf82c3414aa8dc1b3c9db47",
+      "siteBlob": "d79c72e75aca377b5f94823de155737f55b6d1fe"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-28.md",
+      "sourceBlob": "d1e9030773c5bfcde55b8ab17dad1c308c457717",
+      "siteBlob": "ac7202eaac7da986f45ff28d02b5d6e47953aefd"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-29.md",
+      "sourceBlob": "558d0c6b1f48908264aa08b123bf9fc0a76f4505",
+      "siteBlob": "7b6e50eb2bd2c08f6cc01e565b7789026abfd569"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-30.md",
+      "sourceBlob": "264c0e0b98f3ea9ea69d1646b7d12301a1665340",
+      "siteBlob": "74948104d37172c60246fd05706567f0336cc58b"
+    },
+    {
+      "path": "content/hotspot-daily/2026/10/2026-10-31.md",
+      "sourceBlob": "33220842c738e2c1ab4aac702538eaf0f2549ae4",
+      "siteBlob": "d50b7e6d3891d91d9e97426e96d5b29c520bbd4b"
+    },
+    {
+      "path": "content/hotspot-daily/2026/11/2026-11-01.md",
+      "sourceBlob": "8b985952dc751e078015ec5aee0291eff1be41aa",
+      "siteBlob": "2311461a6ef23044823ccd4144b86ee95976bf56"
+    },
+    {
+      "path": "content/hotspot-daily/2026/11/2026-11-02.md",
+      "sourceBlob": "0b5ebb9810f5017c948bd821141a43386f6b6206",
+      "siteBlob": "443c420468545fdff20cd5fce0a6b395b4404a51"
+    },
+    {
+      "path": "content/hotspot-daily/2026/11/2026-11-03.md",
+      "sourceBlob": "92c23643de8f3179f708e9366087e0dac82712d4",
+      "siteBlob": "b81f39df112ac0c8427a5b3b4c9d08bf1ab30d02"
+    },
+    {
+      "path": "content/hotspot-daily/2026/11/2026-11-05.md",
+      "sourceBlob": "1c20173bf71e91309927114c490c9732cda30b58",
+      "siteBlob": "09c1ea18ae866c00990009cfed4a3a9051d06904"
+    },
+    {
+      "path": "content/hotspot-daily/2026/11/2026-11-07.md",
+      "sourceBlob": "ad03b72a5e69ccfbfad736a4ab3fcd714ab21b7b",
+      "siteBlob": "60c2960db45a5439d48c324f5fdcb1d2a2971b28"
+    },
+    {
+      "path": "content/hotspot-daily/2026/11/2026-11-09.md",
+      "sourceBlob": "0658f17b194205420b995894d904496b3e21d1f3",
+      "siteBlob": "69c3cf37ad0c5f088196ddfc47664b077aa9de15"
+    },
+    {
+      "path": "content/hotspot-daily/2026/11/2026-11-12.md",
+      "sourceBlob": "2d674a4cd47544ecf5361a4a266c02bd83be3f79",
+      "siteBlob": "0fe994c67707076cf30bff1a2e721274d8f8c186"
+    },
+    {
+      "path": "content/hotspot-daily/2026/11/2026-11-16.md",
+      "sourceBlob": "2e11e21877b7b5068331d67980abfe746c7742de",
+      "siteBlob": "f16f6affed719931f28d9777c4740b328c894219"
+    },
+    {
+      "path": "content/hotspot-daily/2026/11/2026-11-19.md",
+      "sourceBlob": "eb0a4be579b6cf5898145072e4c7d91c5550a821",
+      "siteBlob": "3db62b7c24374956dcf6b62f4487b4ff43334cf9"
+    },
+    {
+      "path": "content/hotspot-daily/2026/11/2026-11-21.md",
+      "sourceBlob": "4ef3b4b7fff18a7ceeed382cd60a1e3184d44e44",
+      "siteBlob": "08d171f2691b61889442230761264e881afde34d"
+    },
+    {
+      "path": "content/hotspot-daily/2026/11/2026-11-23.md",
+      "sourceBlob": "3bf82234293e6ca5f165cedaf94d33b071fe73d3",
+      "siteBlob": "dddd3fc306d4f8bcda64bc272572cf640641e0be"
+    },
+    {
+      "path": "content/hotspot-daily/2026/11/2026-11-26.md",
+      "sourceBlob": "51da6c1100ac402c871dd1492d58aa0187c735fe",
+      "siteBlob": "ea96af57f99eab91e877154da0f34957747a18d3"
+    }
+  ],
+  "otherFiles": [
+    {
+      "path": "docs/dailynews-legacy/README.md",
+      "originalPath": "README.md",
+      "sha": "1b95a7223905883a0aaecc61f9b0dd146d209394"
+    },
+    {
+      "path": "docs/dailynews-legacy/content/articles/2026/09/2026-09-13-tietou.md",
+      "originalPath": "content/articles/2026/09/2026-09-13-tietou.md",
+      "sha": "c36c4930e093a5702a906d6e090a80d383608939"
+    },
+    {
+      "path": "docs/dailynews-legacy/docs/archive-contract.md",
+      "originalPath": "docs/archive-contract.md",
+      "sha": "7fcec6d84f4dc46e6e7e58cdb4bd296e70e091cf"
+    }
+  ]
+}
