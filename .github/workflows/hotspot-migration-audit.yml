@@ -1,0 +1,21 @@
+name: Hotspot migration audit
+on:
+  pull_request:
+    paths:
+      - 'docs/hotspot-production.md'
+      - 'scripts/audit-hotspot-migration.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify pinned legacy mirror
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/audit-hotspot-migration.py --source-ref ad28a13ce48e118f430d17a152be0d47acd2db5b
