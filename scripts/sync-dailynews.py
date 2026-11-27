@@ -57,7 +57,23 @@ def validate(path: str, raw: bytes, source_sha: str) -> None:
         raise ValueError(f"{path}: article body invalid")
 
 
+def legacy_mode() -> str:
+    marker = ROOT / "data/hotspot-source.json"
+    if not marker.exists():
+        return "legacy"
+    value = json.loads(marker.read_text(encoding="utf-8"))
+    if not isinstance(value, dict) or value.get("mode") not in ("legacy", "site"):
+        raise ValueError("Invalid hotspot source mode; refusing to write")
+    return value["mode"]
+
+
 def main() -> int:
+    if legacy_mode() == "site":
+        print("DailyNews historical mirror frozen; caoyide-blog is the direct writer. No network fetch or content mutation.")
+        if os.environ.get("GITHUB_OUTPUT"):
+            with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+                out.write("updated=0\nlatest_date=\n")
+        return 0
     listing = f"https://api.github.com/repos/{SOURCE_REPO}/git/trees/{SOURCE_BRANCH}?recursive=1"
     tree = json.loads(fetch(listing).decode("utf-8"))
     if tree.get("truncated"):

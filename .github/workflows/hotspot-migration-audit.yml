@@ -4,6 +4,9 @@ on:
     paths:
       - 'docs/hotspot-production.md'
       - 'scripts/audit-hotspot-migration.py'
+      - 'scripts/sync-dailynews.py'
+      - 'data/hotspot-source.json'
+      - '.github/workflows/hotspot-migration-audit.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -19,3 +22,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 scripts/audit-hotspot-migration.py --source-ref ad28a13ce48e118f430d17a152be0d47acd2db5b
+      - name: Verify frozen legacy sync has no writes
+        shell: bash
+        run: |
+          set -euo pipefail
+          output="$(mktemp)"
+          GITHUB_OUTPUT="$output" python3 scripts/sync-dailynews.py
+          grep -Fx 'updated=0' "$output"
+          git diff --exit-code
